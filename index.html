@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoop Assistant — Scouting Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E85D04;
+    --orange-light: #F48C06;
+    --black: #1a1a1a;
+    --gray: #555;
+    --light-gray: #f5f5f5;
+    --mid-gray: #e8e8e8;
+    --white: #ffffff;
+    --gold: #C9A84C;
+    --silver: #8A9BB0;
+    --bronze: #A0673A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; color: var(--black); background: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 2px solid var(--orange); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-wordmark { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; letter-spacing: 0.05em; text-decoration: none; color: var(--black); }
+  .nav-wordmark span { color: var(--orange); }
+  .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+  .nav-links a { text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .lang-toggle { display: flex; align-items: center; gap: 4px; background: var(--light-gray); border-radius: 20px; padding: 4px 6px; }
+  .lang-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; padding: 4px 10px; border-radius: 14px; border: none; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--gray); }
+  .lang-btn.active { background: var(--orange); color: white; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--black); }
+
+  /* HERO */
+  #inicio { min-height: 100vh; display: flex; align-items: center; padding-top: 64px; position: relative; overflow: hidden; }
+  .hero-accent { position: absolute; top: 0; right: 0; width: 42%; height: 100%; background: linear-gradient(135deg, var(--light-gray) 0%, var(--mid-gray) 100%); clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); z-index: 0; }
+  .hero-bg-lines { position: absolute; top: 0; right: 0; width: 55%; height: 100%; background: repeating-linear-gradient(-20deg, transparent, transparent 48px, rgba(232,93,4,0.04) 48px, rgba(232,93,4,0.04) 50px); pointer-events: none; }
+  .hero-content { position: relative; z-index: 1; padding: 0 5%; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,93,4,0.08); border: 1px solid rgba(232,93,4,0.2); border-radius: 4px; padding: 6px 14px; margin-bottom: 24px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+  .hero-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem,6vw,5.5rem); line-height: 0.9; text-transform: uppercase; margin-bottom: 24px; }
+  .hero-title .line1, .hero-title .line3 { display: block; color: var(--black); }
+  .hero-title .line2 { display: block; color: var(--orange); }
+  .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--gray); line-height: 1.7; margin-bottom: 36px; max-width: 420px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--orange); color: white; padding: 14px 32px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--orange); transition: all 0.2s; clip-path: polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); }
+  .btn-primary:hover { background: var(--black); border-color: var(--black); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--black); padding: 14px 32px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--black); transition: all 0.2s; clip-path: polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); }
+  .btn-secondary:hover { background: var(--black); color: white; }
+  .btn-secondary-white { display: inline-block; background: transparent; color: white; padding: 12px 28px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 2px solid rgba(255,255,255,0.4); transition: all 0.2s; clip-path: polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); }
+  .btn-secondary-white:hover { border-color: white; background: rgba(255,255,255,0.08); }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hero-stat { background: white; border: 1px solid var(--mid-gray); border-left: 3px solid var(--orange); padding: 20px; }
+  .hero-stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; color: var(--orange); line-height: 1; }
+  .hero-stat-label { font-size: 0.85rem; color: var(--gray); margin-top: 4px; font-weight: 500; }
+  .hero-benefits { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
+  .hero-benefit { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500; }
+  .hero-benefit::before { content: '✓'; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: var(--orange); color: white; font-size: 0.75rem; font-weight: 900; flex-shrink: 0; }
+
+  /* SECTIONS */
+  section { padding: 90px 5%; }
+  .section-header { margin-bottom: 60px; }
+  .section-tag { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.2rem,4vw,3.5rem); text-transform: uppercase; line-height: 1; color: var(--black); }
+  .section-title span { color: var(--orange); }
+  .section-desc { margin-top: 16px; font-size: 1rem; color: var(--gray); max-width: 560px; line-height: 1.7; }
+
+  /* SERVICES */
+  #servicios { background: var(--light-gray); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px; }
+  .service-card { background: white; padding: 32px; position: relative; overflow: hidden; transition: all 0.3s; border-bottom: 3px solid transparent; }
+  .service-card:hover { border-bottom-color: var(--orange); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); z-index: 1; }
+  .service-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; color: rgba(232,93,4,0.07); line-height: 1; position: absolute; top: 16px; right: 20px; }
+  .service-icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .service-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--black); margin-bottom: 10px; }
+  .service-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+  /* ── PAQUETES ── */
+  #paquetes { background: var(--white); }
+
+  /* Tab navigation */
+  .pack-tabs { display: flex; gap: 4px; margin-bottom: 40px; flex-wrap: wrap; }
+  .pack-tab-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 28px; border: 1px solid var(--mid-gray); background: transparent; color: var(--gray); cursor: pointer; transition: all 0.2s; }
+  .pack-tab-btn.active { background: var(--black); border-color: var(--black); color: white; }
+  .pack-tab-btn:not(.active):hover { border-color: var(--orange); color: var(--orange); }
+
+  /* Tab panels */
+  .pack-panel { display: none; }
+  .pack-panel.active { display: block; }
+
+  /* Cards */
+  .pack-grid { display: grid; gap: 2px; }
+  .pack-grid-3 { grid-template-columns: repeat(3,1fr); }
+  .pack-grid-2 { grid-template-columns: repeat(2,1fr); }
+  .pack-grid-3x { grid-template-columns: repeat(3,1fr); }
+
+  .pack-card { background: var(--light-gray); padding: 32px; position: relative; border-top: 4px solid var(--mid-gray); transition: border-top-color 0.2s; }
+  .pack-card:not(.featured):hover { border-top-color: var(--orange); }
+  .pack-card.bronze-card { border-top-color: var(--bronze); }
+  .pack-card.silver-card { border-top-color: var(--silver); }
+  .pack-card.gold-card { border-top-color: var(--gold); background: #fdfaf4; }
+  .pack-card.featured { background: var(--black); border-top-color: var(--orange); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.14); }
+
+  .pack-popular { position: absolute; top: -1px; right: 20px; background: var(--orange); color: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; }
+
+  .pack-tier { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+  .pack-tier.bronze { color: var(--bronze); }
+  .pack-tier.silver { color: var(--silver); }
+  .pack-tier.gold { color: var(--gold); }
+  .pack-tier.accent { color: var(--orange); }
+
+  .pack-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.8rem; text-transform: uppercase; line-height: 1; color: var(--black); margin-bottom: 6px; }
+  .pack-card.featured .pack-name { color: white; }
+  .pack-sub { font-size: 0.82rem; color: var(--gray); margin-bottom: 20px; line-height: 1.45; }
+  .pack-card.featured .pack-sub { color: rgba(255,255,255,0.42); }
+
+  .pack-divider { height: 1px; background: var(--mid-gray); margin-bottom: 20px; }
+  .pack-card.featured .pack-divider { background: rgba(255,255,255,0.1); }
+
+  .pack-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .pack-feature { display: flex; align-items: flex-start; gap: 9px; font-size: 0.87rem; color: var(--gray); line-height: 1.4; }
+  .pack-card.featured .pack-feature { color: rgba(255,255,255,0.7); }
+  .pack-feature::before { content: '✓'; flex-shrink: 0; width: 16px; height: 16px; background: rgba(232,93,4,0.1); color: var(--orange); font-size: 0.68rem; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
+  .pack-cta { margin-top: 28px; }
+  .pack-note { text-align: center; margin-top: 28px; font-size: 0.85rem; color: var(--gray); font-style: italic; }
+
+  /* PORTFOLIO */
+  #portfolio { background: var(--black); }
+  #portfolio .section-title { color: white; }
+  #portfolio .section-tag { color: var(--orange-light); }
+  .portfolio-tabs { display: flex; gap: 4px; margin-bottom: 40px; flex-wrap: wrap; }
+  .tab-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 28px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.2s; }
+  .tab-btn.active, .tab-btn:hover { background: var(--orange); border-color: var(--orange); color: white; }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .portfolio-item { position: relative; overflow: hidden; display: block; text-decoration: none; background: #1e1e1e; transition: transform 0.3s; }
+  .portfolio-item:hover { transform: scale(1.02); }
+  .portfolio-video-item { aspect-ratio: 16/9; }
+  .portfolio-report-item { aspect-ratio: 4/3; }
+  .yt-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .portfolio-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, background 0.2s; z-index: 2; }
+  .portfolio-play svg { width: 24px; height: 24px; fill: white; margin-left: 4px; }
+  .portfolio-item:hover .portfolio-play { transform: translate(-50%,-50%) scale(1.1); background: white; }
+  .portfolio-item:hover .portfolio-play svg { fill: var(--orange); }
+  .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.92)); padding: 48px 24px 22px; z-index: 1; }
+  .pf-type { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+  .pf-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.3rem; color: white; line-height: 1.2; }
+  .pf-sub { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .report-card { width: 100%; height: 100%; padding: 28px; background: linear-gradient(135deg,#1e1e1e,#2d2d2d); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .report-bg-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 7rem; color: rgba(232,93,4,0.05); line-height: 1; position: absolute; top: -10px; right: 10px; }
+  .report-icon { font-size: 2.5rem; opacity: 0.12; position: absolute; bottom: 20px; right: 20px; }
+  .report-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+  .rtag { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; background: rgba(232,93,4,0.1); color: var(--orange); border: 1px solid rgba(232,93,4,0.2); }
+
+  /* TESTIMONIOS */
+  #testimonios { background: var(--light-gray); }
+  .clients-strip { display: flex; align-items: center; margin-bottom: 56px; border: 1px solid var(--mid-gray); background: white; flex-wrap: wrap; }
+  .client-slot { flex: 1; min-width: 120px; padding: 22px 16px; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--mid-gray); }
+  .client-slot:last-child { border-right: none; }
+  .client-ph { width: 80px; height: 38px; background: var(--mid-gray); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.62rem; letter-spacing: .1em; text-transform: uppercase; color: #bbb; }
+  .testimonios-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .t-card { background: white; padding: 28px 30px 24px; border-top: 3px solid var(--mid-gray); transition: border-top-color 0.2s; }
+  .t-card:hover { border-top-color: var(--orange); }
+  .t-quote { font-size: 2.8rem; line-height: 1; color: var(--orange); opacity: 0.18; margin-bottom: 10px; font-family: Georgia, serif; }
+  .t-text { font-size: 0.95rem; color: var(--gray); line-height: 1.65; font-style: italic; margin-bottom: 20px; }
+  .t-author { display: flex; align-items: center; gap: 14px; padding-top: 16px; border-top: 1px solid var(--mid-gray); }
+  .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--mid-gray); flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .t-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .t-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; color: var(--black); }
+  .t-role { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
+
+  /* ABOUT */
+  #sobre { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-tag-line { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.9rem; text-transform: uppercase; color: var(--black); line-height: 1.1; margin-bottom: 20px; }
+  .about-tag-line span { color: var(--orange); }
+  .about-body { font-size: 1rem; color: var(--gray); line-height: 1.75; margin-bottom: 14px; }
+  .team-cards { display: flex; flex-direction: column; gap: 36px; }
+  .team-card { display: flex; gap: 22px; align-items: flex-start; }
+  .team-photo { width: 90px; height: 110px; object-fit: cover; object-position: top; flex-shrink: 0; border-left: 3px solid var(--orange); display: block; }
+  .team-ph { width: 90px; height: 110px; background: var(--light-gray); flex-shrink: 0; border-left: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--mid-gray); }
+  .team-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; color: var(--black); line-height: 1; }
+  .team-role { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin: 6px 0 10px; }
+  .team-bio { font-size: 0.87rem; color: var(--gray); line-height: 1.65; margin-bottom: 12px; }
+  .team-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ttag { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: .07em; text-transform: uppercase; padding: 4px 10px; background: var(--light-gray); color: var(--black); border: 1px solid var(--mid-gray); }
+
+  /* CONTACTO */
+  #contacto { background: var(--black); }
+  #contacto .section-title { color: white; }
+  #contacto .section-tag { color: var(--orange-light); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-intro { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.7; margin: 16px 0 28px; }
+  .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 0.9rem; color: rgba(255,255,255,0.45); }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+  .form-input, .form-select, .form-textarea { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; transition: border-color 0.2s; outline: none; width: 100%; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--orange); }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .form-select option { background: #222; color: white; }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-submit { background: var(--orange); color: white; border: none; padding: 16px 32px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; align-self: flex-start; clip-path: polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); }
+  .form-submit:hover { background: var(--orange-light); }
+  .form-success { display: none; margin-top: 8px; padding: 14px 16px; background: rgba(232,93,4,0.1); border: 1px solid rgba(232,93,4,0.3); color: var(--orange-light); font-size: 0.9rem; }
+  .form-note { font-size: 0.78rem; color: rgba(255,255,255,0.25); margin-top: 4px; }
+
+  footer { background: #111; padding: 28px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .footer-wm { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; color: rgba(255,255,255,0.4); letter-spacing: .05em; }
+  .footer-wm span { color: var(--orange); }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    .pack-grid-3, .pack-grid-2, .pack-grid-3x { grid-template-columns: 1fr; }
+    .pack-card.featured { transform: none; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .testimonios-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; gap: 16px; border-bottom: 2px solid var(--orange); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .hero-accent, .hero-bg-lines { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-wordmark"><span>HOOP</span> ASSISTANT</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+    <li><a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a></li>
+    <li><a href="#paquetes" data-es="Paquetes" data-en="Packages">Paquetes</a></li>
+    <li><a href="#portfolio" data-es="Portafolio" data-en="Portfolio">Portafolio</a></li>
+    <li><a href="#testimonios" data-es="Clientes" data-en="Clients">Clientes</a></li>
+    <li><a href="#sobre" data-es="Nosotros" data-en="About">Nosotros</a></li>
+    <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-accent"></div>
+  <div class="hero-bg-lines"></div>
+  <div class="hero-content">
+    <div class="hero-text fade-up">
+      <div class="hero-badge" data-es="Servicio Online de Scouting" data-en="Online Scouting Service">Servicio Online de Scouting</div>
+      <h1 class="hero-title">
+        <span class="line1" data-es="CONTROLA" data-en="CONTROL">CONTROLA</span>
+        <span class="line2" data-es="EL JUEGO" data-en="THE GAME">EL JUEGO</span>
+        <span class="line3" data-es="ANTES" data-en="BEFORE IT">ANTES</span>
+      </h1>
+      <p class="hero-sub" data-es="Vídeos, informes y análisis de datos personalizados sobre rivales y tu equipo. Un servicio 100% online con consultoría directa al cuerpo técnico." data-en="Custom video, reports and data analysis on opponents and your team. A 100% online service with direct consulting to the coaching staff.">Vídeos, informes y análisis de datos personalizados sobre rivales y tu equipo. Un servicio 100% online con consultoría directa al cuerpo técnico.</p>
+      <div class="hero-ctas">
+        <a href="#servicios" class="btn-primary" data-es="Ver Servicios" data-en="Our Services">Ver Servicios</a>
+        <a href="#portfolio" class="btn-secondary" data-es="Ver Ejemplos" data-en="See Examples">Ver Ejemplos</a>
+      </div>
+      <div class="hero-benefits">
+        <div class="hero-benefit" data-es="Conoce profundamente a tus rivales" data-en="Deep knowledge of your opponents">Conoce profundamente a tus rivales</div>
+        <div class="hero-benefit" data-es="Información concisa y accionable" data-en="Concise and actionable intelligence">Información concisa y accionable</div>
+        <div class="hero-benefit" data-es="Servicio online con consultoría incluida" data-en="Online service with consulting included">Servicio online con consultoría incluida</div>
+        <div class="hero-benefit" data-es="Ahorra tiempo, mejora tus decisiones" data-en="Save time, make better decisions">Ahorra tiempo, mejora tus decisiones</div>
+      </div>
+    </div>
+    <div class="hero-stats fade-up" style="transition-delay:.2s">
+      <div class="hero-stat"><div class="hero-stat-num">9+</div><div class="hero-stat-label" data-es="Servicios disponibles" data-en="Available services">Servicios disponibles</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label" data-es="Online + Consultoría" data-en="Online + Consulting">Online + Consultoría</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">Pro</div><div class="hero-stat-label" data-es="Nivel de análisis" data-en="Analysis level">Nivel de análisis</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">ES/EN</div><div class="hero-stat-label" data-es="Idiomas de entrega" data-en="Delivery languages">Idiomas de entrega</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header fade-up">
+    <div class="section-tag" data-es="Lo que ofrecemos" data-en="What we offer">Lo que ofrecemos</div>
+    <h2 class="section-title" data-es="NUESTROS <span>SERVICIOS</span>" data-en="OUR <span>SERVICES</span>">NUESTROS <span>SERVICIOS</span></h2>
+    <p class="section-desc" data-es="Un servicio integral de scouting, análisis y consultoría adaptado a las necesidades de cada cuerpo técnico." data-en="A comprehensive scouting, analysis and consulting service tailored to each coaching staff's needs.">Un servicio integral de scouting, análisis y consultoría adaptado a las necesidades de cada cuerpo técnico.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up"><div class="service-num">01</div><div class="service-icon">📋</div><div class="service-title" data-es="Playbook & Eficiencia del Rival" data-en="Opponent Playbook & Efficiency">Playbook & Eficiencia del Rival</div><p class="service-desc" data-es="Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción." data-en="Graphic and written breakdown of offensive systems, transitions, ATOs, baseline and sideline plays. Frequency and efficiency of every action.">Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.05s"><div class="service-num">02</div><div class="service-icon">👤</div><div class="service-title" data-es="Scouting Individual" data-en="Individual Scouting">Scouting Individual</div><p class="service-desc" data-es="Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave." data-en="Detailed analysis of each opponent player in document and video: strengths, weaknesses, tendencies, role and key stats.">Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.1s"><div class="service-num">03</div><div class="service-icon">📊</div><div class="service-title" data-es="Estadística Avanzada" data-en="Advanced Statistics">Estadística Avanzada</div><p class="service-desc" data-es="Métricas avanzadas: eficiencias, volumen de posesiones, tendencias de tiro, análisis de quintetos y playtypes (InStat / Synergy). Tres niveles disponibles." data-en="Advanced metrics: efficiencies, possession volume, shooting trends, lineup analysis and playtypes (InStat / Synergy). Three tiers available.">Métricas avanzadas: eficiencias, volumen de posesiones, tendencias de tiro, análisis de quintetos y playtypes (InStat / Synergy). Tres niveles disponibles.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.15s"><div class="service-num">04</div><div class="service-icon">🎬</div><div class="service-title" data-es="Vídeo de Jugadas del Rival" data-en="Opponent Plays Video">Vídeo de Jugadas del Rival</div><p class="service-desc" data-es="Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas." data-en="Video analysis of offensive and defensive situations, highlighting finishing options to prepare specific responses.">Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.2s"><div class="service-num">05</div><div class="service-icon">🛡️</div><div class="service-title" data-es="Scouting Defensivo del Rival" data-en="Opponent Defensive Scouting">Scouting Defensivo del Rival</div><p class="service-desc" data-es="Estudio profundo de la defensa rival: P&R, off-screens, poste bajo, 1c1 y zonas. Detecta tendencias y puntos débiles." data-en="Deep study of the opponent's defense: P&R, off-screens, post defense, 1-on-1 and zones. Identifies tendencies and weak points.">Estudio profundo de la defensa rival: P&R, off-screens, poste bajo, 1c1 y zonas. Detecta tendencias y puntos débiles.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.25s"><div class="service-num">06</div><div class="service-icon">📹</div><div class="service-title" data-es="Vídeo de Scouting del Rival" data-en="Full Scouting Video">Vídeo de Scouting del Rival</div><p class="service-desc" data-es="Resumen de 8-10 minutos con ofensa, jugadores clave y análisis defensivo. Herramienta práctica para la preparación previa al partido." data-en="8-10 min summary covering offense, key players and defensive analysis. Practical pre-game preparation tool.">Resumen de 8-10 minutos con ofensa, jugadores clave y análisis defensivo. Herramienta práctica para la preparación previa al partido.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.3s"><div class="service-num">07</div><div class="service-icon">📈</div><div class="service-title" data-es="Análisis de Rendimiento" data-en="Team Performance Analysis">Análisis de Rendimiento</div><p class="service-desc" data-es="Estadística avanzada del propio equipo: métricas de rendimiento, tendencias, combinaciones en pista y respuestas estratégicas." data-en="Advanced stats for your own team: performance metrics, tendencies, on-court combinations and strategic responses.">Estadística avanzada del propio equipo: métricas de rendimiento, tendencias, combinaciones en pista y respuestas estratégicas.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.35s"><div class="service-num">08</div><div class="service-icon">🤝</div><div class="service-title" data-es="Consultoría" data-en="Consulting">Consultoría</div><p class="service-desc" data-es="Consultoría directa con el cuerpo técnico para interpretar análisis, adaptar la información al plan de partido y resolver cualquier duda." data-en="Direct consulting with the coaching staff to interpret analysis, adapt information to the game plan and resolve any queries.">Consultoría directa con el cuerpo técnico para interpretar análisis, adaptar la información al plan de partido y resolver cualquier duda.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.4s"><div class="service-num">09</div><div class="service-icon">⚙️</div><div class="service-title" data-es="Servicios Bajo Demanda" data-en="On-Demand Services">Servicios Bajo Demanda</div><p class="service-desc" data-es="Cualquier análisis, informe o vídeo adaptado al formato y contenido deseado por el cuerpo técnico, previo acuerdo." data-en="Any analysis, report or video adapted to the format and content desired by the coaching staff, by prior agreement.">Cualquier análisis, informe o vídeo adaptado al formato y contenido deseado por el cuerpo técnico, previo acuerdo.</p></div>
+  </div>
+</section>
+
+<!-- PAQUETES -->
+<section id="paquetes">
+  <div class="section-header fade-up">
+    <div class="section-tag" data-es="Nuestras propuestas" data-en="Our proposals">Nuestras propuestas</div>
+    <h2 class="section-title" data-es="<span>PAQUETES</span> DE SERVICIO" data-en="SERVICE <span>PACKAGES</span>"><span>PAQUETES</span> DE SERVICIO</h2>
+    <p class="section-desc" data-es="Elige el paquete que mejor se adapta a las necesidades de tu equipo. Todos incluyen consultoría directa." data-en="Choose the package that best fits your team's needs. All include direct consulting.">Elige el paquete que mejor se adapta a las necesidades de tu equipo. Todos incluyen consultoría directa.</p>
+  </div>
+
+  <!-- PACK TABS -->
+  <div class="pack-tabs fade-up">
+    <button class="pack-tab-btn active" onclick="switchPack(event,'stats')" data-es="📊 Pack Estadísticas" data-en="📊 Statistics Pack">📊 Pack Estadísticas</button>
+    <button class="pack-tab-btn" onclick="switchPack(event,'scouting')" data-es="🎬 Pack Scouting" data-en="🎬 Scouting Pack">🎬 Pack Scouting</button>
+    <button class="pack-tab-btn" onclick="switchPack(event,'extra')" data-es="⚡ Packs Extra" data-en="⚡ Extra Packs">⚡ Packs Extra</button>
+  </div>
+
+  <!-- PANEL: ESTADÍSTICAS -->
+  <div class="pack-panel active" id="panel-stats">
+    <div class="pack-grid pack-grid-3 fade-up">
+      <div class="pack-card bronze-card">
+        <div class="pack-tier bronze">🥉 <span data-es="Nivel 1" data-en="Level 1">Nivel 1</span></div>
+        <div class="pack-name">Bronze</div>
+        <div class="pack-sub" data-es="Contexto estadístico de base para conocer al rival" data-en="Basic statistical context to understand your opponent">Contexto estadístico de base para conocer al rival</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Boxscore contextual de la liga" data-en="League contextual boxscore">Boxscore contextual de la liga</li>
+          <li class="pack-feature" data-es="Rankings del equipo en la liga" data-en="Team rankings in the league">Rankings del equipo en la liga</li>
+          <li class="pack-feature" data-es="Comparativa de equipo propio vs rival" data-en="Own team vs opponent comparison">Comparativa de equipo propio vs rival</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+      <div class="pack-card silver-card">
+        <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
+        <div class="pack-tier silver">🥈 <span data-es="Nivel 2" data-en="Level 2">Nivel 2</span></div>
+        <div class="pack-name">Silver</div>
+        <div class="pack-sub" data-es="Optimización de rotaciones y evolución del equipo propio" data-en="Rotation optimisation and own team evolution">Optimización de rotaciones y evolución del equipo propio</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Todo lo del Bronze" data-en="Everything in Bronze">Todo lo del Bronze</li>
+          <li class="pack-feature" data-es="Combinaciones y análisis de quintetos propios" data-en="Own lineup combinations and analysis">Combinaciones y análisis de quintetos propios</li>
+          <li class="pack-feature" data-es="Optimización de quintetos y rotaciones" data-en="Lineup and rotation optimisation">Optimización de quintetos y rotaciones</li>
+          <li class="pack-feature" data-es="Tendencias y evolución de jugadores" data-en="Player tendencies and evolution">Tendencias y evolución de jugadores</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+      <div class="pack-card gold-card">
+        <div class="pack-tier gold">🥇 <span data-es="Nivel 3" data-en="Level 3">Nivel 3</span></div>
+        <div class="pack-name">Gold</div>
+        <div class="pack-sub" data-es="Análisis completo con playtypes avanzados y reports periódicos" data-en="Full analysis with advanced playtypes and periodic reports">Análisis completo con playtypes avanzados y reports periódicos</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Todo lo del Silver" data-en="Everything in Silver">Todo lo del Silver</li>
+          <li class="pack-feature" data-es="Rotación y tendencias del rival" data-en="Opponent rotation and tendencies">Rotación y tendencias del rival</li>
+          <li class="pack-feature" data-es="Reports a tercios, mitad y final de temporada" data-en="Reports at 1/3, mid and end of season">Reports a tercios, mitad y final de temporada</li>
+          <li class="pack-feature" data-es="Playtypes avanzados (InStat / Synergy)" data-en="Advanced playtypes (InStat / Synergy)">Playtypes avanzados (InStat / Synergy)</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: SCOUTING -->
+  <div class="pack-panel" id="panel-scouting">
+    <div class="pack-grid pack-grid-3 fade-up">
+      <div class="pack-card">
+        <div class="pack-tier accent">🏀 <span data-es="Rival — Equipo" data-en="Rival — Team">Rival — Equipo</span></div>
+        <div class="pack-name">Team Scout</div>
+        <div class="pack-sub" data-es="Análisis colectivo completo del equipo rival" data-en="Full collective analysis of the opponent team">Análisis colectivo completo del equipo rival</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Playbook del rival" data-en="Opponent playbook">Playbook del rival</li>
+          <li class="pack-feature" data-es="Análisis de situaciones ofensivas (frecuencia y eficiencia)" data-en="Offensive situation analysis (frequency and efficiency)">Análisis de situaciones ofensivas (frecuencia y eficiencia)</li>
+          <li class="pack-feature" data-es="Vídeo colectivo del rival" data-en="Collective opponent video">Vídeo colectivo del rival</li>
+          <li class="pack-feature" data-es="Informe defensivo escrito y en vídeo" data-en="Defensive report in writing and video">Informe defensivo escrito y en vídeo</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+      <div class="pack-card">
+        <div class="pack-tier accent">👤 <span data-es="Rival — Jugadores" data-en="Rival — Players">Rival — Jugadores</span></div>
+        <div class="pack-name">Player Scout</div>
+        <div class="pack-sub" data-es="Análisis individual de cada jugador del rival" data-en="Individual analysis of each opponent player">Análisis individual de cada jugador del rival</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Informe de jugadores (documento)" data-en="Player report (document)">Informe de jugadores (documento)</li>
+          <li class="pack-feature" data-es="Vídeo de scouting individual por jugador" data-en="Individual scouting video per player">Vídeo de scouting individual por jugador</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+      <div class="pack-card featured">
+        <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
+        <div class="pack-tier accent" style="color:var(--orange-light)">⭐ <span data-es="Rival — Completo" data-en="Rival — Full">Rival — Completo</span></div>
+        <div class="pack-name">Full Scout</div>
+        <div class="pack-sub" data-es="El análisis más completo del rival, equipo y jugadores" data-en="The most complete opponent analysis, team and players">El análisis más completo del rival, equipo y jugadores</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Todo lo del Team Scout" data-en="Everything in Team Scout">Todo lo del Team Scout</li>
+          <li class="pack-feature" data-es="Todo lo del Player Scout" data-en="Everything in Player Scout">Todo lo del Player Scout</li>
+          <li class="pack-feature" data-es="Vídeo de scouting completo del rival (8-10 min)" data-en="Full opponent scouting video (8-10 min)">Vídeo de scouting completo del rival (8-10 min)</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: EXTRA -->
+  <div class="pack-panel" id="panel-extra">
+    <div class="pack-grid pack-grid-3x fade-up">
+      <div class="pack-card featured">
+        <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
+        <div class="pack-tier accent" style="color:var(--orange-light)">🏆 Complete</div>
+        <div class="pack-name">Complete</div>
+        <div class="pack-sub" data-es="La solución más completa: scouting total + estadística avanzada" data-en="The most complete solution: full scouting + advanced statistics">La solución más completa: scouting total + estadística avanzada</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Full Scout Rival completo" data-en="Complete Full Scout Rival">Full Scout Rival completo</li>
+          <li class="pack-feature" data-es="Pack Estadísticas Gold" data-en="Statistics Pack Gold">Pack Estadísticas Gold</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+      <div class="pack-card">
+        <div class="pack-tier accent">📅 Team Pack</div>
+        <div class="pack-name">Team Pack</div>
+        <div class="pack-sub" data-es="Análisis post-partido a demanda del entrenador" data-en="Post-game analysis on coach's demand">Análisis post-partido a demanda del entrenador</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Post Game a demanda (formato personalizable)" data-en="Post Game on demand (customisable format)">Post Game a demanda (formato personalizable)</li>
+          <li class="pack-feature" data-es="Adaptable a cada sistema o necesidad táctica" data-en="Adaptable to each system or tactical need">Adaptable a cada sistema o necesidad táctica</li>
+          <li class="pack-feature" data-es="Consultoría incluida" data-en="Consulting included">Consultoría incluida</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+      <div class="pack-card">
+        <div class="pack-tier accent">🤝 <span data-es="Sesión" data-en="Session">Sesión</span></div>
+        <div class="pack-name" data-es="Consultoría" data-en="Consulting">Consultoría</div>
+        <div class="pack-sub" data-es="Sesión directa con el cuerpo técnico para preparar el partido" data-en="Direct session with the coaching staff to prepare the game">Sesión directa con el cuerpo técnico para preparar el partido</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Sesión de consultoría prepartido" data-en="Pre-game consulting session">Sesión de consultoría prepartido</li>
+          <li class="pack-feature" data-es="Interpretación de análisis y plan de partido" data-en="Analysis interpretation and game planning">Interpretación de análisis y plan de partido</li>
+          <li class="pack-feature" data-es="Adaptable en formato y duración" data-en="Adaptable in format and duration">Adaptable en formato y duración</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pack-note fade-up" data-es="Todos los precios bajo consulta personalizada según liga, volumen y necesidades del equipo." data-en="All prices on personalised request based on league, volume and team needs.">Todos los precios bajo consulta personalizada según liga, volumen y necesidades del equipo.</p>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header fade-up">
+    <div class="section-tag" data-es="Ejemplos de trabajo" data-en="Work samples">Ejemplos de trabajo</div>
+    <h2 class="section-title" data-es="NUESTRO <span>TRABAJO</span>" data-en="OUR <span>WORK</span>">NUESTRO <span>TRABAJO</span></h2>
+  </div>
+  <div class="portfolio-tabs fade-up">
+    <button class="tab-btn active" onclick="filterPortfolio(event,'all')" data-es="Todo" data-en="All">Todo</button>
+    <button class="tab-btn" onclick="filterPortfolio(event,'video')" data-es="Vídeos" data-en="Videos">Vídeos</button>
+    <button class="tab-btn" onclick="filterPortfolio(event,'report')" data-es="Informes" data-en="Reports">Informes</button>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid">
+    <a class="portfolio-item portfolio-video-item fade-up" data-type="video" href="https://youtu.be/Ldlvu1MID1Q" target="_blank" rel="noopener">
+      <img class="yt-thumb" src="https://img.youtube.com/vi/Ldlvu1MID1Q/maxresdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/Ldlvu1MID1Q/hqdefault.jpg'">
+      <div class="portfolio-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="portfolio-overlay"><div class="pf-type" data-es="Vídeo · Scouting Individual" data-en="Video · Individual Scouting">Vídeo · Scouting Individual</div><div class="pf-title" data-es="Scouting Individual" data-en="Individual Scouting">Scouting Individual</div><div class="pf-sub" data-es="Análisis por jugador con estadísticas y vídeo" data-en="Player-by-player analysis with stats and video">Análisis por jugador con estadísticas y vídeo</div></div>
+    </a>
+    <a class="portfolio-item portfolio-video-item fade-up" data-type="video" href="https://youtu.be/ciHrYCrVYZ8" target="_blank" rel="noopener" style="transition-delay:.08s">
+      <img class="yt-thumb" src="https://img.youtube.com/vi/ciHrYCrVYZ8/maxresdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/ciHrYCrVYZ8/hqdefault.jpg'">
+      <div class="portfolio-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="portfolio-overlay"><div class="pf-type" data-es="Vídeo · Scouting Completo" data-en="Video · Full Scouting">Vídeo · Scouting Completo</div><div class="pf-title" data-es="Scouting Completo del Rival" data-en="Full Opponent Scouting">Scouting Completo del Rival</div><div class="pf-sub" data-es="8-10 min: ofensa, jugadores clave y defensa" data-en="8-10 min: offense, key players and defense">8-10 min: ofensa, jugadores clave y defensa</div></div>
+    </a>
+    <a class="portfolio-item portfolio-video-item fade-up" data-type="video" href="https://youtu.be/ETLAjCr39lY" target="_blank" rel="noopener" style="transition-delay:.16s">
+      <img class="yt-thumb" src="https://img.youtube.com/vi/ETLAjCr39lY/maxresdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/ETLAjCr39lY/hqdefault.jpg'">
+      <div class="portfolio-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="portfolio-overlay"><div class="pf-type" data-es="Vídeo · Ofensa" data-en="Video · Offense">Vídeo · Ofensa</div><div class="pf-title" data-es="Jugadas del Rival" data-en="Opponent Plays">Jugadas del Rival</div><div class="pf-sub" data-es="Sets ofensivos con opciones finalizadoras" data-en="Offensive sets with finishing options">Sets ofensivos con opciones finalizadoras</div></div>
+    </a>
+    <a class="portfolio-item portfolio-video-item fade-up" data-type="video" href="https://youtu.be/FrPJIpGomPY" target="_blank" rel="noopener" style="transition-delay:.24s">
+      <img class="yt-thumb" src="https://img.youtube.com/vi/FrPJIpGomPY/maxresdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/FrPJIpGomPY/hqdefault.jpg'">
+      <div class="portfolio-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="portfolio-overlay"><div class="pf-type" data-es="Vídeo · Defensa" data-en="Video · Defense">Vídeo · Defensa</div><div class="pf-title" data-es="Defensa del Rival" data-en="Opponent Defense">Defensa del Rival</div><div class="pf-sub" data-es="P&R, off-screens y tendencias defensivas" data-en="P&R, off-screens and defensive tendencies">P&R, off-screens y tendencias defensivas</div></div>
+    </a>
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="#" target="_blank" rel="noopener" style="transition-delay:.32s">
+      <div class="report-card"><div class="report-bg-num">01</div><div><div class="pf-type" data-es="Informe · Playbook" data-en="Report · Playbook">Informe · Playbook</div><div class="pf-title" data-es="Playbook del Rival" data-en="Opponent Playbook">Playbook del Rival</div><div class="pf-sub" data-es="Sistemas ofensivos, frecuencia y eficiencia" data-en="Offensive systems, frequency and efficiency">Sistemas ofensivos, frecuencia y eficiencia</div><div class="report-tags"><span class="rtag">Sets</span><span class="rtag">ATO</span><span class="rtag">PPP</span></div></div><div class="report-icon">📋</div></div>
+    </a>
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="#" target="_blank" rel="noopener" style="transition-delay:.4s">
+      <div class="report-card"><div class="report-bg-num">02</div><div><div class="pf-type" data-es="Informe · Estadística" data-en="Report · Statistics">Informe · Estadística</div><div class="pf-title" data-es="Estadística Avanzada" data-en="Advanced Statistics">Estadística Avanzada</div><div class="pf-sub" data-es="OER, DER, EFG%, PPP, quintetos y playtypes" data-en="OER, DER, EFG%, PPP, lineups and playtypes">OER, DER, EFG%, PPP, quintetos y playtypes</div><div class="report-tags"><span class="rtag">InStat</span><span class="rtag">Synergy</span><span class="rtag">Lineups</span></div></div><div class="report-icon">📊</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="testimonios">
+  <div class="section-header fade-up">
+    <div class="section-tag" data-es="Confiaron en nosotros" data-en="They trusted us">Confiaron en nosotros</div>
+    <h2 class="section-title" data-es="NUESTROS <span>CLIENTES</span>" data-en="OUR <span>CLIENTS</span>">NUESTROS <span>CLIENTES</span></h2>
+  </div>
+  <div class="clients-strip fade-up">
+    <div class="client-slot"><div class="client-ph">Club 1</div></div>
+    <div class="client-slot"><div class="client-ph">Club 2</div></div>
+    <div class="client-slot"><div class="client-ph">Club 3</div></div>
+    <div class="client-slot"><div class="client-ph">Club 4</div></div>
+    <div class="client-slot"><div class="client-ph">Club 5</div></div>
+  </div>
+  <div class="testimonios-grid fade-up">
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <p class="t-text" data-es="Hoop Assistant nos ha dado una ventaja real en la preparación de partidos. Los informes son claros, accionables y el trato es excelente." data-en="Hoop Assistant has given us a real edge in game preparation. The reports are clear, actionable and the service is excellent.">Hoop Assistant nos ha dado una ventaja real en la preparación de partidos. Los informes son claros, accionables y el trato es excelente.</p>
+      <div class="t-author">
+        <div class="t-avatar">👤</div>
+        <div>
+          <div class="t-name">Jose Gonzalez</div>
+          <div class="t-role">Head Coach · BBC Monthey, 1st Swiss League</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <p class="t-text" data-es="La calidad del análisis es de primer nivel. Nos ahorran horas de trabajo y la información llega justo cuando la necesitas." data-en="The quality of the analysis is top level. They save us hours of work and the information arrives exactly when you need it.">La calidad del análisis es de primer nivel. Nos ahorran horas de trabajo y la información llega justo cuando la necesitas.</p>
+      <div class="t-author">
+        <div class="t-avatar">👤</div>
+        <div>
+          <div class="t-name">Samuel Conde</div>
+          <div class="t-role" data-es="Assistant Coach · 2ª FEB, España" data-en="Assistant Coach · 2nd FEB, Spain">Assistant Coach · 2ª FEB, España</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <p class="t-text" data-es="Un servicio que aporta información de liga profesional a cualquier nivel. La atención personalizada marca la diferencia." data-en="A service that brings professional league intelligence to any level. The personalised attention makes the difference.">Un servicio que aporta información de liga profesional a cualquier nivel. La atención personalizada marca la diferencia.</p>
+      <div class="t-author">
+        <div class="t-avatar">👤</div>
+        <div>
+          <div class="t-name">Francisco Pinto</div>
+          <div class="t-role">Assistant Coach · UK Women's National Team</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <p class="t-text" data-es="Excelente trabajo. Los vídeos y los informes son concisos y muy útiles para preparar el partido con el equipo." data-en="Excellent work. The videos and reports are concise and very useful for preparing the game with the team.">Excelente trabajo. Los vídeos y los informes son concisos y muy útiles para preparar el partido con el equipo.</p>
+      <div class="t-author">
+        <div class="t-avatar">👤</div>
+        <div>
+          <div class="t-name">Sandra Abston</div>
+          <div class="t-role">Assistant Coach · UMKC, NCAA Division I</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="sobre">
+  <div class="about-grid">
+    <div class="fade-up">
+      <div class="section-tag" data-es="Quiénes somos" data-en="Who we are">Quiénes somos</div>
+      <h2 class="about-tag-line" data-es="EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span>" data-en="EXPERTS IN ANALYSIS AND <span>SCOUTING</span>">EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span></h2>
+      <p class="about-body" data-es="Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Nuestra especialidad es transformar vídeo y datos en información clara, útil y accionable para equipos que buscan una ventaja competitiva real." data-en="Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. Our specialty is transforming video and data into clear, useful and actionable information for teams seeking a real competitive edge.">Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Nuestra especialidad es transformar vídeo y datos en información clara, útil y accionable para equipos que buscan una ventaja competitiva real.</p>
+      <p class="about-body" data-es="Trabajamos con clubes de diferentes ligas europeas y americanas, combinando análisis táctico, estadística avanzada y vídeoanálisis con un enfoque propio de las grandes ligas." data-en="We work with clubs from different European and American leagues, combining tactical analysis, advanced statistics and video analysis with a top-league approach.">Trabajamos con clubes de diferentes ligas europeas y americanas, combinando análisis táctico, estadística avanzada y vídeoanálisis con un enfoque propio de las grandes ligas.</p>
+    </div>
+    <div class="team-cards fade-up" style="transition-delay:.2s">
+      <div class="team-card">
+        <!-- Replace src with real photo when available: <img class="team-photo" src="URL_FOTO_MARC" alt="Marc Ribas"> -->
+        <div class="team-ph" id="photoMarc">👤</div>
+        <div>
+          <div class="team-name">Marc Ribas</div>
+          <div class="team-role" data-es="Análisis, Scouting & Data" data-en="Analysis, Scouting & Data">Análisis, Scouting & Data</div>
+          <p class="team-bio" data-es="Entrenador superior de baloncesto y analista de datos. Máster en Big Data y Data Science. Experiencia en 2ª FEB, LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Federación de Jordania. Fundador de Be Pro Basket." data-en="Senior basketball coach and data analyst. Master's in Big Data and Data Science. Experience in 2nd FEB, LF Endesa, Swedish Federation (Eurobasket U16 and U18, 1st place) and Jordan Federation. Founder of Be Pro Basket.">Entrenador superior de baloncesto y analista de datos. Máster en Big Data y Data Science. Experiencia en 2ª FEB, LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Federación de Jordania. Fundador de Be Pro Basket.</p>
+          <div class="team-tags"><span class="ttag">Video Analysis</span><span class="ttag">Big Data</span><span class="ttag">Synergy</span><span class="ttag">InStat</span><span class="ttag">XPS</span><span class="ttag">FastScout</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <!-- Replace src with real photo when available: <img class="team-photo" src="URL_FOTO_JOAN" alt="Joan Marc Ferrer"> -->
+        <div class="team-ph" id="photoJoan">👤</div>
+        <div>
+          <div class="team-name">Joan Marc Ferrer</div>
+          <div class="team-role" data-es="Scouting, Análisis & Data" data-en="Scouting, Analysis & Data">Scouting, Análisis & Data</div>
+          <p class="team-bio" data-es="Graduado en CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo (Sports Data Campus) y Big Data & Data Science (UB). Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada), LEB Plata (Clutch Data) y FCB. Experto en Python, SQL, Machine Learning y análisis de vídeo con Nacsport." data-en="Graduate in Sport Sciences (INEFC Barcelona). Double master's in Sports Big Data (Sports Data Campus) and Big Data & Data Science (UB). FEB Senior Coach. Experience in 2nd FEB (CB Ciudad de Ponferrada), LEB Plata (Clutch Data) and FCB. Expert in Python, SQL, Machine Learning and video analysis with Nacsport.">Graduado en CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo (Sports Data Campus) y Big Data & Data Science (UB). Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada), LEB Plata (Clutch Data) y FCB. Experto en Python, SQL, Machine Learning y análisis de vídeo con Nacsport.</p>
+          <div class="team-tags"><span class="ttag">Nacsport</span><span class="ttag">Python</span><span class="ttag">Machine Learning</span><span class="ttag">Big Data</span><span class="ttag">SQL</span><span class="ttag">Web Scraping</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-grid">
+    <div class="fade-up">
+      <div class="section-tag" data-es="Hablemos" data-en="Let's talk">Hablemos</div>
+      <h2 class="section-title" data-es="TRABAJA CON <span>NOSOTROS</span>" data-en="WORK WITH <span>US</span>">TRABAJA CON <span>NOSOTROS</span></h2>
+      <p class="contact-intro" data-es="¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada." data-en="Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.">¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada.</p>
+      <div class="contact-detail"><span>✉️</span><span>marcribas7@gmail.com</span></div>
+      <div class="contact-detail"><span>🌐</span><span data-es="100% online — cualquier liga, cualquier lugar" data-en="100% online — any league, any location">100% online — cualquier liga, cualquier lugar</span></div>
+    </div>
+    <div class="fade-up" style="transition-delay:.2s">
+      <form class="contact-form" action="https://formspree.io/f/xjglezqb" method="POST" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field"><label class="form-label" data-es="Nombre *" data-en="Name *">Nombre *</label><input class="form-input" type="text" name="name" required placeholder="Tu nombre"></div>
+          <div class="form-field"><label class="form-label" data-es="Email *" data-en="Email *">Email *</label><input class="form-input" type="email" name="email" required placeholder="tu@email.com"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label class="form-label" data-es="Club / Organización *" data-en="Club / Organisation *">Club / Organización *</label><input class="form-input" type="text" name="club" required placeholder="Nombre del club"></div>
+          <div class="form-field"><label class="form-label" data-es="Teléfono" data-en="Phone">Teléfono</label><input class="form-input" type="tel" name="phone" placeholder="+34 600 000 000"></div>
+        </div>
+        <div class="form-field">
+          <label class="form-label" data-es="Paquete de interés" data-en="Package of interest">Paquete de interés</label>
+          <select class="form-select" name="package">
+            <option value="" data-es="Selecciona un paquete" data-en="Select a package">Selecciona un paquete</option>
+            <optgroup label="Pack Estadísticas">
+              <option value="stats-bronze">Estadísticas Bronze</option>
+              <option value="stats-silver">Estadísticas Silver</option>
+              <option value="stats-gold">Estadísticas Gold</option>
+            </optgroup>
+            <optgroup label="Pack Scouting">
+              <option value="scout-team">Team Scout</option>
+              <option value="scout-player">Player Scout</option>
+              <option value="scout-full">Full Scout</option>
+            </optgroup>
+            <optgroup label="Packs Extra">
+              <option value="complete">Complete Pack</option>
+              <option value="team-pack">Team Pack</option>
+              <option value="consultoria" data-es="Consultoría" data-en="Consulting">Consultoría</option>
+            </optgroup>
+            <option value="custom" data-es="No lo sé aún / A medida" data-en="Not sure yet / Custom">No lo sé aún / A medida</option>
+          </select>
+        </div>
+        <div class="form-field"><label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label><textarea class="form-textarea" name="message" placeholder="Cuéntanos sobre tu equipo y qué necesitas..."></textarea></div>
+        <input type="hidden" name="_subject" value="Nuevo contacto — Hoop Assistant">
+        <input type="hidden" name="_replyto" value="marcribas7@gmail.com">
+        <button type="submit" class="form-submit" data-es="Enviar Mensaje" data-en="Send Message">Enviar Mensaje</button>
+        <div class="form-success" id="formSuccess" data-es="✓ Mensaje enviado. Te contactaremos en breve." data-en="✓ Message sent. We'll be in touch shortly.">✓ Mensaje enviado. Te contactaremos en breve.</div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wm"><span>HOOP</span> ASSISTANT</div>
+  <div class="footer-copy" data-es="© 2026 Hoop Assistant. Todos los derechos reservados." data-en="© 2026 Hoop Assistant. All rights reserved.">© 2026 Hoop Assistant. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  let currentLang = 'es';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('btnES').classList.toggle('active', lang==='es');
+    document.getElementById('btnEN').classList.toggle('active', lang==='en');
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(el => {
+      const t = el.getAttribute('data-'+lang);
+      if (t) el.innerHTML = t;
+    });
+  }
+
+  function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+  // Pack tabs
+  function switchPack(e, panel) {
+    document.querySelectorAll('.pack-tab-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.querySelectorAll('.pack-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-'+panel).classList.add('active');
+  }
+
+  // Portfolio filter
+  function filterPortfolio(e, type) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.querySelectorAll('#portfolioGrid .portfolio-item').forEach(item => {
+      item.style.display = (type==='all' || item.dataset.type===type) ? 'block' : 'none';
+    });
+  }
+
+  // Form submit via Formspree
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const s = document.getElementById('formSuccess');
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(r => {
+      if (r.ok) {
+        form.reset();
+        s.textContent = currentLang==='es' ? '✓ Mensaje enviado. Te contactaremos en breve.' : '✓ Message sent. We\'ll be in touch shortly.';
+        s.style.display = 'block';
+        setTimeout(() => s.style.display='none', 6000);
+      } else {
+        s.textContent = currentLang==='es' ? '⚠ Error al enviar. Escríbenos a marcribas7@gmail.com' : '⚠ Send error. Write to us at marcribas7@gmail.com';
+        s.style.display = 'block';
+      }
+    }).catch(() => {
+      s.textContent = currentLang==='es' ? '⚠ Error al enviar. Escríbenos a marcribas7@gmail.com' : '⚠ Send error. Write to us at marcribas7@gmail.com';
+      s.style.display = 'block';
+    });
+  }
+
+  // Scroll animations
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  }), { threshold: 0.07 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  setTimeout(() => document.querySelectorAll('#inicio .fade-up').forEach(el => el.classList.add('visible')), 100);
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,.08)' : 'none';
+  });
+</script>
+</body>
+</html>
