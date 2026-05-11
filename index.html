@@ -9,6 +9,8 @@
 <style>
   :root{--orange:#E85D04;--orange-light:#F48C06;--black:#1a1a1a;--gray:#555;--light-gray:#f5f5f5;--mid-gray:#e8e8e8;--white:#ffffff}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
+
+  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--orange);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
   .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
   .nav-logo img{height:40px;width:auto}
@@ -22,6 +24,8 @@
   .lang-btn.active{background:var(--orange);color:white}
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
   .hamburger span{display:block;width:24px;height:2px;background:var(--black)}
+
+  /* HERO */
   #inicio{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
   .hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(135deg,var(--light-gray),var(--mid-gray));clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%);z-index:0}
   .hero-bg-lines{position:absolute;top:0;right:0;width:55%;height:100%;background:repeating-linear-gradient(-20deg,transparent,transparent 48px,rgba(232,93,4,.04) 48px,rgba(232,93,4,.04) 50px);pointer-events:none}
@@ -45,20 +49,27 @@
   .hero-benefits{margin-top:36px;display:flex;flex-direction:column;gap:10px}
   .hero-benefit{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:500}
   .hero-benefit::before{content:'✓';display:flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:white;font-size:.75rem;font-weight:900;flex-shrink:0}
+
+  /* SECTIONS */
   section{padding:90px 5%}
   .section-header{margin-bottom:60px}
   .section-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
   .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.2rem,4vw,3.5rem);text-transform:uppercase;line-height:1;color:var(--black)}
   .section-title span{color:var(--orange)}
   .section-desc{margin-top:16px;font-size:1rem;color:var(--gray);max-width:560px;line-height:1.7}
+
+  /* SERVICES — no hover effect, highlight first card */
   #servicios{background:var(--light-gray)}
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
-  .service-card{background:white;padding:32px;position:relative;overflow:hidden;transition:all .3s;border-bottom:3px solid transparent}
-  .service-card:hover{border-bottom-color:var(--orange);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08);z-index:1}
+  .service-card{background:white;padding:32px;position:relative;overflow:hidden;border-bottom:3px solid transparent}
+  /* First card always highlighted */
+  .service-card.highlight{border-bottom-color:var(--orange);box-shadow:0 8px 32px rgba(0,0,0,.07)}
   .service-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.5rem;color:rgba(232,93,4,.07);line-height:1;position:absolute;top:16px;right:20px}
   .service-icon{font-size:1.8rem;margin-bottom:14px}
   .service-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;text-transform:uppercase;letter-spacing:.03em;color:var(--black);margin-bottom:10px}
   .service-desc{font-size:.88rem;color:var(--gray);line-height:1.6}
+
+  /* PAQUETES */
   #paquetes{background:var(--white)}
   .pack-tabs{display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap}
   .pack-tab-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 28px;border:1px solid var(--mid-gray);background:transparent;color:var(--gray);cursor:pointer;transition:all .2s}
@@ -84,7 +95,9 @@
   .pack-addon{font-size:.78rem;color:var(--gray);font-style:italic;margin-top:14px;padding-top:12px;border-top:1px dashed var(--mid-gray)}
   .pack-card.featured .pack-addon{color:rgba(255,255,255,.35);border-top-color:rgba(255,255,255,.1)}
   .pack-cta{margin-top:24px}
-  .pack-note{text-align:center;margin-top:28px;font-size:.85rem;color:var(--gray);font-style:italic}
+  .pack-note{margin-top:32px;background:rgba(232,93,4,.06);border-left:3px solid var(--orange);padding:14px 20px;font-size:.88rem;color:var(--black)}
+
+  /* PORTFOLIO */
   #portfolio{background:var(--black)}
   #portfolio .section-title{color:white}
   #portfolio .section-tag{color:var(--orange-light)}
@@ -103,22 +116,22 @@
   .video-cta-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.5;max-width:220px}
   .video-cta-btn{display:inline-block;background:var(--orange);color:white;padding:10px 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
   .video-cta-btn:hover{background:var(--orange-light)}
-  .portfolio-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.92));padding:48px 24px 22px;z-index:1}
-  .pf-type{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
-  .pf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:white;line-height:1.2}
-  .pf-sub{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px}
   .report-card{width:100%;height:100%;padding:28px;background:linear-gradient(135deg,#1e1e1e,#2d2d2d);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
   .report-bg-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:7rem;color:rgba(232,93,4,.05);line-height:1;position:absolute;top:-10px;right:10px}
   .report-icon{font-size:2.5rem;opacity:.12;position:absolute;bottom:20px;right:20px}
-  .report-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-  .rtag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;background:rgba(232,93,4,.1);color:var(--orange);border:1px solid rgba(232,93,4,.2)}
+  .pf-type{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+  .pf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:white;line-height:1.2}
+  .pf-sub{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px}
+
+  /* TESTIMONIOS */
   #testimonios{background:var(--light-gray)}
   .clients-strip{display:flex;align-items:center;margin-bottom:56px;border:1px solid var(--mid-gray);background:white;flex-wrap:wrap}
-  .client-slot{flex:1;min-width:100px;padding:20px 12px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--mid-gray)}
+  .client-slot{flex:1;min-width:100px;padding:24px 16px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--mid-gray);position:relative}
   .client-slot:last-child{border-right:none}
-  .client-slot img{max-height:44px;max-width:80px;object-fit:contain;filter:grayscale(1);opacity:.6;transition:all .2s}
-  .client-slot img:hover{filter:grayscale(0);opacity:1}
-  .client-ph{width:80px;height:38px;background:var(--mid-gray);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#bbb}
+  .client-slot img{max-height:50px;max-width:90px;object-fit:contain;transition:all .3s;filter:grayscale(.3);opacity:.8}
+  .client-slot:hover img{filter:grayscale(0);opacity:1;transform:scale(1.05)}
+  .client-tooltip{position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);background:var(--black);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;z-index:10}
+  .client-slot:hover .client-tooltip{opacity:1}
   .testimonios-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
   .t-card{background:white;padding:28px 30px 24px;border-top:3px solid var(--mid-gray);transition:border-top-color .2s}
   .t-card:hover{border-top-color:var(--orange)}
@@ -129,6 +142,8 @@
   .t-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
   .t-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--black)}
   .t-role{font-size:.8rem;color:var(--gray);margin-top:2px}
+
+  /* ABOUT */
   #sobre{background:white}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
   .about-tag-line{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.9rem;text-transform:uppercase;color:var(--black);line-height:1.1;margin-bottom:20px}
@@ -145,6 +160,8 @@
   .team-linkedin{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid rgba(232,93,4,.3);padding:5px 12px;transition:all .2s}
   .team-linkedin:hover{background:var(--orange);color:white}
   .team-linkedin svg{width:14px;height:14px;fill:currentColor}
+
+  /* CONTACTO */
   #contacto{background:var(--black)}
   #contacto .section-title{color:white}
   #contacto .section-tag{color:var(--orange-light)}
@@ -163,17 +180,22 @@
   .form-submit{background:var(--orange);color:white;border:none;padding:16px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s;align-self:flex-start;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
   .form-submit:hover{background:var(--orange-light)}
   .form-success{display:none;margin-top:8px;padding:14px 16px;background:rgba(232,93,4,.1);border:1px solid rgba(232,93,4,.3);color:var(--orange-light);font-size:.9rem}
+
+  /* WHATSAPP */
   .whatsapp-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;align-items:center;gap:10px;background:#25D366;color:white;padding:12px 20px 12px 16px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase}
-  .whatsapp-float:hover{background:#1ebe5d;box-shadow:0 6px 28px rgba(37,211,102,.55);transform:translateY(-2px)}
+  .whatsapp-float:hover{background:#1ebe5d;transform:translateY(-2px)}
   .whatsapp-float svg{width:22px;height:22px;fill:white;flex-shrink:0}
+
   footer{background:#111;padding:28px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .footer-left{display:flex;align-items:center;gap:12px}
   .footer-left img{height:32px;width:auto;opacity:.55;filter:brightness(0) invert(1)}
   .footer-wm{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;color:rgba(255,255,255,.4);letter-spacing:.05em}
   .footer-wm span{color:var(--orange)}
   .footer-copy{font-size:.8rem;color:rgba(255,255,255,.25)}
+
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
   .fade-up.visible{opacity:1;transform:translateY(0)}
+
   @media(max-width:960px){.pack-grid-3{grid-template-columns:1fr}.pack-card.featured{transform:none}.portfolio-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr;gap:40px}.contact-grid{grid-template-columns:1fr}.testimonios-grid{grid-template-columns:1fr}}
   @media(max-width:768px){.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:white;flex-direction:column;padding:20px;gap:16px;border-bottom:2px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.1)}.nav-links.open{display:flex}.hamburger{display:flex}.hero-content{grid-template-columns:1fr;gap:40px}.hero-accent,.hero-bg-lines{display:none}.form-row{grid-template-columns:1fr}.whatsapp-float .whatsapp-label{display:none}.whatsapp-float{padding:14px;border-radius:50%}}
 </style>
@@ -229,7 +251,7 @@
     <div class="hero-stats fade-up" style="transition-delay:.2s">
       <div class="hero-stat"><div class="hero-stat-num">8+</div><div class="hero-stat-label" data-es="Servicios disponibles" data-en="Available services">Servicios disponibles</div></div>
       <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label" data-es="Online + Consultoría" data-en="Online + Consulting">Online + Consultoría</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">Pro</div><div class="hero-stat-label" data-es="Nivel de análisis" data-en="Analysis level">Nivel de análisis</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5+</div><div class="hero-stat-label" data-es="Ligas y países" data-en="Leagues and countries">Ligas y países</div></div>
       <div class="hero-stat"><div class="hero-stat-num">ES/EN</div><div class="hero-stat-label" data-es="Idiomas de entrega" data-en="Delivery languages">Idiomas de entrega</div></div>
     </div>
   </div>
@@ -243,7 +265,7 @@
     <p class="section-desc" data-es="Un servicio integral de scouting, análisis y consultoría adaptado a las necesidades de cada cuerpo técnico." data-en="A comprehensive scouting, analysis and consulting service tailored to each coaching staff's needs.">Un servicio integral de scouting, análisis y consultoría adaptado a las necesidades de cada cuerpo técnico.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card fade-up"><div class="service-num">01</div><div class="service-icon">📋</div><div class="service-title" data-es="Playbook & Eficiencia del Rival" data-en="Opponent Playbook & Efficiency">Playbook & Eficiencia del Rival</div><p class="service-desc" data-es="Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción." data-en="Graphic and written breakdown of offensive systems, transitions, ATOs, baseline and sideline plays. Frequency and efficiency of every action.">Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción.</p></div>
+    <div class="service-card highlight fade-up"><div class="service-num">01</div><div class="service-icon">📋</div><div class="service-title" data-es="Playbook & Eficiencia del Rival" data-en="Opponent Playbook & Efficiency">Playbook & Eficiencia del Rival</div><p class="service-desc" data-es="Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción." data-en="Graphic and written breakdown of offensive systems, transitions, ATOs, baseline and sideline plays. Frequency and efficiency of every action.">Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción.</p></div>
     <div class="service-card fade-up" style="transition-delay:.05s"><div class="service-num">02</div><div class="service-icon">👤</div><div class="service-title" data-es="Scouting Individual" data-en="Individual Scouting">Scouting Individual</div><p class="service-desc" data-es="Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave." data-en="Detailed analysis of each opponent player in document and video: strengths, weaknesses, tendencies, role and key stats.">Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave.</p></div>
     <div class="service-card fade-up" style="transition-delay:.1s"><div class="service-num">03</div><div class="service-icon">📊</div><div class="service-title" data-es="Estadística Avanzada" data-en="Advanced Statistics">Estadística Avanzada</div><p class="service-desc" data-es="Four Factors, eficiencias ofensivas y defensivas, volumen de posesiones, tendencias de tiro, quintetos y playtypes. Tres niveles disponibles." data-en="Four Factors, offensive and defensive efficiencies, possession volume, shooting trends, lineups and playtypes. Three tiers available.">Four Factors, eficiencias ofensivas y defensivas, volumen de posesiones, tendencias de tiro, quintetos y playtypes. Tres niveles disponibles.</p></div>
     <div class="service-card fade-up" style="transition-delay:.15s"><div class="service-num">04</div><div class="service-icon">🎬</div><div class="service-title" data-es="Vídeo de Jugadas del Rival" data-en="Opponent Plays Video">Vídeo de Jugadas del Rival</div><p class="service-desc" data-es="Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas." data-en="Video analysis of offensive and defensive situations, highlighting finishing options to prepare specific responses.">Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas.</p></div>
@@ -267,7 +289,6 @@
     <button class="pack-tab-btn" onclick="switchPack(event,'extra')" data-es="⚡ Packs Extra" data-en="⚡ Extra Packs">⚡ Packs Extra</button>
   </div>
 
-  <!-- STATS -->
   <div class="pack-panel active" id="panel-stats">
     <div class="pack-grid-3 fade-up">
       <div class="pack-card">
@@ -313,7 +334,6 @@
     </div>
   </div>
 
-  <!-- SCOUTING -->
   <div class="pack-panel" id="panel-scouting">
     <div class="pack-grid-3 fade-up">
       <div class="pack-card">
@@ -357,7 +377,6 @@
     </div>
   </div>
 
-  <!-- EXTRA -->
   <div class="pack-panel" id="panel-extra">
     <div class="pack-grid-3 fade-up">
       <div class="pack-card featured">
@@ -389,7 +408,6 @@
         <div class="pack-sub" data-es="Sesión directa prepartido con el cuerpo técnico" data-en="Direct pre-game session with the coaching staff">Sesión directa prepartido con el cuerpo técnico</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Sesión de consultoría prepartido" data-en="Pre-game consulting session">Sesión de consultoría prepartido</li>
           <li class="pack-feature" data-es="Interpretación de análisis y plan de partido" data-en="Analysis interpretation and game planning">Interpretación de análisis y plan de partido</li>
           <li class="pack-feature" data-es="Adaptable en formato y duración" data-en="Adaptable in format and duration">Adaptable en formato y duración</li>
         </ul>
@@ -397,7 +415,8 @@
       </div>
     </div>
   </div>
-  <p class="pack-note fade-up" data-es="Precios bajo consulta personalizada según liga, volumen y necesidades del equipo." data-en="Prices on personalised request based on league, volume and team needs.">Precios bajo consulta personalizada según liga, volumen y necesidades del equipo.</p>
+
+  <div class="pack-note fade-up" data-es="💬 Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta." data-en="💬 Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.">💬 Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta.</div>
 </section>
 
 <!-- PORTFOLIO -->
@@ -407,8 +426,7 @@
     <h2 class="section-title" data-es="NUESTRO <span>TRABAJO</span>" data-en="OUR <span>WORK</span>">NUESTRO <span>TRABAJO</span></h2>
   </div>
   <div class="portfolio-tabs fade-up">
-    <button class="tab-btn active" onclick="filterPortfolio(event,'all')" data-es="Todo" data-en="All">Todo</button>
-    <button class="tab-btn" onclick="filterPortfolio(event,'video')" data-es="Vídeos" data-en="Videos">Vídeos</button>
+    <button class="tab-btn active" onclick="filterPortfolio(event,'video')" data-es="Vídeos" data-en="Videos">Vídeos</button>
     <button class="tab-btn" onclick="filterPortfolio(event,'report')" data-es="Informes" data-en="Reports">Informes</button>
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
@@ -444,38 +462,35 @@
         <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Solicitar Vídeos de Muestra</a>
       </div>
     </div>
-    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/CB%20CACERES%20-%20HOOP%20ASSISTANT.pdf" target="_blank" rel="noopener" style="transition-delay:.32s">
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/CB%20CACERES%20-%20HOOP%20ASSISTANT.pdf" target="_blank" rel="noopener" style="transition-delay:.08s">
       <div class="report-card">
         <div class="report-bg-num">01</div>
         <div>
           <div class="pf-type" data-es="Informe · Playbook" data-en="Report · Playbook">Informe · Playbook</div>
           <div class="pf-title">CB Cáceres — Playbook</div>
           <div class="pf-sub" data-es="Transición, SLOB, Half Court y BLOB" data-en="Transition, SLOB, Half Court and BLOB">Transición, SLOB, Half Court y BLOB</div>
-          <div class="report-tags"><span class="rtag">Sets</span><span class="rtag">ATO</span><span class="rtag">Diagrams</span></div>
         </div>
         <div class="report-icon">📋</div>
       </div>
     </a>
-    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/Data%20Analytics%20-%20Hoop%20Assistant.pdf" target="_blank" rel="noopener" style="transition-delay:.4s">
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/Data%20Analytics%20-%20Hoop%20Assistant.pdf" target="_blank" rel="noopener" style="transition-delay:.16s">
       <div class="report-card">
         <div class="report-bg-num">02</div>
         <div>
           <div class="pf-type" data-es="Informe · Estadística" data-en="Report · Statistics">Informe · Estadística</div>
           <div class="pf-title">CB Morón — Data Analytics</div>
           <div class="pf-sub" data-es="Four Factors, eficiencias, quintetos y recomendaciones" data-en="Four Factors, efficiencies, lineups and recommendations">Four Factors, eficiencias, quintetos y recomendaciones</div>
-          <div class="report-tags"><span class="rtag">OER/DER</span><span class="rtag">Lineups</span><span class="rtag">Four Factors</span></div>
         </div>
         <div class="report-icon">📊</div>
       </div>
     </a>
-    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/PLAYERS%20REPORT%20-%20HOOP%20ASSISTANT.pdf" target="_blank" rel="noopener" style="transition-delay:.48s">
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/PLAYERS%20REPORT%20-%20HOOP%20ASSISTANT.pdf" target="_blank" rel="noopener" style="transition-delay:.24s">
       <div class="report-card">
         <div class="report-bg-num">03</div>
         <div>
           <div class="pf-type" data-es="Informe · Jugadores" data-en="Report · Players">Informe · Jugadores</div>
           <div class="pf-title">CB Morón — Players Report</div>
           <div class="pf-sub" data-es="Análisis individual con estadísticas y claves defensivas" data-en="Individual analysis with stats and defensive keys">Análisis individual con estadísticas y claves defensivas</div>
-          <div class="report-tags"><span class="rtag">Scouting</span><span class="rtag">Stats</span><span class="rtag">Defense Keys</span></div>
         </div>
         <div class="report-icon">👤</div>
       </div>
@@ -490,16 +505,19 @@
     <h2 class="section-title" data-es="NUESTROS <span>CLIENTES</span>" data-en="OUR <span>CLIENTS</span>">NUESTROS <span>CLIENTES</span></h2>
   </div>
   <div class="clients-strip fade-up">
-    <div class="client-slot"><img src="https://hoopassistant.github.io/North%20Alabama.jpeg" alt="North Alabama WBB" onerror="this.style.display='none'"></div>
-    <div class="client-slot"><img src="https://hoopassistant.github.io/Ponferrada.png" alt="SD Ponferrada" onerror="this.style.display='none'"></div>
-    <div class="client-slot"><div class="client-ph">BBC Monthey</div></div>
-    <div class="client-slot"><div class="client-ph">UMKC</div></div>
-    <div class="client-slot"><div class="client-ph">CB Morón</div></div>
+    <div class="client-slot">
+      <img src="https://hoopassistant.github.io/North%20Alabama.jpeg" alt="North Alabama WBB">
+      <div class="client-tooltip">North Alabama WBB</div>
+    </div>
+    <div class="client-slot">
+      <img src="https://hoopassistant.github.io/Ponferrada.png" alt="SD Ponferrada">
+      <div class="client-tooltip">SD Ponferrada</div>
+    </div>
   </div>
   <div class="testimonios-grid fade-up">
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="Los informes son los mejores que he visto. Claros, directos y con todo lo que necesitas para preparar el partido sin perder tiempo." data-en="The reports are the best I've seen. Clear, direct and with everything you need to prepare the game without wasting time.">Los informes son los mejores que he visto. Claros, directos y con todo lo que necesitas para preparar el partido sin perder tiempo.</p>
+      <p class="t-text" data-es="Los informes de Hoop Assistant son los mejores que he tenido en mis manos. Todo lo que necesitas para preparar el partido está ahí, sin ruido, sin perder tiempo. Exactamente lo que un entrenador busca." data-en="Hoop Assistant's reports are the best I've had in my hands. Everything you need to prepare the game is there, no noise, no wasted time. Exactly what a coach looks for.">Los informes de Hoop Assistant son los mejores que he tenido en mis manos. Todo lo que necesitas para preparar el partido está ahí, sin ruido, sin perder tiempo. Exactamente lo que un entrenador busca.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Jose%20Gonzalez.jpeg" alt="Jose Gonzalez" onerror="this.innerHTML='JG'"></div>
         <div><div class="t-name">Jose Gonzalez</div><div class="t-role">Head Coach · BBC Monthey, 1st Swiss League</div></div>
@@ -507,7 +525,7 @@
     </div>
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="Nos ahorraron muchas horas de trabajo. La información es precisa y llega cuando la necesitas. Muy buena comunicación en todo momento." data-en="They saved us a lot of hours. The information is precise and arrives when you need it. Very good communication throughout.">Nos ahorraron muchas horas de trabajo. La información es precisa y llega cuando la necesitas. Muy buena comunicación en todo momento.</p>
+      <p class="t-text" data-es="Con Hoop Assistant nos ahorramos horas de trabajo cada semana. La información es precisa, bien organizada y llega a tiempo. La comunicación con el equipo es muy buena en todo momento." data-en="With Hoop Assistant we save hours of work every week. The information is precise, well organised and arrives on time. Communication with the team is very good throughout.">Con Hoop Assistant nos ahorramos horas de trabajo cada semana. La información es precisa, bien organizada y llega a tiempo. La comunicación con el equipo es muy buena en todo momento.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Samu.jpg" alt="Samuel Conde" onerror="this.innerHTML='SC'"></div>
         <div><div class="t-name">Samuel Conde</div><div class="t-role" data-es="Head Coach · SD Ponferrada, 2ª FEB España" data-en="Head Coach · SD Ponferrada, 2nd FEB Spain">Head Coach · SD Ponferrada, 2ª FEB España</div></div>
@@ -515,7 +533,7 @@
     </div>
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="Los vídeos son concisos y el equipo los entiende de inmediato. Hacen un trabajo serio y profesional que se nota en pista." data-en="The videos are concise and the team understands them immediately. They do serious, professional work that shows on the court.">Los vídeos son concisos y el equipo los entiende de inmediato. Hacen un trabajo serio y profesional que se nota en pista.</p>
+      <p class="t-text" data-es="Los vídeos son concisos y el equipo los entiende de inmediato. No hace falta explicar nada antes de verlos. Es un trabajo muy serio y profesional que se nota en la pista." data-en="The videos are concise and the team understands them immediately. No need to explain anything before watching them. It's very serious and professional work that shows on the court.">Los vídeos son concisos y el equipo los entiende de inmediato. No hace falta explicar nada antes de verlos. Es un trabajo muy serio y profesional que se nota en la pista.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Sandra%20Abston.jpg" alt="Sandra Abston" onerror="this.innerHTML='SA'"></div>
         <div><div class="t-name">Sandra Abston</div><div class="t-role">Assistant Coach · UMKC, NCAA Division I</div></div>
@@ -523,7 +541,7 @@
     </div>
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="El nivel de detalle en el análisis es impresionante para el precio. Una herramienta muy útil para equipos que quieren competir de verdad." data-en="The level of detail in the analysis is impressive for the price. A very useful tool for teams that want to compete seriously.">El nivel de detalle en el análisis es impresionante para el precio. Una herramienta muy útil para equipos que quieren competir de verdad.</p>
+      <p class="t-text" data-es="El nivel del análisis es impresionante para un equipo de nuestra categoría. Nos da acceso a herramientas que solo ves en ligas profesionales, a un precio que tiene mucho sentido." data-en="The level of analysis is impressive for a team at our level. It gives us access to tools you only see in professional leagues, at a price that makes a lot of sense.">El nivel del análisis es impresionante para un equipo de nuestra categoría. Nos da acceso a herramientas que solo ves en ligas profesionales, a un precio que tiene mucho sentido.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Pol%20Rodriguez.jpeg" alt="Pol Rodriguez" onerror="this.innerHTML='PR'"></div>
         <div><div class="t-name">Pol Rodríguez</div><div class="t-role">Assistant Coach · Leones Quilpué, LNB Chile</div></div>
@@ -538,32 +556,30 @@
     <div class="fade-up">
       <div class="section-tag" data-es="Quiénes somos" data-en="Who we are">Quiénes somos</div>
       <h2 class="about-tag-line" data-es="EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span>" data-en="EXPERTS IN ANALYSIS AND <span>SCOUTING</span>">EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span></h2>
-      <p class="about-body" data-es="Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Nuestra especialidad es transformar vídeo y datos en información clara, útil y accionable para equipos que buscan una ventaja competitiva real." data-en="Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. Our specialty is transforming video and data into clear, useful and actionable information for teams seeking a real competitive edge.">Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Nuestra especialidad es transformar vídeo y datos en información clara, útil y accionable para equipos que buscan una ventaja competitiva real.</p>
-      <p class="about-body" data-es="Trabajamos con clubes de diferentes ligas europeas y americanas, combinando análisis táctico, estadística avanzada y vídeoanálisis con un enfoque propio de las grandes ligas." data-en="We work with clubs from different European and American leagues, combining tactical analysis, advanced statistics and video analysis with a top-league approach.">Trabajamos con clubes de diferentes ligas europeas y americanas, combinando análisis táctico, estadística avanzada y vídeoanálisis con un enfoque propio de las grandes ligas.</p>
+      <p class="about-body" data-es="Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Transformamos vídeo y datos en información clara y accionable para equipos que buscan una ventaja competitiva real." data-en="Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. We transform video and data into clear, actionable information for teams seeking a real competitive edge.">Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Transformamos vídeo y datos en información clara y accionable para equipos que buscan una ventaja competitiva real.</p>
+      <p class="about-body" data-es="Trabajamos con clubes de diferentes ligas europeas y americanas, con un enfoque y una presentación propios de las grandes ligas." data-en="We work with clubs from different European and American leagues, with a top-league approach and presentation standards.">Trabajamos con clubes de diferentes ligas europeas y americanas, con un enfoque y una presentación propios de las grandes ligas.</p>
     </div>
     <div class="team-cards fade-up" style="transition-delay:.2s">
-      <!-- JOAN MARC -->
       <div class="team-card">
         <img class="team-photo" src="https://hoopassistant.github.io/Foto%20Joan%20Marc.jpeg" alt="Joan Marc Ferrer" onerror="this.style.display='none'">
         <div>
           <div class="team-name">Joan Marc Ferrer</div>
           <div class="team-role" data-es="Scouting, Análisis Táctico & Data" data-en="Scouting, Tactical Analysis & Data">Scouting, Análisis Táctico & Data</div>
-          <p class="team-bio" data-es="Graduado en CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB con experiencia en 2ª FEB (CB Ciudad de Ponferrada). Experto en análisis de vídeo (Nacsport), Python, SQL y Machine Learning." data-en="Graduate in Sport Sciences (INEFC Barcelona). Double master's in Sports Big Data and Big Data & Data Science. FEB Senior Coach with experience in 2nd FEB (CB Ciudad de Ponferrada). Expert in video analysis (Nacsport), Python, SQL and Machine Learning.">Graduado en CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB con experiencia en 2ª FEB (CB Ciudad de Ponferrada). Experto en análisis de vídeo (Nacsport), Python, SQL y Machine Learning.</p>
-          <div class="team-tags"><span class="ttag">Nacsport</span><span class="ttag">Python</span><span class="ttag">Machine Learning</span><span class="ttag">Big Data</span><span class="ttag">SQL</span></div>
+          <p class="team-bio" data-es="CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada). Especialista en análisis de vídeo con Nacsport, Python y Machine Learning." data-en="Sport Sciences degree (INEFC Barcelona). Double master's in Sports Big Data and Big Data & Data Science. FEB Senior Coach. Experience in 2nd FEB (CB Ciudad de Ponferrada). Specialist in video analysis with Nacsport, Python and Machine Learning.">CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada). Especialista en análisis de vídeo con Nacsport, Python y Machine Learning.</p>
+          <div class="team-tags"><span class="ttag">Nacsport</span><span class="ttag">Python</span><span class="ttag">Machine Learning</span><span class="ttag">Big Data</span></div>
           <a class="team-linkedin" href="https://www.linkedin.com/in/joanmarcferrer/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
         </div>
       </div>
-      <!-- MARC -->
       <div class="team-card">
         <img class="team-photo" src="https://hoopassistant.github.io/Foto%20Marc.jpg" alt="Marc Ribas" onerror="this.style.display='none'">
         <div>
           <div class="team-name">Marc Ribas</div>
           <div class="team-role" data-es="Análisis, Scouting & Data" data-en="Analysis, Scouting & Data">Análisis, Scouting & Data</div>
-          <p class="team-bio" data-es="Entrenador superior de baloncesto y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto), Senior Women NT Jordania y Mongolia Women's League Champions. Fundador de Be Pro Basket." data-en="Senior basketball coach and video analyst. Master's in Sports Marketing. Experience in LF Endesa, Swedish Federation (Eurobasket U16 and U18, 1st place), Jordan Senior Women's NT and Mongolia Women's League Champions. Founder of Be Pro Basket.">Entrenador superior de baloncesto y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto), Senior Women NT Jordania y Mongolia Women's League Champions. Fundador de Be Pro Basket.</p>
-          <div class="team-tags"><span class="ttag">Video Analysis</span><span class="ttag">Synergy</span><span class="ttag">InStat</span><span class="ttag">XPS</span><span class="ttag">FastScout</span></div>
+          <p class="team-bio" data-es="Entrenador superior FEB y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Senior Women NT Jordania. Fundador de Be Pro Basket." data-en="FEB Senior Coach and video analyst. Master's in Sports Marketing. Experience in LF Endesa, Swedish Federation (Eurobasket U16 and U18, 1st place) and Jordan Senior Women's NT. Founder of Be Pro Basket.">Entrenador superior FEB y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Senior Women NT Jordania. Fundador de Be Pro Basket.</p>
+          <div class="team-tags"><span class="ttag">Video Analysis</span><span class="ttag">Synergy</span><span class="ttag">InStat</span><span class="ttag">XPS</span></div>
           <a class="team-linkedin" href="https://www.linkedin.com/in/marcribasvilanova/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
@@ -581,7 +597,7 @@
       <div class="section-tag" data-es="Hablemos" data-en="Let's talk">Hablemos</div>
       <h2 class="section-title" data-es="TRABAJA CON <span>NOSOTROS</span>" data-en="WORK WITH <span>US</span>">TRABAJA CON <span>NOSOTROS</span></h2>
       <p class="contact-intro" data-es="¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada." data-en="Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.">¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada.</p>
-      <div class="contact-detail"><span>✉️</span><span>marcribas7@gmail.com</span></div>
+      <div class="contact-detail"><span>✉️</span><span>hoop.assistant.basketball@gmail.com</span></div>
       <div class="contact-detail"><span>💬</span><span>+34 616 38 92 51</span></div>
       <div class="contact-detail"><span>🌐</span><span data-es="100% online — cualquier liga, cualquier lugar" data-en="100% online — any league, any location">100% online — cualquier liga, cualquier lugar</span></div>
     </div>
@@ -599,21 +615,9 @@
           <label class="form-label" data-es="¿Qué necesitas?" data-en="What do you need?">¿Qué necesitas?</label>
           <select class="form-select" name="package">
             <option value="" data-es="Selecciona una opción" data-en="Select an option">Selecciona una opción</option>
-            <optgroup label="Pack Estadísticas">
-              <option value="bronze">Bronze</option>
-              <option value="silver">Silver</option>
-              <option value="gold">Gold</option>
-            </optgroup>
-            <optgroup label="Pack Scouting">
-              <option value="team-scout">Team Scout</option>
-              <option value="player-scout">Player Scout</option>
-              <option value="full-scout">Full Scout</option>
-            </optgroup>
-            <optgroup label="Packs Extra">
-              <option value="complete">Complete</option>
-              <option value="team-pack">Team Pack</option>
-              <option value="consultoria" data-es="Consultoría" data-en="Consulting">Consultoría</option>
-            </optgroup>
+            <optgroup label="Pack Estadísticas"><option value="bronze">Bronze</option><option value="silver">Silver</option><option value="gold">Gold</option></optgroup>
+            <optgroup label="Pack Scouting"><option value="team-scout">Team Scout</option><option value="player-scout">Player Scout</option><option value="full-scout">Full Scout</option></optgroup>
+            <optgroup label="Packs Extra"><option value="complete">Complete</option><option value="team-pack">Team Pack</option><option value="consultoria" data-es="Consultoría" data-en="Consulting">Consultoría</option></optgroup>
             <option value="videos" data-es="Solicitar vídeos de muestra" data-en="Request sample videos">Solicitar vídeos de muestra</option>
             <option value="custom" data-es="No lo sé aún / A medida" data-en="Not sure yet / Custom">No lo sé aún / A medida</option>
           </select>
@@ -661,17 +665,23 @@
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     e.target.classList.add('active');
     document.querySelectorAll('#portfolioGrid .portfolio-item').forEach(item=>{
-      item.style.display=(type==='all'||item.dataset.type===type)?'block':'none';
+      item.style.display=(item.dataset.type===type)?'block':'none';
     });
   }
+  // Show videos by default
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('#portfolioGrid .portfolio-item').forEach(item=>{
+      item.style.display=item.dataset.type==='video'?'block':'none';
+    });
+  });
   function handleSubmit(e){
     e.preventDefault();
     const form=e.target,s=document.getElementById('formSuccess');
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
       .then(r=>{
         if(r.ok){form.reset();s.textContent=currentLang==='es'?'✓ Mensaje enviado. Te contactaremos en breve.':'✓ Message sent. We\'ll be in touch shortly.';s.style.display='block';setTimeout(()=>s.style.display='none',6000)}
-        else{s.textContent=currentLang==='es'?'⚠ Error. Escríbenos a marcribas7@gmail.com':'⚠ Error. Write to marcribas7@gmail.com';s.style.display='block'}
-      }).catch(()=>{s.textContent=currentLang==='es'?'⚠ Error. Escríbenos a marcribas7@gmail.com':'⚠ Error. Write to marcribas7@gmail.com';s.style.display='block'});
+        else{s.textContent=currentLang==='es'?'⚠ Error. Escríbenos a hoop.assistant.basketball@gmail.com':'⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'}
+      }).catch(()=>{s.textContent=currentLang==='es'?'⚠ Error. Escríbenos a hoop.assistant.basketball@gmail.com':'⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'});
   }
   const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.07});
   document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
