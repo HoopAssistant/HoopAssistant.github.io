@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hoop Assistant — Scouting Online de Baloncesto</title>
-<meta name="description" content="Hoop Assistant: servicio profesional de scouting online para equipos de baloncesto. Vídeos, informes y análisis de datos personalizados sobre rivales y tu equipo. 100% online, cualquier liga.">
-<meta name="keywords" content="scouting baloncesto online, análisis táctico baloncesto, video scouting basketball, estadística avanzada baloncesto, playbook rival">
+<title>Hoop Assistant — Professional Basketball Scouting Online</title>
+<meta name="description" content="Hoop Assistant: professional online scouting service for basketball teams. Custom video, reports and advanced data analysis on opponents and your team. 100% online, any league, delivered in 48h.">
+<meta name="keywords" content="basketball scouting online, tactical analysis basketball, video scouting, advanced statistics basketball, playbook opponent, player recruitment basketball">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--orange:#E85D04;--orange-light:#F48C06;--black:#1a1a1a;--gray:#555;--light-gray:#f5f5f5;--mid-gray:#e8e8e8;--white:#ffffff}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
 
-  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--orange);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
   .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
   .nav-logo img{height:40px;width:auto}
@@ -27,7 +26,6 @@
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
   .hamburger span{display:block;width:24px;height:2px;background:var(--black)}
 
-  /* HERO */
   #inicio{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
   .hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(135deg,var(--light-gray),var(--mid-gray));clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%);z-index:0}
   .hero-bg-lines{position:absolute;top:0;right:0;width:55%;height:100%;background:repeating-linear-gradient(-20deg,transparent,transparent 48px,rgba(232,93,4,.04) 48px,rgba(232,93,4,.04) 50px);pointer-events:none}
@@ -35,10 +33,10 @@
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,93,4,.08);border:1px solid rgba(232,93,4,.2);border-radius:4px;padding:6px 14px;margin-bottom:24px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
   .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-  .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;text-transform:uppercase;margin-bottom:16px}
-  .hero-title .line1,.hero-title .line3{display:block;color:var(--black)}
+  .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.6rem,5.5vw,5rem);line-height:.92;text-transform:uppercase;margin-bottom:16px}
+  .hero-title .line1,.hero-title .line3,.hero-title .line4{display:block;color:var(--black)}
   .hero-title .line2{display:block;color:var(--orange)}
-  .hero-tagline{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.15rem;color:var(--gray);letter-spacing:.04em;margin-bottom:20px;text-transform:uppercase}
+  .hero-tagline{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.1rem;color:var(--gray);letter-spacing:.04em;margin-bottom:20px;text-transform:uppercase}
   .hero-sub{font-size:1rem;font-weight:300;color:var(--gray);line-height:1.7;margin-bottom:36px;max-width:420px}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
   .btn-primary{display:inline-block;background:var(--orange);color:white;padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:2px solid var(--orange);transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
@@ -53,7 +51,6 @@
   .hero-benefit{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:500}
   .hero-benefit::before{content:'✓';display:flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:white;font-size:.75rem;font-weight:900;flex-shrink:0}
 
-  /* SECTIONS */
   section{padding:90px 5%}
   .section-header{margin-bottom:60px}
   .section-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
@@ -61,7 +58,6 @@
   .section-title span{color:var(--orange)}
   .section-desc{margin-top:16px;font-size:1rem;color:var(--gray);max-width:560px;line-height:1.7}
 
-  /* SERVICES — no hover, no highlight */
   #servicios{background:var(--light-gray)}
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
   .service-card{background:white;padding:32px;position:relative;overflow:hidden;border-bottom:3px solid transparent}
@@ -70,7 +66,14 @@
   .service-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;text-transform:uppercase;letter-spacing:.03em;color:var(--black);margin-bottom:10px}
   .service-desc{font-size:.88rem;color:var(--gray);line-height:1.6}
 
-  /* PAQUETES */
+  /* COMMITMENT strip */
+  .commitment-strip{background:var(--black);padding:48px 5%}
+  .commitment-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1200px;margin:0 auto}
+  .commitment-item{background:#222;padding:28px 24px;border-top:3px solid var(--orange)}
+  .commitment-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;margin-bottom:10px}
+  .commitment-text{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.6}
+  .commitment-text strong{color:white;font-weight:600}
+
   #paquetes{background:var(--white)}
   .pack-tabs{display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap}
   .pack-tab-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 28px;border:1px solid var(--mid-gray);background:transparent;color:var(--gray);cursor:pointer;transition:all .2s}
@@ -98,7 +101,13 @@
   .pack-cta{margin-top:24px}
   .pack-note{margin-top:32px;background:rgba(232,93,4,.06);border-left:3px solid var(--orange);padding:14px 20px;font-size:.88rem;color:var(--black)}
 
-  /* PORTFOLIO */
+  /* Video toggle inside Full Scout */
+  .video-toggle{display:flex;gap:2px;margin-bottom:16px;margin-top:4px}
+  .vt-btn{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;padding:8px 10px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;text-align:center}
+  .vt-btn.active{background:var(--orange);border-color:var(--orange);color:white}
+  .vt-content{display:none;font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:12px;padding:10px 12px;background:rgba(255,255,255,.05);border-left:2px solid var(--orange)}
+  .vt-content.active{display:block}
+
   #portfolio{background:var(--black)}
   #portfolio .section-title{color:white}
   #portfolio .section-tag{color:var(--orange-light)}
@@ -125,7 +134,6 @@
   .pf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:white;line-height:1.2}
   .pf-sub{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px}
 
-  /* TESTIMONIOS */
   #testimonios{background:var(--light-gray)}
   .clients-strip{display:flex;align-items:center;margin-bottom:56px;border:1px solid var(--mid-gray);background:white;flex-wrap:wrap}
   .client-slot{flex:1;min-width:100px;padding:24px 16px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--mid-gray);position:relative}
@@ -145,7 +153,6 @@
   .t-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--black)}
   .t-role{font-size:.8rem;color:var(--gray);margin-top:2px}
 
-  /* ABOUT */
   #sobre{background:white}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
   .about-tag-line{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.9rem;text-transform:uppercase;color:var(--black);line-height:1.1;margin-bottom:20px}
@@ -163,7 +170,6 @@
   .team-linkedin:hover{background:var(--orange);color:white}
   .team-linkedin svg{width:14px;height:14px;fill:currentColor}
 
-  /* CONTACTO */
   #contacto{background:var(--black)}
   #contacto .section-title{color:white}
   #contacto .section-tag{color:var(--orange-light)}
@@ -183,22 +189,18 @@
   .form-submit:hover{background:var(--orange-light)}
   .form-success{display:none;margin-top:8px;padding:14px 16px;background:rgba(232,93,4,.1);border:1px solid rgba(232,93,4,.3);color:var(--orange-light);font-size:.9rem}
 
-  /* WHATSAPP */
   .whatsapp-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;align-items:center;gap:10px;background:#25D366;color:white;padding:12px 20px 12px 16px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase}
   .whatsapp-float:hover{background:#1ebe5d;transform:translateY(-2px)}
   .whatsapp-float svg{width:22px;height:22px;fill:white;flex-shrink:0}
 
-  /* FOOTER */
   footer{background:#111;padding:48px 5% 28px}
   .footer-top{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
-  .footer-brand{}
   .footer-brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:12px}
   .footer-brand-logo img{height:36px;width:auto;opacity:.6;filter:brightness(0) invert(1)}
   .footer-wm{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;color:rgba(255,255,255,.5);letter-spacing:.05em}
   .footer-wm span{color:var(--orange)}
   .footer-tagline{font-size:.82rem;color:rgba(255,255,255,.3);line-height:1.5;max-width:220px}
   .footer-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .footer-nav-col{}
   .footer-nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px}
   .footer-nav-links{display:flex;flex-direction:column;gap:8px}
   .footer-nav-links a{font-size:.85rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
@@ -210,8 +212,8 @@
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
   .fade-up.visible{opacity:1;transform:translateY(0)}
 
-  @media(max-width:960px){.pack-grid-3{grid-template-columns:1fr}.pack-card.featured{transform:none}.portfolio-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr;gap:40px}.contact-grid{grid-template-columns:1fr}.testimonios-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr;gap:32px}.footer-nav{grid-template-columns:1fr 1fr}}
-  @media(max-width:768px){.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:white;flex-direction:column;padding:20px;gap:16px;border-bottom:2px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.1)}.nav-links.open{display:flex}.hamburger{display:flex}.hero-content{grid-template-columns:1fr;gap:40px}.hero-accent,.hero-bg-lines{display:none}.form-row{grid-template-columns:1fr}.whatsapp-float .whatsapp-label{display:none}.whatsapp-float{padding:14px;border-radius:50%}}
+  @media(max-width:960px){.pack-grid-3{grid-template-columns:1fr}.pack-card.featured{transform:none}.portfolio-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr;gap:40px}.contact-grid{grid-template-columns:1fr}.testimonios-grid{grid-template-columns:1fr}.commitment-grid{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr;gap:32px}.footer-nav{grid-template-columns:1fr 1fr}}
+  @media(max-width:768px){.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:white;flex-direction:column;padding:20px;gap:16px;border-bottom:2px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.1)}.nav-links.open{display:flex}.hamburger{display:flex}.hero-content{grid-template-columns:1fr;gap:40px}.hero-accent,.hero-bg-lines{display:none}.form-row{grid-template-columns:1fr}.whatsapp-float .whatsapp-label{display:none}.whatsapp-float{padding:14px;border-radius:50%}.commitment-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -222,18 +224,18 @@
     <div class="nav-wordmark" style="display:none"><span>HOOP</span> ASSISTANT</div>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
-    <li><a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a></li>
-    <li><a href="#paquetes" data-es="Paquetes" data-en="Packages">Paquetes</a></li>
-    <li><a href="#portfolio" data-es="Portfolio" data-en="Portfolio">Portfolio</a></li>
-    <li><a href="#testimonios" data-es="Clientes & Testimonios" data-en="Clients & Testimonials">Clientes & Testimonios</a></li>
-    <li><a href="#sobre" data-es="Nosotros" data-en="About">Nosotros</a></li>
-    <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    <li><a href="#inicio" data-es="Inicio" data-en="Home">Home</a></li>
+    <li><a href="#servicios" data-es="Servicios" data-en="Services">Services</a></li>
+    <li><a href="#paquetes" data-es="Paquetes" data-en="Packages">Packages</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonios" data-es="Clientes & Testimonios" data-en="Clients & Testimonials">Clients & Testimonials</a></li>
+    <li><a href="#sobre" data-es="Nosotros" data-en="About">About</a></li>
+    <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:16px">
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btnES" onclick="setLang('es')">ES</button>
-      <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
     </div>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
@@ -244,30 +246,31 @@
   <div class="hero-accent"></div><div class="hero-bg-lines"></div>
   <div class="hero-content">
     <div class="hero-text fade-up">
-      <div class="hero-badge" data-es="Servicio Online de Scouting" data-en="Online Scouting Service">Servicio Online de Scouting</div>
+      <div class="hero-badge" data-es="Servicio Online de Scouting" data-en="Professional Online Scouting">Professional Online Scouting</div>
       <h1 class="hero-title">
-        <span class="line1" data-es="CONTROLA" data-en="CONTROL">CONTROLA</span>
-        <span class="line2" data-es="EL JUEGO" data-en="THE GAME">EL JUEGO</span>
-        <span class="line3" data-es="ANTES" data-en="BEFORE IT">ANTES</span>
+        <span class="line1" data-es="CONTROLA" data-en="CONTROL">CONTROL</span>
+        <span class="line2" data-es="EL JUEGO" data-en="THE GAME">THE GAME</span>
+        <span class="line3" data-es="ANTES DE QUE" data-en="BEFORE IT">BEFORE IT</span>
+        <span class="line4" data-es="EMPIECE" data-en="STARTS">STARTS</span>
       </h1>
-      <div class="hero-tagline" data-es="Mientras entrenas, nosotros analizamos" data-en="While you coach, we analyse">Mientras entrenas, nosotros analizamos</div>
-      <p class="hero-sub" data-es="Vídeos, informes y análisis de datos personalizados sobre rivales y tu equipo. Un servicio 100% online con consultoría directa al cuerpo técnico." data-en="Custom video, reports and data analysis on opponents and your team. A 100% online service with direct consulting to the coaching staff.">Vídeos, informes y análisis de datos personalizados sobre rivales y tu equipo. Un servicio 100% online con consultoría directa al cuerpo técnico.</p>
+      <div class="hero-tagline" data-es="Mientras entrenas, nosotros analizamos" data-en="While you coach, we analyse">While you coach, we analyse</div>
+      <p class="hero-sub" data-es="Vídeos, informes y análisis de datos personalizados sobre rivales y tu equipo. Un servicio 100% online con consultoría directa al cuerpo técnico. Entrega en 48h." data-en="Custom video, reports and advanced data analysis on opponents and your team. 100% online, direct consulting with the coaching staff. Delivered in 48h.">Custom video, reports and advanced data analysis on opponents and your team. 100% online, direct consulting with the coaching staff. Delivered in 48h.</p>
       <div class="hero-ctas">
-        <a href="#servicios" class="btn-primary" data-es="Ver Servicios" data-en="Our Services">Ver Servicios</a>
-        <a href="#portfolio" class="btn-secondary" data-es="Ver Ejemplos" data-en="See Examples">Ver Ejemplos</a>
+        <a href="#servicios" class="btn-primary" data-es="Ver Servicios" data-en="Our Services">Our Services</a>
+        <a href="#portfolio" class="btn-secondary" data-es="Ver Ejemplos" data-en="See Examples">See Examples</a>
       </div>
       <div class="hero-benefits">
-        <div class="hero-benefit" data-es="Conoce profundamente a tus rivales" data-en="Deep knowledge of your opponents">Conoce profundamente a tus rivales</div>
-        <div class="hero-benefit" data-es="Información concisa y accionable" data-en="Concise and actionable intelligence">Información concisa y accionable</div>
-        <div class="hero-benefit" data-es="Servicio 100% online con consultoría directa" data-en="100% online service with direct consulting">Servicio 100% online con consultoría directa</div>
-        <div class="hero-benefit" data-es="Ahorra tiempo, mejora tus decisiones" data-en="Save time, make better decisions">Ahorra tiempo, mejora tus decisiones</div>
+        <div class="hero-benefit" data-es="Exclusividad garantizada por liga" data-en="Guaranteed exclusivity per league">Guaranteed exclusivity per league</div>
+        <div class="hero-benefit" data-es="Entrega en 48h después del último partido" data-en="Delivered in 48h after the last game">Delivered in 48h after the last game</div>
+        <div class="hero-benefit" data-es="Comunicación directa con tu analista, sin intermediarios" data-en="Direct communication with your analyst, no intermediaries">Direct communication with your analyst, no intermediaries</div>
+        <div class="hero-benefit" data-es="Confidencialidad total garantizada" data-en="Full confidentiality guaranteed">Full confidentiality guaranteed</div>
       </div>
     </div>
     <div class="hero-stats fade-up" style="transition-delay:.2s">
-      <div class="hero-stat"><div class="hero-stat-num">8+</div><div class="hero-stat-label" data-es="Servicios disponibles" data-en="Available services">Servicios disponibles</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label" data-es="Online + Consultoría" data-en="Online + Consulting">Online + Consultoría</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">5+</div><div class="hero-stat-label" data-es="Ligas y países" data-en="Leagues and countries">Ligas y países</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">ES/EN</div><div class="hero-stat-label" data-es="Idiomas de entrega" data-en="Delivery languages">Idiomas de entrega</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">9+</div><div class="hero-stat-label" data-es="Servicios disponibles" data-en="Available services">Available services</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">48h</div><div class="hero-stat-label" data-es="Tiempo de entrega" data-en="Delivery time">Delivery time</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5+</div><div class="hero-stat-label" data-es="Ligas y países" data-en="Leagues and countries">Leagues and countries</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">ES/EN</div><div class="hero-stat-label" data-es="Idiomas de entrega" data-en="Delivery languages">Delivery languages</div></div>
     </div>
   </div>
 </section>
@@ -275,242 +278,301 @@
 <!-- SERVICIOS -->
 <section id="servicios">
   <div class="section-header fade-up">
-    <div class="section-tag" data-es="Lo que ofrecemos" data-en="What we offer">Lo que ofrecemos</div>
-    <h2 class="section-title" data-es="NUESTROS <span>SERVICIOS</span>" data-en="OUR <span>SERVICES</span>">NUESTROS <span>SERVICES</span></h2>
-    <p class="section-desc" data-es="Un servicio integral de scouting, análisis y consultoría adaptado a las necesidades de cada cuerpo técnico." data-en="A comprehensive scouting, analysis and consulting service tailored to each coaching staff's needs.">Un servicio integral de scouting, análisis y consultoría adaptado a las necesidades de cada cuerpo técnico.</p>
+    <div class="section-tag" data-es="Lo que ofrecemos" data-en="What we offer">What we offer</div>
+    <h2 class="section-title" data-es="NUESTROS <span>SERVICIOS</span>" data-en="OUR <span>SERVICES</span>">OUR <span>SERVICES</span></h2>
+    <p class="section-desc" data-es="De la preparación previa al partido al análisis de temporada completa. Todos los servicios entregados 100% online en EN o ES." data-en="From pre-game preparation to full-season analysis. Every service delivered 100% online, in EN or ES.">From pre-game preparation to full-season analysis. Every service delivered 100% online, in EN or ES.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card fade-up"><div class="service-num">01</div><div class="service-icon">📋</div><div class="service-title" data-es="Playbook & Eficiencia del Rival" data-en="Opponent Playbook & Efficiency">Playbook & Eficiencia del Rival</div><p class="service-desc" data-es="Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción." data-en="Graphic and written breakdown of offensive systems, transitions, ATOs, baseline and sideline plays. Frequency and efficiency of every action.">Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.05s"><div class="service-num">02</div><div class="service-icon">👤</div><div class="service-title" data-es="Scouting Individual" data-en="Individual Scouting">Scouting Individual</div><p class="service-desc" data-es="Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave." data-en="Detailed analysis of each opponent player in document and video: strengths, weaknesses, tendencies, role and key stats.">Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.1s"><div class="service-num">03</div><div class="service-icon">📊</div><div class="service-title" data-es="Estadística Avanzada" data-en="Advanced Statistics">Estadística Avanzada</div><p class="service-desc" data-es="Four Factors, eficiencias ofensivas y defensivas, volumen de posesiones, tendencias de tiro, quintetos y playtypes. Tres niveles disponibles." data-en="Four Factors, offensive and defensive efficiencies, possession volume, shooting trends, lineups and playtypes. Three tiers available.">Four Factors, eficiencias ofensivas y defensivas, volumen de posesiones, tendencias de tiro, quintetos y playtypes. Tres niveles disponibles.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.15s"><div class="service-num">04</div><div class="service-icon">🎬</div><div class="service-title" data-es="Vídeo de Jugadas del Rival" data-en="Opponent Plays Video">Vídeo de Jugadas del Rival</div><p class="service-desc" data-es="Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas." data-en="Video analysis of offensive and defensive situations, highlighting finishing options to prepare specific responses.">Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.2s"><div class="service-num">05</div><div class="service-icon">🛡️</div><div class="service-title" data-es="Scouting Defensivo del Rival" data-en="Opponent Defensive Scouting">Scouting Defensivo del Rival</div><p class="service-desc" data-es="Estudio profundo de la defensa rival: P&R, off-screens, poste bajo, 1c1 y zonas. Detecta tendencias y puntos débiles para explotarlos." data-en="Deep study of the opponent's defense: P&R, off-screens, post defense, 1-on-1 and zones. Identifies tendencies and weak points.">Estudio profundo de la defensa rival: P&R, off-screens, poste bajo, 1c1 y zonas. Detecta tendencias y puntos débiles para explotarlos.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.25s"><div class="service-num">06</div><div class="service-icon">📹</div><div class="service-title" data-es="Vídeo de Scouting del Rival" data-en="Full Scouting Video">Vídeo de Scouting del Rival</div><p class="service-desc" data-es="Resumen de 8-10 minutos con ofensa, jugadores clave y análisis defensivo. Herramienta práctica para la preparación previa al partido." data-en="8-10 min summary covering offense, key players and defensive analysis. Practical pre-game preparation tool.">Resumen de 8-10 minutos con ofensa, jugadores clave y análisis defensivo. Herramienta práctica para la preparación previa al partido.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.3s"><div class="service-num">07</div><div class="service-icon">📈</div><div class="service-title" data-es="Análisis de Rendimiento" data-en="Team Performance Analysis">Análisis de Rendimiento</div><p class="service-desc" data-es="Estadística avanzada del propio equipo: métricas, tendencias, combinaciones en pista y respuestas estratégicas." data-en="Advanced stats for your own team: metrics, tendencies, on-court combinations and strategic responses.">Estadística avanzada del propio equipo: métricas, tendencias, combinaciones en pista y respuestas estratégicas.</p></div>
-    <div class="service-card fade-up" style="transition-delay:.35s"><div class="service-num">08</div><div class="service-icon">🤝</div><div class="service-title" data-es="Consultoría" data-en="Consulting">Consultoría</div><p class="service-desc" data-es="Sesión directa con el cuerpo técnico para interpretar análisis, adaptar la información al plan de partido y resolver cualquier duda." data-en="Direct session with the coaching staff to interpret analysis, adapt information to the game plan and resolve any queries.">Sesión directa con el cuerpo técnico para interpretar análisis, adaptar la información al plan de partido y resolver cualquier duda.</p></div>
+    <div class="service-card fade-up"><div class="service-num">01</div><div class="service-icon">📋</div><div class="service-title" data-es="Playbook & Eficiencia del Rival" data-en="Opponent Playbook & Efficiency">Opponent Playbook & Efficiency</div><p class="service-desc" data-es="Representación gráfica y escrita de sistemas ofensivos, transiciones, ATOs y situaciones de banda/fondo. Frecuencia y eficiencia de cada acción." data-en="Graphic and written breakdown of offensive systems, transitions, ATOs, baseline and sideline plays with frequency and efficiency data for every action.">Graphic and written breakdown of offensive systems, transitions, ATOs, baseline and sideline plays with frequency and efficiency data for every action.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.05s"><div class="service-num">02</div><div class="service-icon">👤</div><div class="service-title" data-es="Scouting Individual" data-en="Individual Scouting">Individual Scouting</div><p class="service-desc" data-es="Análisis detallado de cada jugador rival en documento y vídeo: puntos fuertes, débiles, tendencias, rol y estadísticas clave." data-en="Detailed player-by-player analysis in document and video format: strengths, weaknesses, tendencies, role and key stats.">Detailed player-by-player analysis in document and video format: strengths, weaknesses, tendencies, role and key stats.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.1s"><div class="service-num">03</div><div class="service-icon">📊</div><div class="service-title" data-es="Estadística Avanzada" data-en="Advanced Statistics">Advanced Statistics</div><p class="service-desc" data-es="Four Factors, eficiencias ofensivas y defensivas, volumen de posesiones, tendencias de tiro, quintetos y playtypes. Tres niveles disponibles." data-en="Four Factors, offensive and defensive efficiencies, possession volume, shooting tendencies, lineups and playtypes. Three tiers available.">Four Factors, offensive and defensive efficiencies, possession volume, shooting tendencies, lineups and playtypes. Three tiers available.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.15s"><div class="service-num">04</div><div class="service-icon">🎬</div><div class="service-title" data-es="Vídeo de Jugadas del Rival" data-en="Opponent Plays Video">Opponent Plays Video</div><p class="service-desc" data-es="Vídeoanálisis de situaciones ofensivas y defensivas, destacando opciones finalizadoras para preparar respuestas específicas." data-en="Video breakdown of offensive and defensive situations, highlighting finishing options to prepare specific in-game responses.">Video breakdown of offensive and defensive situations, highlighting finishing options to prepare specific in-game responses.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.2s"><div class="service-num">05</div><div class="service-icon">🛡️</div><div class="service-title" data-es="Scouting Defensivo del Rival" data-en="Opponent Defensive Scouting">Opponent Defensive Scouting</div><p class="service-desc" data-es="Estudio profundo de la defensa rival: P&R, off-screens, poste bajo, 1c1 y zonas. Detecta tendencias y puntos débiles para explotarlos." data-en="Deep study of the opponent's defense: P&R coverage, off-screens, post defense, 1-on-1 and zones. Identify tendencies and exploit weak points.">Deep study of the opponent's defense: P&R coverage, off-screens, post defense, 1-on-1 and zones. Identify tendencies and exploit weak points.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.25s"><div class="service-num">06</div><div class="service-icon">📹</div><div class="service-title" data-es="Vídeo de Scouting del Rival" data-en="Full Scouting Video">Full Scouting Video</div><p class="service-desc" data-es="Resumen curado de 8-10 min con ofensa, jugadores clave y análisis defensivo. Opción de vídeo completo (25-35 min) con todas las acciones sin filtrar." data-en="Curated 8-10 min summary covering offense, key players and defensive analysis. Option of full unfiltered video (25-35 min) with all recorded actions.">Curated 8-10 min summary covering offense, key players and defensive analysis. Option of full unfiltered video (25-35 min) with all recorded actions.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.3s"><div class="service-num">07</div><div class="service-icon">📈</div><div class="service-title" data-es="Análisis de Rendimiento" data-en="Team Performance Analysis">Team Performance Analysis</div><p class="service-desc" data-es="Estadística avanzada del propio equipo: métricas, tendencias, combinaciones en pista y respuestas estratégicas." data-en="Advanced stats for your own team: metrics, trends, on-court combinations and strategic takeaways.">Advanced stats for your own team: metrics, trends, on-court combinations and strategic takeaways.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.35s"><div class="service-num">08</div><div class="service-icon">🤝</div><div class="service-title" data-es="Consultoría" data-en="Consulting">Consulting</div><p class="service-desc" data-es="Sesión directa con el cuerpo técnico para interpretar análisis, adaptar la información al plan de partido y resolver cualquier duda." data-en="Direct pre-game session with the coaching staff to interpret analysis, adapt it to the game plan and resolve any questions.">Direct pre-game session with the coaching staff to interpret analysis, adapt it to the game plan and resolve any questions.</p></div>
+    <div class="service-card fade-up" style="transition-delay:.4s"><div class="service-num">09</div><div class="service-icon">🔍</div><div class="service-title" data-es="Recruitment Intelligence" data-en="Recruitment Intelligence">Recruitment Intelligence</div><p class="service-desc" data-es="Perfiles de jugadores adaptados a tu arquetipo, contexto de liga y presupuesto. Nosotros hacemos la búsqueda, tú tomas la decisión." data-en="Curated player profiles matched to your archetype, league context and budget. We do the search, you make the call.">Curated player profiles matched to your archetype, league context and budget. We do the search, you make the call.</p></div>
   </div>
 </section>
+
+<!-- COMMITMENT -->
+<div class="commitment-strip">
+  <div class="commitment-grid">
+    <div class="commitment-item fade-up">
+      <div class="commitment-num">01</div>
+      <div class="commitment-text" data-es="<strong>Exclusividad por liga.</strong> Trabajamos con 1 equipo por competición. Nadie en tu liga recibe la misma información." data-en="<strong>Exclusivity per league.</strong> We work with 1 team per competition. No other team in your league gets the same intelligence."><strong>Exclusivity per league.</strong> We work with 1 team per competition. No other team in your league gets the same intelligence.</div>
+    </div>
+    <div class="commitment-item fade-up" style="transition-delay:.07s">
+      <div class="commitment-num">02</div>
+      <div class="commitment-text" data-es="<strong>Entrega en 48h</strong> tras el último partido del rival, siempre a tiempo para la preparación." data-en="<strong>Delivered in 48h</strong> after the opponent's last game of the round, always on time for preparation."><strong>Delivered in 48h</strong> after the opponent's last game of the round, always on time for preparation.</div>
+    </div>
+    <div class="commitment-item fade-up" style="transition-delay:.14s">
+      <div class="commitment-num">03</div>
+      <div class="commitment-text" data-es="<strong>Comunicación directa</strong> con tu analista durante toda la temporada. Sin intermediarios." data-en="<strong>Direct communication</strong> with your analyst throughout the season. No intermediaries."><strong>Direct communication</strong> with your analyst throughout the season. No intermediaries.</div>
+    </div>
+    <div class="commitment-item fade-up" style="transition-delay:.21s">
+      <div class="commitment-num">04</div>
+      <div class="commitment-text" data-es="<strong>Confidencialidad total.</strong> Todos los informes y datos son exclusivos de tu staff y nunca se comparten." data-en="<strong>Full confidentiality.</strong> All reports and data are exclusive to your staff and never shared."><strong>Full confidentiality.</strong> All reports and data are exclusive to your staff and never shared.</div>
+    </div>
+  </div>
+</div>
 
 <!-- PAQUETES -->
 <section id="paquetes">
   <div class="section-header fade-up">
-    <div class="section-tag" data-es="Nuestras propuestas" data-en="Our proposals">Nuestras propuestas</div>
-    <h2 class="section-title" data-es="<span>PAQUETES</span> DE SERVICIO" data-en="SERVICE <span>PACKAGES</span>"><span>PAQUETES</span> DE SERVICIO</h2>
-    <p class="section-desc" data-es="Elige el paquete que mejor se adapta a tu equipo. La consultoría está disponible como servicio independiente." data-en="Choose the package that best fits your team. Consulting is available as a standalone service.">Elige el paquete que mejor se adapta a tu equipo. La consultoría está disponible como servicio independiente.</p>
+    <div class="section-tag" data-es="Nuestras propuestas" data-en="Our proposals">Our proposals</div>
+    <h2 class="section-title" data-es="<span>PAQUETES</span> DE SERVICIO" data-en="SERVICE <span>PACKAGES</span>">SERVICE <span>PACKAGES</span></h2>
+    <p class="section-desc" data-es="Elige el paquete que mejor se adapta a tu equipo. Todos los servicios son totalmente personalizables." data-en="Choose the package that best fits your team. All services are fully customisable to your needs and schedule.">Choose the package that best fits your team. All services are fully customisable to your needs and schedule.</p>
   </div>
   <div class="pack-tabs fade-up">
-    <button class="pack-tab-btn active" onclick="switchPack(event,'stats')" data-es="📊 Pack Estadísticas" data-en="📊 Statistics Pack">📊 Pack Estadísticas</button>
-    <button class="pack-tab-btn" onclick="switchPack(event,'scouting')" data-es="🎬 Pack Scouting" data-en="🎬 Scouting Pack">🎬 Pack Scouting</button>
-    <button class="pack-tab-btn" onclick="switchPack(event,'extra')" data-es="⚡ Packs Extra" data-en="⚡ Extra Packs">⚡ Packs Extra</button>
+    <button class="pack-tab-btn active" onclick="switchPack(event,'stats')" data-es="📊 Pack Estadísticas" data-en="📊 Statistics">📊 Statistics</button>
+    <button class="pack-tab-btn" onclick="switchPack(event,'scouting')" data-es="🎬 Pack Scouting" data-en="🎬 Scouting">🎬 Scouting</button>
+    <button class="pack-tab-btn" onclick="switchPack(event,'extra')" data-es="⚡ Extra" data-en="⚡ Extra">⚡ Extra</button>
+    <button class="pack-tab-btn" onclick="switchPack(event,'recruitment')" data-es="🔍 Recruitment" data-en="🔍 Recruitment">🔍 Recruitment</button>
   </div>
 
-  <!-- STATS: Silver en centro -->
+  <!-- STATS -->
   <div class="pack-panel active" id="panel-stats">
     <div class="pack-grid-3 fade-up">
       <div class="pack-card">
         <div class="pack-tier">Bronze</div>
         <div class="pack-name">Bronze</div>
-        <div class="pack-sub" data-es="Four Factors y eficiencia de tiro en contexto" data-en="Four Factors and shooting efficiency in context">Four Factors y eficiencia de tiro en contexto</div>
+        <div class="pack-sub" data-es="Four Factors y eficiencia de tiro en contexto" data-en="Four Factors and shooting efficiency in context">Four Factors and shooting efficiency in context</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Four Factors Analysis del equipo y rival" data-en="Four Factors Analysis of own team and opponent">Four Factors Analysis del equipo y rival</li>
-          <li class="pack-feature" data-es="Desglose de eficiencia de tiro (eFG%, TS%)" data-en="Shooting efficiency breakdown (eFG%, TS%)">Desglose de eficiencia de tiro (eFG%, TS%)</li>
-          <li class="pack-feature" data-es="Rankings del equipo en la liga" data-en="Team rankings in the league">Rankings del equipo en la liga</li>
-          <li class="pack-feature" data-es="Comparativa equipo propio vs rival" data-en="Own team vs opponent comparison">Comparativa equipo propio vs rival</li>
+          <li class="pack-feature" data-es="Four Factors Analysis del equipo y rival" data-en="Four Factors Analysis — own team and opponent">Four Factors Analysis — own team and opponent</li>
+          <li class="pack-feature" data-es="Desglose de eficiencia de tiro (eFG%, TS%)" data-en="Shooting efficiency breakdown (eFG%, TS%)">Shooting efficiency breakdown (eFG%, TS%)</li>
+          <li class="pack-feature" data-es="Rankings del equipo en la liga" data-en="Team rankings in the league">Team rankings in the league</li>
+          <li class="pack-feature" data-es="Comparativa equipo propio vs rival" data-en="Own team vs opponent comparison">Own team vs opponent comparison</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card featured">
         <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
         <div class="pack-tier" style="color:var(--orange-light)">Silver</div>
         <div class="pack-name">Silver</div>
-        <div class="pack-sub" data-es="Optimización de rotaciones y evolución del equipo" data-en="Rotation optimisation and team evolution">Optimización de rotaciones y evolución del equipo</div>
+        <div class="pack-sub" data-es="Optimización de rotaciones y evolución del equipo" data-en="Lineup optimisation and team evolution">Lineup optimisation and team evolution</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Todo lo del Bronze" data-en="Everything in Bronze">Todo lo del Bronze</li>
-          <li class="pack-feature" data-es="Combinaciones y análisis de quintetos propios" data-en="Own lineup combinations and analysis">Combinaciones y análisis de quintetos propios</li>
-          <li class="pack-feature" data-es="Optimización de quintetos y rotaciones" data-en="Lineup and rotation optimisation">Optimización de quintetos y rotaciones</li>
-          <li class="pack-feature" data-es="Tendencias y evolución de jugadores" data-en="Player tendencies and evolution">Tendencias y evolución de jugadores</li>
+          <li class="pack-feature" data-es="Todo lo del Bronze" data-en="Everything in Bronze">Everything in Bronze</li>
+          <li class="pack-feature" data-es="Combinaciones y análisis de quintetos propios" data-en="Own lineup combinations and analysis">Own lineup combinations and analysis</li>
+          <li class="pack-feature" data-es="Optimización de quintetos y rotaciones" data-en="Lineup and rotation optimisation">Lineup and rotation optimisation</li>
+          <li class="pack-feature" data-es="Tendencias y evolución de jugadores" data-en="Player tendencies and evolution">Player tendencies and evolution</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card">
         <div class="pack-tier">Gold</div>
         <div class="pack-name">Gold</div>
-        <div class="pack-sub" data-es="Análisis completo con playtypes y reports periódicos" data-en="Full analysis with playtypes and periodic reports">Análisis completo con playtypes y reports periódicos</div>
+        <div class="pack-sub" data-es="Análisis completo con playtypes y reports periódicos" data-en="Full analysis with playtypes and periodic reports">Full analysis with playtypes and periodic reports</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Todo lo del Silver" data-en="Everything in Silver">Todo lo del Silver</li>
-          <li class="pack-feature" data-es="Rotación y tendencias del rival" data-en="Opponent rotation and tendencies">Rotación y tendencias del rival</li>
-          <li class="pack-feature" data-es="Reports a tercios, mitad y final de temporada" data-en="Reports at 1/3, mid and end of season">Reports a tercios, mitad y final de temporada</li>
-          <li class="pack-feature" data-es="Playtypes avanzados (InStat / Synergy)" data-en="Advanced playtypes (InStat / Synergy)">Playtypes avanzados (InStat / Synergy)</li>
+          <li class="pack-feature" data-es="Todo lo del Silver" data-en="Everything in Silver">Everything in Silver</li>
+          <li class="pack-feature" data-es="Rotación y tendencias del rival" data-en="Opponent rotation and tendencies">Opponent rotation and tendencies</li>
+          <li class="pack-feature" data-es="Reports ejecutivos a tercios, mitad y final de temporada" data-en="Executive reports at 1/3, mid and end of season">Executive reports at 1/3, mid and end of season</li>
+          <li class="pack-feature" data-es="Playtypes avanzados (InStat / Synergy)" data-en="Advanced playtypes (InStat / Synergy)">Advanced playtypes (InStat / Synergy)</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
     </div>
   </div>
 
-  <!-- SCOUTING: Full Scout en centro -->
+  <!-- SCOUTING -->
   <div class="pack-panel" id="panel-scouting">
     <div class="pack-grid-3 fade-up">
       <div class="pack-card">
-        <div class="pack-tier" data-es="Rival — Equipo" data-en="Rival — Team">Rival — Equipo</div>
+        <div class="pack-tier" data-es="Rival — Equipo" data-en="Opponent — Team">Opponent — Team</div>
         <div class="pack-name">Team Scout</div>
-        <div class="pack-sub" data-es="Análisis colectivo completo del rival" data-en="Full collective opponent analysis">Análisis colectivo completo del rival</div>
+        <div class="pack-sub" data-es="Análisis colectivo completo del rival" data-en="Full collective opponent analysis">Full collective opponent analysis</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Análisis de situaciones ofensivas (frecuencia y eficiencia)" data-en="Offensive situation analysis (frequency and efficiency)">Análisis de situaciones ofensivas (frecuencia y eficiencia)</li>
-          <li class="pack-feature" data-es="Vídeo colectivo del rival" data-en="Collective opponent video">Vídeo colectivo del rival</li>
-          <li class="pack-feature" data-es="Informe defensivo escrito y en vídeo" data-en="Written and video defensive report">Informe defensivo escrito y en vídeo</li>
+          <li class="pack-feature" data-es="Análisis de situaciones ofensivas (frecuencia y eficiencia)" data-en="Offensive situations analysis (frequency and efficiency)">Offensive situations analysis (frequency and efficiency)</li>
+          <li class="pack-feature" data-es="Vídeo colectivo del rival" data-en="Collective opponent video">Collective opponent video</li>
+          <li class="pack-feature" data-es="Informe defensivo escrito y en vídeo" data-en="Written and video defensive report">Written and video defensive report</li>
         </ul>
-        <div class="pack-addon" data-es="➕ Playbook disponible como suplemento" data-en="➕ Playbook available as add-on">➕ Playbook disponible como suplemento</div>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-addon" data-es="➕ Playbook disponible como suplemento (+€35)" data-en="➕ Playbook available as add-on (+€35)">➕ Playbook available as add-on (+€35)</div>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card featured">
         <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
-        <div class="pack-tier" style="color:var(--orange-light)" data-es="Rival — Completo" data-en="Rival — Full">Rival — Completo</div>
+        <div class="pack-tier" style="color:var(--orange-light)" data-es="Rival — Completo" data-en="Opponent — Full">Opponent — Full</div>
         <div class="pack-name">Full Scout</div>
-        <div class="pack-sub" data-es="El análisis más completo del rival" data-en="The most complete opponent analysis">El análisis más completo del rival</div>
+        <div class="pack-sub" data-es="El análisis más completo del rival" data-en="The most complete opponent analysis">The most complete opponent analysis</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Todo lo del Team Scout" data-en="Everything in Team Scout">Todo lo del Team Scout</li>
-          <li class="pack-feature" data-es="Todo lo del Player Scout" data-en="Everything in Player Scout">Todo lo del Player Scout</li>
-          <li class="pack-feature" data-es="Vídeo de scouting completo del rival (8-10 min)" data-en="Full opponent scouting video (8-10 min)">Vídeo de scouting completo del rival (8-10 min)</li>
+          <li class="pack-feature" data-es="Todo lo del Team Scout" data-en="Everything in Team Scout">Everything in Team Scout</li>
+          <li class="pack-feature" data-es="Todo lo del Player Scout" data-en="Everything in Player Scout">Everything in Player Scout</li>
         </ul>
-        <div class="pack-addon" style="color:rgba(255,255,255,.35);border-top-color:rgba(255,255,255,.1)" data-es="➕ Playbook disponible como suplemento" data-en="➕ Playbook available as add-on">➕ Playbook disponible como suplemento</div>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <!-- VIDEO TOGGLE -->
+        <div style="margin-top:14px;margin-bottom:4px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px" data-es="Formato de vídeo" data-en="Video format">Video format</div>
+          <div class="video-toggle">
+            <button class="vt-btn active" onclick="switchVideo(this,'curated')" data-es="Curado (8-10 min)" data-en="Curated (8-10 min)">Curated (8-10 min)</button>
+            <button class="vt-btn" onclick="switchVideo(this,'master')" data-es="Master (25-35 min)" data-en="Master (25-35 min)">Master (25-35 min)</button>
+          </div>
+          <div class="vt-content active" id="vt-curated" data-es="Resumen curado con los sistemas, jugadores clave y análisis defensivo más relevantes. Listo para mostrarlo directamente al equipo." data-en="Curated summary with the most relevant systems, key players and defensive analysis. Ready to show directly to the team.">Curated summary with the most relevant systems, key players and defensive analysis. Ready to show directly to the team.</div>
+          <div class="vt-content" id="vt-master" data-es="Vídeo completo (25-35 min) con TODAS las acciones registradas sin filtrar. Más información, menos editorial — ideal para cuerpos técnicos que prefieren analizar ellos mismos." data-en="Full video (25-35 min) with ALL recorded actions unfiltered. More information, less editorial — ideal for coaching staffs who prefer to do their own analysis.">Full video (25-35 min) with ALL recorded actions unfiltered. More information, less editorial — ideal for coaching staffs who prefer to do their own analysis.</div>
+        </div>
+        <div class="pack-addon" style="color:rgba(255,255,255,.35);border-top-color:rgba(255,255,255,.1)" data-es="➕ Playbook disponible como suplemento (+€35)" data-en="➕ Playbook available as add-on (+€35)">➕ Playbook available as add-on (+€35)</div>
+        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card">
-        <div class="pack-tier" data-es="Rival — Jugadores" data-en="Rival — Players">Rival — Jugadores</div>
+        <div class="pack-tier" data-es="Rival — Jugadores" data-en="Opponent — Players">Opponent — Players</div>
         <div class="pack-name">Player Scout</div>
-        <div class="pack-sub" data-es="Análisis individual de cada jugador rival" data-en="Individual analysis of each opponent player">Análisis individual de cada jugador rival</div>
+        <div class="pack-sub" data-es="Análisis individual de cada jugador rival" data-en="Individual analysis of each opponent player">Individual analysis of each opponent player</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Informe de jugadores (documento)" data-en="Player report (document)">Informe de jugadores (documento)</li>
-          <li class="pack-feature" data-es="Vídeo de scouting individual por jugador" data-en="Individual scouting video per player">Vídeo de scouting individual por jugador</li>
+          <li class="pack-feature" data-es="Informe de jugadores (documento)" data-en="Players scouting report (document)">Players scouting report (document)</li>
+          <li class="pack-feature" data-es="Clips ofensivos y defensivos por jugador" data-en="Offensive and defensive clips per player">Offensive and defensive clips per player</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
     </div>
   </div>
 
-  <!-- EXTRA: Complete en centro -->
+  <!-- EXTRA -->
   <div class="pack-panel" id="panel-extra">
     <div class="pack-grid-3 fade-up">
       <div class="pack-card">
         <div class="pack-tier">Team Pack</div>
         <div class="pack-name">Team Pack</div>
-        <div class="pack-sub" data-es="Análisis post-partido a demanda" data-en="Post-game analysis on demand">Análisis post-partido a demanda</div>
+        <div class="pack-sub" data-es="Análisis post-partido a demanda" data-en="Post-game analysis on demand">Post-game analysis on demand</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Post Game a demanda del entrenador" data-en="Post Game on coach's demand">Post Game a demanda del entrenador</li>
-          <li class="pack-feature" data-es="Formato personalizable según necesidades" data-en="Customisable format to specific needs">Formato personalizable según necesidades</li>
+          <li class="pack-feature" data-es="Post-game a demanda del entrenador" data-en="Post-game on coach's demand">Post-game on coach's demand</li>
+          <li class="pack-feature" data-es="Formato personalizable según necesidades" data-en="Customisable format to specific needs">Customisable format to specific needs</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card featured">
         <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
         <div class="pack-tier" style="color:var(--orange-light)">Complete</div>
         <div class="pack-name">Complete</div>
-        <div class="pack-sub" data-es="Scouting total + estadística avanzada" data-en="Full scouting + advanced statistics">Scouting total + estadística avanzada</div>
+        <div class="pack-sub" data-es="Scouting total + estadística avanzada" data-en="Full scouting + advanced statistics">Full scouting + advanced statistics</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Full Scout Rival completo" data-en="Complete Full Scout">Full Scout Rival completo</li>
-          <li class="pack-feature" data-es="Pack Estadísticas Gold" data-en="Statistics Pack Gold">Pack Estadísticas Gold</li>
+          <li class="pack-feature" data-es="Full Scout Rival completo" data-en="Full Scout — complete opponent analysis">Full Scout — complete opponent analysis</li>
+          <li class="pack-feature" data-es="Pack Estadísticas Gold" data-en="Statistics Pack Gold">Statistics Pack Gold</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card">
-        <div class="pack-tier" data-es="Sesión" data-en="Session">Sesión</div>
-        <div class="pack-name" data-es="Consultoría" data-en="Consulting">Consultoría</div>
-        <div class="pack-sub" data-es="Sesión directa prepartido con el cuerpo técnico" data-en="Direct pre-game session with the coaching staff">Sesión directa prepartido con el cuerpo técnico</div>
+        <div class="pack-tier" data-es="Sesión" data-en="Session">Session</div>
+        <div class="pack-name" data-es="Consultoría" data-en="Consulting">Consulting</div>
+        <div class="pack-sub" data-es="Sesión directa prepartido con el cuerpo técnico" data-en="Direct pre-game session with the coaching staff">Direct pre-game session with the coaching staff</div>
         <div class="pack-divider"></div>
         <ul class="pack-features">
-          <li class="pack-feature" data-es="Interpretación de análisis y plan de partido" data-en="Analysis interpretation and game planning">Interpretación de análisis y plan de partido</li>
-          <li class="pack-feature" data-es="Adaptable en formato y duración" data-en="Adaptable in format and duration">Adaptable en formato y duración</li>
+          <li class="pack-feature" data-es="Interpretación de análisis y plan de partido" data-en="Analysis interpretation and game planning">Analysis interpretation and game planning</li>
+          <li class="pack-feature" data-es="Adaptable en formato y duración" data-en="Adaptable in format and duration">Adaptable in format and duration</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Solicitar Info</a></div>
+        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
     </div>
   </div>
-  <div class="pack-note fade-up" data-es="💬 Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta." data-en="💬 Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.">💬 Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta.</div>
+
+  <!-- RECRUITMENT -->
+  <div class="pack-panel" id="panel-recruitment">
+    <div class="pack-grid-3 fade-up">
+      <div class="pack-card" style="grid-column:1"></div>
+      <div class="pack-card featured" style="grid-column:2 / span 1;display:block">
+        <div class="pack-popular" data-es="Servicio especializado" data-en="Specialist service">Specialist service</div>
+        <div class="pack-tier" style="color:var(--orange-light)" data-es="Inteligencia de mercado" data-en="Market intelligence">Market intelligence</div>
+        <div class="pack-name">Recruitment Intelligence</div>
+        <div class="pack-sub" data-es="Perfiles de jugadores adaptados a tu arquetipo, contexto y presupuesto" data-en="Player profiles matched to your archetype, league context and budget">Player profiles matched to your archetype, league context and budget</div>
+        <div class="pack-divider"></div>
+        <ul class="pack-features">
+          <li class="pack-feature" data-es="Búsqueda en nuestra base de datos de jugadores" data-en="Search across our player database">Search across our player database</li>
+          <li class="pack-feature" data-es="Perfiles curados adaptados a tu sistema" data-en="Curated profiles adapted to your system">Curated profiles adapted to your system</li>
+          <li class="pack-feature" data-es="Contexto de liga y presupuesto incluido" data-en="League context and budget considerations included">League context and budget considerations included</li>
+          <li class="pack-feature" data-es="Opción de desglose en vídeo de cada candidato" data-en="Option of video breakdown for each candidate">Option of video breakdown for each candidate</li>
+          <li class="pack-feature" data-es="Tú tomas la decisión final" data-en="You make the final call">You make the final call</li>
+        </ul>
+        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
+      </div>
+      <div class="pack-card" style="grid-column:3"></div>
+    </div>
+  </div>
+
+  <div class="pack-note fade-up" data-es="💬 Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta." data-en="💬 Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.">💬 Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.</div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="section-header fade-up">
-    <div class="section-tag" data-es="Ejemplos reales de trabajo profesional" data-en="Real examples of professional work">Ejemplos reales de trabajo profesional</div>
+    <div class="section-tag" data-es="Ejemplos reales de trabajo profesional" data-en="Real examples of professional work">Real examples of professional work</div>
     <h2 class="section-title" data-es="<span>PORTFOLIO</span>" data-en="<span>PORTFOLIO</span>"><span>PORTFOLIO</span></h2>
-    <p class="section-desc" data-es="Informes y vídeos reales entregados a equipos profesionales. Los vídeos están disponibles bajo solicitud privada." data-en="Real reports and videos delivered to professional teams. Videos are available on private request.">Informes y vídeos reales entregados a equipos profesionales. Los vídeos están disponibles bajo solicitud privada.</p>
+    <p class="section-desc" data-es="Informes y vídeos reales entregados a equipos profesionales. Los vídeos están disponibles bajo solicitud privada." data-en="Real reports and videos delivered to professional teams. Videos available on private request.">Real reports and videos delivered to professional teams. Videos available on private request.</p>
   </div>
   <div class="portfolio-tabs fade-up">
-    <button class="tab-btn active" onclick="filterPortfolio(event,'video')" data-es="Vídeos" data-en="Videos">Vídeos</button>
-    <button class="tab-btn" onclick="filterPortfolio(event,'report')" data-es="Informes" data-en="Reports">Informes</button>
+    <button class="tab-btn active" onclick="filterPortfolio(event,'video')" data-es="Vídeos" data-en="Videos">Videos</button>
+    <button class="tab-btn" onclick="filterPortfolio(event,'report')" data-es="Informes" data-en="Reports">Reports</button>
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
     <div class="portfolio-item portfolio-video-item fade-up" data-type="video">
       <div class="video-cta-card">
         <div class="video-cta-icon">🎬</div>
-        <div class="video-cta-title" data-es="Scouting Individual" data-en="Individual Scouting">Scouting Individual</div>
-        <div class="video-cta-desc" data-es="Análisis por jugador con estadísticas y vídeo. Acceso privado bajo solicitud." data-en="Player-by-player analysis with stats and video. Private access on request.">Análisis por jugador con estadísticas y vídeo. Acceso privado bajo solicitud.</div>
-        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Solicitar Vídeos de Muestra</a>
+        <div class="video-cta-title" data-es="Scouting Individual" data-en="Individual Scouting">Individual Scouting</div>
+        <div class="video-cta-desc" data-es="Análisis por jugador con estadísticas y vídeo. Acceso privado bajo solicitud." data-en="Player-by-player analysis with stats and video. Private access on request.">Player-by-player analysis with stats and video. Private access on request.</div>
+        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Request Sample Videos</a>
       </div>
     </div>
     <div class="portfolio-item portfolio-video-item fade-up" data-type="video" style="transition-delay:.08s">
       <div class="video-cta-card">
         <div class="video-cta-icon">📹</div>
-        <div class="video-cta-title" data-es="Scouting Completo del Rival" data-en="Full Opponent Scouting">Scouting Completo del Rival</div>
-        <div class="video-cta-desc" data-es="Resumen 8-10 min: ofensa, jugadores clave y defensa. Acceso privado bajo solicitud." data-en="8-10 min summary: offense, key players and defense. Private access on request.">Resumen 8-10 min: ofensa, jugadores clave y defensa. Acceso privado bajo solicitud.</div>
-        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Solicitar Vídeos de Muestra</a>
+        <div class="video-cta-title" data-es="Scouting Completo del Rival" data-en="Full Opponent Scouting">Full Opponent Scouting</div>
+        <div class="video-cta-desc" data-es="Resumen 8-10 min: ofensa, jugadores clave y defensa. Acceso privado bajo solicitud." data-en="8-10 min summary: offense, key players and defense. Private access on request.">8-10 min summary: offense, key players and defense. Private access on request.</div>
+        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Request Sample Videos</a>
       </div>
     </div>
     <div class="portfolio-item portfolio-video-item fade-up" data-type="video" style="transition-delay:.16s">
       <div class="video-cta-card">
         <div class="video-cta-icon">🏀</div>
-        <div class="video-cta-title" data-es="Jugadas del Rival" data-en="Opponent Plays">Jugadas del Rival</div>
-        <div class="video-cta-desc" data-es="Sets ofensivos con opciones finalizadoras. Acceso privado bajo solicitud." data-en="Offensive sets with finishing options. Private access on request.">Sets ofensivos con opciones finalizadoras. Acceso privado bajo solicitud.</div>
-        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Solicitar Vídeos de Muestra</a>
+        <div class="video-cta-title" data-es="Jugadas del Rival" data-en="Opponent Plays">Opponent Plays</div>
+        <div class="video-cta-desc" data-es="Sets ofensivos con opciones finalizadoras. Acceso privado bajo solicitud." data-en="Offensive sets with finishing options. Private access on request.">Offensive sets with finishing options. Private access on request.</div>
+        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Request Sample Videos</a>
       </div>
     </div>
     <div class="portfolio-item portfolio-video-item fade-up" data-type="video" style="transition-delay:.24s">
       <div class="video-cta-card">
         <div class="video-cta-icon">🛡️</div>
-        <div class="video-cta-title" data-es="Defensa del Rival" data-en="Opponent Defense">Defensa del Rival</div>
-        <div class="video-cta-desc" data-es="P&R, off-screens y tendencias defensivas. Acceso privado bajo solicitud." data-en="P&R, off-screens and defensive tendencies. Private access on request.">P&R, off-screens y tendencias defensivas. Acceso privado bajo solicitud.</div>
-        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Solicitar Vídeos de Muestra</a>
+        <div class="video-cta-title" data-es="Defensa del Rival" data-en="Opponent Defense">Opponent Defense</div>
+        <div class="video-cta-desc" data-es="P&R, off-screens y tendencias defensivas. Acceso privado bajo solicitud." data-en="P&R, off-screens and defensive tendencies. Private access on request.">P&R, off-screens and defensive tendencies. Private access on request.</div>
+        <a href="#contacto" class="video-cta-btn" data-es="Solicitar Vídeos de Muestra" data-en="Request Sample Videos">Request Sample Videos</a>
       </div>
     </div>
     <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/CB%20CACERES%20-%20HOOP%20ASSISTANT.pdf" target="_blank" rel="noopener" style="transition-delay:.08s">
       <div class="report-card">
         <div class="report-bg-num">01</div>
-        <div>
-          <div class="pf-type" data-es="Informe · Playbook" data-en="Report · Playbook">Informe · Playbook</div>
-          <div class="pf-title">CB Cáceres — Playbook</div>
-          <div class="pf-sub" data-es="Transición, SLOB, Half Court y BLOB" data-en="Transition, SLOB, Half Court and BLOB">Transición, SLOB, Half Court y BLOB</div>
-        </div>
+        <div><div class="pf-type">Report · Playbook</div><div class="pf-title">CB Cáceres — Playbook</div><div class="pf-sub" data-es="Transición, SLOB, Half Court y BLOB" data-en="Transition, SLOB, Half Court and BLOB">Transition, SLOB, Half Court and BLOB</div></div>
         <div class="report-icon">📋</div>
       </div>
     </a>
     <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/Data%20Analytics%20-%20Hoop%20Assistant.pdf" target="_blank" rel="noopener" style="transition-delay:.16s">
       <div class="report-card">
         <div class="report-bg-num">02</div>
-        <div>
-          <div class="pf-type" data-es="Informe · Estadística" data-en="Report · Statistics">Informe · Estadística</div>
-          <div class="pf-title">CB Morón — Data Analytics</div>
-          <div class="pf-sub" data-es="Four Factors, eficiencias, quintetos y recomendaciones" data-en="Four Factors, efficiencies, lineups and recommendations">Four Factors, eficiencias, quintetos y recomendaciones</div>
-        </div>
+        <div><div class="pf-type">Report · Statistics</div><div class="pf-title">CB Morón — Data Analytics</div><div class="pf-sub" data-es="Four Factors, eficiencias, quintetos y recomendaciones" data-en="Four Factors, efficiencies, lineups and recommendations">Four Factors, efficiencies, lineups and recommendations</div></div>
         <div class="report-icon">📊</div>
       </div>
     </a>
     <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/PLAYERS%20REPORT%20-%20HOOP%20ASSISTANT.pdf" target="_blank" rel="noopener" style="transition-delay:.24s">
       <div class="report-card">
         <div class="report-bg-num">03</div>
-        <div>
-          <div class="pf-type" data-es="Informe · Jugadores" data-en="Report · Players">Informe · Jugadores</div>
-          <div class="pf-title">CB Morón — Players Report</div>
-          <div class="pf-sub" data-es="Análisis individual con estadísticas y claves defensivas" data-en="Individual analysis with stats and defensive keys">Análisis individual con estadísticas y claves defensivas</div>
-        </div>
+        <div><div class="pf-type">Report · Players</div><div class="pf-title">CB Morón — Players Report</div><div class="pf-sub" data-es="Análisis individual con estadísticas y claves defensivas" data-en="Individual analysis with stats and defensive keys">Individual analysis with stats and defensive keys</div></div>
         <div class="report-icon">👤</div>
+      </div>
+    </a>
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/Set%20Play%20Frecuency.pdf" target="_blank" rel="noopener" style="transition-delay:.32s">
+      <div class="report-card">
+        <div class="report-bg-num">04</div>
+        <div><div class="pf-type">Report · Scouting</div><div class="pf-title">Set Play Frequency</div><div class="pf-sub" data-es="Frecuencia de sistemas ofensivos del rival por situación" data-en="Opponent offensive system frequency by situation">Opponent offensive system frequency by situation</div></div>
+        <div class="report-icon">📋</div>
+      </div>
+    </a>
+    <a class="portfolio-item portfolio-report-item fade-up" data-type="report" href="https://hoopassistant.github.io/Executive%20Performance%20-%20Moron%20Full%20Season.pdf" target="_blank" rel="noopener" style="transition-delay:.4s">
+      <div class="report-card">
+        <div class="report-bg-num">05</div>
+        <div><div class="pf-type">Report · Statistics</div><div class="pf-title">CB Morón — Executive Performance</div><div class="pf-sub" data-es="Resumen ejecutivo estadístico de temporada completa" data-en="Executive statistical summary — full season">Executive statistical summary — full season</div></div>
+        <div class="report-icon">📊</div>
       </div>
     </a>
   </div>
@@ -519,23 +581,17 @@
 <!-- CLIENTES & TESTIMONIOS -->
 <section id="testimonios">
   <div class="section-header fade-up">
-    <div class="section-tag" data-es="Confiaron en nosotros" data-en="They trusted us">Confiaron en nosotros</div>
-    <h2 class="section-title" data-es="CLIENTES & <span>TESTIMONIOS</span>" data-en="CLIENTS & <span>TESTIMONIALS</span>">CLIENTES & <span>TESTIMONIOS</span></h2>
+    <div class="section-tag" data-es="Confiaron en nosotros" data-en="They trusted us">They trusted us</div>
+    <h2 class="section-title" data-es="CLIENTES & <span>TESTIMONIOS</span>" data-en="CLIENTS & <span>TESTIMONIALS</span>">CLIENTS & <span>TESTIMONIALS</span></h2>
   </div>
   <div class="clients-strip fade-up">
-    <div class="client-slot">
-      <img src="https://hoopassistant.github.io/North%20Alabama.jpeg" alt="North Alabama WBB">
-      <div class="client-tooltip">North Alabama WBB</div>
-    </div>
-    <div class="client-slot">
-      <img src="https://hoopassistant.github.io/Ponferrada.png" alt="SD Ponferrada">
-      <div class="client-tooltip">SD Ponferrada</div>
-    </div>
+    <div class="client-slot"><img src="https://hoopassistant.github.io/North%20Alabama.jpeg" alt="North Alabama WBB"><div class="client-tooltip">North Alabama WBB</div></div>
+    <div class="client-slot"><img src="https://hoopassistant.github.io/Ponferrada.png" alt="SD Ponferrada"><div class="client-tooltip">SD Ponferrada</div></div>
   </div>
   <div class="testimonios-grid fade-up">
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="Empecé a trabajar con Hoop Assistant a mitad de temporada y la diferencia fue inmediata. Llegaba a cada partido sabiendo exactamente qué esperar del rival. Sin tiempo perdido, sin ruido, todo lo que necesitas." data-en="I started working with Hoop Assistant mid-season and the difference was immediate. I arrived at every game knowing exactly what to expect from the opponent. No wasted time, no noise — everything you need.">Empecé a trabajar con Hoop Assistant a mitad de temporada y la diferencia fue inmediata. Llegaba a cada partido sabiendo exactamente qué esperar del rival. Sin tiempo perdido, sin ruido, todo lo que necesitas.</p>
+      <p class="t-text" data-es="Empecé a trabajar con Hoop Assistant a mitad de temporada y la diferencia fue inmediata. Llegaba a cada partido sabiendo exactamente qué esperar del rival. Sin tiempo perdido, sin ruido, todo lo que necesitas." data-en="I started working with Hoop Assistant mid-season and the difference was immediate. I arrived at every game knowing exactly what to expect from the opponent. No wasted time, no noise — everything you need.">I started working with Hoop Assistant mid-season and the difference was immediate. I arrived at every game knowing exactly what to expect from the opponent. No wasted time, no noise — everything you need.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Jose%20Gonzalez.jpeg" alt="Jose Gonzalez" onerror="this.innerHTML='JG'"></div>
         <div><div class="t-name">Jose Gonzalez</div><div class="t-role">Head Coach · BBC Monthey, 1st Swiss League</div></div>
@@ -543,15 +599,15 @@
     </div>
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="En 2ª FEB el tiempo entre partidos es corto y no puedes permitirte dedicar horas al análisis. Hoop Assistant nos resolvió eso. La información llegaba estructurada, lista para usar con el equipo directamente." data-en="In 2nd FEB the time between games is short and you can't afford to spend hours on analysis. Hoop Assistant solved that for us. The information arrived structured, ready to use directly with the team.">En 2ª FEB el tiempo entre partidos es corto y no puedes permitirte dedicar horas al análisis. Hoop Assistant nos resolvió eso. La información llegaba estructurada, lista para usar con el equipo directamente.</p>
+      <p class="t-text" data-es="En 2ª FEB el tiempo entre partidos es corto y no puedes permitirte dedicar horas al análisis. Hoop Assistant nos resolvió eso. La información llegaba estructurada, lista para usar con el equipo directamente." data-en="In 2nd FEB the time between games is short and you can't afford to spend hours on analysis. Hoop Assistant solved that for us. The information arrived structured, ready to use directly with the team.">In 2nd FEB the time between games is short and you can't afford to spend hours on analysis. Hoop Assistant solved that for us. The information arrived structured, ready to use directly with the team.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Samu.jpg" alt="Samuel Conde" onerror="this.innerHTML='SC'"></div>
-        <div><div class="t-name">Samuel Conde</div><div class="t-role" data-es="Head Coach · SD Ponferrada, 2ª FEB España" data-en="Head Coach · SD Ponferrada, 2nd FEB Spain">Head Coach · SD Ponferrada, 2ª FEB España</div></div>
+        <div><div class="t-name">Samuel Conde</div><div class="t-role" data-es="Head Coach · SD Ponferrada, 2ª FEB España" data-en="Head Coach · SD Ponferrada, 2nd FEB Spain">Head Coach · SD Ponferrada, 2nd FEB Spain</div></div>
       </div>
     </div>
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="Lo que más me sorprendió fue lo bien pensados que están los vídeos. No tienes que explicar nada antes de ponérselos al equipo — se entienden solos. Eso en la práctica vale muchísimo." data-en="What surprised me most was how well thought-out the videos are. You don't need to explain anything before showing them to the team — they understand themselves. In practice, that's worth a lot.">Lo que más me sorprendió fue lo bien pensados que están los vídeos. No tienes que explicar nada antes de ponérselos al equipo — se entienden solos. Eso en la práctica vale muchísimo.</p>
+      <p class="t-text" data-es="Lo que más me sorprendió fue lo bien pensados que están los vídeos. No tienes que explicar nada antes de ponérselos al equipo — se entienden solos. Eso en la práctica vale muchísimo." data-en="What surprised me most was how well thought-out the videos are. You don't need to explain anything before showing them to the team — they understand themselves. In practice, that's worth a lot.">What surprised me most was how well thought-out the videos are. You don't need to explain anything before showing them to the team — they understand themselves. In practice, that's worth a lot.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Sandra%20Abston.jpg" alt="Sandra Abston" onerror="this.innerHTML='SA'"></div>
         <div><div class="t-name">Sandra Abston</div><div class="t-role">Assistant Coach · UMKC, NCAA Division I</div></div>
@@ -559,7 +615,7 @@
     </div>
     <div class="t-card">
       <div class="t-quote">"</div>
-      <p class="t-text" data-es="En la LNB no siempre tienes recursos para tener un analista dedicado. Hoop Assistant te da exactamente eso — análisis de nivel profesional sin necesidad de ampliar el staff. Para nosotros fue una ventaja real." data-en="In the LNB you don't always have the resources for a dedicated analyst. Hoop Assistant gives you exactly that — professional-level analysis without needing to expand the staff. For us it was a real advantage.">En la LNB no siempre tienes recursos para tener un analista dedicado. Hoop Assistant te da exactamente eso — análisis de nivel profesional sin necesidad de ampliar el staff. Para nosotros fue una ventaja real.</p>
+      <p class="t-text" data-es="En la LNB no siempre tienes recursos para tener un analista dedicado. Hoop Assistant te da exactamente eso — análisis de nivel profesional sin necesidad de ampliar el staff. Para nosotros fue una ventaja real." data-en="In the LNB you don't always have the resources for a dedicated analyst. Hoop Assistant gives you exactly that — professional-level analysis without needing to expand the staff. For us it was a real advantage.">In the LNB you don't always have the resources for a dedicated analyst. Hoop Assistant gives you exactly that — professional-level analysis without needing to expand the staff. For us it was a real advantage.</p>
       <div class="t-author">
         <div class="t-avatar"><img src="https://hoopassistant.github.io/Pol%20Rodriguez.jpeg" alt="Pol Rodriguez" onerror="this.innerHTML='PR'"></div>
         <div><div class="t-name">Pol Rodríguez</div><div class="t-role">Assistant Coach · Leones Quilpué, LNB Chile</div></div>
@@ -572,36 +628,30 @@
 <section id="sobre">
   <div class="about-grid">
     <div class="fade-up">
-      <div class="section-tag" data-es="Quiénes somos" data-en="Who we are">Quiénes somos</div>
-      <h2 class="about-tag-line" data-es="EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span>" data-en="EXPERTS IN ANALYSIS AND <span>SCOUTING</span>">EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span></h2>
-      <p class="about-body" data-es="Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Transformamos vídeo y datos en información clara y accionable para equipos que buscan una ventaja competitiva real." data-en="Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. We transform video and data into clear, actionable information for teams seeking a real competitive edge.">Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Transformamos vídeo y datos en información clara y accionable para equipos que buscan una ventaja competitiva real.</p>
-      <p class="about-body" data-es="Trabajamos con clubes de diferentes ligas europeas y americanas, con un enfoque y una presentación propios de las grandes ligas." data-en="We work with clubs from different European and American leagues, with a top-league approach and presentation standards.">Trabajamos con clubes de diferentes ligas europeas y americanas, con un enfoque y una presentación propios de las grandes ligas.</p>
+      <div class="section-tag" data-es="Quiénes somos" data-en="Who we are">Who we are</div>
+      <h2 class="about-tag-line" data-es="EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span>" data-en="EXPERTS IN ANALYSIS AND <span>SCOUTING</span>">EXPERTS IN ANALYSIS AND <span>SCOUTING</span></h2>
+      <p class="about-body" data-es="Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Transformamos vídeo y datos en información clara y accionable para equipos que buscan una ventaja competitiva real." data-en="Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. We transform video and data into clear, actionable information for teams seeking a real competitive edge.">Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. We transform video and data into clear, actionable information for teams seeking a real competitive edge.</p>
+      <p class="about-body" data-es="Trabajamos con clubes de diferentes ligas europeas y americanas, con un enfoque y una presentación propios de las grandes ligas." data-en="We work with clubs from different European and American leagues, with a top-league approach and presentation standards.">We work with clubs from different European and American leagues, with a top-league approach and presentation standards.</p>
     </div>
     <div class="team-cards fade-up" style="transition-delay:.2s">
       <div class="team-card">
         <img class="team-photo" src="https://hoopassistant.github.io/Foto%20Joan%20Marc.jpeg" alt="Joan Marc Ferrer" onerror="this.style.display='none'">
         <div>
           <div class="team-name">Joan Marc Ferrer</div>
-          <div class="team-role" data-es="Scouting, Análisis Táctico & Data" data-en="Scouting, Tactical Analysis & Data">Scouting, Análisis Táctico & Data</div>
-          <p class="team-bio" data-es="CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada). Especialista en análisis de vídeo con Nacsport, Python y Machine Learning." data-en="Sport Sciences degree (INEFC Barcelona). Double master's in Sports Big Data and Big Data & Data Science. FEB Senior Coach. Experience in 2nd FEB (CB Ciudad de Ponferrada). Specialist in video analysis with Nacsport, Python and Machine Learning.">CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada). Especialista en análisis de vídeo con Nacsport, Python y Machine Learning.</p>
+          <div class="team-role" data-es="Scouting, Análisis Táctico & Data" data-en="Scouting, Tactical Analysis & Data">Scouting, Tactical Analysis & Data</div>
+          <p class="team-bio" data-es="CAFE (INEFC Barcelona). Doble máster en Big Data Deportivo y Big Data & Data Science. Entrenador superior FEB. Experiencia en 2ª FEB (CB Ciudad de Ponferrada). Especialista en análisis de vídeo con Nacsport, Python y Machine Learning." data-en="Sport Sciences degree (INEFC Barcelona). Double master's in Sports Big Data and Big Data & Data Science. FEB Senior Coach. Experience in 2nd FEB (CB Ciudad de Ponferrada). Specialist in video analysis (Nacsport), Python and Machine Learning.">Sport Sciences degree (INEFC Barcelona). Double master's in Sports Big Data and Big Data & Data Science. FEB Senior Coach. Experience in 2nd FEB (CB Ciudad de Ponferrada). Specialist in video analysis (Nacsport), Python and Machine Learning.</p>
           <div class="team-tags"><span class="ttag">Nacsport</span><span class="ttag">Python</span><span class="ttag">Machine Learning</span><span class="ttag">Big Data</span></div>
-          <a class="team-linkedin" href="https://www.linkedin.com/in/joanmarcferrer/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
+          <a class="team-linkedin" href="https://www.linkedin.com/in/joanmarcferrer/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
         </div>
       </div>
       <div class="team-card">
         <img class="team-photo" src="https://hoopassistant.github.io/Foto%20Marc.jpg" alt="Marc Ribas" onerror="this.style.display='none'">
         <div>
           <div class="team-name">Marc Ribas</div>
-          <div class="team-role" data-es="Análisis, Scouting & Data" data-en="Analysis, Scouting & Data">Análisis, Scouting & Data</div>
-          <p class="team-bio" data-es="Entrenador superior FEB y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Senior Women NT Jordania. Fundador de Be Pro Basket." data-en="FEB Senior Coach and video analyst. Master's in Sports Marketing. Experience in LF Endesa, Swedish Federation (Eurobasket U16 and U18, 1st place) and Jordan Senior Women's NT. Founder of Be Pro Basket.">Entrenador superior FEB y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Senior Women NT Jordania. Fundador de Be Pro Basket.</p>
+          <div class="team-role" data-es="Análisis, Scouting & Data" data-en="Analysis, Scouting & Data">Analysis, Scouting & Data</div>
+          <p class="team-bio" data-es="Entrenador superior FEB y analista de vídeo. Máster en Sports Marketing. Experiencia en LF Endesa, Federación Sueca (Eurobasket U16 y U18, 1er puesto) y Senior Women NT Jordania. Fundador de Be Pro Basket." data-en="FEB Senior Coach and video analyst. Master's in Sports Marketing. Experience in LF Endesa, Swedish Federation (Eurobasket U16 and U18, 1st place) and Jordan Senior Women's NT. Founder of Be Pro Basket.">FEB Senior Coach and video analyst. Master's in Sports Marketing. Experience in LF Endesa, Swedish Federation (Eurobasket U16 and U18, 1st place) and Jordan Senior Women's NT. Founder of Be Pro Basket.</p>
           <div class="team-tags"><span class="ttag">Video Analysis</span><span class="ttag">Synergy</span><span class="ttag">InStat</span><span class="ttag">XPS</span></div>
-          <a class="team-linkedin" href="https://www.linkedin.com/in/marcribasvilanova/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
+          <a class="team-linkedin" href="https://www.linkedin.com/in/marcribasvilanova/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -612,38 +662,39 @@
 <section id="contacto">
   <div class="contact-grid">
     <div class="fade-up">
-      <div class="section-tag" data-es="Hablemos" data-en="Let's talk">Hablemos</div>
-      <h2 class="section-title" data-es="TRABAJA CON <span>NOSOTROS</span>" data-en="WORK WITH <span>US</span>">TRABAJA CON <span>NOSOTROS</span></h2>
-      <p class="contact-intro" data-es="¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada." data-en="Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.">¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada.</p>
+      <div class="section-tag" data-es="Hablemos" data-en="Let's talk">Let's talk</div>
+      <h2 class="section-title" data-es="TRABAJA CON <span>NOSOTROS</span>" data-en="WORK WITH <span>US</span>">WORK WITH <span>US</span></h2>
+      <p class="contact-intro" data-es="¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada." data-en="Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.">Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.</p>
       <div class="contact-detail"><span>✉️</span><span>hoop.assistant.basketball@gmail.com</span></div>
       <div class="contact-detail"><span>💬</span><span>+34 616 38 92 51</span></div>
-      <div class="contact-detail"><span>🌐</span><span data-es="100% online — cualquier liga, cualquier lugar" data-en="100% online — any league, any location">100% online — cualquier liga, cualquier lugar</span></div>
+      <div class="contact-detail"><span>🌐</span><span data-es="100% online — cualquier liga, cualquier lugar" data-en="100% online — any league, any location">100% online — any league, any location</span></div>
     </div>
     <div class="fade-up" style="transition-delay:.2s">
       <form class="contact-form" action="https://formspree.io/f/xjglezqb" method="POST" id="contactForm" onsubmit="handleSubmit(event)">
         <div class="form-row">
-          <div class="form-field"><label class="form-label" data-es="Nombre *" data-en="Name *">Nombre *</label><input class="form-input" type="text" name="name" required placeholder="Tu nombre"></div>
-          <div class="form-field"><label class="form-label" data-es="Email *" data-en="Email *">Email *</label><input class="form-input" type="email" name="email" required placeholder="tu@email.com"></div>
+          <div class="form-field"><label class="form-label" data-es="Nombre *" data-en="Name *">Name *</label><input class="form-input" type="text" name="name" required placeholder="Your name"></div>
+          <div class="form-field"><label class="form-label" data-es="Email *" data-en="Email *">Email *</label><input class="form-input" type="email" name="email" required placeholder="your@email.com"></div>
         </div>
         <div class="form-row">
-          <div class="form-field"><label class="form-label" data-es="Club / Organización *" data-en="Club / Organisation *">Club / Organización *</label><input class="form-input" type="text" name="club" required placeholder="Nombre del club"></div>
-          <div class="form-field"><label class="form-label" data-es="Teléfono" data-en="Phone">Teléfono</label><input class="form-input" type="tel" name="phone" placeholder="+34 600 000 000"></div>
+          <div class="form-field"><label class="form-label" data-es="Club / Organización *" data-en="Club / Organisation *">Club / Organisation *</label><input class="form-input" type="text" name="club" required placeholder="Club name"></div>
+          <div class="form-field"><label class="form-label" data-es="Teléfono" data-en="Phone">Phone</label><input class="form-input" type="tel" name="phone" placeholder="+1 000 000 0000"></div>
         </div>
         <div class="form-field">
-          <label class="form-label" data-es="¿Qué necesitas?" data-en="What do you need?">¿Qué necesitas?</label>
+          <label class="form-label" data-es="¿Qué necesitas?" data-en="What do you need?">What do you need?</label>
           <select class="form-select" name="package">
-            <option value="" data-es="Selecciona una opción" data-en="Select an option">Selecciona una opción</option>
-            <optgroup label="Pack Estadísticas"><option value="bronze">Bronze</option><option value="silver">Silver</option><option value="gold">Gold</option></optgroup>
-            <optgroup label="Pack Scouting"><option value="team-scout">Team Scout</option><option value="player-scout">Player Scout</option><option value="full-scout">Full Scout</option></optgroup>
-            <optgroup label="Packs Extra"><option value="complete">Complete</option><option value="team-pack">Team Pack</option><option value="consultoria" data-es="Consultoría" data-en="Consulting">Consultoría</option></optgroup>
-            <option value="videos" data-es="Solicitar vídeos de muestra" data-en="Request sample videos">Solicitar vídeos de muestra</option>
-            <option value="custom" data-es="No lo sé aún / A medida" data-en="Not sure yet / Custom">No lo sé aún / A medida</option>
+            <option value="" data-es="Selecciona una opción" data-en="Select an option">Select an option</option>
+            <optgroup label="Statistics"><option value="bronze">Bronze</option><option value="silver">Silver</option><option value="gold">Gold</option></optgroup>
+            <optgroup label="Scouting"><option value="team-scout">Team Scout</option><option value="player-scout">Player Scout</option><option value="full-scout">Full Scout</option></optgroup>
+            <optgroup label="Extra"><option value="complete">Complete</option><option value="team-pack">Team Pack</option><option value="consultoria" data-es="Consultoría" data-en="Consulting">Consulting</option></optgroup>
+            <option value="recruitment">Recruitment Intelligence</option>
+            <option value="videos" data-es="Solicitar vídeos de muestra" data-en="Request sample videos">Request sample videos</option>
+            <option value="custom" data-es="No lo sé aún / A medida" data-en="Not sure yet / Custom">Not sure yet / Custom</option>
           </select>
         </div>
-        <div class="form-field"><label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label><textarea class="form-textarea" name="message" placeholder="Cuéntanos sobre tu equipo y qué necesitas..."></textarea></div>
-        <input type="hidden" name="_subject" value="Nuevo contacto — Hoop Assistant">
-        <button type="submit" class="form-submit" data-es="Enviar Mensaje" data-en="Send Message">Enviar Mensaje</button>
-        <div class="form-success" id="formSuccess" data-es="✓ Mensaje enviado. Te contactaremos en breve." data-en="✓ Message sent. We'll be in touch shortly.">✓ Mensaje enviado. Te contactaremos en breve.</div>
+        <div class="form-field"><label class="form-label" data-es="Mensaje" data-en="Message">Message</label><textarea class="form-textarea" name="message" placeholder="Tell us about your team and what you need..."></textarea></div>
+        <input type="hidden" name="_subject" value="New contact — Hoop Assistant">
+        <button type="submit" class="form-submit" data-es="Enviar Mensaje" data-en="Send Message">Send Message</button>
+        <div class="form-success" id="formSuccess" data-es="✓ Mensaje enviado. Te contactaremos en breve." data-en="✓ Message sent. We'll be in touch shortly.">✓ Message sent. We'll be in touch shortly.</div>
       </form>
     </div>
   </div>
@@ -651,65 +702,79 @@
 
 <footer>
   <div class="footer-top">
-    <div class="footer-brand">
+    <div>
       <div class="footer-brand-logo">
         <img src="https://hoopassistant.github.io/Hoop%20Assistant%20Logo.jpeg" alt="Hoop Assistant" onerror="this.style.display='none'">
         <div class="footer-wm"><span>HOOP</span> ASSISTANT</div>
       </div>
-      <p class="footer-tagline" data-es="Scouting online profesional para equipos de baloncesto. Cualquier liga, cualquier lugar." data-en="Professional online scouting for basketball teams. Any league, any location.">Scouting online profesional para equipos de baloncesto. Cualquier liga, cualquier lugar.</p>
+      <p class="footer-tagline" data-es="Scouting online profesional para equipos de baloncesto. Cualquier liga, cualquier lugar." data-en="Professional online scouting for basketball teams. Any league, any location.">Professional online scouting for basketball teams. Any league, any location.</p>
     </div>
     <div class="footer-nav">
-      <div class="footer-nav-col">
-        <div class="footer-nav-title" data-es="Navegación" data-en="Navigation">Navegación</div>
+      <div>
+        <div class="footer-nav-title" data-es="Navegación" data-en="Navigation">Navigation</div>
         <div class="footer-nav-links">
-          <a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a>
-          <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
-          <a href="#paquetes" data-es="Paquetes" data-en="Packages">Paquetes</a>
+          <a href="#inicio" data-es="Inicio" data-en="Home">Home</a>
+          <a href="#servicios" data-es="Servicios" data-en="Services">Services</a>
+          <a href="#paquetes" data-es="Paquetes" data-en="Packages">Packages</a>
           <a href="#portfolio">Portfolio</a>
         </div>
       </div>
-      <div class="footer-nav-col">
-        <div class="footer-nav-title" data-es="Empresa" data-en="Company">Empresa</div>
+      <div>
+        <div class="footer-nav-title" data-es="Empresa" data-en="Company">Company</div>
         <div class="footer-nav-links">
-          <a href="#testimonios" data-es="Clientes" data-en="Clients">Clientes</a>
-          <a href="#sobre" data-es="Nosotros" data-en="About">Nosotros</a>
-          <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+          <a href="#testimonios" data-es="Clientes" data-en="Clients">Clients</a>
+          <a href="#sobre" data-es="Nosotros" data-en="About">About</a>
+          <a href="#contacto" data-es="Contacto" data-en="Contact">Contact</a>
         </div>
       </div>
-      <div class="footer-nav-col">
-        <div class="footer-nav-title" data-es="Contacto" data-en="Contact">Contacto</div>
+      <div>
+        <div class="footer-nav-title">Contact</div>
         <div class="footer-contact-item">hoop.assistant.basketball@gmail.com</div>
         <div class="footer-contact-item">+34 616 38 92 51</div>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy" data-es="© 2026 Hoop Assistant. Todos los derechos reservados." data-en="© 2026 Hoop Assistant. All rights reserved.">© 2026 Hoop Assistant. Todos los derechos reservados.</div>
+    <div class="footer-copy" data-es="© 2026 Hoop Assistant. Todos los derechos reservados." data-en="© 2026 Hoop Assistant. All rights reserved.">© 2026 Hoop Assistant. All rights reserved.</div>
   </div>
 </footer>
 
 <a class="whatsapp-float" href="https://wa.me/34616389251" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  <span class="whatsapp-label" data-es="WhatsApp" data-en="WhatsApp">WhatsApp</span>
+  <span class="whatsapp-label">WhatsApp</span>
 </a>
 
 <script>
-  let currentLang='es';
+  let currentLang='en';
+
   function setLang(lang){
     currentLang=lang;
     document.getElementById('btnES').classList.toggle('active',lang==='es');
     document.getElementById('btnEN').classList.toggle('active',lang==='en');
     document.documentElement.lang=lang;
-    document.querySelectorAll('[data-es]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t)el.innerHTML=t});
+    document.querySelectorAll('[data-es]').forEach(el=>{
+      const t=el.getAttribute('data-'+lang);
+      if(t)el.innerHTML=t;
+    });
   }
+
   function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
   document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+
   function switchPack(e,panel){
     document.querySelectorAll('.pack-tab-btn').forEach(b=>b.classList.remove('active'));
     e.target.classList.add('active');
     document.querySelectorAll('.pack-panel').forEach(p=>p.classList.remove('active'));
     document.getElementById('panel-'+panel).classList.add('active');
   }
+
+  function switchVideo(btn,type){
+    document.querySelectorAll('.vt-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.vt-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById('vt-'+type).classList.add('active');
+  }
+
   function filterPortfolio(e,type){
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     e.target.classList.add('active');
@@ -717,20 +782,26 @@
       item.style.display=(item.dataset.type===type)?'block':'none';
     });
   }
+
   document.addEventListener('DOMContentLoaded',()=>{
+    // Default: EN
+    setLang('en');
+    // Default: videos tab
     document.querySelectorAll('#portfolioGrid .portfolio-item').forEach(item=>{
       item.style.display=item.dataset.type==='video'?'block':'none';
     });
   });
+
   function handleSubmit(e){
     e.preventDefault();
     const form=e.target,s=document.getElementById('formSuccess');
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
       .then(r=>{
         if(r.ok){form.reset();s.textContent=currentLang==='es'?'✓ Mensaje enviado. Te contactaremos en breve.':'✓ Message sent. We\'ll be in touch shortly.';s.style.display='block';setTimeout(()=>s.style.display='none',6000)}
-        else{s.textContent=currentLang==='es'?'⚠ Error. Escríbenos a hoop.assistant.basketball@gmail.com':'⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'}
-      }).catch(()=>{s.textContent=currentLang==='es'?'⚠ Error. Escríbenos a hoop.assistant.basketball@gmail.com':'⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'});
+        else{s.textContent='⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'}
+      }).catch(()=>{s.textContent='⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'});
   }
+
   const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.07});
   document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
   setTimeout(()=>document.querySelectorAll('#inicio .fade-up').forEach(el=>el.classList.add('visible')),100);
