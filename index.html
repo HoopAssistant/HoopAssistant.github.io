@@ -11,7 +11,6 @@
 <style>
   :root{--orange:#E85D04;--orange-light:#F48C06;--black:#1a1a1a;--gray:#555;--light-gray:#f5f5f5;--mid-gray:#e8e8e8;--white:#ffffff}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
-
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--orange);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
   .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
   .nav-logo img{height:40px;width:auto}
@@ -25,7 +24,6 @@
   .lang-btn.active{background:var(--orange);color:white}
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
   .hamburger span{display:block;width:24px;height:2px;background:var(--black)}
-
   #inicio{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
   .hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(135deg,var(--light-gray),var(--mid-gray));clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%);z-index:0}
   .hero-bg-lines{position:absolute;top:0;right:0;width:55%;height:100%;background:repeating-linear-gradient(-20deg,transparent,transparent 48px,rgba(232,93,4,.04) 48px,rgba(232,93,4,.04) 50px);pointer-events:none}
@@ -50,14 +48,12 @@
   .hero-benefits{margin-top:36px;display:flex;flex-direction:column;gap:10px}
   .hero-benefit{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:500}
   .hero-benefit::before{content:'✓';display:flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:white;font-size:.75rem;font-weight:900;flex-shrink:0}
-
   section{padding:90px 5%}
   .section-header{margin-bottom:60px}
   .section-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
   .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.2rem,4vw,3.5rem);text-transform:uppercase;line-height:1;color:var(--black)}
   .section-title span{color:var(--orange)}
   .section-desc{margin-top:16px;font-size:1rem;color:var(--gray);max-width:560px;line-height:1.7}
-
   #servicios{background:var(--light-gray)}
   .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
   .service-card{background:white;padding:32px;position:relative;overflow:hidden;border-bottom:3px solid transparent}
@@ -65,7 +61,6 @@
   .service-icon{font-size:1.8rem;margin-bottom:14px}
   .service-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;text-transform:uppercase;letter-spacing:.03em;color:var(--black);margin-bottom:10px}
   .service-desc{font-size:.88rem;color:var(--gray);line-height:1.6}
-
   /* COMMITMENT strip */
   .commitment-strip{background:var(--black);padding:48px 5%}
   .commitment-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1200px;margin:0 auto}
@@ -73,7 +68,6 @@
   .commitment-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;margin-bottom:10px}
   .commitment-text{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.6}
   .commitment-text strong{color:white;font-weight:600}
-
   #paquetes{background:var(--white)}
   .pack-tabs{display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap}
   .pack-tab-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 28px;border:1px solid var(--mid-gray);background:transparent;color:var(--gray);cursor:pointer;transition:all .2s}
@@ -100,14 +94,12 @@
   .pack-card.featured .pack-addon{color:rgba(255,255,255,.35);border-top-color:rgba(255,255,255,.1)}
   .pack-cta{margin-top:24px}
   .pack-note{margin-top:32px;background:rgba(232,93,4,.06);border-left:3px solid var(--orange);padding:14px 20px;font-size:.88rem;color:var(--black)}
-
   /* Video toggle inside Full Scout */
   .video-toggle{display:flex;gap:2px;margin-bottom:16px;margin-top:4px}
   .vt-btn{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;padding:8px 10px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;text-align:center}
   .vt-btn.active{background:var(--orange);border-color:var(--orange);color:white}
   .vt-content{display:none;font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:12px;padding:10px 12px;background:rgba(255,255,255,.05);border-left:2px solid var(--orange)}
   .vt-content.active{display:block}
-
   #portfolio{background:var(--black)}
   #portfolio .section-title{color:white}
   #portfolio .section-tag{color:var(--orange-light)}
@@ -133,12 +125,12 @@
   .pf-type{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
   .pf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:white;line-height:1.2}
   .pf-sub{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px}
-
   #testimonios{background:var(--light-gray)}
   .clients-strip{display:flex;align-items:center;margin-bottom:56px;border:1px solid var(--mid-gray);background:white;flex-wrap:wrap}
   .client-slot{flex:1;min-width:100px;padding:24px 16px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--mid-gray);position:relative}
   .client-slot:last-child{border-right:none}
   .client-slot img{max-height:50px;max-width:90px;object-fit:contain;transition:all .3s;opacity:.85}
+  .client-slot img[alt*="Löwen"]{max-height:62px;max-width:62px}
   .client-slot:hover img{opacity:1;transform:scale(1.05)}
   .client-tooltip{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);background:var(--black);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;z-index:10}
   .client-slot:hover .client-tooltip{opacity:1}
@@ -152,7 +144,6 @@
   .t-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
   .t-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--black)}
   .t-role{font-size:.8rem;color:var(--gray);margin-top:2px}
-
   #sobre{background:white}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
   .about-tag-line{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.9rem;text-transform:uppercase;color:var(--black);line-height:1.1;margin-bottom:20px}
@@ -169,7 +160,6 @@
   .team-linkedin{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid rgba(232,93,4,.3);padding:5px 12px;transition:all .2s}
   .team-linkedin:hover{background:var(--orange);color:white}
   .team-linkedin svg{width:14px;height:14px;fill:currentColor}
-
   #contacto{background:var(--black)}
   #contacto .section-title{color:white}
   #contacto .section-tag{color:var(--orange-light)}
@@ -188,11 +178,9 @@
   .form-submit{background:var(--orange);color:white;border:none;padding:16px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s;align-self:flex-start;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
   .form-submit:hover{background:var(--orange-light)}
   .form-success{display:none;margin-top:8px;padding:14px 16px;background:rgba(232,93,4,.1);border:1px solid rgba(232,93,4,.3);color:var(--orange-light);font-size:.9rem}
-
   .whatsapp-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;align-items:center;gap:10px;background:#25D366;color:white;padding:12px 20px 12px 16px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase}
   .whatsapp-float:hover{background:#1ebe5d;transform:translateY(-2px)}
   .whatsapp-float svg{width:22px;height:22px;fill:white;flex-shrink:0}
-
   footer{background:#111;padding:48px 5% 28px}
   .footer-top{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
   .footer-brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:12px}
@@ -208,16 +196,13 @@
   .footer-contact-item{font-size:.85rem;color:rgba(255,255,255,.45);margin-bottom:6px}
   .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .footer-copy{font-size:.78rem;color:rgba(255,255,255,.2)}
-
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
   .fade-up.visible{opacity:1;transform:translateY(0)}
-
   @media(max-width:960px){.pack-grid-3{grid-template-columns:1fr}.pack-card.featured{transform:none}.portfolio-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr;gap:40px}.contact-grid{grid-template-columns:1fr}.testimonios-grid{grid-template-columns:1fr}.commitment-grid{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr;gap:32px}.footer-nav{grid-template-columns:1fr 1fr}}
   @media(max-width:768px){.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:white;flex-direction:column;padding:20px;gap:16px;border-bottom:2px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.1)}.nav-links.open{display:flex}.hamburger{display:flex}.hero-content{grid-template-columns:1fr;gap:40px}.hero-accent,.hero-bg-lines{display:none}.form-row{grid-template-columns:1fr}.whatsapp-float .whatsapp-label{display:none}.whatsapp-float{padding:14px;border-radius:50%}.commitment-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <nav>
   <a href="#inicio" class="nav-logo">
     <img src="https://hoopassistant.github.io/Hoop%20Assistant%20Logo.jpeg" alt="Hoop Assistant" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
@@ -240,7 +225,6 @@
     <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
-
 <!-- HERO -->
 <section id="inicio">
   <div class="hero-accent"></div><div class="hero-bg-lines"></div>
@@ -274,7 +258,6 @@
     </div>
   </div>
 </section>
-
 <!-- SERVICIOS -->
 <section id="servicios">
   <div class="section-header fade-up">
@@ -294,7 +277,6 @@
     <div class="service-card fade-up" style="transition-delay:.4s"><div class="service-num">09</div><div class="service-icon">🔍</div><div class="service-title" data-es="Recruitment Intelligence" data-en="Recruitment Intelligence">Recruitment Intelligence</div><p class="service-desc" data-es="Perfiles de jugadores adaptados a tu arquetipo, contexto de liga y presupuesto. Nosotros hacemos la búsqueda, tú tomas la decisión." data-en="Curated player profiles matched to your archetype, league context and budget. We do the search, you make the call.">Curated player profiles matched to your archetype, league context and budget. We do the search, you make the call.</p></div>
   </div>
 </section>
-
 <!-- COMMITMENT -->
 <div class="commitment-strip">
   <div class="commitment-grid">
@@ -316,7 +298,6 @@
     </div>
   </div>
 </div>
-
 <!-- PAQUETES -->
 <section id="paquetes">
   <div class="section-header fade-up">
@@ -330,7 +311,6 @@
     <button class="pack-tab-btn" onclick="switchPack(event,'extra')" data-es="⚡ Extra" data-en="⚡ Extra">⚡ Extra</button>
     <button class="pack-tab-btn" onclick="switchPack(event,'recruitment')" data-es="🔍 Recruitment" data-en="🔍 Recruitment">🔍 Recruitment</button>
   </div>
-
   <!-- STATS -->
   <div class="pack-panel active" id="panel-stats">
     <div class="pack-grid-3 fade-up">
@@ -376,7 +356,6 @@
       </div>
     </div>
   </div>
-
   <!-- SCOUTING -->
   <div class="pack-panel" id="panel-scouting">
     <div class="pack-grid-3 fade-up">
@@ -429,7 +408,6 @@
       </div>
     </div>
   </div>
-
   <!-- EXTRA -->
   <div class="pack-panel" id="panel-extra">
     <div class="pack-grid-3 fade-up">
@@ -469,7 +447,6 @@
       </div>
     </div>
   </div>
-
   <!-- RECRUITMENT -->
   <div class="pack-panel" id="panel-recruitment">
     <div class="pack-grid-3 fade-up">
@@ -492,10 +469,8 @@
       <div class="pack-card" style="grid-column:3"></div>
     </div>
   </div>
-
   <div class="pack-note fade-up" data-es="💬 Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta." data-en="💬 Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.">💬 Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.</div>
 </section>
-
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="section-header fade-up">
@@ -576,7 +551,6 @@
     </a>
   </div>
 </section>
-
 <!-- CLIENTES & TESTIMONIOS -->
 <section id="testimonios">
   <div class="section-header fade-up">
@@ -584,6 +558,7 @@
     <h2 class="section-title" data-es="CLIENTES & <span>TESTIMONIOS</span>" data-en="CLIENTS & <span>TESTIMONIALS</span>">CLIENTS & <span>TESTIMONIALS</span></h2>
   </div>
   <div class="clients-strip fade-up">
+    <div class="client-slot"><img src="https://hoopassistant.github.io/L%C3%B6wen_Braunschweig_logo_2020.jpg" alt="Basketball Löwen Braunschweig"><div class="client-tooltip">Löwen Braunschweig · DBBL</div></div>
     <div class="client-slot"><img src="https://hoopassistant.github.io/North%20Alabama.jpeg" alt="North Alabama WBB"><div class="client-tooltip">North Alabama WBB</div></div>
     <div class="client-slot"><img src="https://hoopassistant.github.io/Ponferrada.png" alt="SD Ponferrada"><div class="client-tooltip">SD Ponferrada</div></div>
   </div>
@@ -622,7 +597,6 @@
     </div>
   </div>
 </section>
-
 <!-- SOBRE NOSOTROS -->
 <section id="sobre">
   <div class="about-grid">
@@ -656,7 +630,6 @@
     </div>
   </div>
 </section>
-
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="contact-grid">
@@ -698,7 +671,6 @@
     </div>
   </div>
 </section>
-
 <footer>
   <div class="footer-top">
     <div>
@@ -737,15 +709,12 @@
     <div class="footer-copy" data-es="© 2026 Hoop Assistant. Todos los derechos reservados." data-en="© 2026 Hoop Assistant. All rights reserved.">© 2026 Hoop Assistant. All rights reserved.</div>
   </div>
 </footer>
-
 <a class="whatsapp-float" href="https://wa.me/34616389251" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   <span class="whatsapp-label">WhatsApp</span>
 </a>
-
 <script>
   let currentLang='en';
-
   function setLang(lang){
     currentLang=lang;
     document.getElementById('btnEN').classList.toggle('active',lang==='en');
@@ -756,24 +725,20 @@
       if(t)el.innerHTML=t;
     });
   }
-
   function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
   document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
-
   function switchPack(e,panel){
     document.querySelectorAll('.pack-tab-btn').forEach(b=>b.classList.remove('active'));
     e.target.classList.add('active');
     document.querySelectorAll('.pack-panel').forEach(p=>p.classList.remove('active'));
     document.getElementById('panel-'+panel).classList.add('active');
   }
-
   function switchVideo(btn,type){
     document.querySelectorAll('.vt-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.vt-content').forEach(c=>c.classList.remove('active'));
     document.getElementById('vt-'+type).classList.add('active');
   }
-
   function filterPortfolio(e,type){
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     e.target.classList.add('active');
@@ -781,7 +746,6 @@
       item.style.display=(item.dataset.type===type)?'block':'none';
     });
   }
-
   document.addEventListener('DOMContentLoaded',()=>{
     // Default: EN
     setLang('en');
@@ -790,7 +754,6 @@
       item.style.display=item.dataset.type==='video'?'block':'none';
     });
   });
-
   function handleSubmit(e){
     e.preventDefault();
     const form=e.target,s=document.getElementById('formSuccess');
@@ -800,7 +763,6 @@
         else{s.textContent='⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'}
       }).catch(()=>{s.textContent='⚠ Error. Write to hoop.assistant.basketball@gmail.com';s.style.display='block'});
   }
-
   const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.07});
   document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
   setTimeout(()=>document.querySelectorAll('#inicio .fade-up').forEach(el=>el.classList.add('visible')),100);
