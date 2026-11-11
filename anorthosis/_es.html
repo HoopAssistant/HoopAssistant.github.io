@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hoop Assistant × Fibwi Palma</title>
+<meta name="description" content="Propuesta de Hoop Assistant para Fibwi Palma: scouting propio, rival en ataque, rival en defensa y jugadores, con datos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* Layout: dark editorial bands (hero, datos) alternating with light working sections; one 1180px column, charts full-bleed inside it */
+:root{
+  --bg:#F6F3EE;--panel:#FFFFFF;--ink:#1B1B1B;--muted:#66625C;--line:#E2DDD3;--chip:#EEE9E0;
+  --accent:#EF5710;--accent-ink:#FFFFFF;--good:#2E7D5B;--bad:#C8202F;--warn:#C98A12;
+  --band:#1B1B1B;--band-2:#262626;--band-line:#3A3A3A;--on-band:#FFFFFF;--on-band-muted:#A8A5A0;
+  --hl:#FFE66B;--hl-ink:#1B1B1B;
+  --f-display:'Bebas Neue','Barlow Condensed',Impact,sans-serif;
+  --f-head:'Barlow Condensed','Arial Narrow',sans-serif;
+  --f-body:Barlow,system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121212;--panel:#1D1D1D;--ink:#F4F1EA;--muted:#A19D95;--line:#323232;--chip:#292929;
+  --accent:#FF6A26;--good:#46B38A;--bad:#E5495A;--warn:#E3A93A;
+  --band:#0A0A0A;--band-2:#1A1A1A;--band-line:#2E2E2E;--hl:#E8C93A;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121212;--panel:#1D1D1D;--ink:#F4F1EA;--muted:#A19D95;--line:#323232;--chip:#292929;
+  --accent:#FF6A26;--good:#46B38A;--bad:#E5495A;--warn:#E3A93A;
+  --band:#0A0A0A;--band-2:#1A1A1A;--band-line:#2E2E2E;--hl:#E8C93A;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-head);text-transform:uppercase;margin:0;line-height:1.02;letter-spacing:.01em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+.num,.tab{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--band);color:var(--on-band);border-bottom:3px solid var(--accent)}
+nav .wrap{display:flex;align-items:center;gap:4px;height:56px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+.brand{flex:none;display:flex;align-items:center;gap:10px;margin-right:14px;white-space:nowrap;text-decoration:none;font-family:var(--f-display);font-size:22px;letter-spacing:.06em}
+.brand img{height:38px;width:38px;border-radius:6px;background:#fff;object-fit:contain}
+.brand small{font-family:var(--f-head);font-size:14px;letter-spacing:.12em;color:var(--on-band-muted)}
+nav a.lk{flex:none;font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:8px 11px;border-radius:3px;white-space:nowrap;text-decoration:none;opacity:.72}
+nav a.lk:hover{opacity:1}
+nav a.lk.data{opacity:1;background:var(--accent);color:var(--accent-ink)}
+
+/* hero */
+.hero{background:var(--band);color:var(--on-band);overflow:hidden}
+.hero .wrap{padding-block:60px 0}
+.kick{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:15px;margin-bottom:16px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:44px;align-items:end}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,9.6vw,124px);line-height:.9;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .intro{max-width:56ch;font-size:19px;color:#D6D3CE;margin-top:22px}
+.vs{display:flex;align-items:center;gap:14px;margin-top:28px;flex-wrap:wrap}
+.vs span{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:15px;padding:7px 12px;border:1px solid var(--band-line)}
+.vs b{font-family:var(--f-display);font-weight:400;font-size:28px;color:var(--accent)}
+/* hero visual: mini PPP ladder */
+.ladder{background:var(--band-2);border:1px solid var(--band-line);padding:20px 20px 16px}
+.ladder h4{font-size:14px;letter-spacing:.16em;color:var(--on-band-muted);font-weight:600;margin-bottom:12px}
+.ladder .r{display:grid;grid-template-columns:118px minmax(0,1fr) 42px;gap:10px;align-items:center;margin:7px 0;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.04em;font-size:15px}
+.ladder .t{height:14px;background:var(--band-line);position:relative}
+.ladder .t i{position:absolute;inset:0 auto 0 0;background:var(--on-band)}
+.ladder .r.hi .t i{background:var(--accent)}
+.ladder .r b{font-family:var(--f-display);font-weight:400;font-size:22px;text-align:right}
+.ladder p{font-size:13px;color:var(--on-band-muted);margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--band-line);margin-top:52px}
+.stats div{padding:22px 20px 24px 0;border-right:1px solid var(--band-line)}
+.stats div+div{padding-left:20px}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(40px,5vw,58px);line-height:1}
+.stats span{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--on-band-muted)}
+
+/* sections */
+section.blk{padding-block:72px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:14px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.eyebrow .tag{background:var(--accent);color:var(--accent-ink);padding:3px 8px;letter-spacing:.12em}
+h2{font-size:clamp(38px,5.4vw,62px)}
+h2 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);max-width:66ch;font-size:18px;margin-top:14px}
+.sub-h{font-size:28px;margin:48px 0 6px}
+.sub-p{color:var(--muted);max-width:70ch;margin-bottom:18px}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:36px;border:1px solid var(--line);background:var(--panel)}
+.svc a{display:flex;flex-direction:column;gap:12px;padding:24px 22px 22px;text-decoration:none;border-right:1px solid var(--line);transition:background .15s}
+.svc a:last-child{border-right:0}
+.svc a:hover{background:var(--chip)}
+.svc .k{font-family:var(--f-head);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.svc h3{font-size:32px}
+.svc p{color:var(--muted);font-size:15px;flex:1}
+.svc .del{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12.5px;padding:3px 8px;background:var(--chip);color:var(--ink);white-space:nowrap}
+.svc a.star{background:var(--band);color:var(--on-band)}
+.svc a.star:hover{background:var(--band-2)}
+.svc a.star .k{color:var(--accent)}
+.svc a.star p{color:var(--on-band-muted)}
+.svc a.star .pill{background:var(--accent);color:var(--accent-ink)}
+.go{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--accent)}
+
+/* data band */
+.dband{background:var(--band);color:var(--on-band);padding-block:80px;border-bottom:0}
+.dband .lead{color:var(--on-band-muted)}
+.dband h2{font-size:clamp(46px,7vw,92px);font-family:var(--f-display);font-weight:400;line-height:.92}
+.layers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--band-line);border:1px solid var(--band-line);margin-top:34px}
+.layers div{background:var(--band);padding:20px}
+.layers b{font-family:var(--f-display);font-weight:400;font-size:40px;color:var(--accent);line-height:1}
+.layers h4{font-size:21px;margin:6px 0 6px}
+.layers p{font-size:14.5px;color:var(--on-band-muted)}
+
+.board{background:var(--panel);color:var(--ink);border:1px solid var(--line);margin-top:28px}
+.dband .board{border-color:var(--band-line)}
+.bhead{display:flex;flex-wrap:wrap;gap:14px 24px;justify-content:space-between;align-items:flex-end;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.bhead h3{font-size:26px}
+.bhead p{color:var(--muted);font-size:14.5px;margin-top:4px;max-width:62ch}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:13.5px;padding:7px 12px;border:2px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
+.seg button:hover{border-color:var(--ink);color:var(--ink)}
+.seg button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.seg .lbl{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--muted);align-self:center;margin-right:4px}
+.bbody{padding:18px 22px 22px}
+.split{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:0}
+.split>div{min-width:0}
+.split>div+div{border-left:1px solid var(--line)}
+
+/* bar rows */
+.bars{display:flex;flex-direction:column;gap:5px}
+.br{display:grid;grid-template-columns:minmax(120px,240px) minmax(0,1fr) 54px 50px;gap:10px;align-items:center;font-size:14px;padding:2px 4px;border-radius:2px}
+.br .n{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br .tr{height:18px;position:relative;background:var(--chip)}
+.br .tr i{position:absolute;top:0;bottom:0;left:0;transition:width .35s}
+.br .tr .avg{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--ink);opacity:.55}
+.br .v{font-family:var(--f-display);font-size:22px;text-align:right;line-height:1}
+.br .p{font-size:12.5px;color:var(--muted);text-align:right}
+.br.cat .n{font-weight:800}
+.br.sub .n{padding-left:14px;color:var(--muted)}
+.br.small{opacity:.42}
+button.br{all:unset;display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr) 54px 50px;gap:10px;align-items:center;font-size:14px;padding:3px 4px;cursor:pointer;border-radius:2px}
+button.br:hover{background:var(--chip)}
+button.br.sel{background:var(--chip);box-shadow:inset 3px 0 0 var(--accent)}
+.axisnote{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted);margin-top:12px}
+.lg{display:flex;gap:14px;flex-wrap:wrap}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* insights */
+.ins{display:flex;flex-direction:column;gap:0}
+.ins div{padding:16px 22px;border-bottom:1px solid var(--line)}
+.ins div:last-child{border-bottom:0}
+.ins b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;color:var(--accent)}
+.ins h4{font-size:18px;margin:4px 0 4px}
+.ins p{font-size:14.5px;color:var(--muted)}
+
+/* scatter */
+.sc{position:relative}
+.sc svg{width:100%;height:auto;display:block}
+.sc text{font-family:var(--f-head);fill:var(--muted)}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--band);color:var(--on-band);padding:10px 14px;border-radius:2px;box-shadow:0 4px 20px rgba(0,0,0,.25);font-size:12.5px;line-height:1.55;max-width:260px}
+.tip b{display:block;font-family:var(--f-head);font-size:15px;text-transform:uppercase;letter-spacing:.03em}
+.tip small{opacity:.55;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+
+/* lab */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.kpis div{padding:14px 18px;border-right:1px solid var(--line)}
+.kpis div:last-child{border-right:0}
+.kpis b{display:block;font-family:var(--f-display);font-weight:400;font-size:38px;line-height:1}
+.kpis span{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.selname{padding:14px 18px 0;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:18px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.selname button{all:unset;cursor:pointer;font-size:12px;letter-spacing:.12em;color:var(--accent)}
+.stack{display:flex;height:22px;margin:12px 18px 6px;background:var(--chip)}
+.stack i{height:100%}
+.slg{display:flex;flex-wrap:wrap;gap:4px 12px;padding:0 18px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line)}
+.slg i{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px}
+.clips{width:100%;border-collapse:collapse;font-size:13.5px}
+.clips th{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:var(--muted);text-align:left;padding:10px 8px 6px;border-bottom:1px solid var(--line)}
+.clips td{padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.clips td:first-child,.clips th:first-child{padding-left:18px}
+.ok{color:var(--good);font-weight:600}.ko{color:var(--bad);font-weight:600}
+.more{all:unset;cursor:pointer;display:block;padding:10px 18px;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--accent)}
+.range{display:flex;align-items:center;gap:8px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.range input{accent-color:var(--accent);width:120px}
+.scroll{overflow-x:auto}
+.note{font-size:13px;color:var(--muted);margin-top:14px;max-width:80ch}
+.dband .note{color:var(--on-band-muted)}
+
+/* data strips */
+.dstrip{background:var(--band);color:var(--on-band);padding-block:44px 52px;margin-top:56px}
+.dstrip .eyebrow{color:var(--on-band)}
+.dlead{color:var(--on-band-muted);max-width:72ch;font-size:16.5px}
+.dstrip .note{color:var(--on-band-muted)}
+.dstrip .board{margin-top:20px}
+section.blk:has(.dstrip:last-child){padding-bottom:0}
+.split2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.split2 .board{margin-top:20px}
+.tagsets{display:flex;flex-direction:column;gap:16px}
+.tagsets .lab{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:var(--muted);display:block;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:13.5px;padding:4px 9px;border:1.5px solid var(--line)}
+.tagsets>div:first-child .chips span{border-color:var(--accent);color:var(--accent)}
+.pill.dt{background:var(--accent);color:var(--accent-ink)}
+/* materials */
+.mats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:28px}
+.mat{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);text-decoration:none;transition:border-color .15s}
+.mat:hover{border-color:var(--ink)}
+.mat .th{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--band)}
+.mat .th img{width:100%;height:100%;object-fit:cover;display:block}
+.mat.pdf .th{background:var(--chip)}
+.mat.pdf .th img{object-fit:cover;object-position:top;width:78%;margin:12px auto 0;height:auto;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.mat .kind{position:absolute;left:12px;top:12px;font-family:var(--f-head);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px;padding:4px 8px;background:var(--accent);color:var(--accent-ink);display:flex;gap:6px;align-items:center}
+.mat .kind svg{width:10px;height:10px;fill:currentColor}
+.mat .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
+.mat h4{font-size:21px}
+.mat .open{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--accent)}
+/* video cards */
+.vids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
+.vid{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column}
+.vid .th{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--band)}
+.vid .th img{width:100%;height:100%;object-fit:cover;display:block}
+.vid .th .play{position:absolute;left:14px;bottom:12px;display:flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-family:var(--f-head);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:6px 10px}
+.vid .th .play svg{width:12px;height:12px;fill:currentColor}
+.vid .bd{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.vid h4{font-size:22px}
+.vid p{font-size:14.5px;color:var(--muted);flex:1}
+.vid a.btn{align-self:flex-start}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:14px;padding:9px 14px;background:var(--ink);color:var(--bg);text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+
+/* coverages */
+.cov{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--panel);margin-top:22px}
+.cov>div{padding:16px 16px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.cov>div:last-child{border-right:0}
+.cov svg{width:100%;max-width:180px;height:auto;display:block;align-self:center}
+.cov h4{font-size:21px}
+.cov .lab{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:var(--muted)}
+.cov p{font-size:14px}
+.cov .atk{border-top:2px solid var(--accent);padding-top:8px}
+.cov .atk .lab{color:var(--accent)}
+.court line,.court path,.court rect{stroke:var(--line);fill:none;stroke-width:1.5}
+.court .o{fill:var(--accent)}
+.court .ot{fill:var(--accent-ink);font:700 9px var(--f-head)}
+.court .x{fill:var(--ink);font:800 13px var(--f-head)}
+.court .mv{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-dasharray:3 3}
+.court .hot{fill:var(--accent);opacity:.16}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
+.three>div{background:var(--panel);border:1px solid var(--line);padding:18px 20px}
+.three h4{font-size:22px;margin-bottom:10px}
+.three ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.three li{font-size:14.5px;padding-left:16px;position:relative}
+.three li:before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--accent)}
+.three li b{font-family:var(--f-head);font-weight:700;letter-spacing:.03em}
+
+/* roster */
+.roster{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);border:1px solid var(--line);background:var(--panel);margin-top:22px}
+.rl{border-right:1px solid var(--line);display:flex;flex-direction:column}
+.rl button{all:unset;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line);font-family:var(--f-head);text-transform:uppercase;letter-spacing:.04em}
+.rl button:last-child{border-bottom:0}
+.rl button:hover{background:var(--chip)}
+.rl button.on{background:var(--ink);color:var(--bg)}
+.rl .no{font-family:var(--f-display);font-size:26px;line-height:1;color:var(--accent)}
+.rl .nm{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rl .ps{font-size:12px;opacity:.6;letter-spacing:.1em}
+.pd{padding:22px 24px;min-width:0}
+.pd .top{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.pd .big{font-family:var(--f-display);font-size:96px;line-height:.8;color:var(--accent)}
+.pd h3{font-size:40px}
+.pd .meta{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.12em;font-size:14px;color:var(--muted);margin-top:4px}
+.pstats{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:1px solid var(--line);margin-top:18px}
+.pstats div{padding:10px 10px;border-right:1px solid var(--line);min-width:0}
+.pstats div:last-child{border-right:0}
+.pstats span{display:block;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;color:var(--muted)}
+.pstats b{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1.05}
+.pstats small{display:block;font-size:11.5px;color:var(--muted)}
+.cg{color:var(--good)}.cr{color:var(--bad)}
+.keys{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.keys li{font-size:16px;padding-left:20px;position:relative;max-width:72ch}
+.keys li:before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;background:var(--accent)}
+mark{background:var(--hl);color:var(--hl-ink);padding:0 3px;font-weight:600}
+.pctx{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+
+/* propio */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.steps>div{border-top:4px solid var(--ink);padding-top:14px}
+.steps b{font-family:var(--f-display);font-weight:400;font-size:54px;line-height:.9;color:var(--accent)}
+.steps h4{font-size:24px;margin:6px 0 6px}
+.steps p{color:var(--muted);font-size:15px}
+select{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:14px;padding:7px 10px;border:2px solid var(--line);background:var(--panel);color:var(--ink);border-radius:0}
+.cmp{display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr) 92px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.cmp:last-child{border-bottom:0}
+.cmp .n{font-family:var(--f-head);font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp .ax{position:relative;height:22px}
+.cmp .ax:before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--line)}
+.cmp .ax i{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;transform:translate(-50%,-50%)}
+.cmp .ax .s{background:var(--panel);border:2px solid var(--muted)}
+.cmp .ax .gm{background:var(--accent)}
+.cmp .ax .ln{position:absolute;top:50%;height:2px;background:var(--muted);opacity:.5}
+.cmp .v{text-align:right;font-size:13px;color:var(--muted)}
+.cmp .v b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* proceso */
+.proc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:28px}
+.proc figure{margin:0;background:var(--panel);border:1px solid var(--line)}
+.proc img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-bottom:1px solid var(--line)}
+.proc figcaption{padding:14px 16px 16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline}
+.proc figcaption b{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:.9;color:var(--accent);grid-row:span 2}
+.proc figcaption h4{font-size:21px}
+.proc figcaption p{font-size:14.5px;color:var(--muted)}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);background:var(--panel);margin-top:28px}
+.week>div{padding:14px 12px 16px;border-right:1px solid var(--line);min-width:0;display:flex;flex-direction:column;gap:8px}
+.week>div:last-child{border-right:0}
+.week .d{font-family:var(--f-display);font-size:30px;line-height:1}
+.week .game{background:var(--band);color:var(--on-band)}
+.week .game .d{color:var(--accent)}
+.week .it{font-size:13.5px;padding:7px 8px;background:var(--chip);border-left:3px solid var(--ink)}
+.week .it.dt{border-left-color:var(--accent)}
+.week .it b{display:block;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+.week .game .it{background:var(--band-2);border-left-color:var(--accent)}
+.prin{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:30px}
+.prin>div{border-top:2px solid var(--line);padding-top:12px}
+.prin h4{font-size:20px;margin-bottom:6px}
+.prin p{font-size:14.5px;color:var(--muted)}
+
+/* contacto */
+.cta-band{background:var(--accent);color:var(--accent-ink);padding-block:64px}
+.cta-band h2{font-family:var(--f-display);font-weight:400;font-size:clamp(48px,7.5vw,96px);line-height:.92}
+.cta-band p{font-size:18px;max-width:60ch;margin-top:16px}
+.mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:26px}
+.mail code{font-family:var(--f-head);font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:.02em;background:var(--band);color:var(--on-band);padding:10px 16px;user-select:all;overflow-wrap:anywhere}
+.mail button{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:15px;padding:13px 16px;border:2px solid var(--accent-ink);background:transparent;color:var(--accent-ink);cursor:pointer}
+footer{background:var(--band);color:var(--on-band-muted);padding-block:18px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+
+@media (max-width:980px){
+  .hero-grid,.split,.pctx{grid-template-columns:minmax(0,1fr)}
+  .split>div+div{border-left:0;border-top:1px solid var(--line)}
+  .svc{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc a:nth-child(2){border-right:0}.svc a:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .cov{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cov>div{border-bottom:1px solid var(--line)}
+  .cov>div:last-child{grid-column:1/-1}
+  .vids,.three,.steps,.split2{grid-template-columns:minmax(0,1fr)}
+  .week{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .week>div{border-bottom:1px solid var(--line)}
+  .prin{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pstats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pstats div:nth-child(-n+4){border-bottom:1px solid var(--line)}
+  .pstats div:nth-child(4){border-right:0}
+}
+@media (max-width:680px){
+  .wrap{padding-inline:16px}
+  .brand small{display:none}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div{padding:16px 12px 18px 0}.stats div+div{padding-left:0}
+  .stats div:nth-child(2n){padding-left:14px;border-right:0}
+  .stats div:nth-child(-n+2){border-bottom:1px solid var(--band-line)}
+  .svc,.layers,.proc,.prin{grid-template-columns:minmax(0,1fr)}
+  .svc a{border-right:0;border-bottom:1px solid var(--line)}
+  .cov{grid-template-columns:minmax(0,1fr)}
+  .cov>div{border-right:0}
+  .roster{grid-template-columns:minmax(0,1fr)}
+  .rl{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;overflow-x:auto}
+  .rl button{grid-template-columns:auto;border-bottom:0;border-right:1px solid var(--line);text-align:center;padding:8px 12px}
+  .rl .nm,.rl .ps{display:none}
+  .week{grid-template-columns:minmax(0,1fr)}
+  .br,button.br{grid-template-columns:minmax(0,110px) minmax(0,1fr) 46px 42px;gap:8px;font-size:13px}
+  .cmp{grid-template-columns:minmax(0,96px) minmax(0,1fr) 78px}
+  .bbody{padding:14px 12px 16px}
+  .bhead{padding:16px 14px 14px}
+  .pd{padding:18px 16px}
+  .pd .big{font-size:72px}
+  section.blk{padding-block:56px}
+}
+</style>
+
+</head>
+<body>
+<nav aria-label="Secciones">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="DATAURI" alt="Hoop Assistant">HOOP ASSISTANT <small>× FIBWI PALMA</small></a>
+    <a class="lk" href="#propio">Scouting propio</a>
+    <a class="lk" href="#ataque">Rival · Ataque</a>
+    <a class="lk" href="#defensa">Rival · Defensa</a>
+    <a class="lk" href="#jugadores">Jugadores</a>
+    <a class="lk" href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="kick">Propuesta de valor · Fibwi Palma · Primera FEB</div>
+        <h1>Cada posesión,<br><em>etiquetada y medida.</em></h1>
+        <p class="intro">Scouting de vuestro propio equipo, del rival en ataque, del rival en defensa y de sus jugadores. Todo construido sobre vídeo etiquetado posesión a posesión, y cada parte con su vídeo, su informe y sus datos.</p>
+        <div class="vs"><span>Hoop Assistant</span><b>×</b><span>Fibwi Palma</span></div>
+      </div>
+      <div class="ladder" aria-label="Ejemplo de puntos por posesión por tipo de ataque">
+        <h4>Ejemplo real · Puntos por posesión del rival</h4>
+        <div id="ladder"></div>
+        <p>Hertener Löwen (ProB alemana), 150 posesiones etiquetadas: 1,30 PPP en contraataque frente a 0,76 en sets.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div><b class="num">1.595</b><span>Clips etiquetados de un equipo propio</span></div>
+      <div><b class="num">18</b><span>Partidos cruzados en un panel</span></div>
+      <div><b class="num">150</b><span>Posesiones rivales medidas por acción</span></div>
+      <div><b class="num">12</b><span>Jugadores rivales con informe</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="blk" id="servicios">
+  <div class="wrap">
+    <div class="eyebrow">Lo que ofrecemos</div>
+    <h2>Cuatro bloques, <em>cada uno con datos</em></h2>
+    <p class="lead">Los cuatro salen del mismo etiquetado del vídeo, por eso cada informe lleva sus números y los números llevan al clip.</p>
+    <div class="svc">
+      <a href="#propio">
+        <span class="k">Vuestro equipo</span>
+        <h3>Scouting propio</h3>
+        <p>Vuestros partidos etiquetados y cruzados por set, base en pista, cuarto y jornada.</p>
+        <div class="del"><span class="pill dt">Panel de datos</span><span class="pill">Informe por partido</span><span class="pill">Clips</span></div>
+        <span class="go">Ver ejemplo →</span>
+      </a>
+      <a href="#ataque">
+        <span class="k">Rival</span>
+        <h3>Ataque + datos</h3>
+        <p>Sets, bloqueo directo, transición y saques del rival, con los puntos por posesión de cada acción.</p>
+        <div class="del"><span class="pill dt">Informe OER</span><span class="pill">Vídeo ofensivo</span></div>
+        <span class="go">Ver ejemplo →</span>
+      </a>
+      <a href="#defensa">
+        <span class="k">Rival</span>
+        <h3>Defensa + datos</h3>
+        <p>Coberturas del bloqueo directo, bloqueos indirectos, transición y defensa 1c1 del rival.</p>
+        <div class="del"><span class="pill dt">Datos por cobertura</span><span class="pill">Informe defensivo</span><span class="pill">Vídeo defensivo</span></div>
+        <span class="go">Ver ejemplo →</span>
+      </a>
+      <a href="#jugadores">
+        <span class="k">Rival</span>
+        <h3>Scouting de jugadores</h3>
+        <p>Ficha de cada jugador de la rotación con números de la temporada y sus claves.</p>
+        <div class="del"><span class="pill dt">Perfil numérico</span><span class="pill">Informe de jugadores</span><span class="pill">Vídeo por jugador</span></div>
+        <span class="go">Ver ejemplo →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1 · PROPIO ============ -->
+<section class="blk" id="propio">
+  <div class="wrap">
+    <div class="eyebrow">Bloque 1 · Scouting propio</div>
+    <h2>Vuestro equipo, <em>jornada a jornada</em></h2>
+    <p class="lead">Esto es lo que hacemos con nuestro propio equipo: cada posesión relevante etiquetada en vídeo, cruzada por set, base, jugador y cuarto, y lista para que el staff prepare el siguiente partido.</p>
+    <div class="steps">
+      <div><b>1</b><h4>Etiquetamos</h4><p>Cada clip entra con su categoría y sus descriptores: quién, desde dónde, cómo acabó y si estuvo bien o mal ejecutado.</p></div>
+      <div><b>2</b><h4>Cruzamos</h4><p>El panel cruza todas las dimensiones y señala qué sets rinden, cuáles se pierden y qué cambia con cada base.</p></div>
+      <div><b>3</b><h4>Preparamos</h4><p>Un informe por partido con los clips a revisar y la comparación contra el resto de la temporada.</p></div>
+    </div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Datos</span> Panel de equipo propio</div>
+      <p class="dlead">Datos reales de nuestro propio equipo: 18 jornadas y 1.595 clips. Elegid una dimensión y una métrica; pulsad una barra para ver sus clips con el minuto exacto del vídeo.</p>
+      <div class="board" id="lab">
+        <div class="bhead">
+          <div class="seg" role="group" aria-label="Dimensión" id="lab-dim">
+            <span class="lbl">Ver por</span>
+            <button type="button" data-d="st" class="on">Set</button>
+            <button type="button" data-d="ty">Tipo de ataque</button>
+            <button type="button" data-d="q">Cuarto</button>
+            <button type="button" data-d="pg">Base en pista</button>
+            <button type="button" data-d="g">Jornada</button>
+          </div>
+          <div class="seg" role="group" aria-label="Métrica" id="lab-met">
+            <span class="lbl">Métrica</span>
+            <button type="button" data-m="ppp" class="on">PPP</button>
+            <button type="button" data-m="pos">Posesiones</button>
+            <button type="button" data-m="ok">% bien ejecutado</button>
+          </div>
+          <label class="range" for="lab-min" id="lab-minw">Mín. posesiones <input type="range" id="lab-min" min="3" max="40" step="1" value="25"><b id="lab-minv" class="num">25</b></label>
+        </div>
+        <div class="split">
+          <div class="bbody"><div class="bars" id="labbars"></div>
+            <div class="axisnote"><span id="lab-axis">Barra = PPP · número pequeño = posesiones</span><span>Línea discontinua = media del equipo</span></div>
+          </div>
+          <div>
+            <div class="selname"><span id="lab-sel">Toda la temporada</span><button type="button" id="lab-clear" hidden>Quitar selección</button></div>
+            <div class="kpis">
+              <div><b class="num" id="k-pos">0</b><span>Posesiones</span></div>
+              <div><b class="num" id="k-ppp">0</b><span>PPP</span></div>
+              <div><b class="num" id="k-ok">0</b><span>% bien (staff)</span></div>
+            </div>
+            <div class="stack" id="lab-stack"></div>
+            <div class="slg" id="lab-slg"></div>
+            <div class="scroll"><table class="clips"><thead><tr><th>Jornada</th><th>Min.</th><th>Set</th><th>Base</th><th>Resultado</th><th>Staff</th></tr></thead><tbody id="lab-clips"></tbody></table></div>
+            <button type="button" class="more" id="lab-more">Ver más clips</button>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="bhead">
+          <div><h3>Partido frente a temporada</h3><p>Punto naranja: el partido. Círculo vacío: resto de la temporada. Sets más usados en ese partido.</p></div>
+          <label class="range" for="pj">Jornada <select id="pj"></select></label>
+        </div>
+        <div class="split">
+          <div class="bbody"><div id="pj-cmp"></div></div>
+          <div>
+            <div class="kpis" id="pj-k"></div>
+            <div class="selname"><span>Clips a revisar · valorados mal por el staff</span></div>
+            <div class="scroll"><table class="clips"><thead><tr><th>Min.</th><th>Cuarto</th><th>Set</th><th>Base</th><th>Resultado</th></tr></thead><tbody id="pj-clips"></tbody></table></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">Los porcentajes y los PPP se calculan sobre los clips etiquetados, no sobre el acta oficial. Con cada club trabajamos bajo los datos que requiere su cuerpo técnico: las categorías, los descriptores y las métricas se definen con el staff.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · ATAQUE ============ -->
+<section class="blk" id="ataque">
+  <div class="wrap">
+    <div class="eyebrow">Bloque 2 · Scouting rival · Ataque</div>
+    <h2>Cómo ataca el rival, <em>y cuánto le rinde</em></h2>
+    <p class="lead">Ejemplo completo: Hertener Löwen, ProB alemana. Vídeo ofensivo montado por set e informe de eficiencia ofensiva (OER) con los puntos por posesión de cada acción.</p>
+    <div class="mats" id="mat-atq"></div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Datos</span> Eficiencia ofensiva del rival</div>
+      <p class="dlead">Del informe OER: 150 posesiones de Hertener Löwen, clasificadas por tipo de ataque y por set.</p>
+      <div class="board" id="oer">
+        <div class="bhead">
+          <div>
+            <h3>Puntos por posesión por acción</h3>
+            <p>La línea discontinua es su media ponderada (0,87). Las acciones con menos de 4 posesiones se muestran tenues.</p>
+          </div>
+          <div class="seg" role="group" aria-label="Nivel de detalle">
+            <button type="button" id="oer-cat" class="on">Tipo de ataque</button>
+            <button type="button" id="oer-sub">Sets y acciones</button>
+          </div>
+        </div>
+        <div class="split">
+          <div class="bbody">
+            <div class="bars" id="oerbars"></div>
+            <div class="axisnote"><span>Barra = PPP · número pequeño = posesiones</span><span class="lg"><span><i style="background:var(--good)"></i>Por encima de la media</span><span><i style="background:var(--warn)"></i>En la media</span><span><i style="background:var(--bad)"></i>Por debajo</span></span></div>
+          </div>
+          <div class="ins">
+            <div><b class="num">1,30</b><h4>PPP en contraataque</h4><p>11 posesiones. En sets, 0,76.</p></div>
+            <div><b class="num">54%</b><h4>De sus posesiones son sets</h4><p>81 de 150 posesiones, a 0,76 PPP.</p></div>
+            <div><b class="num">24</b><h4>Posesiones de “2 Side” Diamond Dallas</h4><p>Su set más repetido, a 0,75 PPP.</p></div>
+            <div><b class="num">1,50</b><h4>PPP tras saque de fondo</h4><p>Rip Staggered STS (curl), 6 posesiones.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="bhead">
+          <div>
+            <h3>Frecuencia frente a eficiencia</h3>
+            <p>Cada punto es una acción del rival con al menos 2 posesiones. A la derecha, lo que más usan; arriba, lo que más puntos por posesión les da.</p>
+          </div>
+        </div>
+        <div class="bbody"><div class="sc" id="scatter"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <h3 class="sub-h">De dónde salen estos números</h3>
+    <p class="sub-p">Proceso de análisis en Nacsport sobre los partidos de Hertener Löwen.</p>
+    <div class="proc">
+      <figure><img src="DATAURI" alt="Plantilla de botones de Nacsport sobre el partido Herten contra Schwelm" loading="lazy"><figcaption><b>1</b><h4>Segmentación del vídeo</h4><p>El partido se etiqueta con una plantilla de botones propia.</p></figcaption></figure>
+      <figure><img src="DATAURI" alt="Ajuste de tiempos de un registro en la línea de tiempo" loading="lazy"><figcaption><b>2</b><h4>Ajuste de tiempos</h4><p>Se ajusta el inicio y el final de cada registro.</p></figcaption></figure>
+      <figure><img src="DATAURI" alt="Listado de registros agrupados por set" loading="lazy"><figcaption><b>3</b><h4>Análisis del vídeo</h4><p>Los registros se agrupan por set, con sus descriptores.</p></figcaption></figure>
+      <figure><img src="DATAURI" alt="Lista de clips seleccionados con sus notas" loading="lazy"><figcaption><b>4</b><h4>Selección y creación de clips</h4><p>Se eligen los clips y se les añade una nota.</p></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · DEFENSA ============ -->
+<section class="blk" id="defensa">
+  <div class="wrap">
+    <div class="eyebrow">Bloque 3 · Scouting rival · Defensa</div>
+    <h2>Cómo defiende el rival, <em>y dónde atacarle</em></h2>
+    <p class="lead">Ejemplo completo: Hertener Löwen. Informe defensivo escrito y vídeo defensivo.</p>
+    <div class="mats" id="mat-def"></div>
+
+    <h3 class="sub-h">Defensa del bloqueo directo</h3>
+    <p class="sub-p">Del informe defensivo. Con los pívots alternan High Flat, Show, Drop y Under en el mismo partido según el jugador implicado. Con el 4 juegan Flat o cambian.</p>
+    <div class="cov" id="cov"></div>
+
+    <div class="three">
+      <div><h4>Bloqueos indirectos</h4><ul>
+        <li>Los interiores tienen problemas en el <b>step-up</b>: unas veces salen demasiado altos y dejan el camino al aro, otras no salen.</li>
+        <li>Sin regla clara de cuándo cambiar en <b>bloqueo al bloqueador</b>.</li>
+        <li>En <b>Chicago</b> (pin down + mano a mano) se pasan con el primer bloqueo, lo que da mucha ventaja en el hand-off.</li>
+        <li><b>Poste bajo</b>: no suelen defenderlo; cuando lo hacen, 1c1. Si postea un no-pívot, pueden ayudar con el 5.</li>
+      </ul></div>
+      <div><h4>Transición defensiva</h4><ul>
+        <li>Problemas en transición, <b>sobre todo tras pérdida</b>.</li>
+        <li>Son agresivos buscando el robo: puede dar ventajas cerca del aro o triples liberados.</li>
+        <li>Les cuesta emparejar cuando el ataque fluye rápido.</li>
+        <li><b>Zona 2-3</b> tras tiro libre ante Rostock, solo 2 posesiones.</li>
+      </ul></div>
+      <div><h4>Defensa 1c1</h4><ul>
+        <li><b>#22 Jetullahi</b>: problemas laterales en 1c1, sobre todo en closeouts, y defendiendo de último contra pívots grandes.</li>
+        <li><b>#8 Allen</b>: problemas sobre todo sin balón, en posicionamiento y rotaciones.</li>
+        <li><b>#44 Özmeral</b>: presiona fuerte el balón, pero sufre para contener a jugadores verticales. Atacar el aro y encararle.</li>
+        <li><b>#9 Ewald</b>: intenta robar por detrás, sobre todo en el bloqueo directo.</li>
+        <li><b>#11 Hinckson</b>: su mejor defensor 1c1. No es un desajuste para los bases.</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Datos</span> Datos defensivos</div>
+      <p class="dlead">Cada acción defensiva queda etiquetada en vídeo. Así se cuantifica qué cobertura usa el rival y qué rendimiento da atacarla.</p>
+      <div class="split2">
+        <div class="board">
+          <div class="bhead"><div><h3>Lo que etiquetamos en defensa</h3><p>Botones de la plantilla de Nacsport usada en el scouting de Hertener Löwen.</p></div></div>
+          <div class="bbody tagsets">
+            <div><span class="lab">Coberturas del bloqueo directo</span><div class="chips"><span>Show</span><span>Plug &amp; Hedge</span><span>Trap</span><span>Short Show</span><span>Fake Show</span><span>Switch</span><span>Late Switch</span><span>Ice</span><span>Flat</span><span>Under</span><span>Push</span></div></div>
+            <div><span class="lab">Tipo de bloqueo directo</span><div class="chips"><span>PnR llegada</span><span>Top 1</span><span>Top 2</span><span>Top 3</span><span>PnR Side</span><span>PnR Empty</span><span>Fondo PnR</span><span>PnR 4</span><span>Spain PnR</span><span>PnR exteriores</span><span>Últimos segundos</span></div></div>
+            <div><span class="lab">Situaciones defensivas</span><div class="chips"><span>Balance</span><span>1c1</span><span>HO</span><span>Off screen</span><span>Low post</span><span>Zona press</span><span>Zona</span><span>Otras def.</span><span>Rebote defensivo</span><span>Ayudas</span></div></div>
+          </div>
+        </div>
+        <div class="board">
+          <div class="bhead"><div><h3>Rendimiento contra cada cobertura</h3><p>Ejemplo con nuestro propio equipo: puntos por posesión de nuestros bloqueos directos según la cobertura del rival.</p></div></div>
+          <div class="bbody"><div class="bars" id="covbars"></div>
+            <div class="axisnote"><span>Barra = PPP · número pequeño = posesiones</span><span>Línea discontinua = media del equipo</span></div>
+            <p class="note" style="color:var(--muted)">Muestras pequeñas: las coberturas con pocas posesiones se muestran tenues y deben leerse como tendencia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · JUGADORES ============ -->
+<section class="blk" id="jugadores">
+  <div class="wrap">
+    <div class="eyebrow">Bloque 4 · Scouting de jugadores</div>
+    <h2>Cada jugador, <em>en una ficha</em></h2>
+    <p class="lead">Números de la temporada y las claves de cada jugador, con lo más importante resaltado. Se acompaña de un vídeo de scouting de jugadores. Ejemplo: los 12 jugadores de Hertener Löwen.</p>
+    <div class="mats" id="mat-ply"></div>
+    <div class="roster">
+      <div class="rl" id="rl" role="tablist" aria-label="Jugadores"></div>
+      <div class="pd" id="pd"></div>
+    </div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Datos</span> Perfil numérico</div>
+      <p class="dlead">Puntos por partido frente a porcentaje de tiro verdadero (TS%), calculado con los números del informe. El tamaño del punto son los minutos. Pulsad un punto para abrir su ficha.</p>
+      <div class="board"><div class="bbody"><div class="sc" id="pscatter"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="contacto">
+  <div class="wrap">
+    <h2>Hablemos</h2>
+    <p>Trabajamos con un solo club por liga, con comunicación directa con el analista y confidencialidad total. Si queréis ver este mismo análisis sobre vuestros partidos, escribidnos.</p>
+    <div class="mail"><code id="mail">hoop.assistant.basketball@gmail.com</code><button type="button" id="copy">Copiar correo</button></div>
+  </div>
+</section>
+<footer><div class="wrap"><span>Hoop Assistant · Scouting y análisis de vídeo de baloncesto</span><span>Propuesta para Fibwi Palma</span></div></footer>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+/* Materiales en Google Drive */
+const LINKS={
+  scout:'https://drive.google.com/file/d/1ewENSnrZGro8XJiFODF1-OKILWVkQwgc/view?usp=sharing',
+  plr:'https://drive.google.com/file/d/1A2BUs8zcOq87T5hzz4mg16A9J6VnbnLG/view?usp=sharing',
+  ply:'https://drive.google.com/file/d/1mlzxAcySqz6y3MRO_fbUwPDDWnqqpbhb/view?usp=sharing',
+  oer:'https://drive.google.com/file/d/1U7k9ghqfGH9wsvcVhPOpEJxXdGQ2Ha7A/view?usp=sharing',
+  defr:'https://drive.google.com/file/d/1mePSIDrLR4mhQ7BYEUKLX-YNJtCyvFLc/view?usp=sharing',
+  def:'https://drive.google.com/file/d/1QSYoUv4jYsbqKvP-GTMjm5p-1ppYMvIj/view?usp=sharing',
+  off:'https://drive.google.com/file/d/1ASTerVT1haXa9uTIvq9CiVMleWTQ-QCd/view?usp=sharing'
+};
+const IMG={scout:'DATAURI',off:'DATAURI',def:'DATAURI',ply:'DATAURI',oer:'DATAURI',defr:'DATAURI',plr:'DATAURI'};
+const P=__PROPIO__;
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f2=v=>v==null||isNaN(v)?'–':v.toFixed(2).replace('.',',');
+const pc=v=>v==null||isNaN(v)?'–':Math.round(v*100)+'%';
+const tier=(v,avg,band)=>v>=avg+band?'var(--good)':v<=avg-band?'var(--bad)':'var(--warn)';
+const tip=$('#tip');
+function showTip(e,h){tip.innerHTML=h;tip.hidden=false;moveTip(e)}
+function moveTip(e){const w=tip.offsetWidth,h=tip.offsetHeight;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.hidden=true}
+
+/* ---------- OER ---------- */
+const OER=[
+ ['Contraataque',11,1.30,13,[]],
+ ['Llegada',3,0,0,[['Drag PnR',1,0,0],['Otras de llegada',2,0,0]]],
+ ['Rebote ofensivo',11,.91,10,[['Opción rápida',7,.86,6],['Opción organizada',4,1,4]]],
+ ['Transición',1,3,3,[['Drag PnP con 4',1,3,3]]],
+ ['Bloqueo directo',14,1.15,15,[['Top PnR (2)',2,0,0],['Side PnR',7,1,7],['Empty PnR',4,1.5,6],['PnR con 4',1,2,2]]],
+ ['Sets',81,.76,60,[['“2 Side”: Diamond Dallas',24,.75,18],['“Horns Down”: Stagger Flare PnR Side / Miami',12,.55,6],['“Horns Down”: Horns Entry HO / Flare Miami',3,.67,2],['“Horns Side”: HE PD 5 + Away Screen + Top PnR',8,.71,5],['“4”: HE with 4, PnR 4-5 (+Miami)',6,.5,3],['“Chest”: Horns Entry Rip Flex',10,1,10],['Horns misc.',2,1,2],['“Horns”: Touch Flare PnR Empty with 5',4,1.5,6],['“4 Side”: Touch Flare Empty PnP with 4',2,3,6],['Touch Flare Reject Side PnR with 4',1,2,2],['Miami',3,0,0],['Ram Spain',2,0,0],['Ram Top PnR',2,0,0],['“Thumb Down”: Zipper PnP',2,0,0]]],
+ ['Saque de fondo (BLOB)',6,1.5,9,[['Rip Staggered STS (curl)',6,1.5,9]]],
+ ['Saque de banda (SLOB)',12,1.17,14,[['Zipper Curl Pin Down Top PnR',5,1.2,6],['Zipper PnP',5,1.2,6],['Zipper Iso with 4',2,1,2]]],
+ ['Otras',11,.27,3,[]]
+];
+/* PPP tal y como sale del informe; media = ponderada por posesiones */
+const OAVG=OER.reduce((s,c)=>s+c[1]*c[2],0)/OER.reduce((s,c)=>s+c[1],0);
+function ladder(){
+  const rows=[['Contraataque',1.30],['Bloqueo directo',1.15],['Rebote ofens.',.91],['Sets',.76],['Otras',.27]];
+  $('#ladder').innerHTML=rows.map((r,i)=>`<div class="r${i==0?' hi':''}"><span>${r[0]}</span><span class="t"><i style="width:${r[1]/1.4*100}%"></i></span><b class="num">${f2(r[1])}</b></div>`).join('');
+}
+let oerMode='cat';
+function oer(){
+  const items=[];
+  const sorted=[...OER].sort((a,b)=>b[1]-a[1]);
+  sorted.forEach(c=>{
+    items.push({n:c[0],pos:c[1],ppp:c[2],cls:'cat'});
+    if(oerMode==='sub')[...c[4]].sort((a,b)=>b[1]-a[1]).forEach(s=>items.push({n:s[0],pos:s[1],ppp:s[2],cls:'sub'}));
+  });
+  const max=3;
+  $('#oerbars').innerHTML=items.map(it=>`<div class="br ${it.cls}${it.pos<4?' small':''}" title="${esc(it.n)}"><span class="n">${esc(it.n)}</span><span class="tr"><i style="width:${it.ppp/max*100}%;background:${tier(it.ppp,OAVG,.12)}"></i><span class="avg" style="left:${OAVG/max*100}%"></span></span><span class="v num">${f2(it.ppp)}</span><span class="p num">${it.pos} pos</span></div>`).join('')+
+  `<div class="br" aria-hidden="true" style="margin-top:2px"><span></span><span class="axisnote" style="margin:0;display:flex;justify-content:space-between"><span>0</span><span>1</span><span>2</span><span>3 PPP</span></span><span></span><span></span></div>`;
+}
+$('#oer-cat').onclick=()=>{oerMode='cat';$('#oer-cat').classList.add('on');$('#oer-sub').classList.remove('on');oer()};
+$('#oer-sub').onclick=()=>{oerMode='sub';$('#oer-sub').classList.add('on');$('#oer-cat').classList.remove('on');oer()};
+
+/* scatter helper */
+function scatter(el,pts,o){
+  const W=o.w||760,H=o.h||380,m={l:52,r:20,t:18,b:46};
+  const X=v=>m.l+(v-o.x0)/(o.x1-o.x0)*(W-m.l-m.r), Y=v=>H-m.b-(v-o.y0)/(o.y1-o.y0)*(H-m.t-m.b);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria)}">`;
+  o.yt.forEach(t=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}" style="stroke:var(--line)" stroke-width="1"/><text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end" font-size="12">${o.yf(t)}</text>`});
+  o.xt.forEach(t=>{s+=`<text x="${X(t)}" y="${H-m.b+18}" text-anchor="middle" font-size="12">${o.xf(t)}</text>`});
+  if(o.qx!=null){s+=`<line x1="${X(o.qx)}" x2="${X(o.qx)}" y1="${m.t}" y2="${H-m.b}" style="stroke:var(--warn)" stroke-width="1.5" stroke-dasharray="8 5"/>`}
+  if(o.qy!=null){s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(o.qy)}" y2="${Y(o.qy)}" style="stroke:var(--warn)" stroke-width="1.5" stroke-dasharray="8 5"/>`}
+  (o.quads||[]).forEach(q=>{s+=`<text x="${q[0]=='r'?W-m.r-6:m.l+8}" y="${q[1]=='t'?m.t+16:H-m.b-10}" text-anchor="${q[0]=='r'?'end':'start'}" font-size="13" font-weight="700" style="text-transform:uppercase;letter-spacing:.08em;fill:${q[3]||'var(--muted)'}">${q[2]}</text>`});
+  s+=`<text x="${(W+m.l)/2}" y="${H-8}" text-anchor="middle" font-size="12" font-weight="600" style="text-transform:uppercase;letter-spacing:.12em">${o.xl}</text>`;
+  s+=`<text transform="translate(14 ${(H-m.b+m.t)/2}) rotate(-90)" text-anchor="middle" font-size="12" font-weight="600" style="text-transform:uppercase;letter-spacing:.12em">${o.yl}</text>`;
+  pts.forEach((p,i)=>{const cx=X(p.x),cy=Y(p.y);
+    s+=`<circle data-i="${i}" cx="${cx}" cy="${cy}" r="${p.r||7}" style="fill:${p.c};stroke:var(--panel);cursor:pointer" fill-opacity=".85" stroke-width="2"/>`;
+    if(p.lab)s+=`<text x="${cx+(p.lx||10)}" y="${cy+(p.ly||4)}" font-size="12.5" font-weight="700" text-anchor="${p.la||'start'}" style="fill:var(--ink);text-transform:uppercase;pointer-events:none">${esc(p.lab)}</text>`});
+  s+='</svg>';el.innerHTML=s;
+  el.querySelectorAll('circle').forEach(c=>{const p=pts[+c.dataset.i];
+    c.addEventListener('mouseenter',e=>showTip(e,p.tip));c.addEventListener('mousemove',moveTip);c.addEventListener('mouseleave',hideTip);
+    if(p.click)c.addEventListener('click',p.click)});
+}
+function oerScatter(){
+  const pts=[];
+  OER.forEach(c=>(c[4].length?c[4]:[[c[0],c[1],c[2],c[3]]]).forEach(s=>{if(s[1]<2)return;const ppp=s[2];
+    pts.push({x:s[1],y:ppp,r:5+Math.sqrt(s[1])*1.6,c:tier(ppp,OAVG,.12),tip:`<small>${esc(c[0])}</small><b>${esc(s[0])}</b>${s[1]} posesiones · ${f2(ppp)} PPP<br>${s[3]} puntos`,lab:s[0].replace(/“[^”]*”: /,'')})}));
+  const lb={'Diamond Dallas':[0,-18,'middle'],'Rip Staggered STS (curl)':[12,4],'Stagger Flare PnR Side / Miami':[14,10],'Contraataque':[14,4],'Otras':[14,4],'Horns Entry Rip Flex':[14,-4],'HE PD 5 + Away Screen + Top PnR':[-12,-8,'end']};
+  pts.forEach(p=>{if(lb[p.lab]){[p.lx,p.ly,p.la]=lb[p.lab]}else p.lab=null});
+  scatter($('#scatter'),pts,{x0:0,x1:26,y0:0,y1:3.4,xt:[0,5,10,15,20,25],yt:[0,.5,1,1.5,2,2.5,3],xf:v=>v,yf:f2,qx:6,qy:OAVG,xl:'Posesiones (frecuencia)',yl:'Puntos por posesión',aria:'Dispersión de acciones del rival por frecuencia y eficiencia',
+    quads:[['r','t','Mucho uso · PPP alto'],['l','t','Poco uso · PPP alto'],['r','b','Mucho uso · PPP bajo'],['l','b','Poco uso · PPP bajo']]});
+}
+
+/* ---------- LAB ---------- */
+const D=P.dic, R=P.rows, OUT=P.out;
+const OCOL=['var(--good)','#58A77F','#9BC9AE','var(--bad)','#E27C86','var(--warn)','#6B8EBF','#9AA3B2'];
+const gname=g=>'J'+(g+1)+' '+P.games[g][0];
+const DIM={
+  st:r=>D.st[r[5]], ty:r=>D.ty[r[4]], q:r=>r[2]?r[2]+'º cuarto':'Sin cuarto', pg:r=>D.pg[r[3]], g:r=>gname(r[0]), cv:r=>D.cv[r[8]]||null
+};
+function agg(rows){let pos=0,pts=0,b=0,m=0;rows.forEach(r=>{if(r[11]){pos++;pts+=r[9]}const ev=D.ev[r[7]];if(ev==='BIEN')b++;else if(ev==='MAL')m++});return{pos,pts,ppp:pos?pts/pos:NaN,ok:(b+m)?b/(b+m):NaN,val:b+m}}
+const ALL=agg(R);
+let ld='st',lm='ppp',lsel=null,lshow=10;
+function labGroups(){
+  const map=new Map();R.forEach(r=>{const k=DIM[ld](r);if(k==null)return;(map.get(k)||map.set(k,[]).get(k)).push(r)});
+  let gs=[...map].map(([k,rows])=>({k,rows,...agg(rows)}));
+  const min=+$('#lab-min').value;
+  if(ld==='st')gs=gs.filter(g=>g.pos>=min);
+  if(ld==='cv')gs=gs.filter(g=>g.k);
+  if(ld==='g')gs.sort((a,b)=>a.rows[0][0]-b.rows[0][0]);
+  else if(ld==='q')gs.sort((a,b)=>a.k.localeCompare(b.k));
+  else gs.sort((a,b)=>(lm==='pos'?b.pos-a.pos:lm==='ok'?(b.ok||0)-(a.ok||0):(b.ppp||0)-(a.ppp||0)));
+  return gs;
+}
+function lab(){
+  $('#lab-minw').hidden=ld!=='st';
+  const gs=labGroups();
+  const max=lm==='ppp'?Math.max(1.6,...gs.map(g=>g.ppp||0)):lm==='pos'?Math.max(...gs.map(g=>g.pos)):1;
+  const avg=lm==='ppp'?ALL.ppp:lm==='ok'?ALL.ok:null;
+  $('#lab-axis').textContent=lm==='ppp'?'Barra = PPP · número pequeño = posesiones':lm==='pos'?'Barra = posesiones etiquetadas':'Barra = % de clips valorados bien por el staff';
+  $('#labbars').innerHTML=gs.map((g,i)=>{const v=lm==='ppp'?g.ppp:lm==='pos'?g.pos:g.ok;
+    const col=lm==='pos'?'var(--ink)':lm==='ppp'?tier(v,ALL.ppp,.1):tier(v,ALL.ok,.08);
+    const small=(lm!=='ok'&&g.pos<8)||(lm==='ok'&&g.val<6);
+    const lbl=lm==='ppp'?f2(v):lm==='pos'?v:pc(v);const sm=lm==='ok'?g.val+' val':g.pos+' pos';
+    return `<button type="button" class="br${small?' small':''}${lsel===g.k?' sel':''}" data-i="${i}" title="${esc(g.k)}"><span class="n">${esc(g.k)}</span><span class="tr"><i style="width:${(isNaN(v)?0:v)/max*100}%;background:${col}"></i>${avg!=null?`<span class="avg" style="left:${avg/max*100}%"></span>`:''}</span><span class="v num">${lbl}</span><span class="p num">${sm}</span></button>`}).join('')||'<p class="note">Ningún grupo llega al mínimo de posesiones. Bajad el mínimo.</p>';
+  $('#labbars').querySelectorAll('button').forEach(b=>b.onclick=()=>{const g=gs[+b.dataset.i];lsel=lsel===g.k?null:g.k;lshow=10;lab()});
+  side(gs);
+}
+function side(gs){
+  const g=lsel!=null?gs.find(x=>x.k===lsel):null;
+  if(lsel!=null&&!g)lsel=null;
+  const rows=g?g.rows:R, a=g||ALL;
+  $('#lab-sel').textContent=g?g.k:'Toda la temporada';
+  $('#lab-clear').hidden=!g;
+  $('#k-pos').textContent=a.pos.toLocaleString('es-ES');$('#k-ppp').textContent=f2(a.ppp);$('#k-ok').textContent=pc(a.ok);
+  const cnt=OUT.map(()=>0);rows.forEach(r=>{if(r[10]<7)cnt[r[10]]++});const tot=cnt.reduce((s,v)=>s+v,0)||1;
+  $('#lab-stack').innerHTML=cnt.map((c,i)=>c?`<i style="width:${c/tot*100}%;background:${OCOL[i]}" title="${OUT[i]}: ${c}"></i>`:'').join('');
+  $('#lab-slg').innerHTML=cnt.map((c,i)=>c?`<span><i style="background:${OCOL[i]}"></i>${OUT[i]} ${Math.round(c/tot*100)}%</span>`:'').join('');
+  const list=rows.filter(r=>r[11]);
+  $('#lab-clips').innerHTML=list.slice(0,lshow).map(r=>{const ev=D.ev[r[7]];return `<tr><td>${esc(gname(r[0]))}</td><td class="num">${r[1]}</td><td>${esc(D.st[r[5]])}</td><td>${esc(D.pg[r[3]])}</td><td>${OUT[r[10]]}</td><td class="${ev==='BIEN'?'ok':ev==='MAL'?'ko':''}">${ev==='Sin valorar'?'–':ev}</td></tr>`}).join('');
+  $('#lab-more').hidden=list.length<=lshow;
+  $('#lab-more').textContent=`Ver más clips (${(list.length-lshow).toLocaleString('es-ES')} restantes)`;
+}
+$('#lab-clear').onclick=()=>{lsel=null;lab()};
+$('#lab-more').onclick=()=>{lshow+=15;lab()};
+$('#lab-min').oninput=e=>{$('#lab-minv').textContent=e.target.value;lab()};
+document.querySelectorAll('#lab-dim button').forEach(b=>b.onclick=()=>{ld=b.dataset.d;lsel=null;lshow=10;document.querySelectorAll('#lab-dim button').forEach(x=>x.classList.toggle('on',x===b));lab()});
+document.querySelectorAll('#lab-met button').forEach(b=>b.onclick=()=>{lm=b.dataset.m;document.querySelectorAll('#lab-met button').forEach(x=>x.classList.toggle('on',x===b));lab()});
+
+/* ---------- Rendimiento por cobertura ---------- */
+function covbars(){
+  const map=new Map();R.forEach(r=>{const k=D.cv[r[8]];if(!k)return;(map.get(k)||map.set(k,[]).get(k)).push(r)});
+  const gs=[...map].map(([k,rows])=>({k,...agg(rows)})).filter(g=>g.pos>0).sort((a,b)=>b.pos-a.pos);
+  const max=Math.max(2,...gs.map(g=>g.ppp));
+  $('#covbars').innerHTML=gs.map(g=>`<div class="br${g.pos<5?' small':''}"><span class="n">${esc(g.k)}</span><span class="tr"><i style="width:${g.ppp/max*100}%;background:${tier(g.ppp,ALL.ppp,.1)}"></i><span class="avg" style="left:${ALL.ppp/max*100}%"></span></span><span class="v num">${f2(g.ppp)}</span><span class="p num">${g.pos} pos</span></div>`).join('');
+}
+/* ---------- Partido vs temporada ---------- */
+function pjInit(){
+  $('#pj').innerHTML=P.games.map((g,i)=>`<option value="${i}">${esc(gname(i))} · ${g[1]?'Local':'Visitante'}</option>`).join('');
+  $('#pj').value='13';$('#pj').onchange=pj;pj();
+}
+function pj(){
+  const gi=+$('#pj').value, gm=R.filter(r=>r[0]===gi), rest=R.filter(r=>r[0]!==gi);
+  const a=agg(gm),b=agg(rest);
+  const d=(x,y,f)=>{const v=x-y;return isNaN(v)?'':`<small class="${v>=0?'cg':'cr'}" style="font-size:13px;margin-left:6px">${v>=0?'+':''}${f(v)}</small>`};
+  $('#pj-k').innerHTML=`<div><b class="num">${a.pos}</b><span>Posesiones</span></div><div><b class="num">${f2(a.ppp)}${d(a.ppp,b.ppp,f2)}</b><span>PPP · temporada ${f2(b.ppp)}</span></div><div><b class="num">${pc(a.ok)}</b><span>% bien · temporada ${pc(b.ok)}</span></div>`;
+  const by=new Map();gm.forEach(r=>{const k=D.st[r[5]];(by.get(k)||by.set(k,[]).get(k)).push(r)});
+  const sets=[...by].map(([k,rows])=>({k,a:agg(rows),s:agg(rest.filter(r=>D.st[r[5]]===k))})).filter(x=>x.a.pos>0).sort((x,y)=>y.a.pos-x.a.pos).slice(0,8);
+  const X=v=>Math.min(v,3)/3*100;
+  $('#pj-cmp').innerHTML=sets.map(x=>`<div class="cmp"><span class="n" title="${esc(x.k)}">${esc(x.k)}</span><span class="ax">${isNaN(x.s.ppp)?'':`<span class="ln" style="left:${Math.min(X(x.a.ppp),X(x.s.ppp))}%;width:${Math.abs(X(x.a.ppp)-X(x.s.ppp))}%"></span><i class="s" style="left:${X(x.s.ppp)}%" title="Temporada ${f2(x.s.ppp)}"></i>`}<i class="gm" style="left:${X(x.a.ppp)}%" title="Partido ${f2(x.a.ppp)}"></i></span><span class="v"><b class="num">${f2(x.a.ppp)}</b> · ${x.a.pos} pos</span></div>`).join('')+
+  `<div class="axisnote"><span>0 PPP</span><span>1,5</span><span>3 PPP</span></div>`;
+  const mal=gm.filter(r=>D.ev[r[7]]==='MAL');
+  $('#pj-clips').innerHTML=mal.length?mal.slice(0,12).map(r=>`<tr><td class="num">${r[1]}</td><td>${r[2]?r[2]+'º':'–'}</td><td>${esc(D.st[r[5]])}</td><td>${esc(D.pg[r[3]])}</td><td>${OUT[r[10]]}</td></tr>`).join('')+(mal.length>12?`<tr><td colspan="5" style="color:var(--muted)">y ${mal.length-12} clips más</td></tr>`:''):'<tr><td colspan="5" style="color:var(--muted)">Ningún clip valorado mal en este partido.</td></tr>';
+}
+
+/* ---------- Materiales ---------- */
+const MAT={
+  off:['v','Offensive Scouting','Vídeo ofensivo'],
+  scout:['v','Video Scout','Vídeo de scouting de equipo'],
+  oer:['p','OER Report','Informe de eficiencia ofensiva'],
+  def:['v','Defensive Scouting','Vídeo defensivo'],
+  defr:['p','Defensive Scouting Report','Informe defensivo'],
+  ply:['v','Player Scouting','Vídeo de jugadores'],
+  plr:['p','Player Report','Informe de jugadores']
+};
+function mat(k){const m=MAT[k],v=m[0]==='v';
+  return `<a class="mat${v?'':' pdf'}" href="${esc(LINKS[k])}" target="_blank" rel="noopener"><div class="th"><img src="${IMG[k]}" alt="${esc(m[1])} · Hertener Löwen" loading="lazy"><span class="kind">${v?'<svg viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z"/></svg>Vídeo':'PDF'}</span></div><div class="bd"><h4>${m[2]}</h4><span class="open">Abrir en Drive ↗</span></div></a>`}
+$('#mat-atq').innerHTML=['off','oer'].map(mat).join('');
+$('#mat-def').innerHTML=['def','defr'].map(mat).join('');
+$('#mat-ply').innerHTML=['plr','ply'].map(mat).join('');
+
+/* ---------- Coberturas ---------- */
+function court(type){
+  // half court, rim at bottom. offense: 1 ball handler, 5 screener; X = defenders
+  let s=`<svg class="court" viewBox="0 0 140 110" aria-hidden="true"><rect x="2" y="2" width="136" height="106"/><path d="M14 108 V82 A56 56 0 0 1 126 82 V108"/><rect x="52" y="74" width="36" height="34"/><circle cx="70" cy="100" r="3.5"/>`;
+  const O=(x,y,t)=>`<circle class="o" cx="${x}" cy="${y}" r="7"/><text class="ot" x="${x}" y="${y+3}" text-anchor="middle">${t}</text>`;
+  const X=(x,y,t)=>`<text class="x" x="${x}" y="${y+4}" text-anchor="middle">X${t?`<tspan font-size="8" dy="2">${t}</tspan>`:''}</text>`;
+  if(type==='flat'){s+=`<ellipse class="hot" cx="78" cy="56" rx="16" ry="9"/>`+O(56,22,1)+O(74,34,5)+X(52,14,1)+X(88,30,5)+`<path class="mv" d="M74 40 Q78 52 80 62"/>`}
+  if(type==='show'){s+=`<ellipse class="hot" cx="78" cy="58" rx="16" ry="9"/>`+O(56,22,1)+O(74,34,5)+X(52,14,1)+X(64,26,5)+`<path class="mv" d="M74 40 Q78 52 80 62"/><path class="mv" d="M124 70 Q108 66 96 64"/>`+X(126,74,'')}
+  if(type==='drop'){s+=`<ellipse class="hot" cx="54" cy="44" rx="14" ry="8"/>`+O(56,22,1)+O(74,34,5)+X(52,14,1)+X(72,72,5)+`<path class="mv" d="M56 28 Q58 38 56 46"/>`}
+  if(type==='under'){s+=O(56,22,1)+O(74,34,5)+X(50,14,1)+X(78,46,5)+`<path class="mv" d="M50 18 Q64 50 84 30"/>`}
+  if(type==='four'){s+=`<ellipse class="hot" cx="102" cy="26" rx="14" ry="8"/>`+O(56,22,1)+O(74,34,4)+X(52,14,1)+X(76,48,4)+`<path class="mv" d="M80 32 Q92 28 100 26"/>`}
+  return s+'</svg>';
+}
+const COV=[
+  ['flat','High Flat','Sufren, sobre todo con #20 Fiorentino como defensor del bloqueador: problemas laterales, sale demasiado alto y por delante del balón. Quieren evitar el bloqueo y perseguir al manejador. El último defensor suele estar listo para la continuación, pero el X-man no rota a tiempo a la esquina.','Pase al short roll y rotación a la esquina.'],
+  ['show','Show','En Side PnR colapsan mucho con el defensor del lado débil. Poca presión al balón y mucho espacio entre bloqueo y manejador. #20 Fiorentino llega tarde al show. Mismos problemas de rotación que en High Flat.','Pase al short roll y tiro del lado débil si el defensor colapsa.'],
+  ['drop','Drop (Over)','El defensor del bloqueador prioriza claramente el balón. A los rivales les ha costado porque no han bloqueado con eficacia.','Buen espaciado y bloqueo efectivo.'],
+  ['under','Under','Solo contra jugadores concretos: lo usaron contra Marius Stoll (#9, Schwelm). En el re-bloqueo, Under o Show.',''],
+  ['four','PnR con el 4','Flat (más bajo que con los pívots) o cambio. En Flat pueden sufrir en los closeouts tras el pop. Cuando cambian, no tienen problemas para defender los desajustes.','Pop y closeout cuando juegan Flat.']
+];
+$('#cov').innerHTML=COV.map(c=>`<div>${court(c[0])}<h4>${c[1]}</h4><span class="lab">Lo que vimos</span><p>${c[2]}</p>${c[3]?`<div class="atk"><span class="lab">Dónde sufren</span><p>${c[3]}</p></div>`:''}</div>`).join('');
+
+/* ---------- Jugadores ---------- */
+// [no,pos,nombre,edad,altura,min,pts,2pm,2pa,2p%,3pm,3pa,3p%,ftm,fta,ft%,reb,dreb,oreb,ast,st,to,eff,keys]
+const PL=[
+ [9,'Base','David Ewald',26,'1,85',29,6.8,2.1,3.3,63.9,.5,2.2,23.6,1,1.5,63.2,3.8,3.3,.5,4.8,1.8,1.6,12.4,['Acción principal: manejador de bloqueo directo. Ataca con velocidad y usa las dos manos.','Cuidado con el <mark>REJECT</mark>, sobre todo hacia su derecha.','En closeouts y en campo abierto ataca para <mark>finalizar en el aro</mark>.','Movimiento favorito: el slow step atacando closeouts.']],
+ [8,'Escolta','Bryant Allen',36,'1,80',34,15.3,3.4,7.1,47.2,2.2,5.7,38.6,2,2.4,83.3,3.1,2.5,.6,3,1.8,1.9,13.7,['<mark>Penetrador zurdo</mark>: ataca a la izquierda con velocidad. Si va a la derecha, suele tirar en pull-up.','En el bloqueo directo busca anotar con la izquierda o pasar al roll. No es un generador.','<mark>Amenaza de catch &amp; shoot</mark>: no dejarle tirar cómodo.','Defensa sin balón débil: vulnerable a cortes y puertas atrás.']],
+ [22,'Alero','Faton Jetullahi',32,'1,89',31,11,1.6,3.4,45.6,2,6.2,33.1,1.7,2.4,70.9,4.3,4,.3,3,1.4,1.9,11,['Cómodo <mark>tirando tras bote</mark>: no jugarle UNDER.','Pasador creativo en el bloqueo directo, sobre todo hacia el roll.','Gran <mark>tirador de catch and shoot</mark>, sobre todo si queda solo.','Busca el contacto cuando ataca el aro.']],
+ [11,'Ala-pívot','Christian Hinckson',26,'2,01',24,13.8,2.9,5.2,56,1.5,3.7,41.6,3.3,4.1,81.6,4.9,3.7,1.3,1.5,1,1.6,14.9,['Su mayor amenaza es como roller: puede <mark>abrirse</mark> para tirar o castigar los cambios rodando.','Finaliza con las dos manos, <mark>tira en spot-up y ataca closeouts tras abrirse</mark>.','En defensa: gran movilidad lateral y fuerza. Las fintas son la mejor forma de superarle.']],
+ [20,'Pívot','Dario Fiorentino',39,'2,06',30,11.1,2.1,4.9,43.4,1.4,4.2,34.6,2.5,3.4,73.3,5.3,4.3,1,1,.6,1.4,10.6,['Hace <mark>slip</mark> en el bloqueo directo y rueda directo al aro, prefiere finalizar con la derecha.','En bloqueos con contacto o finales de posesión se <mark>abre</mark>: tiene rango de triple profundo.','En defensa tiene <mark>problemas laterales</mark> y concede espacio al pase del short roll.']],
+ [44,'Base','Müslim Özmeral',25,'1,85',22,4.5,1.4,2.3,58.8,.4,1.8,20.5,.7,.8,88.9,2.5,1.9,.5,1.4,.6,1.4,5.2,['Gran primer paso y velocidad: supera al defensor de inmediato.','En el bloqueo directo busca a menudo el <mark>REJECT</mark> y su velocidad.','<mark>Defensor agresivo sobre el balón</mark>: mucha energía, pero no siempre fiable en 1c1.']],
+ [10,'Ala-pívot','Gilbert Gyamfi',34,'1,93',20,7.8,1.7,3.5,48.9,1,3.4,28.4,1.5,2,74.5,3.9,2.6,1.3,.9,.7,1.6,7.5,['Zurdo, <mark>muy rápido y ágil</mark>: prefiere ir a la izquierda y finalizar con eurostep.','Le gustan las finalizaciones con contacto, sobre todo en <mark>campo abierto</mark>.','Puede tirar en spot-up o tras un flare en horns. Capaz de tiros difíciles.']],
+ [0,'Escolta','Esosa Okundaye',33,'1,87',15,5.8,1,2.3,44.4,.8,2.4,31.6,1.5,1.6,92.3,1.6,1.3,.4,.5,.1,1.1,4,['Gran primer paso: ataca con la derecha y busca <mark>finalizar con contacto</mark>.','Usa el físico para crear ventaja antes de atacar.','Su mejor zona de catch and shoot es el ala derecha.']],
+ [14,'Pívot','Tarik Jakupovic',25,'2,03',13,4.9,1.8,3.5,52.4,0,.3,0,1.3,1.8,69.7,2.7,1.6,1.1,.2,.2,.7,5,['Siempre rueda y finaliza sin botar. No tiene rango de tiro.','Gran <mark>reboteador ofensivo</mark> y buen cortador cerca del aro.','Prefiere jugar sin bote, sobre todo cerca del aro.']],
+ [21,'Base','Tim Elkehans',26,'1,80',12,2.1,.4,1,36,.3,.8,38.9,.5,.7,70.6,.5,.2,.3,.7,.5,.8,1.5,['<mark>Base de bloqueo directo que pasa primero</mark>: busca el roll y la media distancia al finalizar.','Amenaza de catch and shoot desde las esquinas, suelta rápido.','No busca muchos tiros.']],
+ [35,'Base','Manuel Bojang',25,'1,85',8,.7,0,.7,0,0,.7,0,.7,.7,100,.7,.7,0,.3,0,1.3,-1,['Base de rotación.']],
+ [24,'Escolta','Stefan Bogdan',20,'1,96',6,.4,.2,.6,28.6,0,.1,0,.1,.1,100,.8,.5,.3,.4,.2,.2,1.2,['Escolta de rotación.']]
+];
+const ts=p=>p[6]/(2*((p[8]+p[11])+.44*p[14]));
+let psel=0;
+function roster(){
+  $('#rl').innerHTML=PL.map((p,i)=>`<button type="button" role="tab" aria-selected="${i===psel}" class="${i===psel?'on':''}" data-i="${i}"><span class="no">#${p[0]}</span><span class="nm">${esc(p[2])}</span><span class="ps">${p[1]}</span></button>`).join('');
+  $('#rl').querySelectorAll('button').forEach(b=>b.onclick=()=>{psel=+b.dataset.i;roster()});
+  const p=PL[psel];
+  const c2=v=>v>=55?'cg':v<45?'cr':'', c3=v=>v>=36?'cg':v<30?'cr':'', cf=v=>v>=80?'cg':v<70?'cr':'';
+  const st=[['Min',p[5],''],['Pts',p[6],''],['2P%',p[9],`${p[7]}/${p[8]}`,c2(p[9])],['3P%',p[12],`${p[10]}/${p[11]}`,c3(p[12])],['TL%',p[15],`${p[13]}/${p[14]}`,cf(p[15])],['Reb',p[16],`${p[17]} def · ${p[18]} of`],['Ast',p[19],`${p[20]} rob · ${p[21]} pér`],['Val',p[22],'']];
+  $('#pd').innerHTML=`<div class="top"><span class="big">#${p[0]}</span><div><h3>${esc(p[2])}</h3><div class="meta">${p[1]} · ${p[3]} años · ${p[4]} m · TS% ${pc(ts(p))}</div></div></div>
+  <div class="pstats">${st.map(s=>`<div><span>${s[0]}</span><b class="num ${s[3]||''}">${String(s[1]).replace('.',',')}</b>${s[2]?`<small class="num">${String(s[2]).replace(/\./g,',')}</small>`:''}</div>`).join('')}</div>
+  <ul class="keys">${p[23].map(k=>`<li>${k}</li>`).join('')}</ul>`;
+}
+const PLB={22:{lx:0,ly:22,la:'middle'},14:{lx:-10,ly:16,la:'end'},0:{lx:8,ly:-12,la:'start'},21:{lx:10,ly:4,la:'start'},44:{lx:-10,ly:4,la:'end'},10:{lx:12,ly:4,la:'start'}};
+function pScatter(){
+  const pts=PL.filter(p=>p[5]>=10).map(p=>{const i=PL.indexOf(p);return{x:p[6],y:ts(p),r:4+p[5]/3.4,c:i===psel?'var(--accent)':'var(--ink)',lab:'#'+p[0]+' '+p[2].split(' ').pop(),...(PLB[p[0]]||{lx:0,ly:-(4+p[5]/3.4)-6,la:'middle'}),
+    tip:`<small>${p[1]} · ${p[5]} min</small><b>#${p[0]} ${esc(p[2])}</b>${String(p[6]).replace('.',',')} pts · TS% ${pc(ts(p))}`,click:()=>{psel=i;roster();pScatter();document.getElementById('jugadores').scrollIntoView({block:'start'})}}});
+  const avg=PL.reduce((s,p)=>s+p[6],0)/PL.reduce((s,p)=>s+2*((p[8]+p[11])+.44*p[14]),0);
+  scatter($('#pscatter'),pts,{w:620,h:440,x0:0,x1:17,y0:.45,y1:.68,xt:[0,4,8,12,16],yt:[.45,.5,.55,.6,.65],xf:v=>v,yf:v=>Math.round(v*100)+'%',qy:avg,xl:'Puntos por partido',yl:'TS%',aria:'Puntos por partido frente a TS% de cada jugador',
+    quads:[['r','t','Más puntos · más TS%'],['l','b','Menos puntos · menos TS%']]});
+}
+const _roster=roster;roster=function(){_roster();if(document.getElementById('pscatter').firstChild)pScatter()};
+
+/* copy */
+$('#copy').onclick=async()=>{const t=$('#mail').textContent;try{await navigator.clipboard.writeText(t);$('#copy').textContent='Copiado'}catch(e){const r=document.createRange();r.selectNodeContents($('#mail'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copy').textContent='Seleccionado: pulsad copiar'}setTimeout(()=>$('#copy').textContent='Copiar correo',2200)};
+
+ladder();oer();oerScatter();lab();covbars();pjInit();roster();pScatter();
+</script>
+
+</body>
+</html>

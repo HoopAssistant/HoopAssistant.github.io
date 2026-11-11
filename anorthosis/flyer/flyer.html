@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hoop Assistant Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* A4 one-pager: dark header band, light price grid, orange full-package band */
+:root{--bg:#F6F3EE;--panel:#FFFFFF;--ink:#1B1B1B;--muted:#66625C;--line:#E2DDD3;--accent:#EF5710;--band:#1B1B1B;--band-muted:#A8A5A0;
+  --f-display:'Bebas Neue','Barlow Condensed',Impact,sans-serif;--f-head:'Barlow Condensed','Arial Narrow',sans-serif;--f-body:Barlow,'Barlow Condensed',Helvetica,sans-serif}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;display:flex;flex-direction:column;overflow:hidden}
+header{background:var(--band);color:#fff;padding:11mm 16mm 9mm;border-bottom:2.2mm solid var(--accent)}
+.brand{display:flex;align-items:center;gap:4mm;font-family:var(--f-display);font-size:7.5mm;letter-spacing:.06em}
+.brand img{width:13mm;height:13mm;border-radius:2mm;background:#fff;object-fit:contain}
+.kick{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:4mm;margin-top:7mm}
+h1{font-family:var(--f-display);font-weight:400;font-size:24mm;line-height:.86;margin:2mm 0 0;letter-spacing:.01em}
+.for{font-size:4.3mm;color:var(--band-muted);margin-top:4mm}
+.for b{color:#fff;font-weight:600}
+main{flex:1 0 auto;padding:8mm 16mm 0;display:flex;flex-direction:column;gap:4.5mm}
+.sec{font-family:var(--f-head);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:3.6mm;color:var(--muted);display:flex;align-items:center;gap:3mm}
+.sec::after{content:"";flex:1;border-top:.3mm solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+.card{background:var(--panel);border:.3mm solid var(--line);padding:4.5mm 4.5mm 4.5mm;display:flex;flex-direction:column;gap:2mm}
+.card h3{font-family:var(--f-head);font-weight:700;text-transform:uppercase;font-size:5.4mm;line-height:1.02;margin:0}
+.card .price{font-family:var(--f-display);font-size:12mm;line-height:1;margin-top:1mm}
+.card .price small{font-family:var(--f-head);font-size:3.6mm;font-weight:600;color:var(--muted);letter-spacing:.06em;margin-left:1mm}
+.card p{margin:0;font-size:3.2mm;line-height:1.4;color:var(--muted)}
+.inc{display:flex;flex-wrap:wrap;gap:1.5mm;margin-top:auto;padding-top:2mm}
+.inc span{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:2.9mm;padding:.8mm 2mm;background:#EEE9E0}
+.self{display:grid;grid-template-columns:2fr 1fr;gap:4mm}
+.self .card{flex-direction:row;align-items:center;justify-content:space-between;gap:6mm}
+.self .card>div{display:flex;flex-direction:column;gap:2mm}
+.self .card>div.price{display:block;margin:0;font-size:14mm;white-space:nowrap}
+.all{background:var(--accent);color:#fff;padding:6.5mm 8mm;display:grid;grid-template-columns:1fr auto;gap:4mm 8mm;align-items:center;margin-top:1mm}
+.all .tag{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:3.6mm}
+.all h2{font-family:var(--f-display);font-weight:400;font-size:13mm;line-height:.95;margin:1mm 0 2mm}
+.all p{margin:0;font-size:3.6mm;line-height:1.45;max-width:100mm}
+.all .pr{text-align:right}
+.all p.po{margin-top:2.5mm;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:4mm;display:inline-block;background:var(--band);padding:1.2mm 3mm}
+.all .was{font-family:var(--f-head);font-weight:600;font-size:4.2mm;opacity:.85}
+.all .was s{text-decoration-thickness:.4mm}
+.all .now small.pm{font-family:var(--f-head);font-size:5mm;font-weight:600;margin-left:1.5mm;letter-spacing:.04em}
+.all .now{font-family:var(--f-display);font-size:23mm;line-height:.9}
+.all .save{display:inline-block;margin-top:1.5mm;background:var(--band);color:#fff;font-family:var(--f-head);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:3.6mm;padding:1.2mm 3mm}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;font-size:3.3mm;color:var(--muted);line-height:1.4}
+.notes b{display:block;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:3.4mm;color:var(--ink);margin-bottom:.8mm}
+footer{background:var(--band);color:var(--band-muted);padding:5mm 16mm;margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.14em;font-size:3.4mm}
+footer b{color:#fff;font-weight:700;letter-spacing:.06em;text-transform:none;font-size:4.2mm}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="brand"><img src="__LOGO__" alt="Hoop Assistant">HOOP ASSISTANT</div>
+    <div class="kick">Basketball scouting and video analysis · Monthly prices</div>
+    <h1>Pricing</h1>
+    <p class="for">Prepared for <b>Anorthosis Famagusta BC</b>. Every service is built on video tagged possession by possession, with its report and its data.</p>
+  </header>
+
+  <main>
+    <div class="sec">Opponent scouting</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Team · offense<br>+ defense</h3>
+        <div class="price">€480<small>/ month</small></div>
+        <p>Sets, pick and roll, transition and inbounds, plus pick and roll coverages and defensive weaknesses, with points per possession for every action.</p>
+        <div class="inc"><span>Report included</span></div>
+      </div>
+      <div class="card">
+        <h3>Players<br>&nbsp;</h3>
+        <div class="price">€360<small>/ month</small></div>
+        <p>A profile for every player in the rotation: season numbers, tendencies, shot chart and how to defend them.</p>
+        <div class="inc"><span>Player document included</span></div>
+      </div>
+      <div class="card">
+        <h3>Team<br>+ players</h3>
+        <div class="price">€720<small>/ month</small></div>
+        <p>The full opponent package: offense, defense and every player in the rotation.</p>
+        <div class="inc"><span>Team report</span><span>Player profiles</span></div>
+      </div>
+    </div>
+
+    <div class="sec">Your team</div>
+    <div class="self">
+      <div class="card">
+        <div>
+          <h3>Self-scouting</h3>
+          <p>Your games tagged and cross-referenced by set, player and quarter: what works, what does not, and the clips to review.</p>
+          <div class="inc" style="padding-top:1mm"><span>Report included</span><span>Video included</span></div>
+        </div>
+        <div class="price">€360<small>/ month</small></div>
+      </div>
+      <div class="notes" style="grid-template-columns:1fr;align-content:center">
+        <div><b>Billed monthly</b>All prices are per month. If the season does not end at the end of a month, the last month is prorated.</div>
+        <div><b>One club per league</b>Direct contact with the analyst and full confidentiality.</div>
+      </div>
+    </div>
+
+    <div class="all">
+      <div>
+        <div class="tag">Full package</div>
+        <h2>Everything, one price</h2>
+        <p>Opponent team + players and self-scouting: every report, every video and every dashboard.</p>
+        <p class="po">Playoffs or play-out included at no extra cost.</p>
+      </div>
+      <div class="pr">
+        <div class="was"><s>€1,080</s> separately</div>
+        <div class="now">€820<small class="pm">/ month</small></div>
+        <span class="save">Save €260 every month</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>Prices in euros, per month</span>
+    <b>hoop.assistant.basketball@gmail.com</b>
+    <span>hoopassistant.com</span>
+  </footer>
+</div>
+</body>
+</html>

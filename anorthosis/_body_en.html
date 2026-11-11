@@ -1,0 +1,293 @@
+<nav aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="DATAURI" alt="Hoop Assistant">HOOP ASSISTANT <small>× ANORTHOSIS</small></a>
+    <a class="lk" href="#propio">Self-scouting</a>
+    <a class="lk" href="#ataque">Opponent · Offense</a>
+    <a class="lk" href="#defensa">Opponent · Defense</a>
+    <a class="lk" href="#jugadores">Players</a>
+    <a class="lk" href="#contacto">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="kick">Value proposition · Anorthosis Famagusta BC</div>
+        <h1>Every possession,<br><em>tagged and measured.</em></h1>
+        <p class="intro">Scouting of your own team, of the opponent's offense, of the opponent's defense and of their players. All built on video tagged possession by possession, and every part comes with its video, its report and its data.</p>
+        <div class="vs"><span>Hoop Assistant</span><b>×</b><span>Anorthosis Famagusta</span></div>
+      </div>
+      <div class="ladder" aria-label="Example of points per possession by type of offense">
+        <h4>Real example · Opponent points per possession</h4>
+        <div id="ladder"></div>
+        <p>Hertener Löwen (German ProB), 150 tagged possessions: 1.30 PPP on the fast break vs 0.76 in sets.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div><b class="num">1,595</b><span>Tagged clips from our own team</span></div>
+      <div><b class="num">18</b><span>Games cross-referenced in one dashboard</span></div>
+      <div><b class="num">150</b><span>Opponent possessions measured by action</span></div>
+      <div><b class="num">12</b><span>Opponent players with a report</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="blk" id="servicios">
+  <div class="wrap">
+    <div class="eyebrow">What we offer</div>
+    <h2>Four services, <em>each one with data</em></h2>
+    <p class="lead">All four come from the same video tagging, so every report carries its numbers and every number leads back to the clip.</p>
+    <div class="svc">
+      <a href="#propio">
+        <span class="k">Your team</span>
+        <h3>Self-scouting</h3>
+        <p>Your games tagged and cross-referenced by set, point guard on court, quarter and round.</p>
+        <div class="del"><span class="pill dt">Data dashboard</span><span class="pill">Game report</span><span class="pill">Clips</span></div>
+        <span class="go">See example →</span>
+      </a>
+      <a href="#ataque">
+        <span class="k">Opponent</span>
+        <h3>Offense + data</h3>
+        <p>The opponent's sets, pick and roll, transition and inbounds plays, with the points per possession of each action.</p>
+        <div class="del"><span class="pill dt">OER report</span><span class="pill">Offensive video</span></div>
+        <span class="go">See example →</span>
+      </a>
+      <a href="#defensa">
+        <span class="k">Opponent</span>
+        <h3>Defense + data</h3>
+        <p>The opponent's pick and roll coverages, off-ball screens, transition defense and 1-on-1 defense.</p>
+        <div class="del"><span class="pill dt">Data by coverage</span><span class="pill">Defensive report</span><span class="pill">Defensive video</span></div>
+        <span class="go">See example →</span>
+      </a>
+      <a href="#jugadores">
+        <span class="k">Opponent</span>
+        <h3>Player scouting</h3>
+        <p>A profile for every player in the rotation, with season numbers and their key tendencies.</p>
+        <div class="del"><span class="pill dt">Statistical profile</span><span class="pill">Player report</span><span class="pill">Player video</span></div>
+        <span class="go">See example →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1 · SELF-SCOUTING ============ -->
+<section class="blk" id="propio">
+  <div class="wrap">
+    <div class="eyebrow">Service 1 · Self-scouting</div>
+    <h2>Your team, <em>game by game</em></h2>
+    <p class="lead">This is what we do with our own team: every relevant possession tagged on video, cross-referenced by set, point guard, player and quarter, and ready for the staff to prepare the next game.</p>
+    <div class="steps">
+      <div><b>1</b><h4>We tag</h4><p>Every clip goes in with its category and descriptors: who, from where, how it ended and whether it was well or badly executed.</p></div>
+      <div><b>2</b><h4>We cross-reference</h4><p>The dashboard crosses every dimension and shows which sets work, which ones lose the ball and what changes with each point guard.</p></div>
+      <div><b>3</b><h4>We prepare</h4><p>A report for each game with the clips to review and the comparison against the rest of the season.</p></div>
+    </div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Data</span> Self-scouting dashboard</div>
+      <p class="dlead">Real data from our own team: 18 rounds and 1,595 clips. Choose a dimension and a metric; click a bar to see its clips with the exact minute in the video.</p>
+      <div class="board" id="lab">
+        <div class="bhead">
+          <div class="seg" role="group" aria-label="Dimension" id="lab-dim">
+            <span class="lbl">View by</span>
+            <button type="button" data-d="st" class="on">Set</button>
+            <button type="button" data-d="ty">Type of offense</button>
+            <button type="button" data-d="q">Quarter</button>
+            <button type="button" data-d="pg">PG on court</button>
+            <button type="button" data-d="g">Round</button>
+          </div>
+          <div class="seg" role="group" aria-label="Metric" id="lab-met">
+            <span class="lbl">Metric</span>
+            <button type="button" data-m="ppp" class="on">PPP</button>
+            <button type="button" data-m="pos">Possessions</button>
+            <button type="button" data-m="ok">% well executed</button>
+          </div>
+          <label class="range" for="lab-min" id="lab-minw">Min. possessions <input type="range" id="lab-min" min="3" max="40" step="1" value="25"><b id="lab-minv" class="num">25</b></label>
+        </div>
+        <div class="split">
+          <div class="bbody"><div class="bars" id="labbars"></div>
+            <div class="axisnote"><span id="lab-axis">Bar = PPP · small number = possessions</span><span>Dashed line = team average</span></div>
+          </div>
+          <div>
+            <div class="selname"><span id="lab-sel">Whole season</span><button type="button" id="lab-clear" hidden>Clear selection</button></div>
+            <div class="kpis">
+              <div><b class="num" id="k-pos">0</b><span>Possessions</span></div>
+              <div><b class="num" id="k-ppp">0</b><span>PPP</span></div>
+              <div><b class="num" id="k-ok">0</b><span>% good (staff)</span></div>
+            </div>
+            <div class="stack" id="lab-stack"></div>
+            <div class="slg" id="lab-slg"></div>
+            <div class="scroll"><table class="clips"><thead><tr><th>Round</th><th>Min.</th><th>Set</th><th>PG</th><th>Result</th><th>Staff</th></tr></thead><tbody id="lab-clips"></tbody></table></div>
+            <button type="button" class="more" id="lab-more">Show more clips</button>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="bhead">
+          <div><h3>Game vs season</h3><p>Orange dot: the game. Empty circle: rest of the season. Most used sets in that game.</p></div>
+          <label class="range" for="pj">Round <select id="pj"></select></label>
+        </div>
+        <div class="split">
+          <div class="bbody"><div id="pj-cmp"></div></div>
+          <div>
+            <div class="kpis" id="pj-k"></div>
+            <div class="selname"><span>Clips to review · rated bad by the staff</span></div>
+            <div class="scroll"><table class="clips"><thead><tr><th>Min.</th><th>Quarter</th><th>Set</th><th>PG</th><th>Result</th></tr></thead><tbody id="pj-clips"></tbody></table></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">Percentages and PPP are calculated on the tagged clips, not on the official box score. With every club we work with the data its coaching staff needs: categories, descriptors and metrics are defined together with the staff.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · OFFENSE ============ -->
+<section class="blk" id="ataque">
+  <div class="wrap">
+    <div class="eyebrow">Service 2 · Opponent scouting · Offense</div>
+    <h2>How the opponent attacks, <em>and how much it pays off</em></h2>
+    <p class="lead">Full example: Hertener Löwen, German ProB. Offensive video edited by set and an offensive efficiency report (OER) with the points per possession of every action.</p>
+    <div class="mats" id="mat-atq"></div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Data</span> Opponent offensive efficiency</div>
+      <p class="dlead">From the OER report: 150 Hertener Löwen possessions, classified by type of offense and by set.</p>
+      <div class="board" id="oer">
+        <div class="bhead">
+          <div>
+            <h3>Points per possession by action</h3>
+            <p>The dashed line is their weighted average (0.87). Actions with fewer than 4 possessions are shown faded.</p>
+          </div>
+          <div class="seg" role="group" aria-label="Level of detail">
+            <button type="button" id="oer-cat" class="on">Type of offense</button>
+            <button type="button" id="oer-sub">Sets and actions</button>
+          </div>
+        </div>
+        <div class="split">
+          <div class="bbody">
+            <div class="bars" id="oerbars"></div>
+            <div class="axisnote"><span>Bar = PPP · small number = possessions</span><span class="lg"><span><i style="background:var(--good)"></i>Above average</span><span><i style="background:var(--warn)"></i>Average</span><span><i style="background:var(--bad)"></i>Below</span></span></div>
+          </div>
+          <div class="ins">
+            <div><b class="num">1.30</b><h4>PPP on the fast break</h4><p>11 possessions. In sets, 0.76.</p></div>
+            <div><b class="num">54%</b><h4>Of their possessions are sets</h4><p>81 of 150 possessions, at 0.76 PPP.</p></div>
+            <div><b class="num">24</b><h4>Possessions of “2 Side” Diamond Dallas</h4><p>Their most used set, at 0.75 PPP.</p></div>
+            <div><b class="num">1.50</b><h4>PPP after baseline inbounds</h4><p>Rip Staggered STS (curl), 6 possessions.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="bhead">
+          <div>
+            <h3>Frequency vs efficiency</h3>
+            <p>Each dot is an opponent action with at least 2 possessions. To the right, what they use most; at the top, what gives them the most points per possession.</p>
+          </div>
+        </div>
+        <div class="bbody"><div class="sc" id="scatter"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <h3 class="sub-h">Where these numbers come from</h3>
+    <p class="sub-p">Analysis process in Nacsport on the Hertener Löwen games.</p>
+    <div class="proc">
+      <figure><img src="DATAURI" alt="Nacsport button template on the Herten vs Schwelm game" loading="lazy"><figcaption><b>1</b><h4>Video segmentation</h4><p>The game is tagged with our own button template.</p></figcaption></figure>
+      <figure><img src="DATAURI" alt="Timing adjustment of a record on the timeline" loading="lazy"><figcaption><b>2</b><h4>Timing adjustment</h4><p>The start and end of every record are adjusted.</p></figcaption></figure>
+      <figure><img src="DATAURI" alt="List of records grouped by set" loading="lazy"><figcaption><b>3</b><h4>Video analysis</h4><p>Records are grouped by set, with their descriptors.</p></figcaption></figure>
+      <figure><img src="DATAURI" alt="List of selected clips with their notes" loading="lazy"><figcaption><b>4</b><h4>Clip selection and creation</h4><p>The clips are selected and a note is added to each one.</p></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · DEFENSE ============ -->
+<section class="blk" id="defensa">
+  <div class="wrap">
+    <div class="eyebrow">Service 3 · Opponent scouting · Defense</div>
+    <h2>How the opponent defends, <em>and where to attack them</em></h2>
+    <p class="lead">Full example: Hertener Löwen. Written defensive report and defensive video.</p>
+    <div class="mats" id="mat-def"></div>
+
+    <h3 class="sub-h">Pick and roll defense</h3>
+    <p class="sub-p">From the defensive report. With their centers they alternate High Flat, Show, Drop and Under in the same game depending on the player involved. With the 4 they play Flat or switch.</p>
+    <div class="cov" id="cov"></div>
+
+    <div class="three">
+      <div><h4>Off-ball screens</h4><ul>
+        <li>The bigs have problems in <b>step-up</b> situations: sometimes they step out too high and leave a clear path to the rim, other times they don't step up at all.</li>
+        <li>No clear rule on when to switch on <b>screen-the-screener</b> actions.</li>
+        <li>On <b>Chicago</b> (pin down + hand-off) they overcommit to the first screen, which creates a big advantage on the hand-off.</li>
+        <li><b>Low post</b>: they don't face it often; when they do, they defend 1-on-1. If a non-center posts up, they can help with the 5.</li>
+      </ul></div>
+      <div><h4>Transition defense</h4><ul>
+        <li>Problems in transition, <b>especially after turnovers</b>.</li>
+        <li>Aggressive going for steals: this can give advantages near the rim or open threes.</li>
+        <li>They struggle to match up when the offense flows quickly.</li>
+        <li><b>2-3 zone</b> after a free throw against Rostock, only 2 possessions.</li>
+      </ul></div>
+      <div><h4>1-on-1 defense</h4><ul>
+        <li><b>#22 Jetullahi</b>: lateral problems in 1-on-1, especially on closeouts, and as the last defender against big centers.</li>
+        <li><b>#8 Allen</b>: problems mainly off the ball, with positioning and rotations.</li>
+        <li><b>#44 Özmeral</b>: strong ball pressure, but struggles to contain vertical players. Attack the rim and face him up.</li>
+        <li><b>#9 Ewald</b>: tries to steal from behind, especially in pick and roll.</li>
+        <li><b>#11 Hinckson</b>: their best 1-on-1 defender. Not a mismatch for guards.</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Data</span> Defensive data</div>
+      <p class="dlead">Every defensive action is tagged on video. That is how we quantify which coverage the opponent uses and how productive it is to attack it.</p>
+      <div class="split2">
+        <div class="board">
+          <div class="bhead"><div><h3>What we tag on defense</h3><p>Buttons of the Nacsport template used in the Hertener Löwen scouting.</p></div></div>
+          <div class="bbody tagsets">
+            <div><span class="lab">Pick and roll coverages</span><div class="chips"><span>Show</span><span>Plug &amp; Hedge</span><span>Trap</span><span>Short Show</span><span>Fake Show</span><span>Switch</span><span>Late Switch</span><span>Ice</span><span>Flat</span><span>Under</span><span>Push</span></div></div>
+            <div><span class="lab">Type of pick and roll</span><div class="chips"><span>Early PnR</span><span>Top 1</span><span>Top 2</span><span>Top 3</span><span>PnR Side</span><span>PnR Empty</span><span>Baseline PnR</span><span>PnR 4</span><span>Spain PnR</span><span>Guard-guard PnR</span><span>End of clock</span></div></div>
+            <div><span class="lab">Defensive situations</span><div class="chips"><span>Balance</span><span>1-on-1</span><span>HO</span><span>Off screen</span><span>Low post</span><span>Zone press</span><span>Zone</span><span>Other def.</span><span>Defensive rebound</span><span>Help</span></div></div>
+          </div>
+        </div>
+        <div class="board">
+          <div class="bhead"><div><h3>Efficiency against each coverage</h3><p>Example with our own team: points per possession of our pick and rolls depending on the opponent's coverage.</p></div></div>
+          <div class="bbody"><div class="bars" id="covbars"></div>
+            <div class="axisnote"><span>Bar = PPP · small number = possessions</span><span>Dashed line = team average</span></div>
+            <p class="note" style="color:var(--muted)">Small samples: coverages with few possessions are shown faded and should be read as a trend.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · PLAYERS ============ -->
+<section class="blk" id="jugadores">
+  <div class="wrap">
+    <div class="eyebrow">Service 4 · Player scouting</div>
+    <h2>Every player, <em>in one profile</em></h2>
+    <p class="lead">Season numbers and the keys for every player, with the most important points highlighted. It comes with a player scouting video. Example: the 12 Hertener Löwen players.</p>
+    <div class="mats" id="mat-ply"></div>
+    <div class="roster">
+      <div class="rl" id="rl" role="tablist" aria-label="Players"></div>
+      <div class="pd" id="pd"></div>
+    </div>
+  </div>
+  <div class="dstrip">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tag">Data</span> Statistical profile</div>
+      <p class="dlead">Points per game vs true shooting percentage (TS%), calculated from the report's numbers. Dot size is minutes. Click a dot to open the player's profile.</p>
+      <div class="board"><div class="bbody"><div class="sc" id="pscatter"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="contacto">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>We work with only one club per league, with direct communication with the analyst and full confidentiality. If you want to see this same analysis on your games, get in touch.</p>
+    <div class="mail"><code id="mail">hoop.assistant.basketball@gmail.com</code><button type="button" id="copy">Copy email</button></div>
+  </div>
+</section>
+<footer><div class="wrap"><span>Hoop Assistant · Basketball scouting and video analysis</span><span>Proposal for Anorthosis Famagusta BC</span></div></footer>
+<div class="tip" id="tip" hidden></div>
+

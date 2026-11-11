@@ -1,0 +1,340 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hoop Assistant Sample Dossier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky three-tab nav, dark title band, then three working sections in the order propio, rival, jugadores. One 1180px column. */
+:root{
+  --bg:#F6F3EE;--panel:#FFFFFF;--ink:#1B1B1B;--muted:#66625C;--line:#E2DDD3;--chip:#EEE9E0;
+  --accent:#EF5710;--accent-ink:#FFFFFF;--good:#2E7D5B;--warn:#B87A0C;
+  --band:#1B1B1B;--band-2:#262626;--band-line:#3A3A3A;--on-band:#FFFFFF;--on-band-muted:#A8A5A0;
+  --f-display:'Bebas Neue','Barlow Condensed',Impact,sans-serif;
+  --f-head:'Barlow Condensed','Arial Narrow',sans-serif;
+  --f-body:Barlow,system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121212;--panel:#1D1D1D;--ink:#F4F1EA;--muted:#A19D95;--line:#323232;--chip:#292929;
+  --accent:#FF6A26;--good:#46B38A;--warn:#E3A93A;
+  --band:#0A0A0A;--band-2:#1A1A1A;--band-line:#2E2E2E;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121212;--panel:#1D1D1D;--ink:#F4F1EA;--muted:#A19D95;--line:#323232;--chip:#292929;
+  --accent:#FF6A26;--good:#46B38A;--warn:#E3A93A;
+  --band:#0A0A0A;--band-2:#1A1A1A;--band-line:#2E2E2E;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--band)}
+h1,h2,h3,h4{font-family:var(--f-head);text-transform:uppercase;margin:0;line-height:1.02;letter-spacing:.01em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--band);color:var(--on-band);border-bottom:3px solid var(--accent)}
+nav .wrap{display:flex;align-items:center;gap:4px;height:56px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+.brand{flex:none;display:flex;align-items:center;gap:10px;margin-right:auto;padding-right:14px;white-space:nowrap;text-decoration:none;font-family:var(--f-display);font-size:22px;letter-spacing:.06em}
+.brand img{height:38px;width:38px;border-radius:6px;background:#fff;object-fit:contain}
+.brand small{font-family:var(--f-head);font-size:14px;letter-spacing:.12em;color:var(--on-band-muted)}
+nav a.lk{flex:none;font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:8px 11px;border-radius:3px;white-space:nowrap;text-decoration:none;opacity:.75}
+nav a.lk:hover{opacity:1;background:var(--band-2)}
+
+/* title band */
+.top{background:var(--band);color:var(--on-band)}
+.top .wrap{padding-block:48px 0}
+.kick{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:15px;margin-bottom:14px}
+.top h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,12vw,144px);line-height:.88;letter-spacing:.01em}
+.top .for{font-size:19px;color:var(--on-band-muted);margin-top:18px;max-width:60ch}
+.top .for b{color:var(--on-band);font-weight:600}
+.index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--band-line);margin-top:40px}
+.index a{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px 0;border-right:1px solid var(--band-line);text-decoration:none;min-width:0}
+.index a+a{padding-left:22px}
+.index a:last-child{border-right:0}
+.index a:hover h3{color:var(--accent)}
+.index h3{font-size:30px;transition:color .15s}
+.index p{font-size:14.5px;color:var(--on-band-muted)}
+.state{align-self:flex-start;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;padding:3px 9px;border:1.5px solid currentColor}
+.state.ok{color:var(--good)}
+.state.wait{color:var(--warn)}
+.top .state.ok{color:#5FD0A3}
+.top .state.wait{color:#F0B84A}
+
+/* sections */
+section.blk{padding-block:68px;border-bottom:1px solid var(--line)}
+section.blk:last-of-type{border-bottom:0}
+.eyebrow{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:14px;margin-bottom:10px}
+h2{font-size:clamp(38px,5.4vw,62px)}
+h2 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);max-width:66ch;font-size:18px;margin-top:14px}
+.head{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between;align-items:flex-end}
+.head>div{min-width:0}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:15px;padding:11px 16px;background:var(--ink);color:var(--bg);text-decoration:none;border:2px solid var(--ink);cursor:pointer;line-height:1}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn svg{width:14px;height:14px;fill:currentColor;flex:none}
+.btn[hidden]{display:none}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.say{font-size:13.5px;color:var(--muted);min-height:1.4em}
+
+/* video link card */
+.vcard{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;background:var(--band);color:var(--on-band);padding:20px 22px;margin-top:30px}
+.vcard .t{display:flex;gap:16px;align-items:center;min-width:0}
+.vcard .pl{flex:none;width:52px;height:52px;background:var(--accent);display:grid;place-items:center}
+.vcard .pl svg{width:20px;height:20px;fill:var(--accent-ink);margin-left:3px}
+.vcard h3{font-size:26px}
+.vcard p{font-size:14px;color:var(--on-band-muted);margin-top:2px}
+.vcard .btn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.vcard .btn:hover{background:var(--on-band);border-color:var(--on-band);color:var(--band)}
+
+/* slot (propio) */
+.slot{margin-top:30px;border:2px dashed var(--line);background:var(--panel);padding:44px 28px;display:grid;gap:10px;justify-items:start}
+.slot h3{font-size:30px}
+.slot p{color:var(--muted);max-width:60ch}
+.frame{display:block;width:100%;border:1px solid var(--line);background:var(--panel);margin-top:22px;height:min(88vh,980px);min-height:640px}
+.frameh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;align-items:center;margin-top:30px;font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--muted)}
+.frameh a{color:var(--accent);font-weight:700}
+.frameh+.frame{margin-top:8px}
+.lnk{all:unset;cursor:pointer;color:var(--accent);font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px}
+.lnk:hover{text-decoration:underline}
+.lnk:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.fswrap.full{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.fswrap.full .frameh{margin:0;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));background:var(--band);color:var(--on-band-muted)}
+.fswrap.full .frame{flex:1;height:auto;min-height:0;margin:0;border:0;width:100%}
+.viewer.full{position:fixed;inset:0;z-index:60;margin:0;border:0;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.viewer.full .stage{flex:1;min-height:0;background:#111}
+.viewer.full .stage img{height:100%;width:100%;aspect-ratio:auto;object-fit:contain}
+.viewer.full .thumbs{display:none}
+.viewer.full #vclose{display:inline-block}
+#vclose{display:none}
+
+/* viewer */
+.viewer{margin-top:30px;border:1px solid var(--line);background:var(--panel)}
+.stage{position:relative;background:var(--chip);display:grid;place-items:center}
+.stage img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#fff}
+.nb{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:0;background:var(--band);color:var(--on-band);cursor:pointer;display:grid;place-items:center;opacity:.88}
+.nb:hover{background:var(--accent);opacity:1}
+.nb:disabled{opacity:.25;cursor:default;background:var(--band)}
+.nb svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:3}
+.nb.prev{left:0}.nb.next{right:0}
+.bar{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--line)}
+.bar .pos{font-family:var(--f-display);font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.bar .pos small{font-family:var(--f-head);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:12px 16px 14px;border-top:1px solid var(--line);scrollbar-width:thin}
+.thumbs button{all:unset;flex:none;box-sizing:border-box;cursor:pointer;width:116px;border:2px solid var(--line);background:#fff;opacity:.62}
+.thumbs button:hover{opacity:1}
+.thumbs button[aria-current="true"]{border-color:var(--accent);opacity:1}
+.thumbs img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.thumbs button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.rowa{display:flex;flex-wrap:wrap;gap:14px 24px;justify-content:space-between;align-items:center;margin-top:24px}
+
+footer{background:var(--band);color:var(--on-band-muted);padding-block:18px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+
+@media (max-width:760px){
+  .brand small{display:none}
+  .index{grid-template-columns:minmax(0,1fr)}
+  .index a,.index a+a{padding:16px 0;border-right:0;border-bottom:1px solid var(--band-line)}
+  .index a:last-child{border-bottom:0}
+  section.blk{padding-block:52px}
+  .frame{min-height:560px}
+  .nb{width:36px;height:52px}
+  .thumbs button{width:92px}
+}
+</style>
+
+<nav aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/logo.jpg" alt="Hoop Assistant">Dossier <small>Anorthosis Famagusta</small></a>
+    <a class="lk" href="#propio">Self-scouting</a>
+    <a class="lk" href="#rival">Opponent scouting</a>
+    <a class="lk" href="#jugadores">Players</a>
+  </div>
+</nav>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <div class="kick">Sample scouting report · October 2026</div>
+    <h1>Ourense</h1>
+    <p class="for">Prepared for the coaching staff of <b>Anorthosis Famagusta BC</b> as a sample of our work. Three blocks: how our own club plays, how the opponent plays and who is who on their roster.</p>
+    <div class="index">
+      <a href="#propio"><span class="state ok">Available</span><h3>Self-scouting</h3><p>Our own club in its last game. The data builds up every week.</p></a>
+      <a href="#rival"><span class="state ok">Available</span><h3>Opponent scouting</h3><p>Ourense offense and defense, filterable by game, set and play. Video included.</p></a>
+      <a href="#jugadores"><span class="state ok">Available · 10 profiles</span><h3>Players</h3><p>Individual profiles with a downloadable PDF and video.</p></a>
+    </div>
+  </div>
+</header>
+
+<section class="blk" id="propio">
+  <div class="wrap">
+    <div class="eyebrow">Block 1</div>
+    <h2>Self-<em>scouting</em></h2>
+    <p class="lead">How our own club plays: what works and what does not. This analysis starts from the last game, and the data builds up round by round.</p>
+    <div id="propio-slot"></div>
+  </div>
+</section>
+
+<section class="blk" id="rival">
+  <div class="wrap">
+    <div class="eyebrow">Block 2</div>
+    <h2>Opponent <em>scouting</em></h2>
+    <p class="lead">How Ourense attacks and how they defend. Click any bar in the analysis to filter the rest of the charts.</p>
+    <div class="vcard">
+      <div class="t">
+        <div class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2l18 10L4 22z"/></svg></div>
+        <div><h3>Opponent video</h3><p>Opens on YouTube, in a new tab.</p></div>
+      </div>
+      <a class="btn" href="https://youtu.be/fJc_EJa4xvk" target="_blank" rel="noopener">Watch on YouTube</a>
+    </div>
+    <div class="fswrap" id="fs-rival">
+      <div class="frameh"><span>Interactive analysis</span><button class="lnk" type="button" data-fs="fs-rival">Full screen</button></div>
+      <iframe class="frame" id="rival-frame" src="rival.html" title="Ourense opponent scouting"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="jugadores">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow">Block 3</div>
+        <h2>Player <em>scouting</em></h2>
+        <p class="lead">One profile per Ourense player: role, offensive and defensive tendencies, shot chart, play types and assigned defenders.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" id="dl" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M11 3h2v9.2l3.6-3.6L18 10l-6 6-6-6 1.4-1.4L11 12.2zM5 19h14v2H5z"/></svg>Download PDF</a>
+        <button class="btn ghost" id="dl1" type="button" hidden>Save profile as image</button>
+        <button class="btn ghost" id="vfs" type="button">Full screen</button>
+      </div>
+    </div>
+    <p class="say" id="say" role="status"></p>
+    <p class="say" id="savehint" hidden>To save a profile, right-click the image or press and hold it.</p>
+
+    <div class="viewer" id="viewer" tabindex="0" aria-label="Player profiles">
+      <div class="stage">
+        <img id="page" src="jugadores/p01.jpg" alt="Profile 1 of 10">
+        <button class="nb prev" id="prev" type="button" aria-label="Previous profile"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></svg></button>
+        <button class="nb next" id="next" type="button" aria-label="Next profile"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg></button>
+      </div>
+      <div class="bar"><div class="pos"><span id="n">1</span> / <span id="tot">10</span><small>Profile</small></div><span class="say">Use the arrow keys or tap the thumbnails.</span><button class="lnk" id="vclose" type="button">Close</button></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+
+    <div class="vcard">
+      <div class="t">
+        <div class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2l18 10L4 22z"/></svg></div>
+        <div><h3>Player video</h3><p>Opens on YouTube, in a new tab.</p></div>
+      </div>
+      <a class="btn" href="https://youtu.be/Uinaz8TKAMo" target="_blank" rel="noopener">Watch on YouTube</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Hoop Assistant · Basketball scouting and video analysis</span><span>Sample dossier · Ourense · October 2026</span></div></footer>
+
+<script>
+/* ===== Configuración del dossier: lo único que cambia entre informes ===== */
+var CFG = {
+  propioSrc: 'propio.html',              // ruta del análisis propio; null muestra el bloque en preparación
+  paginas: 10,                           // fichas de jugadores: jugadores/p01.jpg ... pNN.jpg
+  pdfUrl: 'https://drive.google.com/uc?export=download&id=1TAQVIzyxjJoTRSOau4lx44ZZVcoKlOwd'   // PDF en Drive, acceso por enlace
+};
+
+(function(){
+  /* propio */
+  var slot=document.getElementById('propio-slot');
+  if(CFG.propioSrc){
+    slot.innerHTML='<div class="fswrap" id="fs-propio"><div class="frameh"><span>Interactive analysis</span><button class="lnk" type="button" data-fs="fs-propio">Full screen</button></div><iframe class="frame" id="propio-frame" src="'+CFG.propioSrc+'" title="Self-scouting of our own club"></iframe></div>';
+  }else{
+    slot.innerHTML='<div class="slot"><span class="state wait">In progress</span><h3>Self-scouting on its way</h3><p>This block is published here as soon as the game data has been cross-referenced.</p></div>';
+  }
+
+  /* visor de fichas */
+  var N=CFG.paginas, cur=0;
+  var img=document.getElementById('page'), prev=document.getElementById('prev'), next=document.getElementById('next');
+  var nEl=document.getElementById('n'), tEl=document.getElementById('tot'), th=document.getElementById('thumbs');
+  function src(i){return 'jugadores/p'+String(i+1).padStart(2,'0')+'.jpg'}
+  tEl.textContent=N;
+  for(var i=0;i<N;i++){
+    var b=document.createElement('button');
+    b.type='button'; b.setAttribute('aria-label','Profile '+(i+1));
+    b.innerHTML='<img src="'+src(i)+'" alt="" loading="lazy">';
+    (function(k){b.addEventListener('click',function(){go(k)})})(i);
+    th.appendChild(b);
+  }
+  function go(k){
+    cur=Math.max(0,Math.min(N-1,k));
+    img.src=src(cur); img.alt='Profile '+(cur+1)+' of '+N;
+    nEl.textContent=cur+1;
+    prev.disabled=cur===0; next.disabled=cur===N-1;
+    var bs=th.children;
+    for(var j=0;j<bs.length;j++){
+      if(j===cur){bs[j].setAttribute('aria-current','true')}else{bs[j].removeAttribute('aria-current')}
+    }
+    var el=bs[cur]; if(el){th.scrollTo({left:el.offsetLeft-th.clientWidth/2+el.clientWidth/2,behavior:'smooth'})}
+  }
+  prev.addEventListener('click',function(){go(cur-1)});
+  next.addEventListener('click',function(){go(cur+1)});
+  document.getElementById('viewer').addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){go(cur-1);e.preventDefault()}
+    else if(e.key==='ArrowRight'){go(cur+1);e.preventDefault()}
+  });
+  go(0);
+
+  /* descarga del PDF (solo si el visor la permite) */
+  var dl=document.getElementById('dl'); dl.href=CFG.pdfUrl;
+  var dl1=document.getElementById('dl1'), say=document.getElementById('say'), hint=document.getElementById('savehint');
+  function saveFile(d,name,url){
+    say.textContent='';
+    return fetch(url).then(function(r){if(!r.ok)throw new Error('http');return r.blob()})
+      .then(function(blob){return d.save({filename:name,data:blob})})
+      .then(function(){say.textContent='Saved.'})
+      .catch(function(e){if(e&&e.code==='declined')return;say.textContent='Could not save from here.'});
+  }
+  if(window.claude&&window.claude.use){
+    window.claude.use('downloads').then(function(d){
+      if(!d){hint.hidden=false;return}
+      dl1.hidden=false;
+      dl1.addEventListener('click',function(){saveFile(d,'Ourense_Profile_'+String(cur+1).padStart(2,'0')+'.jpg',src(cur))});
+    }).catch(function(){hint.hidden=false});
+  }else{hint.hidden=false}
+
+  /* pantalla completa dentro de la propia página (los enlaces a otra pestaña no abren nada aquí) */
+  var openEl=null;
+  function setFull(el,on){
+    el.classList.toggle('full',on);
+    document.documentElement.style.overflow=on?'hidden':'';
+    openEl=on?el:null;
+    var b=el.querySelector('[data-fs]'); if(b)b.textContent=on?'Close':'Full screen';
+    if(el.id==='viewer'){document.getElementById('vfs').textContent=on?'Close':'Full screen'; if(on)el.focus()}
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-fs]'); if(!b)return;
+    var el=document.getElementById(b.getAttribute('data-fs')); if(el)setFull(el,!el.classList.contains('full'));
+  });
+  document.getElementById('vfs').addEventListener('click',function(){var v=document.getElementById('viewer');setFull(v,!v.classList.contains('full'))});
+  document.getElementById('vclose').addEventListener('click',function(){setFull(document.getElementById('viewer'),false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&openEl)setFull(openEl,false)});
+
+  /* el tema del visor también llega al análisis incrustado */
+  var root=document.documentElement;
+  function sync(f){
+    try{
+      var d=f.contentDocument&&f.contentDocument.documentElement; if(!d)return;
+      var t=root.getAttribute('data-theme');
+      if(t){d.setAttribute('data-theme',t)}else{d.removeAttribute('data-theme')}
+    }catch(e){}
+  }
+  var frames=Array.prototype.slice.call(document.querySelectorAll('iframe.frame'));
+  frames.forEach(function(f){f.addEventListener('load',function(){sync(f)})});
+  new MutationObserver(function(){frames.forEach(sync)}).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+
+</body></html>

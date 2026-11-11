@@ -1,0 +1,878 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ourense Scouting</title><style>html.embed nav{display:none!important}html.embed .fbar{top:0!important}html.embed{scroll-padding-top:60px!important}</style><script>try{if(window.self!==window.top)document.documentElement.classList.add("embed")}catch(e){document.documentElement.classList.add("embed")}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+
+/* Layout: dark editorial bands (hero, datos) alternating with light working sections; one 1180px column, charts full-bleed inside it */
+:root{
+  --bg:#F6F3EE;--panel:#FFFFFF;--ink:#1B1B1B;--muted:#66625C;--line:#E2DDD3;--chip:#EEE9E0;
+  --accent:#EF5710;--accent-ink:#FFFFFF;--good:#2E7D5B;--bad:#C8202F;--warn:#C98A12;
+  --band:#1B1B1B;--band-2:#262626;--band-line:#3A3A3A;--on-band:#FFFFFF;--on-band-muted:#A8A5A0;
+  --hl:#FFE66B;--hl-ink:#1B1B1B;
+  --f-display:'Bebas Neue','Barlow Condensed',Impact,sans-serif;
+  --f-head:'Barlow Condensed','Arial Narrow',sans-serif;
+  --f-body:Barlow,system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121212;--panel:#1D1D1D;--ink:#F4F1EA;--muted:#A19D95;--line:#323232;--chip:#292929;
+  --accent:#FF6A26;--good:#46B38A;--bad:#E5495A;--warn:#E3A93A;
+  --band:#0A0A0A;--band-2:#1A1A1A;--band-line:#2E2E2E;--hl:#E8C93A;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121212;--panel:#1D1D1D;--ink:#F4F1EA;--muted:#A19D95;--line:#323232;--chip:#292929;
+  --accent:#FF6A26;--good:#46B38A;--bad:#E5495A;--warn:#E3A93A;
+  --band:#0A0A0A;--band-2:#1A1A1A;--band-line:#2E2E2E;--hl:#E8C93A;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-head);text-transform:uppercase;margin:0;line-height:1.02;letter-spacing:.01em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+.num,.tab{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--band);color:var(--on-band);border-bottom:3px solid var(--accent)}
+nav .wrap{display:flex;align-items:center;gap:4px;height:56px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+.brand{flex:none;display:flex;align-items:center;gap:10px;margin-right:14px;white-space:nowrap;text-decoration:none;font-family:var(--f-display);font-size:22px;letter-spacing:.06em}
+.brand img{height:38px;width:38px;border-radius:6px;background:#fff;object-fit:contain}
+.brand small{font-family:var(--f-head);font-size:14px;letter-spacing:.12em;color:var(--on-band-muted)}
+nav a.lk{flex:none;font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:8px 11px;border-radius:3px;white-space:nowrap;text-decoration:none;opacity:.72}
+nav a.lk:hover{opacity:1}
+nav a.lk.data{opacity:1;background:var(--accent);color:var(--accent-ink)}
+
+/* hero */
+.hero{background:var(--band);color:var(--on-band);overflow:hidden}
+.hero .wrap{padding-block:60px 0}
+.kick{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:15px;margin-bottom:16px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:44px;align-items:end}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,9.6vw,124px);line-height:.9;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .intro{max-width:56ch;font-size:19px;color:#D6D3CE;margin-top:22px}
+.vs{display:flex;align-items:center;gap:14px;margin-top:28px;flex-wrap:wrap}
+.vs span{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:15px;padding:7px 12px;border:1px solid var(--band-line)}
+.vs b{font-family:var(--f-display);font-weight:400;font-size:28px;color:var(--accent)}
+/* hero visual: mini PPP ladder */
+.ladder{background:var(--band-2);border:1px solid var(--band-line);padding:20px 20px 16px}
+.ladder h4{font-size:14px;letter-spacing:.16em;color:var(--on-band-muted);font-weight:600;margin-bottom:12px}
+.ladder .r{display:grid;grid-template-columns:118px minmax(0,1fr) 42px;gap:10px;align-items:center;margin:7px 0;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.04em;font-size:15px}
+.ladder .t{height:14px;background:var(--band-line);position:relative}
+.ladder .t i{position:absolute;inset:0 auto 0 0;background:var(--on-band)}
+.ladder .r.hi .t i{background:var(--accent)}
+.ladder .r b{font-family:var(--f-display);font-weight:400;font-size:22px;text-align:right}
+.ladder p{font-size:13px;color:var(--on-band-muted);margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--band-line);margin-top:52px}
+.stats div{padding:22px 20px 24px 0;border-right:1px solid var(--band-line)}
+.stats div+div{padding-left:20px}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(40px,5vw,58px);line-height:1}
+.stats span{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--on-band-muted)}
+
+/* sections */
+section.blk{padding-block:72px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--f-head);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-size:14px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.eyebrow .tag{background:var(--accent);color:var(--accent-ink);padding:3px 8px;letter-spacing:.12em}
+h2{font-size:clamp(38px,5.4vw,62px)}
+h2 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);max-width:66ch;font-size:18px;margin-top:14px}
+.sub-h{font-size:28px;margin:48px 0 6px}
+.sub-p{color:var(--muted);max-width:70ch;margin-bottom:18px}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:36px;border:1px solid var(--line);background:var(--panel)}
+.svc a{display:flex;flex-direction:column;gap:12px;padding:24px 22px 22px;text-decoration:none;border-right:1px solid var(--line);transition:background .15s}
+.svc a:last-child{border-right:0}
+.svc a:hover{background:var(--chip)}
+.svc .k{font-family:var(--f-head);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.svc h3{font-size:32px}
+.svc p{color:var(--muted);font-size:15px;flex:1}
+.svc .del{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12.5px;padding:3px 8px;background:var(--chip);color:var(--ink);white-space:nowrap}
+.svc a.star{background:var(--band);color:var(--on-band)}
+.svc a.star:hover{background:var(--band-2)}
+.svc a.star .k{color:var(--accent)}
+.svc a.star p{color:var(--on-band-muted)}
+.svc a.star .pill{background:var(--accent);color:var(--accent-ink)}
+.go{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--accent)}
+
+/* data band */
+.dband{background:var(--band);color:var(--on-band);padding-block:80px;border-bottom:0}
+.dband .lead{color:var(--on-band-muted)}
+.dband h2{font-size:clamp(46px,7vw,92px);font-family:var(--f-display);font-weight:400;line-height:.92}
+.layers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--band-line);border:1px solid var(--band-line);margin-top:34px}
+.layers div{background:var(--band);padding:20px}
+.layers b{font-family:var(--f-display);font-weight:400;font-size:40px;color:var(--accent);line-height:1}
+.layers h4{font-size:21px;margin:6px 0 6px}
+.layers p{font-size:14.5px;color:var(--on-band-muted)}
+
+.board{background:var(--panel);color:var(--ink);border:1px solid var(--line);margin-top:28px}
+.dband .board{border-color:var(--band-line)}
+.bhead{display:flex;flex-wrap:wrap;gap:14px 24px;justify-content:space-between;align-items:flex-end;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.bhead h3{font-size:26px}
+.bhead p{color:var(--muted);font-size:14.5px;margin-top:4px;max-width:62ch}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:13.5px;padding:7px 12px;border:2px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
+.seg button:hover{border-color:var(--ink);color:var(--ink)}
+.seg button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.seg .lbl{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--muted);align-self:center;margin-right:4px}
+.bbody{padding:18px 22px 22px}
+.split{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:0}
+.split>div{min-width:0}
+.split>div+div{border-left:1px solid var(--line)}
+
+/* bar rows */
+.bars{display:flex;flex-direction:column;gap:5px}
+.br{display:grid;grid-template-columns:minmax(120px,240px) minmax(0,1fr) 54px 50px;gap:10px;align-items:center;font-size:14px;padding:2px 4px;border-radius:2px}
+.br .n{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br .tr{height:18px;position:relative;background:var(--chip)}
+.br .tr i{position:absolute;top:0;bottom:0;left:0;transition:width .35s}
+.br .tr .avg{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--ink);opacity:.55}
+.br .v{font-family:var(--f-display);font-size:22px;text-align:right;line-height:1}
+.br .p{font-size:12.5px;color:var(--muted);text-align:right}
+.br.cat .n{font-weight:800}
+.br.sub .n{padding-left:14px;color:var(--muted)}
+.br.small{opacity:.42}
+button.br{all:unset;display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr) 54px 50px;gap:10px;align-items:center;font-size:14px;padding:3px 4px;cursor:pointer;border-radius:2px}
+button.br:hover{background:var(--chip)}
+button.br.sel{background:var(--chip);box-shadow:inset 3px 0 0 var(--accent)}
+.axisnote{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted);margin-top:12px}
+.lg{display:flex;gap:14px;flex-wrap:wrap}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* insights */
+.ins{display:flex;flex-direction:column;gap:0}
+.ins div{padding:16px 22px;border-bottom:1px solid var(--line)}
+.ins div:last-child{border-bottom:0}
+.ins b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;color:var(--accent)}
+.ins h4{font-size:18px;margin:4px 0 4px}
+.ins p{font-size:14.5px;color:var(--muted)}
+
+/* scatter */
+.sc{position:relative}
+.sc svg{width:100%;height:auto;display:block}
+.sc text{font-family:var(--f-head);fill:var(--muted)}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--band);color:var(--on-band);padding:10px 14px;border-radius:2px;box-shadow:0 4px 20px rgba(0,0,0,.25);font-size:12.5px;line-height:1.55;max-width:260px}
+.tip b{display:block;font-family:var(--f-head);font-size:15px;text-transform:uppercase;letter-spacing:.03em}
+.tip small{opacity:.55;text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+
+/* lab */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.kpis div{padding:14px 18px;border-right:1px solid var(--line)}
+.kpis div:last-child{border-right:0}
+.kpis b{display:block;font-family:var(--f-display);font-weight:400;font-size:38px;line-height:1}
+.kpis span{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.selname{padding:14px 18px 0;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:18px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.selname button{all:unset;cursor:pointer;font-size:12px;letter-spacing:.12em;color:var(--accent)}
+.stack{display:flex;height:22px;margin:12px 18px 6px;background:var(--chip)}
+.stack i{height:100%}
+.slg{display:flex;flex-wrap:wrap;gap:4px 12px;padding:0 18px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line)}
+.slg i{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px}
+.clips{width:100%;border-collapse:collapse;font-size:13.5px}
+.clips th{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:var(--muted);text-align:left;padding:10px 8px 6px;border-bottom:1px solid var(--line)}
+.clips td{padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.clips td:first-child,.clips th:first-child{padding-left:18px}
+.ok{color:var(--good);font-weight:600}.ko{color:var(--bad);font-weight:600}
+.more{all:unset;cursor:pointer;display:block;padding:10px 18px;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--accent)}
+.range{display:flex;align-items:center;gap:8px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.range input{accent-color:var(--accent);width:120px}
+.scroll{overflow-x:auto}
+.note{font-size:13px;color:var(--muted);margin-top:14px;max-width:80ch}
+.dband .note{color:var(--on-band-muted)}
+
+/* data strips */
+.dstrip{background:var(--band);color:var(--on-band);padding-block:44px 52px;margin-top:56px}
+.dstrip .eyebrow{color:var(--on-band)}
+.dlead{color:var(--on-band-muted);max-width:72ch;font-size:16.5px}
+.dstrip .note{color:var(--on-band-muted)}
+.dstrip .board{margin-top:20px}
+section.blk:has(.dstrip:last-child){padding-bottom:0}
+.split2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.split2 .board{margin-top:20px}
+.tagsets{display:flex;flex-direction:column;gap:16px}
+.tagsets .lab{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:var(--muted);display:block;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:13.5px;padding:4px 9px;border:1.5px solid var(--line)}
+.tagsets>div:first-child .chips span{border-color:var(--accent);color:var(--accent)}
+.pill.dt{background:var(--accent);color:var(--accent-ink)}
+/* materials */
+.mats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:28px}
+.mat{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);text-decoration:none;transition:border-color .15s}
+.mat:hover{border-color:var(--ink)}
+.mat .th{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--band)}
+.mat .th img{width:100%;height:100%;object-fit:cover;display:block}
+.mat.pdf .th{background:var(--chip)}
+.mat.pdf .th img{object-fit:cover;object-position:top;width:78%;margin:12px auto 0;height:auto;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.mat .kind{position:absolute;left:12px;top:12px;font-family:var(--f-head);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px;padding:4px 8px;background:var(--accent);color:var(--accent-ink);display:flex;gap:6px;align-items:center}
+.mat .kind svg{width:10px;height:10px;fill:currentColor}
+.mat .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
+.mat h4{font-size:21px}
+.mat .open{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--accent)}
+/* video cards */
+.vids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
+.vid{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column}
+.vid .th{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--band)}
+.vid .th img{width:100%;height:100%;object-fit:cover;display:block}
+.vid .th .play{position:absolute;left:14px;bottom:12px;display:flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-family:var(--f-head);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:6px 10px}
+.vid .th .play svg{width:12px;height:12px;fill:currentColor}
+.vid .bd{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.vid h4{font-size:22px}
+.vid p{font-size:14.5px;color:var(--muted);flex:1}
+.vid a.btn{align-self:flex-start}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:14px;padding:9px 14px;background:var(--ink);color:var(--bg);text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+
+/* coverages */
+.cov{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--panel);margin-top:22px}
+.cov>div{padding:16px 16px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.cov>div:last-child{border-right:0}
+.cov svg{width:100%;max-width:180px;height:auto;display:block;align-self:center}
+.cov h4{font-size:21px}
+.cov .lab{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:var(--muted)}
+.cov p{font-size:14px}
+.cov .atk{border-top:2px solid var(--accent);padding-top:8px}
+.cov .atk .lab{color:var(--accent)}
+.court line,.court path,.court rect{stroke:var(--line);fill:none;stroke-width:1.5}
+.court .o{fill:var(--accent)}
+.court .ot{fill:var(--accent-ink);font:700 9px var(--f-head)}
+.court .x{fill:var(--ink);font:800 13px var(--f-head)}
+.court .mv{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-dasharray:3 3}
+.court .hot{fill:var(--accent);opacity:.16}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
+.three>div{background:var(--panel);border:1px solid var(--line);padding:18px 20px}
+.three h4{font-size:22px;margin-bottom:10px}
+.three ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.three li{font-size:14.5px;padding-left:16px;position:relative}
+.three li:before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--accent)}
+.three li b{font-family:var(--f-head);font-weight:700;letter-spacing:.03em}
+
+/* roster */
+.roster{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);border:1px solid var(--line);background:var(--panel);margin-top:22px}
+.rl{border-right:1px solid var(--line);display:flex;flex-direction:column}
+.rl button{all:unset;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line);font-family:var(--f-head);text-transform:uppercase;letter-spacing:.04em}
+.rl button:last-child{border-bottom:0}
+.rl button:hover{background:var(--chip)}
+.rl button.on{background:var(--ink);color:var(--bg)}
+.rl .no{font-family:var(--f-display);font-size:26px;line-height:1;color:var(--accent)}
+.rl .nm{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rl .ps{font-size:12px;opacity:.6;letter-spacing:.1em}
+.pd{padding:22px 24px;min-width:0}
+.pd .top{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.pd .big{font-family:var(--f-display);font-size:96px;line-height:.8;color:var(--accent)}
+.pd h3{font-size:40px}
+.pd .meta{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.12em;font-size:14px;color:var(--muted);margin-top:4px}
+.pstats{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:1px solid var(--line);margin-top:18px}
+.pstats div{padding:10px 10px;border-right:1px solid var(--line);min-width:0}
+.pstats div:last-child{border-right:0}
+.pstats span{display:block;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;color:var(--muted)}
+.pstats b{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1.05}
+.pstats small{display:block;font-size:11.5px;color:var(--muted)}
+.cg{color:var(--good)}.cr{color:var(--bad)}
+.keys{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.keys li{font-size:16px;padding-left:20px;position:relative;max-width:72ch}
+.keys li:before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;background:var(--accent)}
+mark{background:var(--hl);color:var(--hl-ink);padding:0 3px;font-weight:600}
+.pctx{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+
+/* propio */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.steps>div{border-top:4px solid var(--ink);padding-top:14px}
+.steps b{font-family:var(--f-display);font-weight:400;font-size:54px;line-height:.9;color:var(--accent)}
+.steps h4{font-size:24px;margin:6px 0 6px}
+.steps p{color:var(--muted);font-size:15px}
+select{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:14px;padding:7px 10px;border:2px solid var(--line);background:var(--panel);color:var(--ink);border-radius:0}
+.cmp{display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr) 92px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.cmp:last-child{border-bottom:0}
+.cmp .n{font-family:var(--f-head);font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp .ax{position:relative;height:22px}
+.cmp .ax:before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--line)}
+.cmp .ax i{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;transform:translate(-50%,-50%)}
+.cmp .ax .s{background:var(--panel);border:2px solid var(--muted)}
+.cmp .ax .gm{background:var(--accent)}
+.cmp .ax .ln{position:absolute;top:50%;height:2px;background:var(--muted);opacity:.5}
+.cmp .v{text-align:right;font-size:13px;color:var(--muted)}
+.cmp .v b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* proceso */
+.proc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:28px}
+.proc figure{margin:0;background:var(--panel);border:1px solid var(--line)}
+.proc img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-bottom:1px solid var(--line)}
+.proc figcaption{padding:14px 16px 16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline}
+.proc figcaption b{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:.9;color:var(--accent);grid-row:span 2}
+.proc figcaption h4{font-size:21px}
+.proc figcaption p{font-size:14.5px;color:var(--muted)}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);background:var(--panel);margin-top:28px}
+.week>div{padding:14px 12px 16px;border-right:1px solid var(--line);min-width:0;display:flex;flex-direction:column;gap:8px}
+.week>div:last-child{border-right:0}
+.week .d{font-family:var(--f-display);font-size:30px;line-height:1}
+.week .game{background:var(--band);color:var(--on-band)}
+.week .game .d{color:var(--accent)}
+.week .it{font-size:13.5px;padding:7px 8px;background:var(--chip);border-left:3px solid var(--ink)}
+.week .it.dt{border-left-color:var(--accent)}
+.week .it b{display:block;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+.week .game .it{background:var(--band-2);border-left-color:var(--accent)}
+.prin{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:30px}
+.prin>div{border-top:2px solid var(--line);padding-top:12px}
+.prin h4{font-size:20px;margin-bottom:6px}
+.prin p{font-size:14.5px;color:var(--muted)}
+
+/* contacto */
+.cta-band{background:var(--accent);color:var(--accent-ink);padding-block:64px}
+.cta-band h2{font-family:var(--f-display);font-weight:400;font-size:clamp(48px,7.5vw,96px);line-height:.92}
+.cta-band p{font-size:18px;max-width:60ch;margin-top:16px}
+.mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:26px}
+.mail code{font-family:var(--f-head);font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:.02em;background:var(--band);color:var(--on-band);padding:10px 16px;user-select:all;overflow-wrap:anywhere}
+.mail button{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:15px;padding:13px 16px;border:2px solid var(--accent-ink);background:transparent;color:var(--accent-ink);cursor:pointer}
+footer{background:var(--band);color:var(--on-band-muted);padding-block:18px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+
+@media (max-width:980px){
+  .hero-grid,.split,.pctx{grid-template-columns:minmax(0,1fr)}
+  .split>div+div{border-left:0;border-top:1px solid var(--line)}
+  .svc{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc a:nth-child(2){border-right:0}.svc a:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .cov{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cov>div{border-bottom:1px solid var(--line)}
+  .cov>div:last-child{grid-column:1/-1}
+  .vids,.three,.steps,.split2{grid-template-columns:minmax(0,1fr)}
+  .week{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .week>div{border-bottom:1px solid var(--line)}
+  .prin{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pstats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pstats div:nth-child(-n+4){border-bottom:1px solid var(--line)}
+  .pstats div:nth-child(4){border-right:0}
+}
+@media (max-width:680px){
+  .wrap{padding-inline:16px}
+  .brand small{display:none}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div{padding:16px 12px 18px 0}.stats div+div{padding-left:0}
+  .stats div:nth-child(2n){padding-left:14px;border-right:0}
+  .stats div:nth-child(-n+2){border-bottom:1px solid var(--band-line)}
+  .svc,.layers,.proc,.prin{grid-template-columns:minmax(0,1fr)}
+  .svc a{border-right:0;border-bottom:1px solid var(--line)}
+  .cov{grid-template-columns:minmax(0,1fr)}
+  .cov>div{border-right:0}
+  .roster{grid-template-columns:minmax(0,1fr)}
+  .rl{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;overflow-x:auto}
+  .rl button{grid-template-columns:auto;border-bottom:0;border-right:1px solid var(--line);text-align:center;padding:8px 12px}
+  .rl .nm,.rl .ps{display:none}
+  .week{grid-template-columns:minmax(0,1fr)}
+  .br,button.br{grid-template-columns:minmax(0,110px) minmax(0,1fr) 46px 42px;gap:8px;font-size:13px}
+  .cmp{grid-template-columns:minmax(0,96px) minmax(0,1fr) 78px}
+  .bbody{padding:14px 12px 16px}
+  .bhead{padding:16px 14px 14px}
+  .pd{padding:18px 16px}
+  .pd .big{font-size:72px}
+  section.blk{padding-block:56px}
+}
+
+/* ===== explorador ===== */
+.hero .wrap{padding-block:40px 0}
+.hero h1{font-size:clamp(56px,8vw,104px)}
+.games{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.games span{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:14px;padding:6px 12px;border:1px solid var(--band-line)}
+.games span.ok{border-color:var(--accent);color:var(--accent)}
+.games span.pend{color:var(--on-band-muted);border-style:dashed}
+.stats{margin-top:32px}
+
+.fbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 59px);z-index:20;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.fbar .wrap{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;padding-block:9px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1;min-width:0}
+.chip{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:13px;padding:5px 9px;background:var(--accent);color:var(--accent-ink)}
+.chip small{font-weight:600;opacity:.75;letter-spacing:.1em;font-size:10.5px}
+.chip:hover{filter:brightness(.92)}
+.chip.clear{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.chips .hint{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+
+.sidehead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.kpi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);background:var(--panel);margin-top:22px}
+.kpi div{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.kpi div:last-child{border-right:0}
+.kpi b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1}
+.kpi span{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.badge{display:inline-flex;align-items:baseline;gap:8px;padding:6px 10px;border:1px solid var(--line);background:var(--panel);font-size:13.5px}
+.badge i{font-style:normal;font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--muted)}
+.badge b{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.badge em{font-style:normal;font-family:var(--f-display);font-size:19px;line-height:1}
+
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.grid2>.board{margin-top:18px}
+.board{margin-top:18px}
+.bhead h3{font-size:22px}
+.bhead p{font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.seg button{padding:6px 10px;font-size:13px}
+
+/* filas clicables */
+.rows{display:flex;flex-direction:column;gap:3px}
+.row{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(90px,190px) minmax(0,1fr) 52px;gap:10px;align-items:center;padding:4px 6px;border-radius:2px;transition:background .12s,opacity .12s}
+.row:hover{background:var(--chip)}
+.row:focus-visible{outline:2px solid var(--accent)}
+.row .n{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .t{height:16px;background:var(--chip);position:relative}
+.row .t i{position:absolute;inset:0 auto 0 0;background:var(--ink);opacity:.82;transition:width .3s}
+.row .t s{position:absolute;right:4px;top:50%;transform:translateY(-50%);text-decoration:none;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.row .t i+s{right:auto;left:calc(var(--w) + 6px)}
+.row .t i+s.in{left:auto;right:auto;left:6px;color:#fff;z-index:1}
+.pp{justify-self:end;font-family:var(--f-display);font-size:19px;line-height:1;padding:3px 6px;min-width:46px;text-align:center;color:#fff}
+.row.on{background:var(--chip);box-shadow:inset 3px 0 0 var(--accent)}
+.row.on .t i{background:var(--accent);opacity:1}
+.rows.has .row:not(.on){opacity:.42}
+.row.small .pp{opacity:.55}
+
+/* sets */
+.setrow{grid-template-columns:28px minmax(120px,260px) minmax(0,1fr) 50px 52px 84px}
+.setrow .rk{font-family:var(--f-display);font-size:20px;color:var(--muted);text-align:right}
+.setrow .ok{font-size:12.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.ostk{display:flex;height:10px;background:var(--chip)}
+.ostk i{height:100%}
+.sethead{display:grid;grid-template-columns:28px minmax(120px,260px) minmax(0,1fr) 50px 52px 84px;gap:10px;padding:0 6px 6px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--muted)}
+.sethead span:nth-child(n+4){text-align:right}
+.range{display:flex;align-items:center;gap:8px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.range input{accent-color:var(--accent);width:110px}
+.range b{font-family:var(--f-display);font-size:18px;color:var(--ink);min-width:2ch}
+
+/* resultado */
+.obar{display:flex;height:34px;gap:2px}
+.obar button{all:unset;cursor:pointer;height:100%;min-width:6px;position:relative;transition:opacity .12s}
+.obar button span{position:absolute;left:6px;top:50%;transform:translateY(-50%);font-family:var(--f-display);font-size:17px;color:#fff;pointer-events:none}
+.obar.has button:not(.on){opacity:.3}
+.olg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:10px;font-size:12.5px;color:var(--muted)}
+.olg button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.olg button.on{color:var(--ink);font-weight:600}
+.olg i{width:9px;height:9px;display:inline-block}
+.qt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:16px}
+.qt button{all:unset;cursor:pointer;border:1px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;gap:2px;transition:opacity .12s}
+.qt button span{font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;color:var(--muted)}
+.qt button b{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1}
+.qt button small{font-size:12px;color:var(--muted)}
+.qt button.on{border-color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.qt.has button:not(.on){opacity:.42}
+
+/* sankey */
+.sk{overflow-x:auto}
+.sk svg{display:block;width:100%;min-width:720px;height:auto}
+.sk .node{cursor:pointer}
+.sk .node rect{transition:opacity .12s}
+.sk .lnk{fill-opacity:.22;transition:fill-opacity .12s}
+.sk .lnk:hover{fill-opacity:.5}
+.sk text{font-family:var(--f-head);font-weight:700;text-transform:uppercase;font-size:13px;fill:var(--ink);paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+.sk text tspan{font-weight:500;fill:var(--muted)}
+.sk .colh{font-size:11px;letter-spacing:.14em;fill:var(--muted);font-weight:600;stroke:none}
+
+/* heatmap */
+.hm{overflow-x:auto}
+.hm table{border-collapse:separate;border-spacing:3px;min-width:100%}
+.hm th{font-family:var(--f-head);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:12px;color:var(--muted);padding:4px 6px;white-space:nowrap}
+.hm thead th{vertical-align:bottom;height:96px}
+.hm thead th button{all:unset;cursor:pointer;writing-mode:vertical-rl;transform:rotate(180deg);padding:4px 0}
+.hm tbody th{text-align:left}
+.hm tbody th button{all:unset;cursor:pointer;font-weight:700;color:var(--ink);font-size:14px}
+.hm th button.on{color:var(--accent)}
+.hm td{padding:0;min-width:46px}
+.hm td button{all:unset;cursor:pointer;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:46px;font-variant-numeric:tabular-nums;transition:transform .1s,opacity .12s}
+.hm td button b{font-family:var(--f-display);font-weight:400;font-size:20px;line-height:1}
+.hm td button small{font-size:10.5px;opacity:.85}
+.hm td button:hover{transform:scale(1.06)}
+.hm td button.on{outline:3px solid var(--accent);outline-offset:-1px}
+.hm td .z{height:46px;background:var(--chip);opacity:.5}
+.hm td.tot{font-family:var(--f-head);font-weight:700;color:var(--muted);text-align:center;font-size:13px}
+.hm.has td button:not(.on){opacity:.35}
+.hmlg{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;color:var(--muted)}
+.hmlg i{display:inline-block;width:16px;height:12px;vertical-align:-2px;margin-right:4px}
+
+.method{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;margin-top:22px}
+.method>div{background:var(--panel);border:1px solid var(--line);padding:18px 20px}
+.method h4{font-size:20px;margin-bottom:10px}
+.method dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:14px}
+.method dt{font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.method dd{margin:0;color:var(--muted)}
+.method ul{margin:0;padding-left:18px;font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+
+@media (max-width:980px){.grid2,.method{grid-template-columns:minmax(0,1fr)}.kpi{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi div:nth-child(3){border-right:0}.kpi div:nth-child(-n+3){border-bottom:1px solid var(--line)}}
+@media (max-width:680px){
+  .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi div{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)}
+  .row{grid-template-columns:minmax(0,104px) minmax(0,1fr) 48px}
+  .setrow,.sethead{grid-template-columns:22px minmax(0,1fr) 46px 48px}
+  .setrow .t,.sethead span:nth-child(3),.setrow .ostk,.sethead span:nth-child(6){display:none}
+  .qt{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chips .hint{display:none}
+  .fbar .wrap{padding-block:7px}
+}
+</style>
+<style>
+.readnote{font-size:13px;color:var(--muted);margin-top:12px;max-width:80ch}
+#claves .lead{margin-bottom:6px}
+#claves-grid,#o-read,#d-read{margin-top:22px}
+@media(min-width:981px){#claves-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+<nav aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCAGPAaQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD78ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACikPSqd/qVjpdjJe6jdw2ttGNzyzOFVR9TUykoq7Gk5Oy3LtIW5x+teF+Mf2l/DWkeZa+FrOTWbkZHnPmKBT9erfgPxrwTxV8Z/iJ4saSK812WytGyPsth+5THoSPmP4mvCxfEeEoe7F8z8v8z6vLuDMxxiU5R5I95f5bn2J4j+I/gnwmjtrviSxtnXrAJPMl/wC+Fyf0rynXP2sfBlkzR6Homqaow6O+23Q/nk/pXyTcSFiWdiWPJJPJrS0TwZ4t8TybPD/hzUr8f34YDs/76OB+teJLiLF1nahG34s+upcD5dhIc+LqN/NRX9fM9c1n9rTxvdbl0fQtJ05D0aTdOw/PA/SuF1L9oP4u37lv+EwntRn7trDHGB/47muk0b9l74oamFe9i03SYzyTdXG9x/wFAf512+n/ALHbNGG1bxzh+6Wlnx+bN/SqjSzWvrK/32JnX4bwekVFv05v8z5+vfif8SL8lrrxzrzn2vHX+RFYs3jLxjIzNJ4r1tyepN9L/wDFV9f237IngKPabrXtduCPvAPGgP5LWhD+yf8ACqMkyrrc+ez3uAPyUVtHJ8a9ZS/E5p8T5RDSEPuij4p/4TDxerAr4p1sFeQRfS8f+PVYj+J/xJs3zbePPEUeOn+nSEfkTX2dL+yX8JpCNqa3Fj+7fZz+amsy+/Y6+G9w2601fxBa+wmjkB/NK2jlOLhrzfiYS4kyqpo4f+So+XrD9of4zaUwEPjq+nUHO27SOYH/AL6XNdpov7ZfxP01gNY0zQ9Yj77oWt3P4qcfpXfax+xNA4ZtD8eyIc/Kl7ZBvzZWH8q878Q/sf8AxV01GfSn0fW0AJAgufJc/wDAZAB+tbRpY6l3/MwliclxPSK+Vj0/w7+3B4VuWSLxV4P1TTGx801lIt1Hn6HawH517T4S+N/wu8cbU0Hxjpz3DdLW5f7PNn02SYJ/DNfnH4p+HHjzwcz/APCTeEtW05FODNLATH+DrlT+dca7DoDnB7c4renmNaDtURyV8gwdVc1CVvnc/Y9DlQc9eadX5W+Cfjt8Uvh/Mg0LxXdyWqkf6DfsbmAj02t93/gJFfT/AMP/ANt7wzqLRWHxF0WbQ7gkKdQsQZ7cn1Zfvp+G6vSpY6nPR6M8HFZLiKC5l7y8j6zorK0LxHoXijRYtX8OavZ6pYyjKXNpKJEPtkdD7HmtQV2rU8dq2jFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooppNAAzYOKY0qIhd3CqBkknAFY3ifxXofhHRW1TXL5LeEcIvV5G/uqvUmvln4ifGLXPGksljaM+m6PnAto2w0o9ZGHX6Dj6142aZ1QwEfed5dlv/AMA+gyPhvF5vP90rQW8nt8u7PXvH/wAftD8OGXTvDqJrGorlTIrfuIj7kfePsPzr5o8W+OPFHjK9Nzr+qy3Cg5S3U7Yo/wDdQcfj1rPitpru4S2toJJpnbakUSlmY+gA617X4I/Zwv8AU0h1HxpcyWFu3zCwgP75h/tt0X6DJ+lfFPFZhnVTlgtOy2Xqfp1PAZNwxSVSs7z7vWT9F0/rU8K0rRtW1/UUsNG065v7pukUEZY/j6D3Ne2eEv2YdYvwl14u1NNMiOD9ltcSS/i33R+tfSPhzwtoHhTSV07QNLgsYFHIjXlz6s3Vj7mtkKK+kwPC1GlaWIfM+3Q+PzXj7F4huGDXJHvu/wDJHn3hv4M/Dvwwg+x+Hba6n73F8onc/wDfXA/AV30cMcMSxQosaKMBUUAAewFPwKWvpKOHp0VanFI+Ir4qtiJc1aTk/N3E2j60tJmgn2rXQwFwKKhlureH/XTxR/77gfzqlJ4j0CGTZLrenI3o1wgP86iVaEd5IuNKcvhTNOiqEeuaNLzHq9i/+7Oh/rVxJI5EDRyK6noVOacakJfC7ilCUfiQ/ApCoNGeelAOaokY8SSRlJFV0IwVYZB/CvNfGH7P/wAJvGsUh1XwhY29y+T9s09fs0wPrlMA/iDXp1IRmlKEZaNF06s6bvB2Z8O+Pf2ItdsRPe/D7xDDqsQyy2GoAQzY9BIPlb8QtfLnizwl4l8Ga6+j+KdDvtJvF6R3UZUOPVW6MPcE1+wuKxfE/hHw14y0KTRvFOiWerWL8GG6jD7fdT1U+4wa454GD1hoevQzutHSr7y/E/JjwZ8QvGnw611dV8G6/d6ZLnMkcbZim9pIz8rD6ivtj4Qftn+GPFLW+ifEeCLw5qrYRb9WJsp29yeYiffK+4rj/i1+xK8EE2sfCa9eYLl20S/kyx9oZT/6C/8A31Xx7rWjap4f1qfR9b06606/t2KTW11GY3Q+4P8AOsoupReux2TWGxqut/xP2XguIbmCOe3lSWKRQ6SIwZWU9CCOCKlr8uPgx+0r43+D91HpxlfW/DJbMmk3L8xDuYH/AID7fdPp3r9EPhn8VvBvxX8KLrvhHU1nC4FxZy4Se1f+7Inb2PQ9jXdTqqaPCxGFnQeuqO3opMj1pa1OYKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKQnAoATeMkYriPiJ8SNG8AaN5t04uNQmB+zWSn5n/ANo+ij1qP4lfEWw8A+H/ADjsn1OcFbW1J6n+83oo/XpXx5rmtap4h16fV9Yu5Lq7nOWkY8AdgB2A7Cvl8+z+OCTo0dZv8P8Agn2nC3Ck8zkq+I0pL/ybyXl3Zd8VeK9a8Ya/JqutXbSykkRxjhIl/uqOwq74L+H2v+OtVFtpNvtgVsTXkgxHEPc9z7Ct/wCGHwk1Tx1erqF7vstCjb55+jXGP4I/6t2r610XQ9M0DRoNL0izjtLWEYWNB+pPc+5r57KMiq5hL6zim+V/e/8AgH2Gf8VUMnh9Ry9JzWnlH/N/0zlfAXws8N+BLJTaQC71FhiW/nUFz7L/AHR7Cu6AxgUuKWv0LD4anQgqdKNkj8ixOLrYqo61eTlJ9WIBS0E4pjyIkbO7BVUZLHgAVs2kYbi7hmsfXvFWg+GbE3Wt6nBaofuqzZZvYKOTXk3j745R2ksuk+Dtk8q5V9QcZRT/ALA/i+p4+teLR2vijxp4gPkR3mrX8pyzcsR9SeFH5Cvksy4pp0p+wwkeef4f8E+3yjgyriKf1nHS9nT897fp8z2HxF+0ONzw+F9HDAcC5vTjPuEH9TXmOr/E/wAc6y7C58Q3USN0itj5K/8AjvNej+F/2eJZYo7nxZqpiJ5NpZdR7Fz/AEH416xofw68HeHlB03QLRZB1mlXzHP/AAJs156y3OcxXNiKnJF9P+Aj1Hm3D2UvlwlH2sl1f+b/AER8kwaT4q1yTzYbHV7/AD/Hskk/U1V1PSNS0i6FrqtjPaTlQ3lzLtbHY19zCJUUKiqq+gGK+Yfj8NvxVjH/AE4x/wDoTV5+dcOrAYV13UcpXSPW4e4tnmmNWF9jGEbN6b6Hnlj4W8Q6pYNf6Zot7d2ysUMsEJcbh1HFShvFOgyjc+r6ay9OZIsfyr6I+AAz8KpD/wBP0v8AJa9SltobiPZPFHIhHKuoYH866sBwqsRhqeIhVaclf+tjhzLjeWHxdTDVcPGUYtr+tz5O0b4w+O9I2BtX+3wrx5d4ofP/AALg/rXp/hz9oHRLuRLfxHYyadITjz4v3kX49x+tdlr3wo8E6+rNc6NFbzHP760/dN+nB/EV474s/Z/13Tw9z4bvE1SAc+RLiOYD2/hb9K2lhc7yz3qc/aRXTf8AB6/cc8MXw5m/uVqfsZvrsvvWn3o+itN1jTdYsEvdKvoLy3fpJA4YfpV3cK+IdL1fxN4J15msri70y8jOJIWBUH2dD1FfQXw/+Nem+I2i0rxAI9P1RvlWTOIZz7E/dPsfwNerlfFFHFSVGuuSfns/68zxc64NxOBi6+HftKfdbpenbzR67RTFdSM9qeCCMivqT44O1ecfFP4KeB/i3oRs/E2nCO+jUi11S2AW4tz2w38S/wCycivR6KTinuVGcoO8XY/KL4z/AAF8ZfBrW9uqwnUNDmbFprNuhET+iuP+Wb+x69ia4jwX448TfD3xfb+JvCeqzWGoQEfMpykq90kXo6nuDX7Ca1ouk+INAutG1vTbbULC6Qxz21ygdJFPYg1+eH7RP7Kuq/DY3XjDwSk2o+EtxeaDl59NB/vf34v9rqO/rXLOi46xPUo4xVVyVdz6u+AX7R3hn4z6SbCZY9J8VW0e660tn4lA6yQk/eX1HVe/rXuAIIyK/FLR9a1bw74htNe0LUZ7DUbOQTW91A2142HcH+nccV+mH7N37R2l/GTQ/wCxtYMNj4wsog1zar8qXaDgzRD/ANCX+En0rWnO6szjxGH5HzR2PfqKAc9KK2OUKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBGOBXNeNfGOm+C/Cs+sai25gNkMCn5ppD0UVvXtzBZ2kl3cyrFBEpd3Y4CgDJNfGnxO8f3Hjrxi9yhZNNtsxWcJ/u55c+7fywK8LPc2jgKPu/G9v8AM+l4YyCeb4rlelOOsn+nzOd8S+IdU8U+JLnWtVnMlxO33c/LGvZFHYCuw+E/wuuvHWsfbtSSSHQrZ/3sn3TOw/gX+p7VlfDvwPe+PPF0enwh47OLEl3cAf6tM9Af7x6D86+yNM03TNA0KHT7CCO1s7ZNqoOAoHc/1NfJZDk8sfUeLxWsb316v/I/QOK+IoZVRWXYHSdrafZX+bJ7GwtdOsIbKxgSC3hQJHGgwFA6AVbrzrWPjh8NdEvGtbrxJFNIp2sLWNptp9yoIrN/4aO+FA/5jd1/4BS//E1979ewsPd50reaPyxZTj6nv+xk79bM9XorycftHfCc8f29cj62Uv8A8TXpOm6nb6rpNtqNp5nkXEYlj8yMxttPIyrAEfjW1LFUq2lOSfozmxGCxGGt7aDjfurFm5nit7d555FjijUs7scBQOSTXzD8Tvi7e+Jp5tF0KR7bRlO1nX5Xuvc+i+3fv6Vs/G74kSXl5J4O0ecrbxHF7Kh/1jf88/oO/vxXn/hn4Z+L/F2hSavo9lG9ur7FaaTyzJjrtz1xXw+fZtXxdR4LA3dt7fkfovC+RYbBUo5nmjST+FPbyfr2J/APgc+MdVEdxqVtp9kjfvJHkUSN7Ip7+/Svqnw54Z0XwvoyafolpHDEBlnHLyH1ZupNfImqfD3xtors974b1BFXrJHH5i/muaTSPHPjLw5cCOw1y/t9nWCZiy/Ta2cV52UZlSyrSvh2pdZdfxPVz7Jq+ee9hcVFwW0en4N6+qPtVetOr558O/tEXkBjg8T6Qs69GubM7W+pQ8H8DXrvhr4geFfFcY/sjVonmIybaX93Kv8AwE8n8K+6wWd4PGWVOevZ6M/Nsx4ex+Xa16bt3Wq+9HUHpXy9+0Fn/ha0fH/LjH/6E1fT4r5f/aDP/F1Yh/04x/8AoTV5fF+uA+aPY4D/AORqv8LPTP2fjn4USf8AX9L/ACWvVx0ryf8AZ+BX4TSH1v5f5LXea/4s0DwxYm71rU4bZMZCE5d/91Rya9HJ6sKWXUpTdkoo8nPac6ua14U1duT2NzIpjsoUsSAB1JrwXxH+0WuHg8MaPk9Bc3h/UIP6mvItd8deMfFFxs1HWbycOcLbwkon0CL1/WvPxnFeEpPlopzflsevl/A+PxK569qcfPf7v8z6P+IQ+F2tae9t4n1bToblARHPFIDPGfbGSfoeK+XtStrK01SaCw1Bb+2Rj5dwqFN47HB6GtzSPhl471pVe18OXio3Pm3AEI/8exXZ2X7PXi6aIG91LTLQn+Hc0hH5CvlsxjjM3kpww3K++v4t2Ps8qnl2QRdOpjeZdt0vRK7Ro/Cr4xy2k8HhnxZcl7djstr6Q5MZ7I57j0NfRMbK0YYEEHkH1r4z8dfD7V/AupRw37LcW0wzDdRqQrnuvsR6V638EPiWdQjTwbrcxN1En+hTueZVH/LMn+8B09R9K9nIM4rUav8AZ+O0ktm/y/yPn+KMgw9eh/auWaweskvzX6o90orH8TeJNO8J+Eb/AMSaqtybGxiM1wbaBp3VB1YIoJIA5OOwJrxZf20v2f26eJ9Qx6/2XP8A/E19xc/OVqfQNRzQRXEDwTxpLFIpR43UMrKRggg9Qa8E/wCGz/gBn/kZ7/8A8Fc//wATW14d/aq+BXibVF0+y8c29rO7BUGowSWquT0AZ1C/madwsfJ/7Vf7MzfD66m+IHgOxdvC075vbGMZ/s2Rj94d/JJ/75PHTFfM3h7xDrXhLxRY+I/Dt/LYanYyia3uIzgqw/mDyCDwQSK/aS4t7HV9Kkt7mKC8srmIo6OA8csbDkHsQQa/L/8Aaf8AgLc/B3x6NS0aGSTwjq0jNYycn7JJ1Nu59uqnuvuDWMoWd0dcK/MuWR92/s/fHDSvjX8N11JUitNesdsOqaerf6tyOJE7+W2CR6cjtXrtfjr8Ivilrvwh+KFj4u0Vnkjjbyr2y3YW7tyRvjPv3B7EA1+t/hDxVo3jbwVp3irw/drdabqEKzwyDqAeqsOzA5BHYg1pF3RyyVmbdFFFUIKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKRunB5pT0rJ8Ra3a+HfC19rl84ENpE0hGfvEdFHuTgVFSahFyk9EVCEqklCKu3oeM/tA+PfstmvgnTpv3s6iS9dTyqfwp+PU+31r58sbC51PVLewsYTNdXEgijjHVmJwKk13WbzXvEN5rF++64u5WlfnoT0A9gMD8K9v8A2dvBAmlm8b6hD8qkwWKsOp6PJ/7KPxr8tk6meZjZfD+SR+4wjS4Wyfmfx/nJ/wCX5I9a+Hvgmz8C+C4NKh2yXT/vbq4A5kkPX8B0FfO/x2+L2oav4lvPB2hXT2+k2bmG5eNsNcyD7wJ/uA8Y7819auuIXwexr84tYB/4SHUNxJJuZSST1+c19PxDUeCw1PD0NIvT5I+O4Kw0cyx9XF4r3pR117vr/kZ8k3GS2BVZpVzjcK+mf2bvh14Y1zw5qPibXLC31KcXBtYobhd6RAKCTg8ZOevtXup+F/w7JLf8IXopPvar/hXmYHh6riaMa3Mlc+izPjbD4HEzwqpt8ul7pHx38CvA0fjr4sW8d5H5mmaaovboY4bB+RD9W/QGvr34keLU8HeBLi+iwLyX/R7Vf9sjr9AMn8K29E8K+HPDjTNoWiWOnGfAlNtEE34zjOOvU187/HnxIdV8erpEEn+j6Ymw4PBkblj+AwPzr08YlkmXS5X78tE/P/gI+Zo1pcUZzDmVqcdbeS3+9nJ+DfDVx418c2+lBnKyuZbmY8lUByxz6np9TX2DpmnWel6VBp1hAkFtAgjjjQcACvLPgH4XGm+CJfEFxFi51J/kYjkQrwPzOT+Ver3NzBZ2z3NzMkMMa7nkdsBR6k1rwxl6wuF9vU+Kerfl0/zODjHNXjsb9Xp/BT0S8+r/AERKcV4v8XvHfguxtZ9FGkafrOrsNp3ICtsfVmHOfYH64rE+I3xwa7jl0bwfIyRHKy6j0ZvaMdh/tfl615v4M8B65491kx2UbR2yt/pF9KCUj9ef4m9q4s3z36xL6ngY88npff7v8z0si4ZWHgsxzOXs4LVK9m/Xr8t2Yvh/Q9T8UeIYNH0qDzLmY/RUHdmPYCtPXvBnivwbdCTVNPnt1Rvku4Tujz6hx0/HFfVfgzwFoHgjSvsul24adwPOu5ADJKfc9h7Diuintre4geCeCOWJxhkkUMGHuDWNDg1OherO1TfTZHVivEGaxLVGmnR2s935+XofNPgr44eINFEVnr4Oq2IwPMbidB/vfxfjz71ifFzxFpfivxzDq2kTGW3NmiZI2lWBYkEevNdD8YNA+H+hXJGh3H2fVmOZLC2+aJR6t/cPsPyryItk5r53M8Vi6EXl9eamlbXfY+pyPA4DE1Y5rhabptpq1rJ38v1W523h/wCKet+FvAj+G9EjihkkmeVrthuZQwAwo6A8dTmsS00/xN401pvssF7q165+eQktj/eY8KK1fhnovg/XvF4svFmpSWwJHkQZ2JO390v2+nGfWvrXSdI0rRtNjsdKsILS3UcJCgUfj6mvRynKa+bUoutVtTjokt/u6fM8rPc8wuR15Rw1D97LVya018938tD458XeBfEPgtrU61bIqXK5WSJt6Bh1Un1rv/gx488MaHN/ZGuabZ2k0jfutUEYyc/wyHt9enr619B65oGleIdFm0rV7RLm2lGCjDkHsQexHrXyz8SPhdqngadry2El5ozN8lyBkxZ6LJ6fXoa6MZlFfJayxeEXNDqnrb+u5y4DPcPxFh/7PzB8lR7NaJ/12e59axyJIiyI4ZWGQwOQR7VJtFfP37P3iPxNfajc6JNMbnR7WDfmXloWJwqqfQ88Hpive5rmG3jMk80cSD+KRgoH519pluYwxuHWISsn3Pz3NsrnluKlhZNSa7f1uYnjLwxZeLvCd3ot4igyITFJjmKQfdYfj+ma+ZdI+FHxJTX0msdIktZbWbKXMkqxruU/eBzkjivpDVPiN4K0oN9q8QWbOP4IW81vyXNcdqXx78M24K6bpt9esOAzARL+vP6V4OdLKa1SNXEVlGUez1/C59BkGJznC0Z0MLQcoz7p2X5bnp9glzPocKatBD9oeELcRKd6FiMMOeo61+Uf7R3wxX4T/H3VNCtY9mk3h/tDTD2EEhPyf8AYMv0Ar9GPAHxUvPGfiqbS5tIitYlhMqPHIWIwQMNn612Wu+CvCHim4hm8TeGNJ1iSBSkT31qkxjUnJALA4BIr38BjaGOoqrh5Xjtf0Pm8dg6+BrOjiI2lvb1PxeDKD94fnT93GQcj2r9hD8F/hIW3H4a+F8/9g2L/AAr5t/bM+CngHR/hFD4+8N6FYaHqVldxW0q2MIhjuYpMrhkXA3KcEHrjNdjicaaPK/2T/wBonWfBnj3Tvh94o1OW78LapKtrbm4bcdPmY4QoT0jJIBXoM5HfP3t8RfAmhfEr4can4N8QwB7O+iKiQD5oJBykiejKcH9O9fjbCzw3sMsbFXSVXVh2IIINfthpUjz6BZTSnc8lvG7H1JUGnHVClpsfjX8QfAuvfDb4jan4M8Qw+XfWEm3ev3ZozykinurDB/TtX0p+xJ8aj4a8Yt8KtfvNulaxL5mmO54guyOY/YSAf99Af3q9f/bb+EA8W/DOL4iaLZb9Z8PKftXlr801kfvZ9fLPzD2L1+dcFzPaXkN3aTvBcQussUsZwyOpyrA+oIBppWE3c/cEdKK8v+AHxSi+LfwL0jxPI6f2mi/Y9TjU/cuUADHHoww49mr1CqEFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUE4FACE4r5+/aO8VFLaw8JW0hBk/0q6APG0cID+OT+Ar313CxszHAUZJPYV8Q+P9fbxN8RNU1fcTHJMViz2jX5V/QfrXyvFeNdDCeyW8/wAup9rwLlv1vMPbSXu01f59P8zL0DQrnxJ4lstEs8+ddyrGCB90Hq34DJ/CvuTQdGsvD/h+z0XTovLtrSJYkHqAOp9z1r56/Zw8NNd+IdR8Tzx5jtE+zwEjje3LH8Bj86+llrPhHAKlh3iJLWX5I6eP81licasJF+7T/N7/AHISX/VP/umvzg1fnxDf/wDXzL/6Ga/R+XiF/wDdNfnDq3/Ifv8A/r5k/wDQzWXF3w0vn+h3eG/8Sv6R/U+qv2Vlx8KNSJ76k3/oC17tnC14Z+yz/wAkl1D/ALCT/wDoC17nivoMm/3Kl6Hx/E3/ACNK/wDiILu5W2sZrl+FiQyHPoBmviW7a58ReLJZjuee/uifU5d+P519c/EO7aw+Fuu3KnDLZuo+pGP618h6NqI0jxBZ6mYfO+ySiZYycBmXkA+2cV8jxjXTq0aUn7u7/r7z7LgDDyVDE4iCvLZfdf8AyPrvUtd8P/D7wTbnUrhLe2toVhiiU5eQquNqjueK+a/HfxP1rxrdNCWaz0tW/d2aN19C5/iP6D9a5nWtZ8SeN/FIuL2WfUL2dtkMESkhc/woo6D/ACa94+GXwSt9JSDXPFqJc3/DxWR+aOA9i395v0FRUxeLzyX1bCLlpLd/5/5G1HL8Bw1T+t4989d6pf5f5v5HGfDr4Lah4jki1fxEJLHSj8yw/dlnH/sq+/WvpDS9I07RdKi07S7SK1tYhhI4xgD/AOvVxVAGB0AximvIqIWdgqqMkngAV9dlmUYfLoWpr3ur6nwmc57is2qc1Z2j0itl/mxxYKuc14X8UvjVHZtP4e8IXIa55S41BORH6rH6n37Vi/Fj4vyak0/hvwrdlLMZS4vYzgzeqoey+/euG+Hvwz1jx3qn7vdaaVE2J70r/wCOp6t+gr53Ns9q4mp9Sy7VvRtfp/mfVZFw1QwtH+0s30itVF/r+iKPhjwp4h8b681tpsMk7s26e6lJ2R5/iZvX9TWr8QvBcHgnxBbaPDdPcs1qsskrDGWJIOB2HFfVPh7w7pXhfQ4tJ0a0W3t4xz3Zz3Zj3Jr5++Px/wCLnQD/AKcU/wDQmrzM0yGGX5c6k3zVG1d/5HsZPxRWzTNo0aa5aSTsu/m/8jzCfQNVi8OReIfsjtp0krQi4QZCOMcN6dRivVPhn8aZtHeHRPFk8k9hwkV42WeH/e/vL79RXd/A+0t7/wCDU1pdQJPBJeTI8ci7lYHbwQa83+KXweufDU8uu+HYnn0hjukgHL2v+Ke/apo4DF5fQp5hg3dNJyX9br8jSvm2CzfE1cqzKKTUmoy/L0f4M+nLa6try0jubWdJoZFDJIhyrA9CDSXdpb3tnJaXcMc0Mq7XjkUMGB7EV8pfDT4oX/gq9Swv3kudFkb54c5aHP8AEn9R3r6o0zU7LV9Mh1HT7mO4tplDRyIcgivs8pzejmdLTSXVf10Pz7PMhxGT1uWesXtJf1oznvCHgHSvBV7qr6Q7i2vpFkWBhnycDG0HqR9elcR8Xfh5r2uznXtGu5rsJGFk05mPAHeMdD7ivZGPFebfEj4m2/he3bTNKaOfV3HrlYAe7e/oKxzqhgqeBlDEPlgu2jv5f5Bk+Jx9XMI1cP79R99dPP5dT5meJ4pDFIhR1OCrDBBHXIoVDVi4nnvb2W6uZGmmlcu8jclmJ5Jp0ttNbTGGeJ4pF+8jrtI/A1+E1N24fCfvEKjslOykevfADTt2satqbA/uolhX0yxyf/QRXvIFeXfAqx8nwDdXpXm4um59lAH+Nep9q/cuE6Hscro+av8Aez8J4qxHt80rS7O33aBXzl+2/wAfsmXZH/QUtP8A0M19G185ftvgn9ku8x/0FLT/ANDNfRs+fR+Zu794n+8K/a/QTnwrph9bSL/0AV+Jw++v+8P51+2Ggf8AIpaX/wBecX/oAoSsNlu6t4buymtbmJZYJkMckbDIdSMEH2IJr8h/jt8MpfhP8ctZ8KKGNh5n2rTpG/jtpCSnPcryp91Nfr9XyH+3n8Pl1b4X6T8Q7O3Bu9FuPst06jk20pwCT6LJt/77NMR41+w38Rj4Y+ONx4JvbnZp3iSHbErN8ouowWQj3Zd6/wDfNfpDX4k6Lq994d8Tafr+mStFeafcx3cDqcEOjBh/Kv2d8I+IrPxd4C0bxTYMDbapZxXiYOcB1DY/DOPwoA2aKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoPSikb7tAHF/FPXm8PfCnV7+JiJmi+zx4OCGkO0H8M5r4okZua+l/2lNVNv4T0jR0bm5uWmceoReP1YflXzzoenNrHifT9LQZN1cxw/wDfTAH9K/M+KqzrY6NFdEl82fs3AeHjhcrnipfabfyX9M+vPgxoR0H4PaVFJFsnukN3Lxg5c5Gf+A4rv6htoY7e1jt4VCxxqEVR2AGBU1fomEoKhRhSjslY/IsXiZYmvOvLeTb+8jmP7l/901+cWrDOvXxH/PxJ/wChmv0cm/1L/wC6a/OXVcf27ff9fEn/AKEa+T4v+Gl8/wBD9E8N/wCJX9I/qfVf7LP/ACSXUP8AsJP/AOgLXuea8M/Zb/5JRqP/AGEW/wDQFr3M9a+hyb/cqXofHcS/8jSv/iZxXxZG74Oa5wTiIH/x4V8oaRouo+INfttH0uMSXVw+1AxwB3JJ9AOa+wPiBZm++GOuWq9Ws5CPwGf6V8u/De6Nn8WtBnDbQbpYz9GBX+tfH8VUVPH0Iz+GVl+J9rwViZUcrxUqXxRu1/4Dp+R9F/Dz4ZaN4I0wOqpeaq64mvXXn3VB/Cv8+9d2BhaRRgUM2BX3eHw1PDU1SoxskfmuKxVXF1XWry5pPqIzhQSSBjqa+bfjB8WZdWnn8K+GrgpYqxS6uo2/15HVFP8Ad9fX6VsfGn4nvC8vhDw/c4YjbfXEZ5X/AKZg+vqfwrzv4Z/Dm88c6+JJleDR7dgbmccbj/zzU+p7+gr4/PM2q4qr/Z+B1b0b/T/M+94cySjg6H9rZlpFaxT/AD/yRL8MfhjqHjjUReXavbaJC+JZ8YMxH8Cf1Pb619XaXpllpGlwadp1tHb20K7EijGABT9P06z0vTodP0+BLe2gUJHEgwFAq3XvZPk1LLqdlrN7v+uh81n+f183r889ILaPb/gjWxivmP4/k/8AC0YfT7DH/wChNX041fMn7QB/4ujB/wBeKf8AoTV5/F//ACL36o9LgX/kax/ws9J+AOR8J3z3vpcfktenyRq6lXUMCMFSMgivM/gKc/CX/t9l/wDZa9Rr1MkV8BR/wo8biD/kZV/8T/M+afjH8KX0e5bxL4ZtWawlfFxaxKSYGJ4ZQP4Se3b6V6B8E/CfiDw14Xmn1qeSFLwiSLTm/wCWP+0fRj6V6kwBzuAP1rx74mfFpNLM2g+GZVe95Se7XlYfUL6t79vrXk4vC4HJ6ssxm7dl3fkexh8yzHOsNDKYR5rfafZbXfl336F74m/FNNAWTQtBkWTUyMSzdRbf4t7dq+epp7i8umkkaSeeVslm+ZnYn9SajBub2+CIstxcTPgKMszsT+pNfQnwx+FEehrHrniGJZdUI3RQHlbf393/AJV8K/r3FOL7U190V+rZ9mlgeFcJd+9Uf3yf6JFP4XfCj+zzH4h8UQK92cNb2TjIh9Gb1b27V1HxA+G9l4utftVoIrXVYwAk2MLIP7r4/Q9q8a/aM/avsfhvPc+CvAhg1DxWvyXNy43wabx0I6PL/s9B39K8I+Gv7bXj/wAI2k1h4zsV8Y2zEvDNNN5FzGxOcFwpDJ14IyOxxxX6XQ4fwVPCfU+S8Xv3b737n5rWz7G1cZ9d57TW3ZLtbsffXgfw/N4Y8E2ej3Ekck0QYyNH90sSScfnXRV5B+z18abj44eCtX8RzeH49FSzv/sccCXBmLL5atuLYHOW7CvX69XD0IYelGjTXuxVl8jy69adepKrUesnd/MK+c/23v8Ak0q9/wCwnaf+hmvoyvnL9t84/ZKvP+wpZ/8AoZrYyPzL6Ov1Ffth4f8A+RS0v/rzh/8AQBX4n4+ZfqK/bDw//wAijpX/AF5w/wDoApXGzRrmfiH4UtvHPwr8QeELtFaPU7GW2G7+Fyp2N+DBT+FdNRTEfiDeWlxY389jdoY7i3kaGVD1V1OGH5g1+lX7D/jBvEf7MUWiXEu+58P3stjg9RE372P9HYf8Br4r/ad8Nr4X/av8Y6fFD5cFxdjUIhjA2zIshx7bmYfhXtX/AAT98S/ZPiJ4r8JSSYS+sY76NSeC8T7Tgeu2UflSA+/qKKKYBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUh6UtFAHzB+0pe+d480uw5xb2Rc8/33P8A8TXJfBaw+3fGvRVK7lhZ5yPTahI/XFavx8m8/wCNF0uciK2ij+nBP9avfs7WiS/Fia4IJMFjIy89CSo/kTX5fU/2jPEn/N+X/DH7VRf1XhbT+R/j/wAOfU6jFOoAxRX6ej8VRHN/qX/3TX5was2Ndvh/08Sf+hGv0fm/1L/7pr829YYf8JBf/wDXzL/6Ga+O4tV40/n+h+meG7tUr+i/U+sv2Vju+Euo/wDYSf8A9AWvdepFeE/sqD/i0WoN66k//oC17sK9/Jv9ypeh8fxK/wDhUr/4mQ3sC3WnT2r/AHZY2jb6EYr4hvFu/DviqWHlbjT7oqD/ALSNx/KvuRulfLnx38M/2T8QxrEMeLfU08zjoJF4b8/lNfP8ZYZuhDEx3g/wf/BPoeAcZGOKqYSe1Rfiv+Bc+ldG1KDV9As9UtnDRXMKSqR7jNcR8WfiBH4N8LmCzlU6teqUt17xjvIR7dveuX+Cvjmxh+HV7perXawnSFaYFj1gPPH0OR+Irxbxd4gvfHHjyfVDG7vcyCG2gHJVM4RR7/1JozHiFLL4Sov95NW9O4sn4Vc81qU8Qv3VJ3fn1S+a1Y7wd4V1Px34vTTbdnwx826um58tM8sfUnt719g6BoGm+HfD1tpGlw+VbwIFUd2Pdj6k1znwz8DQeCPB8dsyK2oXAEt3KOpfH3c+g6fnXTatrOnaFpMuo6pdx21tEMs7n9B6n2rtyLKoZdQdev8AG9W+3kefxPnk81xKo0P4UdIpdfO35eRZvLy2sLOW6u544IY13PI5ACj1Jryaf49aTH4m+zR6fLLpYbYbsH5z/tBP7v615p8RviZfeM782dr5lto8bfJD0aU/3n/oO1cSkUrwPKsbtGmNzhThc9MntXy+dcZVfa8mA+GO7te//APpMk4Ipex9pmOkpbK9rX/U+09N1Ww1jS4tQ026iubeQZSSNsg//Xr59/aC0vUF8Z2esNayGye2WETgfLvDEkE9jzXIeEPG+teDdUE+ny77Zj++tJD8kg/ofevozw74s8K/EfQZbYLFKWTFxp9yAWX8O49xXpUc0w/EmEeFlLkq728/I815biuFcdHGRj7Slqr+T79n+Bg/AQEfCXDdftsx/lXp7OFByQMdSayND0DR/Cmhmw0iH7NaK7SlWcnBPU5PavHPih8VUv45vD3hq4P2c5S5u0OPM/2UPp6nvXtVsfSyTAQWIeqVkl1fkeHHB1c+zKpLDRdpNu76J9y58Svi6q+f4f8AC8+W5juL5DwPVUPr6n8q8Ut7e41C+jtbWJ57iVtqRoNzMTT9P0671XU4dP0+3ee4mbakaDkmvpX4d/DWx8HWa3t4EudXkX95NjIiH91P6nvX53Qw+N4pxftKjtTX3Jdl5n6DiMRgeFcL7KkuapL72+77Iq/DT4X2nhaJNW1ZUn1h147rbg9l9/U/lXpqgZ4NfJnxc/artbf4taH8M/hrdx3E0mr21rqusJh0jUzKrww9mOCQz9ByBzyPrQDB4r9ZwGAo4GiqFBWS/rU/J8dja+NrOviHeT/rQ/Hv45En9pvx9/2HLn/0M1wqniu7+OQx+074/H/Uduf/AEM1wY6V2M5D9Df2A/8AkhfiL/sNt/6Jjr6yr5N/YDz/AMKK8RHt/bbf+iY6+sqaAK+dP23Mf8MlX+f+glaf+jK+i6+dP23f+TS73/sJ2f8A6HQB+ZX8a/7wr9sNB48KaWP+nSL/ANAFfihj51/3h/Ov2v0Hjwrpg/6dIv8A0AUkgNCiiimB+cv7euirY/tDaRrCRFRqOipufszxyOv6KUrjP2P9aGi/td+HEZsJfx3Fi3vviJH6oK9v/wCChWlp5PgPWh9/dd2p+mI3H8jXy58DNROl/tMeBL0dE1q3U/RnCH9GoA/YEdKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+Pfjg3/F7tWB/uxf8AosV0v7NZV/iDq2fvLYjB+riua+OiGL42amW/jjiYf98Af0re/Zsl2/EvUY88PYEkeuHX/E1+YYXTPNf53+p+0Y33uF1b+SP6H1JRRRX6efi5HN/qJP8AcP8AKvzT1Vv+J9ff9fMn/oRr9LJ/+PeT/dP8q/NHVQf7dvv+viT/ANCNfH8V7U/n+h+leHfx1/RfqfXX7KTbvg/fj01J/wD0BK93FeDfsoAj4Q6kT/0E3/8AQEr3kV72Uf7nT9EfH8Sf8jSv/iYHpXEfFDwgfF/gG4tIFBvrc+fbHuWHVfxGRXcVGwJOB611YrDwxFKVGotJKx5uFxNTC1o16TtKLuj4SJmg8yLLxNyki5IPXlSPqOntXrnwF8FpqfiCbxXfxFrexby7UMOGmxy3/AQfzPtXceKfghpviDx8utJfG0spvnvLaJfmd/VD2z3/AE61ueIvE3hj4XeFotMsbeNZVTFtYRHk/wC0x7D1J618Fgch/s+vLE42SVOG3n2P0nNeKlmeFjhMvg/a1Pit07r/AIPY6LxP4q0fwnoz3+rXAQdI4l5eVvRRXy9428cat401Yz3rmK1jJ8i0U/LGPU+re9UPEXiLVfE2tPqWrXLSyNwi/wAMa/3VHYV0/wAPPhlf+Mbtb+932mjRn5pcYaY/3U9vU15GZZzi8/r/AFTBpqH5+b8jtyrJcHw9Q+u46Sc/y8l5+Zk+CPAOr+NdT2W6mCwjYCe7YfKvsvq3tX01pHgzw9pHhY6Db6fC9o67ZhIoYzHuWPc1leJPE3hD4UeCke58q2t4wVtrKDHmTt6KO/uTXzNY/FbxZ43+P3h69vL+WzsRqEaQWFu5WONC2MNj7xPcmvpMDgsFkcY05rnqy0f9dF+Z4eKqZjxI516f7uhC7Xm1+b/BHpPxC+Dl1pSzat4WSS6sx80lp1ki91/vD9a8n0+/vtK1OO/0+5ltrmFsrIh2sp9P/rV9ukHca8u+IPwgsfEvm6roXlWWq/eZcYjnPuOze/51x55whZvFZd7slry/5djXh/jS0VhMz96L05n+vf1PK/EnxZ8TeJPDMWjzNHbIV23EkGQ0/sfQeoHWuR0fSdQ1zV4dL0u2ae5lOFVe3qSewHc1es/Bfia88Vf8I6mlzJfhsOjrhUH94t02+9fS/gTwDpvgnRhHDie/lANxdkcsf7q+i+1fP5fk+PzzE8+Mk+WOjb8ui8z3syznL8hw/s8DFc0tUl59X5dir4E+H+l+B9IM8rRzaiybri8fgKOpC56KP1718j/tN/tXvq7Xvw9+FuoFNO5h1HXIGw1x2MUDDonYuOvQccn139uHW9W0b9mmGLStQubP7fqkVpc+Q5TzYikhMbEc7SVGR3xX5sqMKAK/WMNhaWEpqhQjaKPyaviKmLqOvXleTOj+HgP/AAuHwn6/2zZ/+j0r9m+9fjR8OQP+FyeEif8AoNWf/o9K/ZbvXXE5JO7Px9+Op/4yf8f/APYcuf8A0KuCBrvfjqD/AMNP+P8A/sO3P/odcEBxQxH6IfsCDHwF18+uuP8A+iY6+r6+UP2BP+SCa/8A9hx//RMdfV9MAr5z/bdH/GJd6fTU7M/+PmvoyvnL9t84/ZKvf+wnZ/8AodAH5nZ/eL/vD+dftfoX/IraZ/16Rf8AoAr8Tc4df94V+2Ohc+FdMP8A06Rf+gCgDQooooA+Of8AgoNCrfDnwXPn5l1OdAPYw5/9lFfF3wxyPjf4OI6/23Z/+j0r7B/4KE35XRPAmmB+HuLu4K+6rGoP/j5/Ovkf4RWj337QHgm0Rtpk1uzGT2xMp/pQB+xxooPWigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKD0opD900AfJf7REBg+MJmKkLNYxOD6kFgf5VS+AOoG1+N1jCX2pcwTREep27h/6DXXftPaaV1XQdWVDiSKW3ZvcEMB+pryL4e6r/YnxV0HUmIVI7xFcn+6x2n9GNfl2N/2bOed/zJ/eft2WR+u8M+zjvyNfNXPvDOaWmr0/rTq/UEfiJHOf9Hk/3D/KvzP1N865ek/8/En/AKEa/S+4/wBRJ/uH+Vfmfqo/4nt8P+niT/0I18jxTtT+Z+k+Hnx1/RfqfX37KJB+Dl+R/wBBOT/0BK92FeC/snH/AIs5qI9NUk/9ASvehXvZT/udP0PkOI/+RnX/AMTFphIzT65nx7d6lZfDrWLrSN4vI7dmjZBll9SPcDNddeqqNOVRq9lc8qjSdWpGmna7S+85T4jfFay8MrJpWjsl1qxBBOcpb+7ep9q+dL/Ub3VNRl1C/uZLi4lOXlkOSf8A63tVbbNczZy80sjdeWZif5k17x8MvhJHZRR+IPFVsHuOHgspBkRejOO7e3avyKrVx/E+K5I6QX3Jefdn7DTo5dwrhPaSfNUf3t9l2RhfDb4Rz6u0et+JoHhsOGitG4af3b0X9TXo/wAS/Hln8LvA8N1b6cJppT9ns7ZBtjDAZ+bHRQPSu1sb+xv0kNjdQXCxOY3MThgjDqpx39q8O/an/wCRK0E/9Prf+izX3cMvo5Nl83hfitv3PhqONq59m1KGN+Bv4eiX9dT5q8UeJdb8W+IZda169e6upOBnhY17Kg/hAqfwBx8V/DZ7/wBow/8AoYrEk61u/D4Bviz4bH/URh/9DFfE4epKpXjOTu21+Z+wYylCjg506atFRdkvQ/QojnpXxt4d/bDufCnxt8S+CvidB5+i2+r3Fta6rbRDzbRFlYKsqL99AAPmHzD3r7K/ir8gPjBn/hoLxvx/zG7v/wBGtX6zUk42P57w1OM7qR+mWufHf4P+H/Bp8VXXjrRp7R0zELOZZ55uM7VjX5ifYgY74rP+Anxmk+NugeIPEMekLpmn2WpfYrOFn3ytGI1bfIegYlug4HqetflKV5yBzX6CfsCZHwT8SA/9Bn/2ilEJXFVpKC3L37egz+zlpX/Ydh/9FS1+dWMAV+i37eWP+GcdLP8A1HYP/RctfnUactzOOx0nw55+MnhEf9Rqz/8AR6V+yvevxs+Gwz8aPCIPT+2rP/0elfsn3q0Zn4//AB1IP7T/AI/9P7cuf/Q64Gu9+OYx+094/H/Uduf/AEOuCBpgfoh+wL/yQTXv+w2//omOvq6vlD9gX/kgmvH/AKjj/wDomOvq+gAr5z/beGf2Sb7/ALCdn/6Mr6Mr5z/be/5NJvv+wnZ/+jKAPzLxl1H+0K/bDQePCmmD/p0i/wDQBX4pL/rE/wB4fzr9rtD/AORX03/r1i/9AFAF+iiigD8/f+CgeqtN8VfCOjD7trpUtyfrJLt/9pCvGf2ZdKOr/taeB7bZvWK/+1NxnAijZ+fxUV0P7ZHiRdd/a11u3ibdFpVvb6eDnI3Km9v/AB6Qj8K6L9hTQ31P9pi51jZmLSdImkLdg0jLGv6F/wAqAP0lHSiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKDyKKKAPJP2hNG/tL4QyXyIGk064S4z6Kflb/wBCr5HSQpKsiHDKwIPoRX6Aa/pMGueGNQ0e4XMd5bvC3/AlIzXwLe2Uun6jPZXKFJoJWikVuoZTg/yr874vwzhXhXXVW+aP17w7xqqYWrhJfZd/k/8Ahj7w8G61H4i8CaVrMbAi5tkdvZsYYfmDW7XiH7N3iRb3wPeeHZJMzafMXjU/8835/wDQs/nXtwOe9fa5ZiVicLCr3X49T80zjBPBY2rQfRu3p0/AZMP3D/7p/lX5lau+Nfv/APr5l/8AQzX6bSj9y/8AumvzB1dz/b9//wBfMv8A6Ga8LieN1T+Z9l4fu06/ov1PsX9kxgfg5qP/AGFH/wDQEr3sV8//ALIzbvg5qf8A2FH/APRaV9ACvbyr/dKfofJ8Qv8A4U6/+Ji1HIqsCrAEHqD0NSUxx8rH2rvkeMclD4U8B6Vqr6/b6dpltcQ5dpwwCxnucZwD74rw74tfHh79J/Dngi4aO1PyXGprw0nqsfoPVu/b1rxjW7mX+3tRXzZNrXMoK7jg/Oe1Y5Oa/N8bn8pQlRw0FTTetup+05TwXTp1I4nG1HVaSsnsvvbufW37M0hl+Ed1u5I1CTk/7q1mftTkDwNoX/X83/os1pfsyjHwhusdTqEmf++VrK/aqYDwJoXr9ub/ANFmvoan/Ik/7dX5nyNBJcVWX87/ACZ8qyHLVv8Aw7H/ABdvw3/2EYf/AEIVzbSZPFdL8OCP+Ft+G93T+0Yf/QhXw+DX72HqvzP1bM1/s1X/AAv8j9Cf4q/Ij4ygD9obxuP+o3df+jDX67A/vK/IT4yP/wAZC+N/X+2rr/0Ya/Wq2yP56wW8jisDANfoD+wOP+LJ+Iz/ANRo/wDolK/PzdX6CfsDf8kQ8RE99aP/AKJSiluViti1+3p/ybppP/Ydh/8ARUtfnUa/RT9vXP8AwzrpHp/bsP8A6Klr86nOBWktzkT0On+Gxz8aPCI/6jVn/wCj0r9lu9fjL8NST8afCGOv9tWf/o9K/ZnvVkH4/wDx3/5Og8f/APYcuf8A0KvPwTiu7+OrH/hp/wAf56/27c/+h1wa80Afon+wL/yQLXv+w4//AKJjr6ur5R/YGBHwE149jrb/APomOvq6gAr50/bc/wCTSr//ALCVn/6Mr6Lr50/bd/5NLvf+wnaf+h0AfmYp/fJ/vD+dftfon/Isab/16xf+gCvxRQfvk/3h/Ov2u0T/AJFnTv8Ar1i/9AFAF+oL28t9O024v7uRY7e3jaaV26Kqgkn8ganrwr9rnxwvgz9l/WooJxHfa0V0m3AbDYk/1hH0jD/mKAPzQ8deI5PGPxO8QeKpBhtU1Ca7A9A7kqPyxX3N+wH4S+wfCzxF4ynhAk1W/W1hcjnyoV5x7F3P/fNfn6V9FyewA61+v3wN8HHwH+z14T8MyJtngsEluARg+dJ+8cH6M5H4UkB6FRRRTAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBrD5TzXyB+0D4ZGg/E9tSgi22uqp9oBA48wcOP5H8a+wa80+N3gxvF3wvuTaxb9Q0/N3b4HLYHzr+K5/ECvEz/A/W8JJR+Jar5H0nCeaLLsxhOT92Xuv59fkz5q+EXjD/hEfipYXU77bO6b7JcEnACuQAx+hwa+3kweQcj1r83JjgdTzX2p8C/Hi+NfhnBHdThtV03FrdAn5mAHyP+I/UGvC4TxtubCyfmv1Pq/EHKtYY+mvKX6P9D06X/Uv/umvy/1gY1+//wCvqX/0M1+n8h/dOevymvzB1nnxBfkf8/Uv/oZru4l2p/P9Di4Bfv1vRfqfYn7JERT4J3sp/wCWmqSEfgiCvfAa+A/g38adT+FV1d2c9kdS0S7cSS2wfa8TgY3oTxyMZB64Fe0t+2J4WTlfB+rsPeaMV15bmmGjhoQlKzSPNz3IMdPHVKtOHNGTumrH0rSMMivmR/2zvDSf8yVqx/7eI6rv+2v4aQ8+B9WI/wCvmOvRWY4aW0zxXkWPjvSf4f5nqtz8AvhpeXc1zPpVwZJXMjbbpwMk5Pf3qA/s7/C7tpF3+F5J/jXlf/Db3hYdfAus+/8ApMVL/wANweEAP+RJ1v8A7/Rf41yexy168kfuPQ9rnkFbnn/4F/wT6I8J+DtC8E6G2k+H7aSC2aQylXkLkscZ5P0qDxj4D8OePNOtrLxJayXENvJ5sapIyEMRjqD6V8+n9uTwaoOfBGu/9/ov8agb9uzwcpwPAuu/9/4v8a7FLDOn7JW5ex5roY+NX2+vPve+t/U9ZP7OXwoJz/Ylz/4Fyf41b0z4C/DTRtZtNVsNInS6tZVmiZrqRgGU5BwTzXjJ/bv8Gr18C65/3/i/xph/b08Fjj/hBNd+vnxf41nHC4JNOMFf0OieNzWScZ1JWf8Ae/4J9Zgc5HWvEtf/AGS/gn4m8Uah4h1bQL6S/wBQuHubh49QlQM7HJIAOByelebH9vjwUOngTXj/ANt4v8ajP7fvgkdfAWvfhcRV288GeSqVWOyO9/4Yw+AmMf8ACPakP+4lN/jXpvw3+Fvg/wCFHh250PwXZT2tnc3BuZFmnaYlyoXOWPHAHFfOh/4KAeBwOPAevk+nnxf40D9v/wAEnk+Atf8A/AiKmpLoKUZ9T6N+JPww8I/FfwrD4d8Z2c91YQ3C3SJDO0LCRQQDleejHivLD+xV8AiOdA1X/wAGc3+NcL/w8A8EdvAWv/8Af+H/ABoP/BQDwQP+ZC1//v8Axf41V0Z2Z6No/wCx98DtB8RWGt6boepJeWNxHcwM+oysA6MGUkE8jIHFe8V8g/8ADwDwRj/kQvEH/f8Ah/xpf+G/vA//AEIfiD/v/F/jTEek+I/2Rvgl4s8Yan4n1rQ9Rl1HUrl7q5dNRlRWdjkkKDgD2qin7FnwBQYHh3Uj9dTm/wDiq4M/8FAPAw/5kLxB/wB/of8AGk/4eBeBu/gLxD/3+h/xoA+jvhx8MPB/wp8Mz6B4LsZrSxnuDdSJLO0xLlQpOWJPRRxXY18fn/goH4H7eAfEP/f+H/GkP/BQLwT28AeID/28RUAfYNfO/wC2ym/9krUOemo2h/8AIlcOv/BQHwQzASeAfEKqepWeEn+deC/tA/tQ6r8aNPg8N6bo7aL4bgnFwYZJfMmunGQpkI4AGThRnnvwKAPn1B/pEY/2x/Ov2u0X/kW9O/69Yv8A0AV+KkWPtMX++v8AOv2t0kY8PWA/6d4//QRSQFs9K/OH9tz4jr4q+NcHg3T7nzNP8NxGOUKfla6kwZPqVUIv13V9s/HH4mW3wm+C2r+LZHjN6ifZ9Ohf/lrcvwgx3A5Y+ymvyOv9Qu9U1S51G/uHuLu5kaeeZzlndjlmP1JNMD1T9mr4e/8ACyP2kNB0i4t/O02yf+0r8EfL5URBCn/efYv4mv1iAwMYA+lfLP7EPwvfwl8IpvHeqW+zUvEpV4Qw5js0J8v6byWb6ba+p6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACmuMoQRkHjFOoIzQB8R/HPwE/gr4hS3FpCV0jUS09sVHyxseXj/A8j2PtWH8K/H0/w8+INvqpZmsJ8QXsQ/iiJ+8B6qeR+PrX2R8SfA1n4+8BXWh3GEnI821mP/LKUfdP0PQ+xr4J1jS7/RNautK1O3a3u7WQxSxsOQR/TvmvzrN8FPLcUsRR2buvXsfsvDeZU87y6WCxOsoqz810f9dT9G7S7tdQ0uK9s50mt54xJHKhyHUjIINfmt4q02fS/G2sadcIVlt72aNgeuQ5r6I/Zz+LCWNxF8PvENyFt5GJ0ydz9xicmEn0PJX3yPSrn7Q/wU1HVNTm8e+EbM3MzqP7QsYhmRiBjzUHc46jrxn1r2cfN5lhI16Orjuj5zJYf2FmVTCYp2jPZ9H2/rufKDDg1WkyKvyQyJK8UiMjqdrIwwVPoR2qtJEa+ajvZn6BUSaujNl5zVKYfKa0poyO1UpkIXkV30WeXiEZsnQ1XY1bkXg1WZMda76djyaqK8nrVWQd6tyDrVZxXdSPKrIqy5xVV+lXJV4NU5K7KR5VfQgYcGvsz9nn9kLw14m+Hth47+JhursakguLLSbeYxIsJ+68jL8xZhztBAAIzk18ZnHzA96/Qz9mr9pTwJqvwp0fwd4s1yz0LX9KgSyAvnEMV2ijCOjn5c7QAVJHI9DXdRSb1PExU5Je6eZ/tI/si6B4S8B3Xj74ZC6t4NPHmX+kzymZfJzzJEzfMCvUqSePTFfG5Qqlfox+0z+0V4D0n4Raz4O8Na9Y65r2r27WXlWUgmS2jcYeR2GVB25AGc5PoK/Opj8pFayST0OSMpOOpXPWkOakK803bmmTcAOPalp+35aYFq7mIw00jJqYjNM21QDQKUCnBaXbSAb1pOhp+2gRM8ixopZ2O1VUZLH0A70rgWNK0691nXbHSdOhaa8vLhLeCNerOzAKPzNftPZR/YdDt4JpFBggVGZjgDaoBJP4V8V/si/s2avpevW/xW8f6bJZSQLu0bTLhcSbiMfaJFP3cA/Kp55yccVr/th/tCpomm3Pwm8GX2dUuk2azdxN/wAesRH+oU/32B+b0U46nhoDwj9rD42D4r/FIaTolyX8MaGzQWhU/LczdJJ/cHG1fYZ71xnwD+El78YfjFY+HwrppNuRd6rcD/lnbqRlQf7znCj6k9q86s7G91PU7bTdNtZLq7uZVggt4Vy8jsQFVR6kkV+q37OnwWtvg18JotNuVjk8QahtutVuF5/eY4iU/wB1BwPU5PemB61Z2Vrp+n29jZW6W9tbxrFDDGMLGijAUD0AFT0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACHt0rwb9oP4Tv4m0dvF3h+3DatZx/6RAi83MQ549WX9Rx6V71TWwB/SuTGYSGKpOlUWjO7LswrZfiI4ii9V+K7M/MUyPDKsiMyOjbgynBUjofY19ifAn432/jKzi8K+JZ1i1+BNsMzEAXqgdR/wBNB3HfqK434/fA6S3nuvG/g+z3wNmS/sIl5Q9TKgHUeo/H1r5eS9ubO7jurO4khnicSRyxthkYHIII6GviKMq+UYlxlt+DR+s4ilg+J8Cpw0kvvi+z8j9GPEnwr8AeLr5b7X/DNndXHeZcxu3+8VIz+NY3/DP3wgI58GWp/wC20v8A8VXDfA/9oey8Ww2/hXxlcR2viAAJDdN8sd77eiye3Q9vSvoIMCelfZYdYbFR9rCKd/JH5fjP7Qy6o8NVnKNttXb5HmLfs7fBtz83gq2/7/y//FUx/wBnH4LMuD4Htf8Av/L/APF16ngelGBXQsLRW0V9xyPMMU96svvZ5R/wzV8Esf8AIi2x/wC3ib/4ukH7NPwQH/Mh2p+txMf/AGevWcUVXsKf8qIeNxD3qP72eSn9mf4HHr4Bs/8Av/N/8XUX/DMHwKL7v+EBtP8AwIm/+Lr17FLTVGC6EvFVnvN/eeQS/swfAp1+b4f2f4TzD/2evgj9pHTPBPh34/an4Y8BaPHpum6WkdtMqSPIJJ8bnOWJxjcFx/smv1D8Ra1aeG/Cmp+INRkCWun2sl1KScfKilj/ACr8cNd1i68Q+KdR1++Yvc6hdSXUpPXc7Fj/ADrOrGMbJI6sJKc23Jt2M7+I00+h6U/HNIQKiJUxlGcClwM0uBtNao5p7HsH7M2h+AfF/wAerTwj8QtGj1Gy1O3kjtczSReXcKN68owzkKy4Pcivusfsmfs/j/mn8B+t3P8A/F1+Ynh3xBd+FPGmkeJtOYrdaZeRXkZHcowbH4gEfjX7J6DrNn4h8MafrunyB7W/to7qFgc5V1DD+daxRzM8p/4ZQ+AGMf8ACvbb/wACp/8A4ulT9lH4AIMf8K7tD9bmc/8As9ezUVQjxn/hlD4AE5/4V5a/+BM//wAXSf8ADJ37P+7P/CvLX/wKn/8Ai69nooA8YP7J37P5Of8AhXlt/wCBU/8A8XT/APhlP4Abcf8ACurP/wACZ/8A4uvZKKAPGl/ZT+AK/wDNO7P8bmf/AOLrpfCnwR+E/gbUBqHhjwJpFjeA5W5MZlkT/dZySv4YrvycfWvmz9ov9qfRvhfZ3HhXwjLb6p4xdSrYIeHTcj70vq/on4nA4IBb/aX/AGkdM+EmgSeHfDk0N340vIj5UQIZdPRv+W0o9f7qnqeTx1/M+9vrq/1CfUL64kuLmeRpZppW3NI7HJYk9STk1Nq+r6jrut3Ws6xfTXt/dyGa4uZ23PI56kmvqj9lT9mCTxnc2vxH+IOnbPDcZEunadMOdRYdJHH/ADxB7fxH26gHd/sZ/AH+zrWD4veMLDbezoTolpOuDDGRg3BB6Mw4X0GT3FfaAGKbHGkUSxxoqIoCqqjAAHQD2p1ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFADWjVgQ3IPUHvXyt8cP2cfMmu/GHw/tOuZbzSYx17l4R+pT8vSvqumlfauTGYKnioclRHo5ZmlfLqyrUH6ro15n5UXAlgnZCHjdGxzlWUj+RGK+jPg5+1Jc6Elv4b+I0kt3YLhIdXALywjoBKOrr/ALQ5HvXqnxl/Zx0nx883iDwzJDpPiEjc4IxBdn/bA+63+0PxBr4m8SeG9Z8Ka9NoviCwlsL6E4aKUYyPVT0IPYjivlXRxGWVLrbv0Z+kxxWB4jock1aS6dV6d0fqHpGs6Zr2kwapo9/b31lOu6O4t3Do49iKv1+Y3w++KvjD4Y6v9q8NarttnYNPp85328/1XPB/2hg19m/DH9pTwP488nTtSuY9B1tsL9ku5AI5W/6ZSHAP0OD9a+gwea0sR7stJHw+a8N4nA3nH3od1+qPbKKarBhkdKw/GniOHwh8Pta8UTwtPHplnJdmJer7FJA/E4r1G7K588k20kbuaM1+XHiX9on40a5rc+o/8J9qunLISUtdOk8iKNc5CqoHbpk5PvWA3x1+NI6fFHxQP+31q5FjYPZHryyatFJto+4P2zfF7eGv2aLvS4JQtzr1zHp6gHB8vO+Q/TC4/wCBV+a6j2rpvFHj/wAc+NoraLxh4s1XXI7VmeBL6YyCIsMEj0zgVzWcGspVeeVzelhnRhyvcQjjOKjPWpCaYcVrFnLUVhpAoJwpppbFNL8VqjknsRSNjtmv0v8A2KPGj+Kf2ZLfSbqYyXfh+7k09geoi+/F+GGI/wCA1+Z7YJrofDHxB8deB4LqHwd4u1fQkumV7hbC4aISlchS2OpAJ/OtkczP2dzSZr8f/wDhe3xqLZPxV8Vn/uIP/jXT+Bf2pPjF4O8XWuqXvjPU9esRIv2rT9UlM8cseeQCeUbHQrjn1piP1aoqvY3Md7psF5Fu8ueNZV3dcMAR/OpndUQu7BVHJJ6CgB1UdX1jS9B0e41bWtRtdOsbdC8tzdSCONB7seBXz58YP2yPhv8ADp7jSfDdxF4t8QJlDBZTD7NA3/TWYZGR/dXJ+lfBXxN+NXj34t6yb3xjrzTWyOWt9Mtz5drb/wC7GDyf9pst70AfSnx8/bPn1WK58JfCC5ltbQ5jufEJUpLKOhW3B5Qf7Z59AOtfGkszzSvNNK7yOxZnclixJySSepJq74c8O694v8S2+g+GNKutV1K4bEdvapvY+pOOAB3JwBX3/wDAL9jfRfBU1p4t+JBt9b8QxlZYNOHz2lk3UE5/1rj1Pyg9AetAHl37M/7JE3if7J4++KmnTW+jgiWw0WYFHvB1Ekw6rH6L1bvgdfv6CCG2t44LeJIoo1CJHGAqooGAAB0AHangADgUtABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUANIz2rM1Tw54f1qaKXWdC07UJIgRG13bJKUB64LA4rVopOKe44txd07HOHwB4Gb73gzw+frp8X/xNRy/DvwDJGUfwT4eZT1H9nxc/wDjtdPRU+zh2NPbVP5n95Da20NpaJbW0SxQxqFRFGAoHQD2qHU9OtNW0m60zUIFuLS6iaGaJxkOjDBB+oJq5RVW0sZ36nx3rP7Cen3Wu3Eui+PZ7HTXYtFbz2YmkiH93cGGQPXGazz+wLu/5qaf/BZ/9sr7UorD6rT7Hc8zxLVnI+KR+wFnr8Tm/DTP/tlIf+CfyH/mp7/hpY/+OV9r0VSoQWyMnjaz3kfE/wDw7+Tt8T3/APBWP/jlH/DvxCD/AMXQfP8A2Cx/8cr7YoqvZR7GTr1Huz4gP/BPhi3HxS499K/+2Un/AA71Ynn4qED20kf/AB2vuCir5UQ5t7nw83/BPV8/J8VOPfSv/ttRn/gnnOenxTT/AMFX/wBtr7lopknwyP8AgnnP3+Kaf+Cr/wC210Pgz9gfw/ovjC01XxX42uNcsbaRZf7PgsxbiZgcgO+9jtz1AHPqK+xaKAEVVRAqgBQMAAYAFQ3lnaahZS2d9bRXFvKu2SKVQyuPQg9RU9FAHIf8Kp+F5AB+HHhPA6f8SmDj/wAcpf8AhVXwwHT4deFf/BVB/wDE111FAGLovg/wn4anlm8O+GdH0iSYBZHsLOOAuB0BKgZFbIAHQYpaKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiuR8c/EHSPANpaXOrwXcqXUhjQW6hiCBk5yRXGf8ADR3gk/8ALhq3/fpf/iq8+vmuEw8/Z1aiT7HqYXJMfi6aq0KTlF9Uew0V5hoHxy8LeIvElnotlY6ks91J5aNJGoUHHf5q9OBzW+GxlHFRcqMuZI5sZgMRgpKGJg4t66i0UVU1G+j03Srm/mVmjt42lYL1IUZOK6JSUVdnKk5NJbst0V42P2kfBRQH+z9XB9PKX/4qnD9o/wAEkc2Org/9cl/+Kryv7cwF7e1R7f8Aq1mlr+wl9x7FRVWwvI7/AE63vYgyxzxrKobqAwyM/nVqvVjJSV0eI007MKKazY6VheIPGfhrwtD5mvaxb2ZI+WNmy7fRRyaipVhTjzTdl5lUqU6s1CnFtvotTforxXV/2kfC1q7JpOl6hfkfxOBEp/Mk/pXOv+0/MHPl+EI9vbddnP8A6DXkVOIsBB2dS/pdn0FHhLNqq5o0GvWy/Nn0Zmivn6x/adsWkA1HwpcRp3aC4D/oQK9D8M/GLwJ4nmS3tdWFpdNwLe9HlMT6Ang/ga2w+dYLEPlhUV/u/M5sXw5mWEi5VqLSXXf8jvqKYrZxg8Gn16q1PFCiikJxQAtFRtIFRmYgADOT2rhfEHxi8CeHZHhuNYF3cIcGGyXzSPqRwPzrCviaVBc1WSivM6MNhK2JlyUIOT8lc76jNeB3/wC03pscxXTvC93MgP3551TP4AGqUf7Tz+Z+98Irs/2brn/0GvJlxJl6dvafgz3o8H5vJXVB/ev8z6JorxTSf2k/Cd1Kseq6XqOn543gCZR9cHP6V6noPijQfE1iLvQtUt72Lv5T/Mv1XqPxrvw2ZYXFO1Gom/xPLxuT43Aq+JpOK720+/Y2KKQHIzS13HmhRVDW9Ug0Tw/eavcq7Q2kLTOqDLEKMnFeTr+0n4Lxn+zdYP8A2yT/AOKrixWY4bCtRrTUWz0MFlWMxqcsNTckt7Hs9FeND9pPwYf+YXrH/ftP/iqX/hpLwV/0DdX/AO/Sf/FVzf27gP8An6jt/wBWc1/6B5fceyUV44P2kvA+4brDWB7+Sv8A8VWzpXx3+HGqTCJtYewc/wDP5EYx/wB9citKecYKbtGqvvMqvD+ZUlzToSt6HpVFVLHU7DU7NbvTr23u4G+7LBIHU/iKtbsnivQjJSV46o8iScXaSsxaKKKoQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHhP7TAH/CMaEf+nt//QK+cVUV9IftMLnwzoX/AF9v/wCgV84jivynin/kYS9F+R+58DP/AISILzl+Z2nwpX/i8egc/wDLx/7Ka+zB9418afCf5vjHoI/6eP8A2U19lj71fTcG/wC6z/xfoj4vxD/3+n/h/VjqyPE4/wCKK1f/AK85v/QDWvWT4m58F6uP+nOX/wBANfVV/wCHL0Z8LQ/ix9V+Z8Hqvyj6Upjpy/cH0p2RX4ftI/ppt8p93eHQB4T0sDtaRf8AoArRZsCs7w6f+KS0s+tpF/6AK5f4r+NP+EL+Hs97buo1C5P2e0B7ORy34DJ/Kv2qVeOHw/tZ7JXP5shhp4nFewpr3pOy+85D4s/GZPD0kvhzwzJHJqoG2e54Zbb2Hq/8q+ar68utRvpL2+uZbm4kOXmlcszH3JqtJJJLM80rs8jsWZmOSxPJJ96WPdJIsaKWZiFCqMkk9gK/KM0zWtmFVuT06I/esjyHDZRRSgry+1Lv/wAAjY9u9QscHmvof4e/s/w3VguqeOROjyANHp0T7Cq/9NGHOfYdK9ZtfhV8O7WDy4vCOmkEYzJHvJ/E16eD4UxdeCnNqN++542P4/wGGqOlTi526q1vk+p8QAilwOpr628UfADwRrFuzaRbyaLd4+V7diY8+6Hj8sV80eLvCGseC/EkujaxEA6jdHKn3Jk7Mp/p2NcGZZHicv8AeqK8e6PXyXinBZtenTbU/wCV7/Ludv8ADf40az4SuodM1uWbUtFyF2uxaWAeqE9QP7p/CvqzS9VsdZ0mDUtNuY7i1nUPHLGchga/P48LjNe2/s7+OpdP8RP4Kv582l7mS03H/VygZKj2YA/iPevb4bz2pGosLXd09m+h8vxnwtSlRlj8LG0o6yS2a7+p9Q9qoarq1ho2k3Gp6ncpb2kCl5JHOAB/jVzPGDXzF8fvGz6t4kHhOxm/0KwbdcbDxLNjofZc/nX2ObZjHAYd1Xv0XmfneRZRPNcXHDxdlu32RjfEX4vax4uvZbPS5prDRlJCxI215h6uR/6D0rzFiOaTdjv+ddF4P8E61461z+zdHiAVMNPcScJCvqfU+gr8nq1sRmFf3ryk9j94w+GweTYV8toQju/831ObIDdDSYHY19beHPgJ4D0i3T+0LOXWLjaN0l25259kHArpbj4VfDy6tvIk8J6cFHQxx7D+Y5r6GlwdipRvKaT7anydbxFwMZ2p05Nd9F+B8R4571f0rV9T0PU49R0i+ns7qPpLE2D9D6j2Ne5+Pv2e4raxm1XwVNKxjBd9OmbduH/TNuufY9a8DkjaKRkcFWUkEEYINeFjcvxOXVEqis+jX6M+qy3OMFnVFuk7rqnv80fU/wAKvjJD4sEWha95dvrQB2OPlS6A9PRvb8q9dVt1fn3BPPa3cV1bTNFNEweORDgqwOQQa+0Phd4y/wCE18AWupzMv22P9xdqO0i9/oRg/jX3XDWdyxa+r1/jWz7r/M/LOM+GYZdNYnDL93Lddn/kzR+IYz8KPEQ/6h83/oBr4WUfIK+6fiGcfCjxEf8AqHzf+gGvhlPugV5HGn8an6fqfQ+G/wDu9f1X5ABSgAjiliXfcxIejOAfzr6+tfgd8NWtInbQXLMgYk3MnJx/vV4WWZNWzHm9k0uW2/mfU55xHh8ncPbxb5r2t5fNHx6wANNAz1r6/vvgH8NrmApFpdzauekkNy+R+ZIrwL4pfC66+HuoQzwTvdaTcsVhncAMrYzsbHfHQ963x/DuKwVP2srOPkc+UcZYDMqyw8Lxk9rrf8zm/C/i/XvB2prfaHfyQYYGSHOY5R6MvQ/zr6/+Hnj3TvHvhddRtB5VzERHdWzHJifH6qeoNfEXUcV6V8Ctdm0X4wWVsJWFvqKtayrngnGUP1BH6mujh3NqmFxEaMneEnb0OLjPIKONws8VBWqQV790t0z7FopAaWv1I/DwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPDP2lwf+EW0M/9Pb/+gV839TX0n+0t/wAilon/AF+N/wCgGvm3HWvynij/AH+XovyP3LgV/wDCTD1l+ZseFfED+F/GFjr0dsty1q+8RM20NwR1/GvXh+0xqA/5lO2/8C2/+JrwdulKozXm4PNsVg4uFCdk/JHs5jkGAzGoquKp80krbtafJnvI/aZ1An/kUbb/AMC2/wDiKr6j+0Teajo91YnwvBGJ4XiLC6JxuUjP3fevE1Q07ZgV1S4jzGSs6n4L/I89cHZRFpqjqvOX+ZAAQADQc/pTm6mmEV40dWfSSWjPvDw+pXwlpan/AJ9Iv/QBXzl+0fq0tx49sNG3N5Vpa+bt7FnJ5/JRX0foPPhXTP8Ar0i/9AFfLX7QMUqfGed3OVe0hZPYYI/mDX6bxLNxy1W62PxbgunGecty6KTR5cRkV6n8APCkOvfEiXU7yMSW+lRCZUYZBlY4T8sE/gK8s7V9AfsyXEQn8RWxOJSIZAPVfmH86+L4fpQq4+nGe3+SP0ji2vUoZTWlT0ei+TaTPoYLjvTh0pAaWv14/ARGGa8y+N3hKDxD8MLy9Ea/bNMU3UMmOdo++v0Iz+IFenVz3jq4itfhrrtxNt2JYzZz0+4RXHmFKNXDVIT2aZ25ZXnQxdKrS+JSX5nwoy1a0S/m0fxLp+qwHbLa3CTKf91gagH3fekC7mwOtfjMJOEk47pn9I1EqlOUJbNH31dXoh8PzalxhIDP+AXdXwdd3s+oahcX9w5aW4laZye5Y5P86+3dVglb4TXdsCfN/spkyOpPlYr4YU4ABr7LjCpJqjF7Wb/I/NfDqjFPESW90vlqD5ANfY/wZ8LQ+G/hXp7eUou79BeXEg6ksMqPoFwK+N3OQQPSvvHwjcxXfgPRriFgUeyhII6fcFY8G0oSr1JvdLQ6fEavUhhqNKPwybv8tjZA5p1FFfox+RDSpPQV8n/H3wvFoXxITULONY7fU4vPKqMASqcN+fyn86+scivnT9pq8hOqeH7FSPNWOWVvXBKgfyP5V85xTShLASlLdNW+8+u4IrVKeawjDaSafpY8Bwa92/Zo1SSPxJrOik/upoFuQCejK20/ow/KvC817B+zpE8nxVuJV4WOwk3fiygV8HkFSUcfS5e5+o8W04zyqtzdFf8AFH0D8Rjj4S+Iz/1D5v8A0E18MpkrX3N8Rhn4SeIs/wDQPl/9BNfDiDC8V7fGn8an6fqfN+HGmHr+q/IfBxdRH/bX+dfoDaA/YYP+ua/yr8/FJWRW9CDivbE/aW8RxQLGvhzTjtAGTI/OK5uGc1w+A9p7d2va2h2ca5HjM0dH6rG/Le+qW9u59OGvFv2kb6zT4bWemuUN1Peo6KT8wCg7iPzA/GuDuf2l/Fr27LbaHpUMh+67F3A/DIzXl3iDxTrnizWW1TXr5rm4I2qMbVRf7qr0Ar1s34lw1bDSpULty07HhcPcF46hjYYjE2jGDvvdv7jIC4rrfhnazXPxc8PRwDLC9Rz9F5P6CuVOcZFe6/s6+Dri51yfxjeQMtrbq0FozD/WSHhmHsBx+NfJZRhZYnF04x73fotT77iPHQweXVZze6aXm3ofSopaB0or9kP53CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA8N/aXOPCmh/9fj/+gV83g+tfSP7S3PhbQx/09v8A+gV82nivynin/f5ei/I/c+BV/wAJMPWX5nVfDjTbLV/ijo2n6jbpcW00+2SKQZVhg8EV9Vx/DH4foMDwlpmP+uVfLvwmyfjNoGP+fj/2U19njrX0HCWGpVcNNzin73VeSPk/EDFV6OOpxpzaXL0bXVnLj4b+AwMDwppv/fkVl+Ifh14Ji8LalNB4Y0+OWO1kdHWLBVghIIrvazPEP/Ipar/16S/+gGvqK2CoKnK1NbdkfD0cfivaR/ey3XV9z4QXlBn0pCwBqNX+UUu7Ir8XfxH9I8vun3poR/4pXTSB/wAusX/oArwb9pTRZFutI8RRxnyyrWkrAdDncuf/AB6vedAH/FK6Z/16xf8AoAqj4v8ADFj4u8IXug34wk6/LIOsbjlWHuDiv1/McF9cwLordpW9Ufz3k+Y/2dmUcTLZN39Hoz4WLcV13wx8aHwP4/t9Vl3NZSDyLtVHPlk9fqDg/hWB4k0HU/C/iW50TVoTFcwNj/ZdezKe4NZgFfk9OpVwdZSWkos/fatChmWFcG7wmunZn6A2N/Z6lp0N7Y3MdxbyoHSWNsqwNWxjFfEXgr4l+K/A05j0u7EtiTlrO4G6M+47qfoa9Xt/2nMW5+1eE8ygcGK6wpP4rxX6Ng+KsJVgnVfLLr2+R+OZjwJmOHqNUI88ejVk/mmfQjnnrXgnx++I9tb6W/gfSZ0luZ9rXzociJM5Cf7xwPw+tcd4m/aE8W61aPaaRbW+ixuMNJExklx7MQAPwFeSO8k9w08ztJI7FndzksT1JPc15Wd8TU6tJ0MLfXd/5Hu8N8EVqNeOKx6S5dVHfXz/AMhN3Ga3/AujyeI/iHpGjxxs6zXKGTA6RqdzE+2Aawio2EV9N/AX4cSaBpD+KtZttmo3yAW8bj5oYff0LdfoBXzmS5fLG4mMPsrVn1/E2bwy3Azm378laK831+W57RIiyQGEr8jLtI9q+FfGmhS+GfHmqaJKrAW87eWWH3kJyp/Iivu4AY6V4z8dPhxL4j0weJtFt9+pWcZWaJR808Q549WXnHtmvuuJstlisMp01eUPy6n5fwVnEMvxrhWdoVNPR9D5YbNfSn7P/wAQrSfRF8F6pcLHdW5Js2c4EkZ52D3Hp6fSvm0jnHf0p0cksEyTQSPFKhDI6NhlPqD2r4DLMxnl9dVYr1XdH63nuTUs4wroTdnun2Z+hIIzTq+U/Cv7QnirRrFLTWrWHWUQALK7eXLj3YDB/Kuluv2nD5AFn4T/AHuOTNdfKD+C81+iUuKMBOHM5W8mj8ercE5tTqckafMu6at+J7xqeo2elaZcahqFzHb20CGSSRzgKBXxj8RvGMnjnx7cayFKWqqILWM9VjUnBPuSSak8Z/EzxT45fytUulisw25bK3G2MHsT3Y/WuPHXmvkc/wA/WOtRoq0F+J+gcKcJyytvE4l3qPTTZL/MQ8V9I/s2aA8Gj6r4kljI+0SLawkjgqvLEfiQPwrwjwt4X1Pxh4sttD0yMl5TmSXGVhQdXb2H69K+2vDmh2Phvw1Z6Jpqbba1jCL6n1J9ycmujhPLpVK/1mS92O3qcfH+bwpYdYGD96Wr8kv82Z3xFH/FpPEY/wCofN/6Ca+HI/uV9x/EY4+EviMnoNPm/wDQTXw3G42ZrTjT+PT9P1MvDj/d6/8AiX5DjgUinLYxzTo2H2mP/eH86+9bDS9NGl2+NPtf9Uv/ACyX0HtXj5Lkv9pc/v8ALy26dz6HiXiX+xfZr2fNz362tb5M+BJTtbBHJ7VoaX4f1/WJ1i0rRb+8djgCGBiPxOMCvvP+y9N3A/2daccj90v+FWFijRcJGqj0AxX0VPgxX9+rp5I+RqeJE+X93QSfnK/6I+Y/Bf7PWtX88V74wlGnWoIJs4mDTSD0JHCj8z9K+ktL02z0jS4NN062jt7WBAkccYwFAq5tHpS4xX0+XZTh8BG1Favdvc+JzfPcXms1LEy0WyWiX9eYUUUV6Z44UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFBOBmig8jFAHhX7Ssg/4RrQgSB/pTn/AMcr5waRc9RX3veaZY3yoL6yt7kIcqJow4B9RmoB4d8PkZ/sPTv/AAGT/CvkM24alj8Q66qWvbofe5BxpDKsHHCujzWbd723+R8g/CaQD4zaByP+PnH/AI6a+0Qeaz49D0a2mWa30myikU5V0gVSD7ECtACvVyTKnl1GVJy5ru54fEmeLOMRGuoctlbe/UWsvxEwHhHVSen2SX/0A1qVHLEskbI6hlYYKsMgivXqR5ouPc8CEuWSl2Pz3DLtGDUiYI6ivvZfD2ghQBounj/t2T/Ckbw/oJX/AJAun/8AgMn+FfCPgubd/a/h/wAE/U/+IkQtb6v/AOTf8ATw627wnph/6dIv/QBWntyetMijWOMKihVAwFAwAKkr7unHliovofllSXPJy7nGePvhzoHj3TFh1KIxXcQPkXkXDxn09x7GvmjxZ8HfGXheWSQadJqVipyLqzUuMerL1H+ea+ySMmjbXjZpkOHx75paS7r9T6LJeKcblXuU3zQ/lf6dj892QqxVgVYdQeCKYeDX3bqvg7wvrbE6toGn3bH+OSBd354zWBJ8F/hnLJ5jeFrcH0WR1H5A18tU4MxCfuVE181/mfd0fEjDOP72jJPyaf8AkfGBIAySB9a29A8J+JfE10INC0W7vM8GRUIjX6ueB+dfYVh8L/AGmSLJZ+EtMV1OQ7xeYR+LZrqYIIoEEUEaRoOioAAK3w3Bj5r16mnl/wAE5Mb4kJxawtHXvJ/ov8zx/wCHnwK0/QJodX8TSRahqKEOluBmGE/j98+549q9kCYGBgCnbaWvssHgaODp+zoxsj85x+ZYjMKvtsTK7/L0AU0rk9qdRXYcJ4z8R/gVp/iKebWvDLx2GpvlpICMQzn1/wBlvevnXxF4R8R+F7lodb0e6tcHAkZCY2+jjg194EZqGeCKZDFNGkiHqrqGB/A18zmXDGHxcnUp+7J/d9x9lk3G2Ny+KpVF7SC77r0f+Z+fAOVyDSjmvt6++GfgLVJTJe+FNMZiclkhCEn/AIDiqcfwb+GkThl8J2bEcjeWYfkTXz0uDMTeyqK3zPr4+JGEcbyoyv8AI+MYleWQRxK0jnoqDJP4CvRfCHwX8ZeKLmOS6sn0iwOC1xeJhiP9lOpP1wK+qdL8L+HtFTGk6JYWQ9YIFUn8cZrYUcZr0cHwdTg+bET5vJaHjZj4iV6sXDCU+Tzer/y/M5jwX4D0LwPov2LR4cyvgzXUnMkp9z6egHArqAMUuKK+ypUYUYKnTVkj88rV6lebq1ZXk92zlPiY234P+JP+wfL/AOgmvhqMgcZFfoZPBFcQNDPGkkbjDI6hgw9CD1rP/wCEb8P/APQE07/wGT/Cvns7yGWZVIzU+Wy7H1nDPFUclpVKcqXNzNPe36HwZAgNzGcj7w/nX3/YnOmW+P8Ankv8hVJvDuhDGNG08fS3T/CtNF2IFHQVrkeSyy1zvPm5rdLbGHE3Eizp07U+Xlv1vvb/ACHUUUV9AfKhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUVVv9RsdLs3vNSvbaztkxunuZVjRc8DLMQBWQfHvgYdfGnh4f8AcSh/+KoA6GisnS/E/h3XLiSDRNf0rUpI1DOlndxzMgzjJCk4Fa1ABRRRQAUUjMqIzsQFAySTgCuF1r40/CXw7dm11r4jeG7SdThomvo2ZT6EKTg0Ad3RXmEX7RnwLmlEafFPw3uPHzXQX9TXY6H428HeJlB8PeK9F1TPazvY5T+SnNAG9RRRQAUVBd3lpYWr3V9cw21ugy80zhEUe7HgV55qP7QfwT0q4aC9+J/hxZEJVljuhLgj/czQB6VRXmNp+0T8Db6URW/xR8Obz0El0I//AELFd1o3iTw94it/P0DXdN1SLGd9lcpMP/HSaANSig1lal4l8O6JOkGta/penSONyJeXccLMPUBiMigDVornG+IHgQD/AJHbw5/4Mof/AIqtyzu7e+sYryzuIri3lUPHNC4dJFPQqw4I9xQBPRRWRr3inw54WtPtfiXXtM0i3IJEl9cpCDj03EZ/CgDXorzKX9on4GwybJPil4b3e12G/lWhpnxu+EGsSrFpvxL8LzO3CqdQjQn8GIoA72iobW7tL61W5srqG5hblZYXDqfoRxVXVNd0XREjk1rV7DTkkJVHvLhIQ5HUAsRmgDQornh498Cnp418O/8Agyh/+KpR478Dnp4z8P8A/gxh/wDiqAOgorA/4TrwR/0OOgf+DGH/AOKpP+E78D/9Dl4f/wDBjD/8VQB0FFc63j/wIo58a+HR9dSh/wDiq2rO9tdQs4ryyuYbm2lUPHNA4dHB6FWHBHuKALFFFZV94l8PaXcm21TXdLsZgAfLubuOJsHocMQaANWisA+OvBIH/I46B/4MYf8A4qtuGaO4iWWF1kjcBldDkMD3B7igCSiikY7VJxmgBaKxLrxh4U0+8e01LxNotncR8PDcX0UbqeuCpbIp9j4r8L6reiy0nxJpF/ckFhBa3kcrkDqdqsTigDYooHIooAKKzNU8Q6DojxrrWt6bpvmZ2C8uUhL4643EZqh/wn3gXH/I6eHf/BlD/wDFUAdFRWeNb0k6N/bH9qWJ07Z5n23z08nb/e3524981nDx54GIz/wmfh7/AMGMP/xVAHQ0Vz48eeBz08Z+Hv8AwYw//FUh8eeBh18aeHh/3EYf/iqAOhornv8AhPfAp6eNPDx/7iUP/wAVS/8ACd+CP+hy8P8A/gxh/wDiqAOgorEh8YeFblC9v4m0WZQcFo76JgD6cNRQBt0hIAyaWs7X9a07w34X1DX9WnEFjYW73U8h/hRFJP8AKgD4z/b0+JqiDSPhPpswLSbdT1QDnCjIhjP1O58ey18MGCIn/VJ/3zXWfEXxrf8AxD+J+t+M9TyJ9SummVD/AMso+kaD/dQKPwq34T+GPiTxj8N/F/jTSYd9j4YhimuRtJMgdsMF91UFz7CkwNv9nv4lN8JPjrpPiV38vS52+xaoijhraQgMxH+ydr/8Br9b4pYpoUmhkWSN1DI6nIYHkEH0r8Qgw+or9Mf2NvimPHfwMTw3qFyZNa8NFbOQOctJbkZhf3wAU/4B70ID6PrmfH/jjQfh18PNS8Y+I52j0+wj3sqDLyseFjQd2YkAV01fJP7fl9cwfBTw1YRMwt7rWszAdGKQuVz+OT+FMD5Q+MX7RfxC+LuuTfa9TuNI0DcRb6JZSlI1XsZSMGV8dSePQCvIVKqM8D9Kcetfev7FPgH4Sax8KJtcu9M0jWvF32qRLyO/RZ5LSMN+7CRtnapHO7HJJGeMUAfBbMu3JYY96VGaJxNCxikU5WSM7WB9QRX7QXHgnwVd232W58JaFNDjHlSWERUfhtrx74gfsefBzxnazy6Xo7+F9ScEpdaSdqBvVoT8hHsMfWlYDiv2GtU+JHiHwBreseLPE+panoEU62WmQXreayuo3SMsjfNtGVXGSM59K9p+OHxg0n4M/C+bxJexLd6hM/2fTrAttNxMRnnuEUcsfw6kV0Hwz8B6b8M/hTovgjS382HToBG05XaZ5CSzyEerMSa+LP2/r68k+LHhTTJC4tIdKeeNT90u8xDH64RRTA+d/iJ8WfH3xS1yTUfGHiG5uoyxMdijFLaAdlSIHAx6nJPcmuHLKvGQKf0zj8K/UP8AZ4+HnwXk+BWgaj4Z0TQNZuJ7SOS+vriCO4uPtBXMiuWBKENkbeMACkB+XO5TxuU/jVrTtT1PQ75dR0fUrrTrqM7luLSVoXX/AIEpBr9idT+GHw31m1e31PwJ4cuY3G1g+nxZx9QuRXhviv8AYe+FWs+IrTVPD81/oESXKS3OnRt59vPGGBZAGO5MgEcHHtRYD0v9nabxvefs4+HNT+IGsTanrN9D9q82dAsiQucxK5AG5tmCSeea+T/+CgiI3xZ8IlkVv+JRJyRn/ltX3/bwRW1rHbwRrHFGoRI1GAqgYAHsBXwJ/wAFA8f8LW8Hjv8A2TL/AOjqYHx75UQH+qT/AL5Ffrz+z+Mfsr/D8Y/5gNr/AOixX5EnpX67/s/j/jFn4fD/AKgNp/6KFJAeOftRftSXPwv1E+A/A0cMvieSBZbm9mAdNPRvugL0aQjnngDBIOcV+fuv+JNf8V63JrPibWL3V7+U5a4vZTK/0Geg9hgV0fxh1S71n9oHxpqN+ztPJrNyp38kBZCir9AqgfhSfCbSvCWtfGvw3pfjq8W08PXF4qXkrv5a7ecKzfwqzbVJ7A0AcR5i5IyM/Wm5SQH7rfrX7L6J8PPh1o2kRW2ieDPDttaBRs8ixiIYdjuxlvqTWd4j+Cfwl8W2jwa78PtAn3DHmxWiwSD3DoAwP40wPzF+BmufEu1+Meg+Hvhz4k1HSrvUryOFo4X3QlM5dniOVYBQxOR2r6o/4KCxBvh94GEpErLf3ALFRz+6XJx2r1j4Wfss+CPhP8Yb3xxoF9e3CSWrW9nZXgD/AGMufnZZOrZACjIyATyc16T43+GPgX4kWtnbeOPDtvrMNk7SW6TsyiNmABI2kdQBQB+NSwRDpEn/AHzThBH/AM8k/wC+a/WP/hlv4A44+Gmlj/tpL/8AF18m/tnfCrwB8NT4RbwP4bttHF99pFx5Lu3mbdm3O4npk9PWgD5NMUWMeWn/AHzR9liI/wBXH/3zTmyK/Rj9nj4A/B7xX+zL4Q8R+I/Amnahql9ZmW5uZWk3SN5jjJw2OgFK4H5yrbRbhiNM/wC6K/XL9nFPL/ZO8ALjH/Emh/lVM/sv/APr/wAKz0r/AL6l/wDi69M0PRNK8NeG7LQNDs0s9NsYVgtrdCSsaLwFGeaYBrms6f4d8O32u6tcLb2FjA9zcSt0RFUkn9K/H34o+N7z4m/FvW/GupL81/cFoYn58mFfljjH0UD8cnvX2z+3T8T/AOw/h1YfDTTZ9t7rjfaL3aeUtY24U/77j8kNfnz+8kkVI0Z5HbaqqMliTgAUmBGYIcf6qP8A75Ffpp+xl8Th45+AkfhzULjfq/hlhYyZPL25yYX/ACBX/gFfn58R/h5r3ww8bnwv4ji2Xf2WC7VgMKyyxhsD12sWQ+6mu0/Zl+Jx+F/7QWl6hdz+Xo+pkabqIZsKI3YbZD/uPtP0zQgP1eopAQQCCCD3FLTA/Jv9qaCNv2wPHRaNCTeRclR/z7xV5t4Y1/WPBniyx8TeGbxtP1SxlEsE8Q5BHYjup6EHggkV6h+1Jg/tfeOf+vyL/wBJ4q8ePWlcD9YPgF8dNF+NfgNL2PyrLxBZKE1PTQ3+rbtImeTG3Y9uQa9er8bvh18QPEXwy+INj4v8MXAivLY4eJydlxGfvRSDup/TgjkV+qnwk+K/hr4v+AIPE3h6XY4xHeWLtmWzmxko3t6HoRQgPlD/AIKFqp1nwHuRW/c3fUZ7x18UCKLHESf98ivtr/goTj+2PAg7+Vd/zjr4px8poYH6E4X/AIdDMu0Y/wCEcIxjj/X1+dghhJ4ij/75Ffq58AvDujeKv2H/AAh4e8Q2EV/pd7pfl3NrLnbKvmscHHPYVeP7LX7P5P8AyTLSh9HlH/s9MD8mVij7RJ/3zTWhiJ/1Sf8AfNfon+0f8Avg94L/AGZfE/iTwz4F0/TtUtYojBdRvIWjJmQHGWI6E1+dpbnrSYCrbxY/1SH/AIDS/Z4s/wCqj/75FfXn7Evwu+H3xH0bxnL438L2etSWNxapbNcFv3YZJCwGCOpA/Kvqs/su/AEtk/DPSv8AvuX/AOLosB+c3w4tifDF1sQAfa26Af3Eor9LdN+AHwd0e1a203wFptvEz+YVUuctgDPLHsBRRYD0mvj79un4rf2N4Isfhbpdzi91jF3qO08pbI3yof8Afcfkh9a+tdV1Sx0XRbvV9TuEt7O0heeeVzgIiqWYn8BX49fFTx7f/E34u6541v2b/Trgm3jb/ljAvyxJ+CgfjmmBx+4swABYk4AHJNfqz+zn8KLf4ffs06d4a1iyR7zV4WvNWidfvNMvMbf7qbV/A1+Wugap/YPivTtb+w218bG5juRa3QJilKMGCvgg7cjnmvp9f2+/iiF+bwr4XJ9kmH/s9JAeE/F34fXXwx+NGveDbiNhFaXBa0c/8tLd/miYf8BIB9wa6j9mz4mf8Ks/aA0rWLucx6Rf/wDEu1LJ4EUhADn/AHGCt9Aax/jF8ada+NPiOw1zxBoWkafe2cBthLYK4Mse7cA+5jnBJx9TXnIbPBHB4xQB+3qMHQMpDA8gg5BFeT/tF/CWT4xfBG68N2MkcWr2sy32nPIcIZkBGxj2DKzLnsSD2rmf2RfisPiN8BbXTNQufM1vw6F0+73nLSRgfuZffKjaT6oa9/JGMmmB+KGu6BrfhjxDc6F4i0q60zUrZiktrcxlHU/j1HoRwe1RabqWo6RfJfaVf3VjdJ92e1laJx9GUg1+w3jn4X+AviTpy2fjXwxY6qEGI5ZU2zRZ/uSLhl/A188+Jf2Bvh7qE0s/hnxbruiliSsM4S7jX2GdrY+pNAHyr4e/ak+O/hkCO08f3t7EOkeqRpdj6ZcFv1r3HwL+35q0d1DafEXwfbXFvwJL/R2KSKO7GJyQ30DCuV8ZfsJ/E3Q9PlvfC+taT4lWMFvsyhrWdgP7obKk+24V8uXVvcWV5NZ3cEkFxC7RyxSrtaNlOCrA9CCCMUgP2W8D+P8Awl8RvCkXiLwdrUGqWEh2lo+HibukiHlGHoRXhf7YHwT1f4meCtP8UeFbVrvXNBEgNlGMvdW74LKnq6kBgO+SOuK+Tf2R/Hmp+D/2mNE0yC6ddN1+X+zr23ydshYHy2x/eV8YPoSO9fqUR8uBTA/EeeOaC5kt54nhmjYpJFIpVkYdQQeQfY1f0PxJ4g8M6gL7w7reo6TcjH72yuGhY/XaRn8a/Vz4ifs/fCn4oyvd+KfDEP8AaTDB1OyY29yfq6/e/wCBA14Jr3/BPzwvMJJPDXxB1aybOUjv7aO4UD0yuw/jQB8/eHf2v/jv4cRY28Vw6zEpzs1a0SYkem8bW/WvoD4b/t6aJqt/DpvxL8Of2IXO3+1NOdpoFPq8Z+dR7gt9K8O+Jn7HfxR+Hnh268Q20un+JNKtEMtxJpxZZoox1cxMMkAcnaTivnjPpQB+2uk6rpuuaLbavpF/b39hdIJYLm2kDxyKehVhwa+DP+CgeP8AhbHhD1/siX/0dW1+wF461KS+8SfDi7uJJbCKBdVs0Y5EB3hJQPQNuQ49QT3rE/4KCL/xdjwe3/UIlH/kagD5C7V+u/7P+f8Ahlj4ff8AYBtP/RQr8hx0r9efgCR/wyz8Pj/1ALT/ANFLQB8O/tf/AAS1vwV8VtR+IGl6fLP4X1uX7TLcRKWFnct99JMfdDH5lJ45I6ivmnOR6g1+21zbW19aSWl5bxXFvKpSSGZA6Op6hlPBH1rwjxh+xv8ABHxZcSXVtot34dupCWL6NP5SE/8AXJgyD8AKVgPzv8MfFT4j+DAE8L+N9c0yIdIYbpvL/wC+Dlf0r2Hwn+258Z9BnjXW5tK8S2q8Ml5bCGQj2kjxz9Qa9P8AEP8AwT5Qb38LfEh/9iHVLIH8C8bf+y181fFf4F+P/g1fW6eLrGB7K6YpbalZSebBKw5K5IBVsc4YDjpmmB98fB/9rH4dfFS9g0W5aTw34hk4XT79wUnPpFKMBj/skA+xr3wHIzX4hqWSVZI2KOpDKynBB7EH1r9XP2ZPH+ofEX9m7Q9a1eYz6nbb9Pupm6yPEdoc+5UqT7k0kB7BXxJ/wUIH+heBG/6aXY/SOvtuviL/AIKEvi08CJ/t3Z/SOmB8Nsa/WH9ljP8Awx34Cz/0Dz/6Nevyd71+sn7LX/JnvgL/ALB5/wDRr0kB69VbUL600vSrnUr+dYLS1iaeaVzgIigszH6AE1Zr5T/bj+J58MfCm08AaZd7NR8RPm5CH5ks0PzZ9A7bV9wGpgfE/wAYviHdfFL40a54ynLrBczeXZxOf9Vbp8sa+3AyfdjXoX7Ivwyi+IX7Qtrf6lbCXSPDyDUrhWGVeUNiFD/wP5seiGvAmavXvg9+0X4q+Cmh6jpvhjQtDuTqE6z3Fzexu0rbRhVyrAbRzgY6k1IH1h+3N8M4vEHwotfiNYwf8THw+4iuSo5e1kYA5/3XIP0Zq/PDP4V9M6/+258RPE3hTUfD2r+FfC09hqFu9rcRmKX5kdSp/j64NfMg4GB0psD9TP2T/iofiZ8A7SLUbjzNc0Irpt7uOWkCr+6lP+8mAT6q1e7V+WH7KHxQPw3/AGhdPivbgRaNrpXTb4McKhY/upD6bXxz6Ma/U4UID8of2pf+TvvHP/X5F/6TxV5j4f0efxH4t0zw/azRQz6jdR2kUkudiu7BQWx2yRXp37U52/tfeOP+vuL/ANJ4q4f4Yjf8b/B6DvrVoP8AyMtDAy/EXh/WfCfim/8ADfiGwlsdTsJTBcW8g5Vh6eoPBBHBBBFdX8Ifi54n+D3xEh8S6BIZYXxFfac7YjvIe6t6MOqt2PtkV+gX7TH7PFh8YPCb6xocENt4y0+Mm1n4UXiDnyJD/wCgseh9ia/MfUNOvtJ1a50vU7SWzvbWRoZ7eZNrxOpwVYHoQaQH0/8Atf8AxD8N/FLw98OPFvhe7E1ncW12rxNxJbygx7opB2YfrwRwa+WWXCmgO4j8ve2wNuC54z64oLZWncD9Y/2Yv+TRPAf/AGDv/ajV61Xk37MYx+yL4DH/AFDR/wChtXrNMDxP9rgf8YdeMv8ArlD/AOj46/KPvX6uftcHH7HXjL/rlD/6Pjr8o+9ID7v/AOCdwx4e+IB/6e7P/wBAlr7Zr4m/4J2tnw98QF9Luz/9Alr7ZpgFFFFAHyX+3L8UT4e+G9l8OdLudl9rx8692Nyloh6H/ffA+itX55M2TX1t8X/2dP2j/il8ZNa8Z3vhzS0iupdlpCdWiPkW6fLGnX0GT7k1yeifsT/Gy68T6fb67pGm2WlyXCLd3CajFI0cO4b2Cg5J25wKAJPh5+xh8Q/iJ8NdK8aWniLQtLtdTiM8FterN5oTcQrHapGGAyPYiunP/BPv4kn/AJnrwr/3xcf/ABNfoDpen2ek6JaaVp0KwWlpClvBEvREQBVA+gAq3QB+eTf8E+/iUqkr458Ksew2XA/9lr5a1vRdR8OeKdR0DVYGhvtPuZLWeNhja6MVP8q/bI9K+IP2pP2XvG3jX4zjxr8ONJtLuLU7Zf7Rjkuo4Clwny7xvIzuTbnHdT60rAeBfsx/FE/C74/abeXlyYtF1UjTdS3HCqjsNkh/3Hwc+havvz9pH4pL8LPgHqWs2k6jV74f2fpoB586QH5x7Iu5vwFfCB/Y7/aAK4PhTTyD/wBRW3/+Kr6vu/2e9a+NP7O3hTRfixfahoHjDw9A9pHPa3KXUMmMKsjoDtYsipkghgQeaYHyj8Of2tPi/wDDy3j0/wDtiPxFpifdtNZDTMg9FlBDj6Eke1fQ2g/8FAvC01qi+JPAOr2k+PnawuI50J9g20ivFPGX7Enxj8NGW40k6L4hsU5EtvdC3kx7pLgfkxrxfVfh1410O9+y6nohhlyRt+0wt09w5oA+0vE3/BQDwvDpcq+EfAurXV9j92+pyxwxKcdSELMfpx9a+Ftf1u/8S+K9S8Q6q6vfajdSXdwyLtUu7FmwOwya6LRfhV8QPEdysGj6B57ltuGuoE/9Ceve/Af7CPxG1i8gufHer6b4d08kM8drILu5Yegx8g+pY/SgDgf2TvA+r+MP2nvD95ZQSfYdDnGp3twF+WNUzsUn1ZsAD6+lfU37a3xguPB3gWw8BeHtRmtdb1eRbqaa2kKSW9tG+QQw5Us6gDHZWr3v4a/DHwh8K/BUXhvwhpwtrcHfPO53TXMmOXkf+I/oOgAryH49fsoaV8YfEsvi7TfE95pHiB4khIuQZ7V1QYUbeGj7/dOOpxQB81eAP24fih4Ut47DxXaWXi+0QBRNcn7PdAD/AKaKCHP+8ufevbtL/b++HM9qG1Xwd4kspscpCYZ1z6Bty/yr5s8X/se/GzwmJJzpel6raKeLiz1CNd3/AAGTaRXlF74D8XadqLWF5o7Rzp95PtETY/EPigD66+JX7eFnq3g6/wBE8AeEL62uryF4DqGrSIBArAqWWNC25sHjJAB7GviMKQuB2FeieGfgZ8U/F1zHDoXhpJjIdoZ723Qfjl819KfDP9g3Umv4NR+K2v28dshDNpGkuXeT/ZecgBR67QT6EUAWP2A/AWqwXHiL4lXcLRWFxENKsiwx5xDh5WHqAVRc+ufSsH/goJkfFfwf6f2TL/6Or7w0LRNK8OeHLPQtD0+DT9OsohDb2sC7UjQdgP8APrXyp+198C/iV8WvHvhzVPA+lWd5bWOnyW87T3iQFXMm4ABjzx3oA/PrcK/Xj9n5g37K3w+bIA/sG1/9Fivz/wD+GNP2gMc+GdM/8GsP+NfoV8KfCl/oH7OPhfwZ4ih8m9tdGisLyOGbO1gm1grqf1BoA+Cvjh+0X4uvP2ob7xJ8PvE97plnpA/suya3fMc6Ix3s6HKurPk8g8AV33gz9v7XbK1jtvHfgq31RlABvNLm+zu3uY2BXP0IrX+IX7Ahknlvvhl4tWJGyw03W8tt9lnQZx/vL+NfO3iv9mn4xeDrkxat4btnXBYS2+oQMpA78sD+lAH1o37fvw0+w+YPCHigz4/1WIMZ/wB7f/SvnP8AaF/ad1D436bY+H7Lw8miaFZ3H2sJJKJp5pQpUFmAAUAM3A9eteQN4C8XrKIzozbj0H2iL/4uu/8ACH7MHxl8aSJ/Zfh+zhgJG6e61CFVQHuQrM35CgDyBnCjOa/VP9lHwTqfgX9mHRbDWbd7e/v5JNTlgcYaISnKKR2OwISOxNcH8FP2MPDHgLVrXxL46vIvE2uQESRWojxZ2zjncFPMjA4wWwPavqjGOKSAK+Hv+ChfTwH6Zu//AGnX3CelfL37XvwZ8efF6LwoPBGn2l22nNcGcXF0sGA+zbjd1+6aYH5uk81+sv7LRz+x54CP/UOP/o16+GT+xd8f8ZHh3Sj/ANxWH/Gv0A+BPhPWvAv7OvhPwj4igjg1TTbLybmOKQSKr72PDDg9RSA7+5uILW0lubmZIYYkMkkjnARQMkk9gAM1+RHxy+JU3xX+OOteLS7/AGFpPs2nxt/yztoyQn58sfdjX6Q/tFaN8R/FHwTvvCnw0sILnUNVItruWa6W38m2IJfaWPJbAX6E18Kn9jT4/nj/AIRrSx/3FYf8aGB5r8Lfhrrnxb+Jtp4K8PywW9zcRyTPc3AYxQIi5LNt5xnA+pFfQp/4J9/Ec/8AM9+Fh/2zn/8Aia9q/ZG+AGvfCWz1/XvHFhbQa/futrAsM6zCO2UBjyvGWft/sivqCiwH57j/AIJ9/ETb/wAj74Yz/wBcZ/8ACvNPjN+y/wCNvgt4VsvEWs6tpmrafc3P2V5dPWQeQxXK794HDYIGO496/VOuP+KXgey+JHwi13wXfBQNQtmSGRh/qph80b/g4U/nRYD8bBuDAqSpByCDyK/WH9mn4rQfFb4C6ZqM1wH1nTVXTtUQn5vORQA/0dcNn1J9K+In/Yr+P4OP7A0hvcapFg17n+yv8F/jh8G/ipeSeJNFsIvDerW3lXhh1GOUxyJlopAgPJzuX6N7UAfNv7Vg2/tg+Nx63MJ/8loq4f4Vgn47eDP+w3af+jlr6c/aB/Ze+MPj39orxJ4t8L6Np9zpd/LE8EkuoRxMQsKIcqeRyprl/h9+yL8cNA+LHhrW9V0HTI7Gx1O3ubh11OJyqJIGYgDknA6UMD9ImGQRXy1+1X+zQnxG0yXx94Ktgni2zi/0i1QADVIlHT/rqo6HuOD2r6l70mAaYH4ivFJHK8UkbxyIxRkdSCrDqCOxHpTD0Nffv7T/AOynceMtZPjv4YWdvHrd1KF1PTnlWGO6z/y3UtgK+fvD+Lr16/PY/Y2+PxXd/wAI3pmMf9BWH/Gk0B92fsxnd+yL4DP/AFDQP/H2r1mvPPgV4X1nwX+zr4T8LeIII4NT0+z8q4jjkEiq29jww4PBFeh0wPEf2u2C/sc+MCf+ecA/8jx1+UmeK/XX9ozwb4h+IH7OPiHwj4WtYrnVL0QiGOWZYlO2VWOWbgcLXwQP2Lv2gCOfDmlf+DWH/GkwPcP+CdhB8PfEH1F3Z/8AoEtfbdfMP7HXwa8e/B7RvF0PjqwtLOXU7i2e2WC6WfcERw2SvTlhX09TAKKKKAP/2Q==" alt="Hoop Assistant">HOOP ASSISTANT <small>· SCOUTING</small></a>
+    <a class="lk" href="#claves">Keys</a>
+    <a class="lk" href="#ataque">Offense</a>
+    <a class="lk" href="#sets">Sets</a>
+    <a class="lk" href="#finalizadores">Finishers</a>
+    <a class="lk" href="#defensa">Defense</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kick">Scouting report · Primera FEB (Spain)</div>
+    <h1>Ourense</h1>
+    <div class="games" id="games"></div>
+    <div class="stats" id="hstats"></div>
+  </div>
+</header>
+
+<div class="fbar">
+  <div class="wrap">
+    <div class="seg" role="group" aria-label="Game" id="gsel"><span class="lbl">Games</span></div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<section class="blk" id="claves">
+  <div class="wrap">
+    <div class="eyebrow">Keys</div>
+    <h2>What the <em>video</em> says</h2>
+    <p class="lead">Three Ourense games (Palencia, Cantabria and Alicante), 524 tagged clips. Offense: 0.89 PPP. Defense: 0.97 PPP allowed.</p>
+    <div class="three" id="claves-grid">
+      <div><h4>To attack them</h4><ul><li><b>Shoot off the pass and attack 1-on-1:</b> they allow 1.18 on Spot Up, 1.30 off screens and 1.33 in 1n1.</li><li><b>Crash the offensive glass:</b> 1.44 per possession on their defensive rebound and 1.56 on putbacks.</li><li><b>Run before they get set:</b> 1.37 in transition defense.</li></ul></div>
+      <div><h4>To defend them</h4><ul><li><b>Close the offensive glass and the shots off screens:</b> 1.27 and 1.64 PPP.</li><li><b>Stop the early offense:</b> 1n1 EARLY OFFENSE 1.40 and RIM RUNNER 1.50.</li><li><b>Key on #24 Mc Donell, #44 Leimanis and #13 Pinedo:</b> between 1.38 and 1.43 PPP on their actions.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATAQUE ============ -->
+<section class="blk" id="ataque">
+  <div class="wrap">
+    <div class="sidehead"><div><div class="eyebrow">Offense</div><h2>How <em>Ourense</em> attacks</h2></div></div>
+    <div class="three" id="o-read"><div><h4>How they play</h4><ul><li><b>Sets: 34% of their possessions.</b> 90 possessions at 0.80 PPP, below their average (0.89).</li><li><b>Pick and roll outside of sets and transition</b> produce more: 42 possessions at 0.98 without a single turnover, and 41 at 1.02.</li><li><b>Threes:</b> 26 of 76 (34%). On catch-and-shoot (Spot Up), 10 of 39 (26%).</li></ul></div><div><h4>Where they hurt you</h4><ul><li><b>Shots off screens (Off Screen):</b> 22 possessions at 1.64, 7 of 11 from three. Small sample.</li><li><b>Offensive rebounds:</b> 22 possessions at 1.27, 64% with points. Putbacks produce 1.47 in 15.</li><li><b>Finishers:</b> #24 Mc Donell 32 actions at 1.38, #44 Leimanis 21 at 1.38 and #13 Pinedo 14 at 1.43.</li></ul></div><div><h4>Where they get stuck</h4><ul><li><b>Their most used sets produce little:</b> #T6 Side Veer 10 at 0.70, #H1C Iverson Flip Spain 9 at 0.67 and #H2A Horns Roll Smack PnR 8 at 0.75.</li><li><b>FASTBREAK:</b> 16 possessions at 0.56. <b>Sideline inbounds:</b> 21 at 0.67.</li><li><b>Out of sets:</b> 16 possessions at 0.69 and 6 turnovers (38%).</li></ul></div></div><p class="readnote">Reading of the three games together.</p>
+    <div class="kpi" id="o-kpi"></div>
+    <div class="badges" id="o-badges"></div>
+    <div class="grid2">
+      <div class="board">
+        <div class="bhead"><div><h3>Type of offense</h3><p>Bar = possessions · box = PPP</p></div></div>
+        <div class="bbody"><div class="rows" id="o-type"></div></div>
+      </div>
+      <div class="board">
+        <div class="bhead"><div><h3>Result and quarter</h3><p>Click a segment or a quarter to filter</p></div></div>
+        <div class="bbody"><div class="obar" id="o-out"></div><div class="olg" id="o-olg"></div><div class="qt" id="o-q"></div></div>
+      </div>
+    </div>
+
+    <div class="board" id="sets">
+      <div class="bhead">
+        <div><h3>Sets</h3><p>#T transition · #H half court · #S sideline · #B baseline</p></div>
+        <div class="ctl">
+          <div class="seg" role="group" aria-label="Sort sets" id="s-sort">
+            <span class="lbl">Sort</span>
+            <button type="button" data-s="pos" class="on">Frequency</button>
+            <button type="button" data-s="ppp">PPP</button>
+            <button type="button" data-s="ok">% success</button>
+            <button type="button" data-s="pts">Points</button>
+          </div>
+          <div class="seg" role="group" aria-label="Number of sets" id="s-top">
+            <span class="lbl">Show</span>
+            <button type="button" data-n="5">Top 5</button>
+            <button type="button" data-n="10" class="on">Top 10</button>
+            <button type="button" data-n="0">All</button>
+          </div>
+          <label class="range" for="s-n">N <input type="range" id="s-n" min="3" max="20" value="10"><b id="s-nv" class="num">10</b></label>
+        </div>
+      </div>
+      <div class="bbody">
+        <div class="sethead"><span></span><span>Set</span><span>Possessions</span><span>Poss.</span><span>PPP</span><span>Result</span></div>
+        <div class="rows" id="o-sets"></div>
+      </div>
+    </div>
+
+    <div class="board" id="flujo">
+      <div class="bhead">
+        <div><h3>Play flow</h3><p>Width = possessions · click any block to filter</p></div>
+        <div class="ctl">
+          <div class="seg" role="group" aria-label="Origin" id="k-left"><span class="lbl">Origin</span><button type="button" data-v="set" class="on">Set</button><button type="button" data-v="type">Type of offense</button></div>
+          <div class="seg" role="group" aria-label="Destination" id="k-right"><span class="lbl">Destination</span><button type="button" data-v="out" class="on">Result</button><button type="button" data-v="fn">Playtype</button></div>
+        </div>
+      </div>
+      <div class="bbody sk" id="sankey"></div>
+    </div>
+
+    <div class="board" id="finalizadores">
+      <div class="bhead">
+        <div><h3>Finisher × playtype</h3><p>Number = possessions · color = PPP · click a cell, player or playtype</p></div>
+      </div>
+      <div class="bbody">
+        <div class="hm" id="heat"></div>
+        <div class="hmlg"><span><i style="background:var(--bad)"></i>Low PPP</span><span><i style="background:var(--warn)"></i>Medium</span><span><i style="background:var(--good)"></i>High</span><span>Intensity = volume</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEFENSA ============ -->
+<section class="blk" id="defensa">
+  <div class="wrap">
+    <div class="sidehead"><div><div class="eyebrow">Defense</div><h2>How <em>Ourense</em> defends</h2></div></div>
+    <div class="three" id="d-read"><div><h4>How they defend the pick and roll</h4><ul><li><b>Most tagged coverage: short show</b> (44 actions at 0.91 allowed). Then switch (34 at 0.68), show (14 at 0.79), plug &amp; hedge (10 at 0.50) and under (9 at 1.56).</li><li><b>They contain the PnR ball handler well:</b> 50 actions at 0.76. With switch, 17 at 0.41.</li><li><b>The short show leaves an outlet:</b> against the screener 8 at 1.00 and against the catch-and-shoot 5 at 1.80. Small sample.</li></ul></div><div><h4>Where they struggle</h4><ul><li><b>Transition defense (BALANCE):</b> 27 possessions at 1.37, 63% with points.</li><li><b>Defensive rebounding:</b> 25 actions at 1.44. Putbacks allowed: 16 at 1.56 (81% with points).</li><li><b>Catch-and-shoot:</b> Spot Up 33 at 1.18 (13 of 33 from three). <b>Off screens:</b> 23 at 1.30.</li></ul></div><div><h4>What works for them</h4><ul><li><b>Step Up defense:</b> 43 actions at 0.65 and 8 forced turnovers (19%).</li><li><b>PnR Empty:</b> 10 actions at 0.20. Small sample.</li><li><b>Plug &amp; hedge:</b> 10 at 0.50 with 3 turnovers. <b>Switch:</b> 34 at 0.68.</li></ul></div></div><p class="readnote">Reading of the three games together.</p>
+    <div class="kpi" id="d-kpi"></div>
+    <div class="badges" id="d-badges"></div>
+    <div class="grid2">
+      <div class="board">
+        <div class="bhead"><div><h3>Coverage</h3><p>Bar = possessions · box = PPP allowed</p></div></div>
+        <div class="bbody"><div class="rows" id="d-cov"></div></div>
+      </div>
+      <div class="board">
+        <div class="bhead"><div><h3>Defensive situation</h3><p>Bar = possessions · box = PPP allowed</p></div></div>
+        <div class="bbody"><div class="rows" id="d-sit"></div></div>
+      </div>
+      <div class="board">
+        <div class="bhead"><div><h3>Opponent playtype</h3><p>Final action against their defense</p></div></div>
+        <div class="bbody"><div class="rows" id="d-fn"></div></div>
+      </div>
+      <div class="board">
+        <div class="bhead"><div><h3>Defender involved</h3><p>Ourense player tagged in the action</p></div></div>
+        <div class="bbody"><div class="rows" id="d-pl"></div></div>
+      </div>
+    </div>
+    <div class="board">
+      <div class="bhead"><div><h3>Result and quarter</h3><p>Opponent possessions</p></div></div>
+      <div class="bbody"><div class="obar" id="d-out"></div><div class="olg" id="d-olg"></div><div class="qt" id="d-q"></div></div>
+    </div>
+  </div>
+</section>
+
+
+<footer><div class="wrap"><span>Hoop Assistant · Basketball scouting and video analysis</span><span id="foot"></span></div></footer>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA={"games":[{"rival":"Palencia","rows":[{"i":"33:02","f":"33:15","c":"#H6A DHO Step Up","d":"1Q - M3 - PnR Ball Handler - Oroz 7"},{"i":"33:22","f":"33:33","c":"OFF SCREEN","d":"1Q - M2 - Off Screen - CHASE"},{"i":"33:34","f":"33:41","c":"1n1 EARLY OFFENSE","d":"1Q - Mc Donell 24 - C2 - C1"},{"i":"34:26","f":"34:37","c":"HO","d":"1Q - Catch & Drive - C2"},{"i":"34:41","f":"34:52","c":"DRAG PnR","d":"1Q - M2 - PnR Ball Handler - Leimanis 44"},{"i":"35:11","f":"35:19","c":"OFF SCREEN","d":"1Q - Turnover"},{"i":"35:16","f":"35:24","c":"FASTBREAK","d":"1Q - C2 - Oroz 7"},{"i":"35:38","f":"35:46","c":"Step Up defense","d":"1Q - Turnover"},{"i":"35:43","f":"35:53","c":"RIM RUNNER","d":"1Q - C2 - Nicolau 12 - VIDEO TEAM"},{"i":"36:07","f":"36:18","c":"Step Up defense","d":"1Q - HIGH FLAT - Turnover"},{"i":"36:14","f":"36:23","c":"FASTBREAK","d":"1Q - Fernandez 11 - M2"},{"i":"36:18","f":"36:31","c":"BALANCE","d":"1Q - M3 - Spot Up - Offensive Rebound"},{"i":"37:01","f":"37:12","c":"PnR Empty defense","d":"1Q - FAKE SHOW - PnR Ball Handler - M2 - Offensive Rebound"},{"i":"37:30","f":"37:43","c":"Step Up defense","d":"1Q - SWITCH - Nicolau 12 - C2 - PnR Ball Handler"},{"i":"37:49","f":"37:59","c":"#H4B Stagger Touch Veer","d":"1Q - C2 - Leimanis 44 - Off Screen"},{"i":"38:03","f":"38:14","c":"Drag PnR defense","d":"1Q - PnR Ball Handler - M2 - SHORT SHOW - VIDEO TEAM"},{"i":"38:18","f":"38:35","c":"OUT OF SETS","d":"1Q - M2 - Post Up - Mc Donell 24"},{"i":"38:39","f":"38:46","c":"POST UP","d":"1Q - Foul Drawn"},{"i":"39:13","f":"39:24","c":"PnR Side defense","d":"1Q - SHORT SHOW - M3 - Spot Up"},{"i":"39:48","f":"39:59","c":"#H1C Iverson Flip Spain","d":"1Q - Turnover"},{"i":"40:00","f":"40:11","c":"PnR Empty defense","d":"1Q - M3 - PnR Ball Handler - FAKE SHOW - VIDEO TEAM"},{"i":"40:14","f":"40:24","c":"DRAG PnR","d":"1Q - M3 - PnR Ball Handler - Fernandez 11"},{"i":"40:19","f":"40:28","c":"ROF Q","d":"1Q - C2 - Zidek 25 - Putback - C1"},{"i":"41:21","f":"41:32","c":"Step Up defense","d":"1Q - PnR Ball Handler - M2 - Offensive Rebound"},{"i":"41:28","f":"41:39","c":"DEFENSIVE REBOUND","d":"1Q - M3 - Spot Up"},{"i":"41:54","f":"42:01","c":"BACK PICK","d":"1Q - C2 - Back Pick"},{"i":"42:47","f":"43:05","c":"#S4 Zipper PnR","d":"1Q - M3 - Spot Up - Mc Donell 24 - Offensive Rebound"},{"i":"43:01","f":"43:15","c":"ROF L","d":"1Q - M3 - PnP - Zidek 25 - Offensive Rebound"},{"i":"43:10","f":"43:18","c":"ROF Q","d":"1Q - C1 - C1"},{"i":"44:05","f":"44:16","c":"Middle PnR (2) defense","d":"1Q - M2 - PnR Ball Handler - SHORT SHOW - VIDEO TEAM"},{"i":"44:20","f":"44:31","c":"Side PnR","d":"1Q - C3 - Mc Donell 24 - Spot Up"},{"i":"46:23","f":"46:34","c":"HO","d":"1Q - SWITCH - M2 - HO - Offensive Rebound"},{"i":"46:31","f":"46:40","c":"DEFENSIVE REBOUND","d":"1Q - C3 - Spot Up"},{"i":"46:55","f":"47:06","c":"Side PnR","d":"1Q - C3 - Spot Up - Oroz 7"},{"i":"47:15","f":"47:26","c":"PnR Side defense","d":"1Q - Foul Drawn"},{"i":"48:04","f":"48:15","c":"PnR Empty defense","d":"1Q - Catch & Drive - C2 - FAKE SHOW"},{"i":"48:19","f":"48:30","c":"#H4B Stagger Touch Veer","d":"1Q - C3 - Off Screen - Zidek 25 - VIDEO TEAM"},{"i":"48:38","f":"48:49","c":"OFF SCREEN","d":"1Q - Turnover"},{"i":"49:14","f":"49:24","c":"#H2A Horns Roll Smack PnR","d":"1Q - M3 - Off Screen - Zidek 25"},{"i":"49:16","f":"49:27","c":"OTHER DEF","d":"1Q - C1 - C1"},{"i":"50:40","f":"50:50","c":"#H1F Iverson Empty PnR","d":"1Q - Foul Drawn - PnR Ball Handler - C1 - C1 - Leimanis 44"},{"i":"51:52","f":"52:03","c":"OFF SCREEN","d":"1Q - Turnover"},{"i":"52:15","f":"52:32","c":"#H1F Iverson Empty PnR","d":"1Q - M3 - PnR Ball Handler - Russell 10 - VIDEO TEAM"},{"i":"52:34","f":"52:40","c":"Step Up defense","d":"1Q - Turnover"},{"i":"56:14","f":"56:25","c":"Last seconds defense","d":"2Q - M3 - Spot Up - SWITCH - Iglesias 27"},{"i":"56:48","f":"56:56","c":"#H2A Horns Roll Smack PnR","d":"2Q - C2 - Mc Donell 24 - Catch & Drive"},{"i":"57:04","f":"57:15","c":"PnR Side defense","d":"2Q - FAKE SHOW - C2 - PnR Ball Handler"},{"i":"57:19","f":"57:32","c":"#H6B DHO 5 Out","d":"2Q - Out of bounds"},{"i":"58:03","f":"58:16","c":"#H1A Iverson 77 + Pin Down","d":"2Q - M3 - Zidek 25 - Spot Up - VIDEO TEAM"},{"i":"58:21","f":"58:29","c":"PnR Empty defense","d":"2Q - SHOW - M3"},{"i":"58:32","f":"58:43","c":"Step Up PnR","d":"Mc Donell 24 - Catch & Drive - 2Q - M2"},{"i":"59:03","f":"59:14","c":"Step Up defense","d":"2Q - PLUG & HEDGE - M3 - Spot Up - Offensive Rebound"},{"i":"59:09","f":"59:18","c":"DEFENSIVE REBOUND","d":"2Q - C2 - Putback"},{"i":"59:24","f":"59:31","c":"#H3B 77 Side PnR","d":"2Q - C2 - Leimanis 44 - PnR Ball Handler - VIDEO TEAM"},{"i":"59:40","f":"59:51","c":"Step Up defense","d":"2Q - SHOW - M2 - PnR Roll Man - Offensive Rebound"},{"i":"59:46","f":"59:51","c":"DEFENSIVE REBOUND","d":"2Q - C2 - Putback"},{"i":"59:54","f":"60:06","c":"DRAG PnR","d":"2Q - M3 - Spot Up - Mc Donell 24 - Offensive Rebound"},{"i":"60:26","f":"60:36","c":"#B1 Rip Double Exit","d":"2Q - C2 - Leimanis 44 - PnR Ball Handler"},{"i":"60:46","f":"61:04","c":"PnR 4 defense","d":"2Q - PnR Ball Handler - M3 - SWITCH - Zidek 25"},{"i":"61:59","f":"62:10","c":"#H4B Stagger Touch Veer","d":"2Q - C3 - Leimanis 44 - Off Screen"},{"i":"64:13","f":"64:24","c":"Middle PnR (1) defense","d":"2Q - PLUG & HEDGE - Turnover"},{"i":"64:41","f":"64:49","c":"PnR 4 defense","d":"2Q - SWITCH - C3 - Zidek 25 - Spot Up"},{"i":"64:55","f":"65:04","c":"#H4A Stagger Stagger","d":"2Q - C3 - Zidek 25 - Off Screen - VIDEO TEAM"},{"i":"65:12","f":"65:17","c":"PnR 4 defense","d":"2Q - SHOW - UNDER"},{"i":"65:14","f":"65:23","c":"FASTBREAK","d":"2Q - M3 - Spot Up - Zidek 25"},{"i":"65:17","f":"65:30","c":"BALANCE","d":"2Q - C2 - 1n1 - VIDEO TEAM"},{"i":"65:41","f":"65:52","c":"Side PnR","d":"2Q - C3 - PnR Ball Handler - Fernandez 11"},{"i":"66:32","f":"66:40","c":"PnR Side defense","d":"2Q - SHOW - PnR Ball Handler - C1 - C1"},{"i":"67:36","f":"67:49","c":"#H3B 77 Side PnR","d":"2Q - M2 - PnR Ball Handler - Fernandez 11"},{"i":"68:09","f":"68:18","c":"1n1 - Without Ball","d":"2Q - Foul Drawn - C1 - C1"},{"i":"69:04","f":"69:15","c":"OUT OF SETS","d":"2Q - Turnover"},{"i":"69:30","f":"69:37","c":"OFF SCREEN","d":"2Q - C2 - Off Screen - CHASE"},{"i":"71:42","f":"71:53","c":"Spain PnR","d":"2Q - C2 - Iglesias 27 - PnR Roll Man"},{"i":"72:02","f":"72:11","c":"PnR 4 defense","d":"2Q - UNDER - SHORT SHOW - PnR Ball Handler - C3"},{"i":"72:29","f":"72:41","c":"OTHER DEF","d":"2Q - M1 - C1"},{"i":"73:51","f":"74:07","c":"#H1C Iverson Flip Spain","d":"2Q - Catch & Drive - Fernandez 11 - M1 - C1"},{"i":"75:15","f":"75:26","c":"PnR Empty defense","d":"2Q - PnR Ball Handler - Turnover - SHORT SHOW"},{"i":"75:23","f":"75:34","c":"FASTBREAK","d":"2Q - M3 - Russell 10 - Spot Up"},{"i":"75:37","f":"75:45","c":"Drag PnR defense","d":"2Q - FLAT - PnR Roll Man - M1 - M1"},{"i":"76:41","f":"76:52","c":"#H1C Iverson Flip Spain","d":"2Q - M3 - PnR Ball Handler - Oroz 7"},{"i":"76:59","f":"77:10","c":"PnR Empty defense","d":"2Q - M3 - SHORT SHOW - Spot Up - VIDEO TEAM"},{"i":"77:13","f":"77:26","c":"POST UP TRANSITION","d":"2Q - M1 - Russell 10 - PnR Ball Handler - M1"},{"i":"78:27","f":"78:35","c":"OFF SCREEN","d":"2Q - Off Screen - M3 - Offensive Rebound"},{"i":"78:31","f":"78:46","c":"DEFENSIVE REBOUND","d":"2Q - PnR Roll Man - Turnover"},{"i":"78:45","f":"78:54","c":"1n1 EARLY OFFENSE","d":"2Q - M2 - HO - Mc Donell 24 - Offensive Rebound"},{"i":"78:48","f":"78:56","c":"ROF Q","d":"2Q - C2 - Mc Donell 24 - Putback"},{"i":"78:57","f":"79:08","c":"OTHER DEF","d":"2Q - Foul Drawn - C1 - M1 - Offensive Rebound"},{"i":"80:09","f":"80:22","c":"Middle PnR (2) defense","d":"2Q - PnR Ball Handler - M2 - FLAT"},{"i":"80:26","f":"80:37","c":"OUT OF SETS","d":"2Q - M2 - Fernandez 11 - 1n1"},{"i":"96:05","f":"96:16","c":"PnR Side defense","d":"3Q - M2 - SHORT SHOW - UNDER - Turnover"},{"i":"96:30","f":"96:38","c":"Middle PnR (2) defense","d":"3Q - M3 - PnR Ball Handler - UNDER"},{"i":"96:56","f":"97:07","c":"Step Up PnR","d":"3Q - M2 - Drive & Drop Off - Pinedo 13 - Offensive Rebound"},{"i":"97:03","f":"97:11","c":"ROF Q","d":"3Q - M2 - Oroz 7"},{"i":"97:16","f":"97:27","c":"Step Up defense","d":"3Q - HIGH FLAT - M2 - PnR Ball Handler"},{"i":"97:28","f":"97:38","c":"POST UP TRANSITION","d":"3Q - Turnover"},{"i":"97:54","f":"98:05","c":"Last seconds defense","d":"3Q - PnR Ball Handler - C3 - SWITCH - Spot Up"},{"i":"98:36","f":"98:47","c":"Side PnR","d":"3Q - PnR Roll Man - Pinedo 13 - M1 - C1"},{"i":"99:43","f":"99:50","c":"PnR Side defense","d":"3Q - M3 - PnR Ball Handler - SHOW - Offensive Rebound"},{"i":"99:44","f":"99:55","c":"DEFENSIVE REBOUND","d":"3Q - Spot Up - C3"},{"i":"100:15","f":"100:26","c":"Step Up PnR","d":"3Q - C3 - Leimanis 44 - HO"},{"i":"100:16","f":"100:27","c":"OUT OF SETS","d":"3Q - C1 - Pinedo 13"},{"i":"101:42","f":"102:04","c":"#S5 Shuffle STS Iverson","d":"3Q - Turnover"},{"i":"102:25","f":"102:34","c":"1n1 - Without Ball","d":"3Q - 1n1 - M2 - Offensive Rebound"},{"i":"102:30","f":"102:41","c":"DEFENSIVE REBOUND","d":"3Q - M3 - Spot Up"},{"i":"103:39","f":"103:50","c":"#H2A Horns Roll Smack PnR","d":"3Q - C2 - Off Screen - Mc Donell 24"},{"i":"103:57","f":"104:03","c":"PnR Empty defense","d":"3Q - Foul Drawn"},{"i":"104:29","f":"104:35","c":"PnR 4 defense","d":"3Q - UNDER - C3 - PnR Ball Handler"},{"i":"104:42","f":"104:56","c":"#H4C Stagger Step Up","d":"3Q - M2 - Zidek 25 - Cut"},{"i":"105:04","f":"105:14","c":"PnR 4 defense","d":"3Q - SHORT SHOW - M3 - PnR Ball Handler - VIDEO TEAM"},{"i":"105:18","f":"105:27","c":"Middle PnR (2)","d":"3Q - Foul Drawn"},{"i":"105:55","f":"106:09","c":"#S6 Horns Flare","d":"3Q - M3 - PnR Ball Handler - Russell 10"},{"i":"106:38","f":"106:47","c":"Step Up defense","d":"3Q - SHORT SHOW - Turnover"},{"i":"107:10","f":"107:18","c":"Side PnR","d":"3Q - C3 - PnP - Nicolau 12"},{"i":"109:18","f":"109:29","c":"Step Up defense","d":"3Q - SHOW - Out of bounds"},{"i":"110:00","f":"110:17","c":"#T7 Drag PnR DHO Step Up","d":"3Q - Foul Drawn - Post Up - Iglesias 27 - M1 - M1"},{"i":"110:07","f":"110:18","c":"OUT OF SETS","d":"3Q - C1 - Fernandez 11"},{"i":"111:50","f":"112:01","c":"Spain PnR defense","d":"3Q - SHORT SHOW - C3 - Spot Up - VIDEO TEAM"},{"i":"112:04","f":"112:14","c":"DRAG PnR","d":"3Q - M2 - Saraiva 23 - Offensive Rebound"},{"i":"112:08","f":"112:16","c":"ROF Q","d":"3Q - C2 - Nicolau 12 - Putback"},{"i":"112:17","f":"112:24","c":"Drag PnR defense","d":"3Q - SHOW - UNDER - C3 - PnR Ball Handler"},{"i":"112:31","f":"112:49","c":"Offense vs Zone","d":"3Q - C3 - PnR Ball Handler - Oroz 7"},{"i":"113:00","f":"113:11","c":"Step Up defense","d":"3Q - Foul Drawn"},{"i":"114:28","f":"114:35","c":"OFF SCREEN","d":"3Q - LATE SWITCH - M2 - Off Screen"},{"i":"114:26","f":"114:37","c":"DEFENSIVE REBOUND","d":"3Q - Putback - C1 - C1"},{"i":"115:33","f":"115:49","c":"Offense vs Zone","d":"3Q - M2 - Catch & Drive - Zidek 25"},{"i":"115:55","f":"116:06","c":"OTHER DEF","d":"3Q - M1 - C1"},{"i":"116:51","f":"117:02","c":"Offense vs Zone","d":"3Q - M2 - Duck In - Iglesias 27"},{"i":"116:55","f":"117:06","c":"OTHER DEF","d":"3Q - C1 - C1"},{"i":"118:02","f":"118:15","c":"Offense vs Zone","d":"3Q - M3 - Saraiva 23 - Spot Up - Offensive Rebound"},{"i":"118:11","f":"118:26","c":"ROF L","d":"3Q - M2 - Fernandez 11 - PnR Ball Handler"},{"i":"118:23","f":"118:33","c":"BALANCE","d":"3Q - C2"},{"i":"118:38","f":"118:48","c":"Offense vs Zone","d":"3Q - M3 - Zidek 25 - Spot Up"},{"i":"119:22","f":"119:27","c":"OFF SCREEN","d":"3Q - C3 - Off Screen"},{"i":"119:34","f":"119:47","c":"Offense vs Zone","d":"3Q - M2 - Zidek 25 - Spot Up"},{"i":"119:51","f":"119:59","c":"PnR 4 defense","d":"3Q - SWITCH - M2 - PnR Ball Handler - Zidek 25"},{"i":"122:32","f":"122:43","c":"PnR with 4","d":"4Q - M3 - PnP - Mc Donell 24"},{"i":"122:46","f":"122:55","c":"PnR Side defense","d":"4Q - SHOW - Turnover"},{"i":"122:56","f":"123:09","c":"DRAG PnR","d":"Spot Up - Mc Donell 24 - 4Q - M3"},{"i":"123:14","f":"123:22","c":"Middle PnR (1) defense","d":"4Q - Turnover"},{"i":"123:22","f":"123:26","c":"OUT OF SETS","d":"4Q - Turnover"},{"i":"123:18","f":"123:31","c":"BALANCE","d":"4Q - Turnover"},{"i":"124:07","f":"124:23","c":"#H3B 77 Side PnR","d":"4Q - Pinedo 13 - Duck In - C2"},{"i":"124:35","f":"124:46","c":"Step Up defense","d":"4Q - SHORT SHOW - M2 - PnR Ball Handler"},{"i":"124:48","f":"124:55","c":"DRAG PnR","d":"4Q - Foul Drawn"},{"i":"125:11","f":"125:29","c":"#S7 Other SOB","d":"4Q - M3 - Mc Donell 24 - PnP"},{"i":"125:27","f":"125:40","c":"BALANCE","d":"4Q - M3 - Spot Up"},{"i":"125:43","f":"125:54","c":"#T7 Drag PnR DHO Step Up","d":"4Q - M3 - Oroz 7 - PnR Ball Handler - VIDEO TEAM"},{"i":"126:22","f":"126:30","c":"Step Up defense","d":"4Q - HIGH FLAT - M2 - PnR Roll Man"},{"i":"126:33","f":"126:45","c":"#T6 Side Veer","d":"4Q - Russell 10 - 1n1 - C1 - M1"},{"i":"127:52","f":"128:05","c":"OFF SCREEN","d":"4Q - Off Screen - M2"},{"i":"128:02","f":"128:10","c":"1n1 EARLY OFFENSE","d":"4Q - Foul Drawn - M1 - C1"},{"i":"129:08","f":"129:20","c":"#S6 Horns Flare","d":"4Q - C3 - Spot Up - Mc Donell 24"},{"i":"129:28","f":"129:35","c":"Middle PnR (2) defense","d":"4Q - HIGH FLAT - C2 - PnR Roll Man - VIDEO TEAM"},{"i":"129:46","f":"129:57","c":"Offense vs Zone","d":"4Q - C2 - Pinedo 13"},{"i":"130:07","f":"130:15","c":"PnR Side defense","d":"4Q - SHORT SHOW - PnR Ball Handler - C1 - C1"},{"i":"131:13","f":"131:23","c":"#H3B 77 Side PnR","d":"4Q - M2 - Leimanis 44 - PnR Ball Handler"},{"i":"131:21","f":"131:34","c":"BALANCE","d":"4Q - Foul Drawn"},{"i":"132:18","f":"132:26","c":"OFF SCREEN","d":"4Q - Off Screen - C3"},{"i":"132:31","f":"132:46","c":"#T7 Drag PnR DHO Step Up","d":"4Q - Russell 10 - PnR Ball Handler - C1 - M1"},{"i":"133:42","f":"133:53","c":"Step Up defense","d":"4Q - PLUG & HEDGE - Turnover"},{"i":"133:48","f":"133:58","c":"RIM RUNNER","d":"4Q - C2 - Mc Donell 24"},{"i":"134:03","f":"134:12","c":"OFF SCREEN","d":"4Q - C3 - Off Screen"},{"i":"136:06","f":"136:21","c":"#T7 Drag PnR DHO Step Up","d":"4Q - C2 - PnR Roll Man - Iglesias 27"},{"i":"136:27","f":"136:38","c":"PnR Empty defense","d":"4Q - SHORT SHOW - M2 - PnR Roll Man"},{"i":"136:52","f":"137:03","c":"Side PnR","d":"4Q - M2 - PnR Ball Handler - Russell 10"},{"i":"137:07","f":"137:18","c":"PnR Empty defense","d":"4Q - SHORT SHOW - M2 - PnR Ball Handler - Offensive Rebound"},{"i":"137:11","f":"137:22","c":"DEFENSIVE REBOUND","d":"4Q - C3 - Spot Up"},{"i":"137:32","f":"137:46","c":"#T7 Drag PnR DHO Step Up","d":"4Q - M2 - Mc Donell 24 - PnR Ball Handler"},{"i":"137:57","f":"138:08","c":"Middle PnR (2) defense","d":"4Q - HIGH FLAT - C2 - PnR Roll Man"},{"i":"140:01","f":"140:13","c":"#S2 Zipper Iverson Series","d":"4Q - M3 - Leimanis 44 - PnR Ball Handler"},{"i":"140:09","f":"140:15","c":"ROF Q","d":"4Q - Oroz 7 - C1 - C1"},{"i":"141:04","f":"141:18","c":"OFF SCREEN","d":"4Q - M2 - Off Screen - CHASE"},{"i":"141:19","f":"141:30","c":"#H3B 77 Side PnR","d":"4Q - M3 - HO - Leimanis 44 - Offensive Rebound"},{"i":"141:27","f":"141:43","c":"ROF L","d":"4Q - Turnover"},{"i":"142:07","f":"142:18","c":"Middle PnR (2) defense","d":"4Q - C2 - PnR Ball Handler"},{"i":"142:25","f":"142:40","c":"#H1F Iverson Empty PnR","d":"4Q - PnP - Zidek 25 - M3 - Offensive Rebound"},{"i":"144:43","f":"144:56","c":"ATO","d":"4Q - M3 - Leimanis 44 - Off Screen"},{"i":"144:49","f":"145:00","c":"OTHER DEF","d":"4Q - Foul Drawn - M1 - C1"},{"i":"146:38","f":"146:43","c":"OUT OF SETS","d":"4Q - C1 - C1 - Leimanis 44"},{"i":"147:19","f":"147:30","c":"PRESS","d":"4Q - C1 - C1 - Foul Drawn"},{"i":"148:22","f":"148:31","c":"OUT OF SETS","d":"4Q - Foul Drawn - C1 - M1 - Leimanis 44"},{"i":"149:10","f":"149:21","c":"OTHER DEF","d":"4Q - C1 - C1"}]},{"rival":"Cantabria","rows":[{"i":"00:17","f":"00:25","c":"Baseline PnR defense","d":"1Q - M2 - PnR Ball Handler - FLAT"},{"i":"00:27","f":"00:38","c":"DRAG PnR","d":"1Q - C2 - PnR Roll Man - Pinedo 13"},{"i":"00:46","f":"00:55","c":"1n1 - Without Ball","d":"M2 - Russell 10 - 1n1 - 1Q"},{"i":"01:04","f":"01:18","c":"Side PnR","d":"M3 - Spot Up - Oroz 7 - 1Q"},{"i":"01:14","f":"01:27","c":"BALANCE","d":"Turnover - 1Q"},{"i":"02:01","f":"02:21","c":"#H2A Horns Roll Smack PnR","d":"C2 - Russell 10 - 1n1 - VIDEO TEAM - 1Q"},{"i":"02:32","f":"02:46","c":"OFF SCREEN","d":"M3 - Spot Up - SWITCH - 1Q"},{"i":"02:47","f":"03:00","c":"#H3B 77 Side PnR","d":"C3 - Russell 10 - PnR Ball Handler - 1Q"},{"i":"03:36","f":"03:47","c":"POST UP","d":"Post Up - C1 - C1 - 1Q"},{"i":"04:37","f":"04:50","c":"#T6 Side Veer","d":"M2 - 1n1 - Iglesias 27 - 1Q"},{"i":"05:27","f":"05:32","c":"OFF SCREEN","d":"Foul Drawn - C1 - M1 - 1Q"},{"i":"06:21","f":"06:28","c":"#T6 Side Veer","d":"C2 - Garcia 8 - PnR Ball Handler - VIDEO TEAM - 1Q"},{"i":"06:25","f":"06:36","c":"BALANCE","d":"C2 - VIDEO TEAM - 1Q"},{"i":"06:41","f":"06:54","c":"#H3B 77 Side PnR","d":"C2 - Zidek 25 - PnP - VIDEO TEAM - 1Q"},{"i":"07:10","f":"07:18","c":"PnR Side defense","d":"PLUG & HEDGE - Turnover - 1Q"},{"i":"07:15","f":"07:25","c":"RIM RUNNER","d":"1Q - C2 - Mc Donell 24 - C1"},{"i":"08:07","f":"08:18","c":"PnR Side defense","d":"1Q - SHOW - C2 - PnR Roll Man - VIDEO TEAM"},{"i":"08:20","f":"08:33","c":"DRAG PnR","d":"1Q - M3 - PnR Ball Handler - Russell 10"},{"i":"08:43","f":"08:54","c":"POST UP","d":"1Q - M2 - Post Up - Offensive Rebound"},{"i":"08:48","f":"08:59","c":"DEFENSIVE REBOUND","d":"1Q - M2 - Putback"},{"i":"08:52","f":"08:59","c":"DEFENSIVE REBOUND","d":"1Q - C2 - Putback"},{"i":"09:00","f":"09:13","c":"DRAG PnR","d":"1Q - M2 - PnR Ball Handler - Russell 10"},{"i":"09:45","f":"10:04","c":"PnR Side defense","d":"SHORT SHOW - M2 - Post Up - 2Q"},{"i":"10:30","f":"10:42","c":"#S1 Stagger Curl","d":"Foul Drawn - 2Q"},{"i":"10:58","f":"11:17","c":"#B1 Rip Double Exit","d":"M3 - PnR Ball Handler - Garcia 8 - Offensive Rebound - 2Q"},{"i":"11:31","f":"11:39","c":"PnR 4 defense","d":"SWITCH - M3 - VIDEO TEAM - PnR Ball Handler - 2Q"},{"i":"11:38","f":"11:48","c":"1n1 EARLY OFFENSE","d":"Garcia 8 - Catch & Drive - C1 - C1 - 2Q"},{"i":"12:46","f":"12:57","c":"PnR 4 defense","d":"C2 - SHORT SHOW - Catch & Drive - VIDEO TEAM - 2Q"},{"i":"12:56","f":"13:00","c":"OUT OF SETS","d":"Turnover - 2Q"},{"i":"13:13","f":"13:24","c":"BACK PICK","d":"C2 - VIDEO TEAM - Back Pick - 2Q"},{"i":"13:31","f":"13:42","c":"#H2A Horns Roll Smack PnR","d":"M3 - Off Screen - Mc Donell 24 - VIDEO TEAM - 2Q"},{"i":"13:43","f":"13:52","c":"Drag PnR defense","d":"C2 - UNDER - PnR Ball Handler - VIDEO TEAM - 2Q"},{"i":"14:21","f":"14:31","c":"ATO","d":"Foul Drawn - 2Q"},{"i":"14:44","f":"15:04","c":"#S1 Stagger Curl","d":"M3 - Spot Up - Rodriguez 4 - 2Q"},{"i":"15:00","f":"15:09","c":"BALANCE","d":"C2 - VIDEO TEAM - 2Q"},{"i":"15:16","f":"15:29","c":"#T1 Away HO","d":"Turnover - 2Q"},{"i":"15:26","f":"15:34","c":"BALANCE","d":"M2 - 2Q"},{"i":"15:35","f":"15:48","c":"DRAG PnR","d":"M2 - Fernandez 11 - PnR Ball Handler - 2Q"},{"i":"16:40","f":"16:54","c":"PnR Side defense","d":"SHOW - M2 - Cut - Offensive Rebound - 2Q"},{"i":"16:52","f":"16:57","c":"DEFENSIVE REBOUND","d":"C2 - Putback - 2Q"},{"i":"16:59","f":"17:16","c":"DRAG PnR","d":"2Q - C3 - PnR Ball Handler - Russell 10"},{"i":"17:21","f":"17:32","c":"Step Up defense","d":"2Q - PLUG & HEDGE - C3 - Spot Up - VIDEO TEAM"},{"i":"17:34","f":"17:47","c":"1n1 EARLY OFFENSE","d":"2Q - Foul Drawn"},{"i":"18:15","f":"18:33","c":"#B2 4 Vertical Line Off Screens","d":"2Q - M3 - PnR Ball Handler - Oroz 7"},{"i":"18:43","f":"18:50","c":"OFF SCREEN","d":"2Q - CHASE - Foul Drawn"},{"i":"19:22","f":"19:34","c":"Middle PnR (2) defense","d":"2Q - C3 - Spot Up - SHORT SHOW - VIDEO TEAM"},{"i":"19:39","f":"19:53","c":"#T6 Side Veer","d":"2Q - Out of bounds"},{"i":"20:04","f":"20:15","c":"#B1 Rip Double Exit","d":"2Q - C2 - Oroz 7 - Cut - VIDEO TEAM"},{"i":"20:26","f":"20:37","c":"PnR Empty defense","d":"2Q - PLUG & HEDGE - M3 - Spot Up"},{"i":"20:34","f":"20:47","c":"RIM RUNNER","d":"2Q - Turnover"},{"i":"21:29","f":"21:38","c":"1n1 - Without Ball","d":"2Q - 1n1 - C2"},{"i":"21:37","f":"21:50","c":"1n1 EARLY OFFENSE","d":"2Q - C2 - Saraiva 23 - HO"},{"i":"21:57","f":"22:08","c":"OFF SCREEN","d":"2Q - M3 - Spot Up - CHASE - VIDEO TEAM - Offensive Rebound"},{"i":"22:38","f":"22:47","c":"1n1 - Without Ball","d":"2Q - M2 - 1n1 - Russell 10"},{"i":"22:49","f":"22:57","c":"DRAG PnR","d":"2Q - M2 - Cut - Saraiva 23"},{"i":"22:53","f":"23:03","c":"BALANCE","d":"2Q - C2 - VIDEO TEAM"},{"i":"23:10","f":"23:24","c":"Side PnR","d":"2Q - M3 - Spot Up - Oroz 7 - Offensive Rebound"},{"i":"23:19","f":"23:37","c":"ROF Q","d":"2Q - M2 - Rodriguez 4 - Post Up"},{"i":"23:38","f":"23:49","c":"Drag PnR defense","d":"2Q - SHOW - Turnover - VIDEO TEAM - Iglesias 27"},{"i":"23:43","f":"23:53","c":"RIM RUNNER","d":"2Q - Oroz 7 - C1 - C1"},{"i":"24:58","f":"25:07","c":"1n1 - Without Ball","d":"2Q - Saraiva 23 - 1n1"},{"i":"25:18","f":"25:29","c":"OFF SCREEN","d":"2Q - Off Screen - C1 - C1"},{"i":"26:24","f":"26:37","c":"PRESS BREAK","d":"2Q - Drive & Drop Off - Pinedo 13 - C1 - C1"},{"i":"27:34","f":"27:45","c":"PnR Side defense","d":"2Q - SHORT SHOW - Drive & Drop Off - C2"},{"i":"27:50","f":"28:06","c":"#T6 Side Veer","d":"2Q - Turnover"},{"i":"28:01","f":"28:14","c":"BALANCE","d":"2Q - C3 - Spot Up"},{"i":"28:46","f":"28:56","c":"#T6 Side Veer","d":"2Q - Turnover"},{"i":"28:49","f":"29:02","c":"BALANCE","d":"2Q - C2"},{"i":"28:58","f":"29:09","c":"FASTBREAK","d":"2Q - Turnover"},{"i":"29:49","f":"30:00","c":"OFF SCREEN","d":"2Q - Off Screen - M3"},{"i":"29:59","f":"30:03","c":"OUT OF SETS","d":"2Q - Turnover"},{"i":"30:48","f":"30:57","c":"OFF SCREEN","d":"2Q - C2 - VIDEO TEAM - Off Screen"},{"i":"31:27","f":"31:48","c":"ATO","d":"Fernandez 11 - 1n1 - Offensive Rebound - 3Q - M2"},{"i":"31:43","f":"31:51","c":"ROF Q","d":"3Q - C2 - Oroz 7 - Putback"},{"i":"32:00","f":"32:08","c":"OFF SCREEN","d":"3Q - Turnover"},{"i":"32:04","f":"32:12","c":"FASTBREAK","d":"3Q - Foul Drawn"},{"i":"32:27","f":"32:39","c":"#S1 Stagger Curl","d":"3Q - C2 - Leimanis 44 - Off Screen - VIDEO TEAM"},{"i":"32:45","f":"32:54","c":"PnR 4 defense","d":"3Q - SHORT SHOW - C3 - VIDEO TEAM - PnP"},{"i":"32:56","f":"33:09","c":"#T6 Side Veer","d":"3Q - C2 - Oroz 7 - Cut - VIDEO TEAM"},{"i":"33:05","f":"33:18","c":"BALANCE","d":"3Q - C2 - VIDEO TEAM - 1n1 - C1"},{"i":"33:46","f":"33:53","c":"PRESS BREAK","d":"3Q - Turnover"},{"i":"33:50","f":"33:58","c":"BALANCE","d":"3Q - C3 - Spot Up"},{"i":"34:05","f":"34:16","c":"#H2A Horns Roll Smack PnR","d":"3Q - M2 - Off Screen - Zidek 25 - VIDEO TEAM"},{"i":"34:21","f":"34:32","c":"POST UP","d":"3Q - M3 - Spot Up - Offensive Rebound"},{"i":"34:26","f":"34:34","c":"DEFENSIVE REBOUND","d":"3Q - C2 - Putback"},{"i":"35:20","f":"35:37","c":"#T3 Pistol Offense","d":"3Q - Foul Drawn - Catch & Drive"},{"i":"36:05","f":"36:20","c":"#S3 Zipper Post Up","d":"3Q - PnP - Zidek 25 - M3"},{"i":"36:24","f":"36:33","c":"1n1 - Without Ball","d":"3Q - M3 - Spot Up"},{"i":"36:37","f":"36:56","c":"POST UP TRANSITION","d":"3Q - M3 - Spot Up - Zidek 25"},{"i":"36:59","f":"37:05","c":"Drag PnR defense","d":"3Q - SWITCH - Turnover - Zidek 25"},{"i":"37:02","f":"37:17","c":"FASTBREAK","d":"3Q - C2 - Mc Donell 24"},{"i":"37:27","f":"37:35","c":"HO","d":"3Q - C2 - HO"},{"i":"37:39","f":"37:49","c":"#T6 Side Veer","d":"3Q - HO - M2 - Fernandez 11"},{"i":"38:30","f":"38:41","c":"Step Up defense","d":"3Q - SHORT SHOW - M2 - VIDEO TEAM - PnR Roll Man"},{"i":"38:46","f":"38:59","c":"#T3 Pistol Offense","d":"3Q - M3 - Spot Up - Oroz 7"},{"i":"39:10","f":"39:17","c":"PnR Side defense","d":"3Q - SHORT SHOW - C2 - PnR Roll Man - VIDEO TEAM"},{"i":"39:24","f":"39:42","c":"#H3A 77 Empty PnR","d":"3Q - M2 - Post Up - Zidek 25"},{"i":"40:13","f":"40:27","c":"#B3 Stagger Curl Exit Diamond","d":"3Q - M3 - Off Screen - Garcia 8 - Garcia 8"},{"i":"40:56","f":"41:05","c":"1n1 - Without Ball","d":"3Q - 1n1 - M3"},{"i":"41:44","f":"41:55","c":"#H5A Ram 77 Step Up Empty","d":"3Q - C3 - Garcia 8 - Off Screen - VIDEO TEAM"},{"i":"42:08","f":"42:19","c":"Step Up defense","d":"3Q - SHORT SHOW - M2 - PnR Ball Handler - VIDEO TEAM - Offensive Rebound"},{"i":"42:12","f":"42:19","c":"DEFENSIVE REBOUND","d":"3Q - C2 - Putback"},{"i":"42:51","f":"43:11","c":"#S2 Zipper Iverson Series","d":"3Q - C2 - PnR Roll Man - Pinedo 13 - PnR Blitz"},{"i":"43:25","f":"43:36","c":"PnR Side defense","d":"3Q - UNDER - PnR Ball Handler - C3"},{"i":"43:33","f":"43:40","c":"OUT OF SETS","d":"3Q - M1 - C1"},{"i":"44:33","f":"44:44","c":"Step Up defense","d":"3Q - M3 - PnR Ball Handler - SHORT SHOW"},{"i":"44:47","f":"45:00","c":"#T6 Side Veer","d":"3Q - C2 - Pinedo 13 - PnR Roll Man - VIDEO TEAM"},{"i":"45:32","f":"45:42","c":"HO","d":"3Q - HO - M3"},{"i":"45:58","f":"46:06","c":"#H5A Ram 77 Step Up Empty","d":"3Q - Off Screen - Garcia 8 - VIDEO TEAM - C1 - C1"},{"i":"46:52","f":"47:06","c":"Step Up defense","d":"3Q - Spot Up - C3 - SHORT SHOW"},{"i":"47:09","f":"47:22","c":"DRAG PnR","d":"3Q - M2 - PnR Ball Handler - Garcia 8"},{"i":"47:19","f":"47:32","c":"BALANCE","d":"3Q - C2"},{"i":"47:41","f":"47:58","c":"#H1B Iverson Throwback Chicago","d":"3Q - C2 - Pinedo 13 - PnR (1) - PnR Roll Man - M1"},{"i":"48:50","f":"48:59","c":"1n1 - Without Ball","d":"3Q - 1n1 - M3 - Offensive Rebound"},{"i":"49:24","f":"49:35","c":"OFF SCREEN","d":"3Q - C2 - VIDEO TEAM - CHASE - Off Screen - Russell 10"},{"i":"49:41","f":"49:52","c":"Side PnR","d":"3Q - M3 - Spot Up - Oroz 7"},{"i":"50:18","f":"50:27","c":"1n1 - Without Ball","d":"4Q - C2 - Perez 2 - Cut"},{"i":"50:29","f":"50:42","c":"#T7 Drag PnR DHO Step Up","d":"4Q - Garcia 8 - HO - M1 - C1"},{"i":"52:24","f":"52:41","c":"#T6 Side Veer","d":"4Q - M3 - Spot Up - Perez 2 - Offensive Rebound"},{"i":"52:37","f":"52:47","c":"ROF Q","d":"4Q - M2 - Pinedo 13 - Spot Up"},{"i":"53:03","f":"53:14","c":"Step Up defense","d":"4Q - Turnover"},{"i":"53:32","f":"53:40","c":"#H1C Iverson Flip Spain","d":"4Q - M3 - Rodriguez 4 - Spot Up - Offensive Rebound"},{"i":"53:36","f":"53:44","c":"ROF Q","d":"4Q - Putback - M1 - M1 - Fernandez 11"},{"i":"54:45","f":"54:56","c":"POST UP","d":"4Q - Turnover"},{"i":"55:25","f":"55:34","c":"#H3B 77 Side PnR","d":"4Q - Cut - Fernandez 11 - C1 - C1"},{"i":"56:50","f":"57:04","c":"OFF SCREEN","d":"4Q - CHASE - STEP OUT - Iglesias 27 - VIDEO TEAM - Off Screen - C2 - C1"},{"i":"58:02","f":"58:09","c":"ATO","d":"4Q - Turnover"},{"i":"58:19","f":"58:33","c":"Step Up defense","d":"4Q - Turnover"},{"i":"58:30","f":"58:43","c":"FASTBREAK","d":"4Q - M2 - Saraiva 23 - Offensive Rebound"},{"i":"58:37","f":"58:45","c":"ROF Q","d":"4Q - C2 - Iglesias 27 - Putback"},{"i":"59:04","f":"59:13","c":"1n1 - Without Ball","d":"4Q - Cut - C2 - Fernandez 11"},{"i":"59:17","f":"59:28","c":"#T1 Away HO","d":"4Q - M2 - Catch & Drive - Saraiva 23 - Offensive Rebound"},{"i":"59:25","f":"59:31","c":"ROF Q","d":"4Q - C2 - Iglesias 27 - Putback - C1"},{"i":"60:47","f":"60:58","c":"Step Up defense","d":"4Q - VIDEO TEAM - SHORT SHOW - M2 - PnR Roll Man - Offensive Rebound"},{"i":"60:55","f":"61:02","c":"DEFENSIVE REBOUND","d":"4Q - Putback - C1 - C1"},{"i":"61:49","f":"62:05","c":"#H6A DHO Step Up","d":"4Q - Catch & Drive - M2 - Russell 10 - Offensive Rebound"},{"i":"62:02","f":"62:10","c":"ROF Q","d":"4Q - M2 - Fernandez 11 - Putback - Offensive Rebound"},{"i":"62:01","f":"62:12","c":"ROF Q","d":"M1 - C1 - 4Q - Putback - Fernandez 11"},{"i":"63:07","f":"63:16","c":"PnR 4 defense","d":"4Q - C2 - Saraiva 23 - Cut"},{"i":"63:16","f":"63:20","c":"OUT OF SETS","d":"4Q - C1 - Zidek 25"},{"i":"64:32","f":"64:45","c":"#H6A DHO Step Up","d":"4Q - Saraiva 23 - M2 - Catch & Drive"},{"i":"64:48","f":"64:59","c":"Drag PnR defense","d":"4Q - UNDER - M3 - Spot Up"},{"i":"65:05","f":"65:15","c":"OUT OF SETS","d":"4Q - Mc Donell 24 - Spot Up - C3"},{"i":"65:24","f":"65:33","c":"PnR Side defense","d":"4Q - SHORT SHOW - PnR Roll Man - Zidek 25 - VIDEO TEAM - C1 - C1"},{"i":"66:38","f":"66:51","c":"#H6A DHO Step Up","d":"4Q - M3 - Spot Up - Zidek 25"},{"i":"66:59","f":"67:08","c":"Middle PnR (1) defense","d":"4Q - M2 - PnR Ball Handler - SWITCH - Zidek 25"},{"i":"67:06","f":"67:17","c":"FASTBREAK","d":"M3 - Saraiva 23 - Spot Up - 4Q"},{"i":"67:30","f":"67:45","c":"Step Up defense","d":"4Q - SWITCH - C2 - Catch & Drive - VIDEO TEAM - Zidek 25"},{"i":"68:18","f":"68:29","c":"#H6B DHO 5 Out","d":"4Q - M2 - Catch & Drive - Garcia 8 - Offensive Rebound"},{"i":"68:41","f":"68:57","c":"#B3 Stagger Curl Exit Diamond","d":"4Q - C3 - PnR Ball Handler - Russell 10"},{"i":"69:06","f":"69:15","c":"OFF SCREEN","d":"4Q - C3 - Off Screen"},{"i":"69:26","f":"69:46","c":"#H6B DHO 5 Out","d":"4Q - Catch & Drive - C1 - C1 - Catch & Drive - Garcia 8"},{"i":"70:33","f":"70:43","c":"Step Up defense","d":"4Q - SWITCH - C2 - PnR Ball Handler - Zidek 25"},{"i":"70:41","f":"70:51","c":"1n1 EARLY OFFENSE","d":"4Q - C2 - Russell 10 - 1n1 - VIDEO TEAM - C1"},{"i":"71:51","f":"71:56","c":"OFF SCREEN","d":"4Q - M3 - Off Screen"},{"i":"72:00","f":"72:05","c":"FASTBREAK","d":"4Q - M3 - Garcia 8 - Spot Up - Offensive Rebound"},{"i":"72:06","f":"72:10","c":"ROF Q","d":"4Q - C1 - C1 - Saraiva 23"},{"i":"73:20","f":"73:25","c":"1n1 - Without Ball","d":"4Q - C1 - C1 - 1n1"},{"i":"74:16","f":"74:21","c":"#H1C Iverson Flip Spain","d":"4Q - Turnover"},{"i":"75:18","f":"75:23","c":"PnR 4 defense","d":"4Q - M3 - Spot Up - SHOW"},{"i":"75:28","f":"75:33","c":"1n1 EARLY OFFENSE","d":"4Q - C2 - Garcia 8 - 1n1"}]},{"rival":"Alicante","rows":[{"i":"65:45","f":"65:56","c":"PnR Side defense","d":"1Q - M2 - PnR Ball Handler - SWITCH - Zidek 25 - Offensive Rebound"},{"i":"65:49","f":"65:56","c":"DEFENSIVE REBOUND","d":"1Q - C2 - Putback"},{"i":"66:03","f":"66:10","c":"Side PnR","d":"1Q - C2 - PnR Ball Handler - Fernandez 11"},{"i":"66:17","f":"66:28","c":"PnR Side defense","d":"1Q - C2 - SHOW - PnR Roll Man - VIDEO TEAM"},{"i":"66:33","f":"66:49","c":"DRAG PnR","d":"1Q - C2 - Catch & Drive - Fernandez 11"},{"i":"66:59","f":"67:10","c":"HO","d":"1Q - HO - M3 - SHORT SHOW"},{"i":"68:31","f":"68:44","c":"Step Up defense","d":"1Q - SHORT SHOW - SWITCH - M3 - PnR Ball Handler - Offensive Rebound"},{"i":"68:41","f":"68:46","c":"DEFENSIVE REBOUND","d":"1Q - Putback - M1 - C1"},{"i":"69:40","f":"70:04","c":"#T1 Away HO","d":"1Q - M3 - Spot Up - Zidek 25"},{"i":"69:59","f":"70:12","c":"BALANCE","d":"1Q - 1n1 - C1 - C1"},{"i":"71:00","f":"71:11","c":"Middle PnR (2)","d":"1Q - M3 - Spot Up - Mc Donell 24"},{"i":"71:22","f":"71:31","c":"1n1 - Without Ball","d":"1Q - Foul Drawn"},{"i":"71:54","f":"72:05","c":"Step Up defense","d":"1Q - SHORT SHOW - M2 - PnR Roll Man - VIDEO TEAM"},{"i":"71:59","f":"72:10","c":"FASTBREAK","d":"1Q - Foul Drawn"},{"i":"72:28","f":"72:41","c":"#H1A Iverson 77 + Pin Down","d":"1Q - Off Screen - M2 - Fernandez 11 - VIDEO TEAM"},{"i":"72:37","f":"72:50","c":"BALANCE","d":"1Q - Turnover"},{"i":"72:50","f":"72:59","c":"1n1 EARLY OFFENSE","d":"1Q - Fernandez 11 - Catch & Drive - C1 - C1"},{"i":"73:53","f":"74:03","c":"Step Up defense","d":"1Q - C2 - PnR Roll Man - SHORT SHOW"},{"i":"74:09","f":"74:19","c":"#T3 Pistol Offense","d":"1Q - C3 - Spot Up - Mc Donell 24 - VIDEO TEAM"},{"i":"74:30","f":"74:41","c":"Step Up defense","d":"1Q - SHORT SHOW - Out of bounds"},{"i":"74:59","f":"75:10","c":"OTHER DEF","d":"1Q - M3"},{"i":"75:13","f":"75:20","c":"DRAG PnR","d":"1Q - C2 - Cut - Oroz 7 - VIDEO TEAM"},{"i":"75:24","f":"75:30","c":"OFF SCREEN","d":"1Q - Off Screen - C3 - THROUGH"},{"i":"75:40","f":"75:56","c":"#T1 Away HO","d":"1Q - M2 - PnR Ball Handler - Leimanis 44"},{"i":"76:01","f":"76:12","c":"PnR Guards Defense","d":"1Q - SWITCH - C2 - Drive & Drop Off - VIDEO TEAM"},{"i":"76:21","f":"76:34","c":"#H2A Horns Roll Smack PnR","d":"1Q - M2 - PnR Ball Handler - Fernandez 11 - Offensive Rebound"},{"i":"77:02","f":"77:17","c":"#B1 Rip Double Exit","d":"1Q - C2 - Leimanis 44 - PnR Ball Handler"},{"i":"77:27","f":"77:37","c":"Middle PnR (1) defense","d":"1Q - M3 - Spot Up - UNDER - Offensive Rebound - PLUG & HEDGE"},{"i":"78:03","f":"78:14","c":"Step Up defense","d":"1Q - PLUG & HEDGE - M2 - Catch & Drive - VIDEO TEAM"},{"i":"78:17","f":"78:30","c":"DRAG PnR","d":"1Q - C3 - Fernandez 11 - Spot Up"},{"i":"78:35","f":"78:49","c":"PnR Side defense","d":"1Q - PLUG & HEDGE - M2 - Catch & Drive - Offensive Rebound"},{"i":"78:44","f":"78:55","c":"DEFENSIVE REBOUND","d":"1Q - M2 - Offensive Rebound"},{"i":"78:58","f":"79:06","c":"DRAG PnR","d":"1Q - M2 - PnR Ball Handler - Fernandez 11"},{"i":"79:13","f":"79:24","c":"PnR 4 defense","d":"1Q - FLAT - LATE SWITCH - Turnover"},{"i":"79:22","f":"79:35","c":"1n1 EARLY OFFENSE","d":"1Q - M2 - Spot Up - Rodriguez 4"},{"i":"79:32","f":"79:42","c":"BALANCE","d":"1Q - C1 - C1 - 1n1"},{"i":"81:08","f":"81:21","c":"#H1B Iverson Throwback Chicago","d":"1Q - HO - M2 - Fernandez 11"},{"i":"81:27","f":"81:36","c":"1n1 - Without Ball","d":"1Q - M2 - 1n1 - Fernandez 11"},{"i":"81:58","f":"82:10","c":"#S1 Stagger Curl","d":"1Q - M2 - Post Up - Rodriguez 4"},{"i":"82:17","f":"82:28","c":"Spain PnR defense","d":"1Q - M3 - Spot Up - SHOW"},{"i":"85:09","f":"85:29","c":"#H2B Horns Floppy","d":"2Q - M3 - Zidek 25 - Spot Up"},{"i":"85:32","f":"85:43","c":"OFF SCREEN","d":"2Q - M3 - Off Screen - Offensive Rebound"},{"i":"85:45","f":"85:54","c":"Step Up defense","d":"2Q - SWITCH - Iglesias 27 - Foul Drawn"},{"i":"86:08","f":"86:17","c":"1n1 - Without Ball","d":"2Q - 1n1 - C1 - C1 - M1"},{"i":"87:21","f":"87:41","c":"DRAG PnR","d":"2Q - M2 - 1n1 - Russell 10 - Offensive Rebound"},{"i":"87:36","f":"87:44","c":"ROF Q","d":"2Q - C2 - Putback - Zidek 25"},{"i":"87:54","f":"88:05","c":"Spain PnR defense","d":"2Q - M2 - PnR Ball Handler - SHORT SHOW - Offensive Rebound"},{"i":"88:01","f":"88:06","c":"DEFENSIVE REBOUND","d":"2Q - Putback - M2"},{"i":"88:39","f":"88:51","c":"#S7 Other SOB","d":"2Q - M2 - Catch & Drive - Rodriguez 4 - Offensive Rebound"},{"i":"88:44","f":"88:52","c":"ROF Q","d":"2Q - M2 - Iglesias 27 - Putback"},{"i":"88:47","f":"88:53","c":"ROF Q","d":"2Q - C2 - Zidek 25 - Putback"},{"i":"89:02","f":"89:11","c":"1n1 - Without Ball","d":"2Q - C3 - Saraiva 23 - Spot Up - VIDEO TEAM"},{"i":"89:16","f":"89:29","c":"DRAG PnR","d":"2Q - C3 - Spot Up - Zidek 25 - VIDEO TEAM"},{"i":"89:40","f":"89:49","c":"1n1 - Without Ball","d":"2Q - M3 - VIDEO TEAM - Spot Up - Russell 10"},{"i":"89:48","f":"89:58","c":"1n1 EARLY OFFENSE","d":"2Q - Turnover - Russell 10"},{"i":"90:49","f":"91:03","c":"Step Up defense","d":"2Q - HIGH FLAT - LATE SWITCH - C3 - Spot Up - Zidek 25"},{"i":"91:07","f":"91:15","c":"#T3 Pistol Offense","d":"2Q - Turnover"},{"i":"91:19","f":"91:30","c":"POST UP","d":"2Q - Cut - C2"},{"i":"93:21","f":"93:36","c":"#H1B Iverson Throwback Chicago","d":"2Q - C2 - Off Screen - Mc Donell 24 - VIDEO TEAM"},{"i":"93:47","f":"93:51","c":"DUCK IN","d":"2Q - Turnover"},{"i":"93:47","f":"93:58","c":"FASTBREAK","d":"2Q - Foul Drawn - C1 - C1 - Zidek 25"},{"i":"94:57","f":"95:08","c":"PnR Side defense","d":"2Q - SHORT SHOW - M2 - PnR Ball Handler - VIDEO TEAM"},{"i":"95:05","f":"95:15","c":"RIM RUNNER","d":"2Q - Oroz 7 - M2 - Offensive Rebound"},{"i":"95:11","f":"95:15","c":"ROF Q","d":"2Q - Mc Donell 24 - Putback - C1 - M1"},{"i":"97:33","f":"97:44","c":"PRESS","d":"2Q - Turnover - VIDEO TEAM"},{"i":"97:57","f":"98:10","c":"#S2 Zipper Iverson Series","d":"2Q - Foul Drawn"},{"i":"98:21","f":"98:40","c":"#S2 Zipper Iverson Series","d":"2Q - M3 - Leimanis 44 - PnR Ball Handler"},{"i":"98:48","f":"98:59","c":"POST UP","d":"2Q - M2 - Post Up"},{"i":"98:57","f":"99:12","c":"FASTBREAK","d":"2Q - Turnover"},{"i":"99:16","f":"99:29","c":"PnR Side defense","d":"2Q - SHORT SHOW - C2 - Catch & Drive"},{"i":"99:33","f":"99:43","c":"POST UP TRANSITION","d":"2Q - C3 - Spot Up - Zidek 25"},{"i":"99:48","f":"99:59","c":"Step Up defense","d":"2Q - SHORT SHOW - Turnover"},{"i":"99:56","f":"100:01","c":"FASTBREAK","d":"2Q - Foul Drawn"},{"i":"100:43","f":"101:03","c":"#H3A 77 Empty PnR","d":"2Q - M2 - PnR Ball Handler - Fernandez 11"},{"i":"100:59","f":"101:12","c":"BALANCE","d":"2Q - C2"},{"i":"101:18","f":"101:33","c":"#T1 Away HO","d":"2Q - C3 - Zidek 25 - PnP"},{"i":"101:48","f":"101:59","c":"Step Up defense","d":"2Q - SWITCH - M3 - PnR Ball Handler - Zidek 25"},{"i":"101:55","f":"102:08","c":"1n1 EARLY OFFENSE","d":"2Q - M2 - 1n1 - Fernandez 11 - C1 - C1 - VIDEO TEAM"},{"i":"104:38","f":"104:47","c":"1n1 - Without Ball","d":"2Q - M2 - 1n1"},{"i":"104:47","f":"104:58","c":"OUT OF SETS","d":"2Q - Turnover"},{"i":"104:54","f":"105:04","c":"BALANCE","d":"2Q - C1 - C1"},{"i":"105:50","f":"106:01","c":"Step Up PnR","d":"2Q - M2 - 1n1 - Fernandez 11"},{"i":"106:15","f":"106:34","c":"#B2 4 Vertical Line Off Screens","d":"2Q - M3 - Spot Up - Rodriguez 4"},{"i":"106:42","f":"106:55","c":"HO","d":"2Q - SWITCH - Pinedo 13 - Turnover"},{"i":"107:03","f":"107:13","c":"1n1 EARLY OFFENSE","d":"2Q - Fernandez 11 - 1n1 - C1 - C1"},{"i":"108:17","f":"108:28","c":"OTHER DEF","d":"2Q - M3"},{"i":"123:56","f":"124:10","c":"Spain PnR defense","d":"3Q - SHORT SHOW - Out of bounds"},{"i":"124:21","f":"124:29","c":"Step Up defense","d":"3Q - SHORT SHOW - C3 - PnR Ball Handler"},{"i":"124:30","f":"124:41","c":"OTHER DEF","d":"3Q - C1"},{"i":"125:30","f":"125:46","c":"#H1A Iverson 77 + Pin Down","d":"3Q - PnR Ball Handler - Fernandez 11 - C1 - C1"},{"i":"126:45","f":"126:56","c":"PnR 4 defense","d":"3Q - SWITCH - C2 - Mc Donell 24 - Post Up"},{"i":"127:05","f":"127:21","c":"#T1 Away HO","d":"1n1 - Fernandez 11 - VIDEO TEAM - 3Q - C3"},{"i":"127:27","f":"127:38","c":"PnR Side defense","d":"3Q - C2 - SHORT SHOW - PnR Ball Handler"},{"i":"127:44","f":"127:54","c":"DRAG PnR","d":"3Q - M3 - Spot Up - Mc Donell 24 - VIDEO TEAM"},{"i":"127:51","f":"128:04","c":"BALANCE","d":"3Q - C2 - VIDEO TEAM - 1n1"},{"i":"128:19","f":"128:32","c":"#H3A 77 Empty PnR","d":"3Q - M2 - Post Up - Zidek 25"},{"i":"128:35","f":"128:48","c":"POST UP","d":"3Q - M2 - Post Up"},{"i":"128:46","f":"128:57","c":"FASTBREAK","d":"3Q - C3 - Spot Up - Mc Donell 24"},{"i":"129:11","f":"129:22","c":"PnR Side defense","d":"3Q - SHORT SHOW - M3 - PnR Ball Handler"},{"i":"129:24","f":"129:37","c":"DRAG PnR","d":"3Q - C2 - PnR Ball Handler - Fernandez 11 - VIDEO TEAM"},{"i":"129:43","f":"129:48","c":"OFF SCREEN","d":"3Q - C2 - Off Screen"},{"i":"130:38","f":"130:56","c":"#T2 Lithuania","d":"Out of bounds - 3Q"},{"i":"131:16","f":"131:26","c":"#S1 Stagger Curl","d":"3Q - C2 - Off Screen - Mc Donell 24"},{"i":"131:33","f":"131:44","c":"Step Up defense","d":"3Q - SHORT SHOW - LATE SWITCH - C2 - PnR Ball Handler - Zidek 25"},{"i":"131:47","f":"132:00","c":"1n1 EARLY OFFENSE","d":"3Q - Out of bounds"},{"i":"132:43","f":"132:49","c":"#B1 Rip Double Exit","d":"3Q - Mc Donell 24 - Off Screen - M1 - M1 - Offensive Rebound"},{"i":"133:39","f":"133:50","c":"ROF Q","d":"3Q - M3 - Spot Up - Fernandez 11 - Offensive Rebound"},{"i":"133:46","f":"133:52","c":"ROF Q","d":"3Q - M2 - Mc Donell 24 - Putback - Offensive Rebound"},{"i":"134:06","f":"134:19","c":"#B1 Rip Double Exit","d":"3Q - C2 - Cut - Mc Donell 24 - VIDEO TEAM"},{"i":"134:24","f":"134:33","c":"PnR 4 defense","d":"3Q - SHORT SHOW - M3 - Off Screen - VIDEO TEAM"},{"i":"134:34","f":"134:47","c":"1n1 EARLY OFFENSE","d":"3Q - C2 - Pinedo 13 - Cut"},{"i":"136:44","f":"137:02","c":"Step Up defense","d":"3Q - SWITCH - PnR Ball Handler - M2 - VIDEO TEAM - Pinedo 13"},{"i":"137:33","f":"137:44","c":"OFF SCREEN","d":"3Q - SWITCH - M3 - Off Screen - Pinedo 13 - Offensive Rebound"},{"i":"137:38","f":"137:51","c":"DEFENSIVE REBOUND","d":"3Q - M3 - Spot Up - Offensive Rebound"},{"i":"137:47","f":"138:01","c":"DEFENSIVE REBOUND","d":"3Q - C1 - C1 - 1n1"},{"i":"139:22","f":"139:28","c":"#H2A Horns Roll Smack PnR","d":"3Q - Foul Drawn"},{"i":"139:45","f":"140:03","c":"#S2 Zipper Iverson Series","d":"3Q - Off Screen - C3 - Off Screen - Mc Donell 24 - VIDEO TEAM"},{"i":"140:11","f":"140:22","c":"PnR Side defense","d":"3Q - SWITCH - Pinedo 13 - M2 - PnR Ball Handler"},{"i":"140:20","f":"140:28","c":"FASTBREAK","d":"3Q - Foul Drawn"},{"i":"140:57","f":"141:12","c":"#S2 Zipper Iverson Series","d":"3Q - M3 - Spot Up - Fernandez 11"},{"i":"141:15","f":"141:24","c":"1n1 - Without Ball","d":"3Q - Catch & Drive - M2 - Russell 10 - Offensive Rebound"},{"i":"141:19","f":"141:28","c":"DEFENSIVE REBOUND","d":"3Q - Putback - C1 - C1"},{"i":"142:31","f":"142:44","c":"#H1C Iverson Flip Spain","d":"3Q - C3 - Spot Up - Mc Donell 24 - VIDEO TEAM - CP Descriptor"},{"i":"142:51","f":"142:59","c":"PnR Side defense","d":"3Q - Turnover"},{"i":"143:20","f":"143:31","c":"#H1C Iverson Flip Spain","d":"3Q - M3 - Spot Up - Saraiva 23"},{"i":"143:39","f":"143:50","c":"PnR 4 defense","d":"3Q - SWITCH - Mc Donell 24 - Turnover"},{"i":"143:56","f":"144:09","c":"DRAG PnR","d":"3Q - M2 - PnR Ball Handler - Fernandez 11"},{"i":"144:46","f":"144:57","c":"Step Up defense","d":"3Q - Catch & Drive - C2 - SWITCH"},{"i":"144:49","f":"145:00","c":"OUT OF SETS","d":"3Q - Turnover"},{"i":"144:58","f":"145:06","c":"BALANCE","d":"3Q - C1 - C1"},{"i":"146:11","f":"146:22","c":"#H4A Stagger Stagger","d":"3Q - Turnover"},{"i":"146:15","f":"146:25","c":"BALANCE","d":"3Q - M2 - Offensive Rebound"},{"i":"146:23","f":"146:29","c":"DEFENSIVE REBOUND","d":"3Q - C2 - Putback"},{"i":"148:55","f":"149:04","c":"Step Up defense","d":"4Q - SHOW - C2 - Cut - VIDEO TEAM"},{"i":"149:08","f":"149:27","c":"#H3A 77 Empty PnR","d":"4Q - Rodriguez 4 - Cut - M2"},{"i":"149:33","f":"149:44","c":"Step Up defense","d":"4Q - SWITCH - Zidek 25 - Foul Drawn"},{"i":"150:08","f":"150:19","c":"PnR Side defense","d":"4Q - SHORT SHOW - LATE SWITCH - C2 - PnR Ball Handler - Iglesias 27"},{"i":"150:30","f":"150:43","c":"#H1D Iverson 77","d":"4Q - Turnover"},{"i":"150:39","f":"150:52","c":"BALANCE","d":"4Q - Foul Drawn"},{"i":"151:15","f":"151:19","c":"OFF SCREEN","d":"M3 - Off Screen - CHASE - Offensive Rebound - 4Q"},{"i":"151:16","f":"151:21","c":"DEFENSIVE REBOUND","d":"4Q - C2 - Putback"},{"i":"151:27","f":"151:36","c":"#T3 Pistol Offense","d":"4Q - Foul Drawn"},{"i":"151:53","f":"152:09","c":"#S7 Other SOB","d":"4Q - Foul Drawn"},{"i":"152:30","f":"152:44","c":"#S2 Zipper Iverson Series","d":"4Q - C2 - Cut - Iglesias 27"},{"i":"152:48","f":"152:56","c":"Drag PnR defense","d":"4Q - C2 - PnR Roll Man - SHORT SHOW - VIDEO TEAM"},{"i":"153:00","f":"153:07","c":"#T4 5 Out HO","d":"4Q - Turnover"},{"i":"153:00","f":"153:13","c":"BALANCE","d":"4Q - M3 - Spot Up - Offensive Rebound"},{"i":"153:57","f":"154:11","c":"PnR 4 defense","d":"4Q - SWITCH - M2 - PnR Ball Handler - Mc Donell 24"},{"i":"154:14","f":"154:30","c":"#T3 Pistol Offense","d":"4Q - Turnover"},{"i":"154:34","f":"154:42","c":"PnR 4 defense","d":"4Q - SWITCH - Mc Donell 24 - PnR Ball Handler - Foul Drawn"},{"i":"155:08","f":"155:16","c":"OFF SCREEN","d":"4Q - C2 - Off Screen"},{"i":"156:58","f":"157:08","c":"#H1E Iverson Flip Pin Down","d":"4Q - Leimanis 44 - C3 - Off Screen - VIDEO TEAM"},{"i":"157:28","f":"157:39","c":"Step Up defense","d":"4Q - SHORT SHOW - Catch & Drive - M2"},{"i":"157:47","f":"157:53","c":"#H1E Iverson Flip Pin Down","d":"4Q - M2 - 1n1 - Oroz 7"},{"i":"157:51","f":"158:01","c":"BALANCE","d":"4Q - Foul Drawn - Catch & Drive - C1 - C1"},{"i":"158:49","f":"159:02","c":"#H1C Iverson Flip Spain","d":"4Q - Catch & Drive - Russell 10 - C1 - C1"},{"i":"160:03","f":"160:14","c":"HO","d":"4Q - 1n1 - C3 - SWITCH - Mc Donell 24"},{"i":"160:19","f":"160:31","c":"#H1C Iverson Flip Spain","d":"4Q - M3 - Spot Up - Russell 10"},{"i":"160:41","f":"160:47","c":"1n1 - Without Ball","d":"4Q - C2 - Leimanis 44 - VIDEO TEAM - 1n1"},{"i":"161:26","f":"161:36","c":"DRAG PnR","d":"4Q - C2 - PnR Ball Handler - Leimanis 44"},{"i":"161:42","f":"161:53","c":"Step Up defense","d":"4Q - SWITCH - M2 - PnR Ball Handler - Pinedo 13"},{"i":"162:49","f":"163:01","c":"#S2 Zipper Iverson Series","d":"4Q - Turnover"},{"i":"163:07","f":"163:16","c":"1n1 - Without Ball","d":"4Q - Out of bounds"},{"i":"163:53","f":"164:04","c":"PnR 4 defense","d":"4Q - M2 - PnR Ball Handler - Offensive Rebound"},{"i":"164:08","f":"164:19","c":"PnR Side defense","d":"4Q - SWITCH - M3 - PnR Ball Handler - Pinedo 13 - Offensive Rebound"},{"i":"164:15","f":"164:22","c":"DEFENSIVE REBOUND","d":"4Q - Putback - M1 - M1"},{"i":"165:06","f":"165:25","c":"#T5 Pistol Floppy","d":"4Q - M2 - Off Screen - Pinedo 13"},{"i":"165:34","f":"165:45","c":"PnR Side defense","d":"4Q - SWITCH - M2 - PnR Ball Handler - VIDEO TEAM - Pinedo 13"},{"i":"166:34","f":"166:55","c":"#H1D Iverson 77","d":"4Q - M3 - Spot Up - Oroz 7 - Offensive Rebound"},{"i":"166:50","f":"166:58","c":"ROF Q","d":"4Q - C2 - Putback - Russell 10"},{"i":"167:13","f":"167:25","c":"Step Up defense","d":"4Q - PLUG & HEDGE - SWITCH - C2 - Catch & Drive - Pinedo 13"},{"i":"169:23","f":"169:36","c":"ATO","d":"4Q - C2 - 1n1 - Pinedo 13"},{"i":"169:46","f":"170:04","c":"Step Up defense","d":"4Q - Post Up - SWITCH - Pinedo 13 - M2"},{"i":"170:29","f":"170:45","c":"#T1 Away HO","d":"4Q - 1n1 - M2 - Leimanis 44"},{"i":"170:39","f":"170:50","c":"OTHER DEF","d":"4Q - Foul Drawn - C1 - C1"},{"i":"173:25","f":"173:34","c":"ATO","d":"4Q - C3 - Off Screen - Leimanis 44 - VIDEO TEAM"},{"i":"175:21","f":"175:26","c":"OTHER DEF","d":"4Q - Foul Drawn - C1 - C1"},{"i":"176:25","f":"176:29","c":"OUT OF SETS","d":"4Q - C1 - M1 - Russell 10"},{"i":"177:13","f":"177:18","c":"OTHER DEF","d":"4Q - C1 - C1"},{"i":"178:09","f":"178:16","c":"DRAG PnR","d":"4Q - Foul Drawn - C1 - C1"},{"i":"181:43","f":"181:49","c":"OTHER DEF","d":"4Q - C1 - C1"}]}],"assume":["#T, #H, #S y #B: falta el nombre de cada familia de sets.","Defensor implicado: se asume que el dorsal etiquetado en una acción defensiva es de Ourense. Solo 45 de 261 acciones defensivas llevan jugador.","Cobertura: 134 de 259 posesiones defensivas no llevan cobertura etiquetada. Los PPP por cobertura salen de las otras 125.","Primer cuarto de ataque con menos posesiones etiquetadas (48 frente a 69 a 73 en el resto): confirmar que se etiquetó completo antes de leer el reparto por cuartos.","Los puntos son los de los clips etiquetados, no los del acta oficial.","Se eliminó 1 clip duplicado (Palencia, 41:21, Step Up defense)."]};
+const EXPECTED=3;
+
+/* ---- Reglas de clasificación (editables) ---- */
+const isDef=c=>/defen[sc]e/i.test(c)||['BALANCE','DEFENSIVE REBOUND','OTHER DEF','PRESS','OFF SCREEN','HO','POST UP','1n1 - Without Ball'].includes(c);
+function otype(c){
+  if(/^#B/.test(c))return 'Baseline inbounds';
+  if(/^#S/.test(c))return 'Sideline inbounds';
+  if(/^#/.test(c))return 'Sets';
+  if(c==='ATO')return 'ATO';
+  if(/PnR/i.test(c))return 'Pick and roll';
+  if(['FASTBREAK','1n1 EARLY OFFENSE','POST UP TRANSITION','RIM RUNNER'].includes(c))return 'Transition';
+  if(c==='ROF Q')return 'Offensive rebound';
+  if(['POST UP','DUCK IN'].includes(c))return 'Post';
+  if(c==='OUT OF SETS')return 'Out of sets';
+  return 'Other';
+}
+const COVS=['SWITCH','SHORT SHOW','SHOW','PLUG & HEDGE','LATE SWITCH','FLAT','HIGH FLAT','UNDER','THROUGH','CHASE'];
+const FINS=['PnR Ball Handler','PnR Roll Man','PnP','Spot Up','Catch & Drive','Off Screen','Cut','Post Up','Putback','1n1','HO','Drive & Drop Off'];
+const QS=['1Q','2Q','3Q','4Q'];
+const OUT=['3PT made','2PT made','Free throws','3PT missed','2PT missed','Turnover','Foul drawn','Out of bounds'];
+const OSH=['3P ✓','2P ✓','FT','3P ✗','2P ✗','TO','Foul','Out'];
+const OCOL=['#2E7D5B','#58A77F','#9BC9AE','#C8202F','#E27C86','#C98A12','#6B8EBF','#9AA3B2'];
+const PLRE=/^(.+?)\s+(\d{1,2})$/;
+
+/* ---- Preparar clips ---- */
+const C=[];
+DATA.games.forEach((g,gi)=>g.rows.forEach(r=>{
+  const d=r.d.split(' - ').map(s=>s.trim()).filter(Boolean);
+  const has=k=>d.includes(k), cnt=k=>d.filter(x=>x===k).length;
+  const pts=cnt('C1')+2*cnt('C2')+3*cnt('C3');
+  const o=has('Turnover')?5:has('C3')?0:has('C2')?1:has('M3')?3:has('M2')?4:(has('C1')||has('M1'))?2:has('Foul Drawn')?6:has('Out of bounds')?7:-1;
+  const pl=d.filter(x=>PLRE.test(x)&&!/^[CM]\d$/.test(x)).map(x=>{const m=x.match(PLRE);return '#'+m[2]+' '+m[1]});
+  C.push({g:gi,ini:r.i,cat:r.c,d,def:isDef(r.c),pts,o,pos:o>=0,q:d.find(x=>QS.includes(x))||'',
+    cov:d.filter(x=>COVS.includes(x)),fn:d.filter(x=>FINS.includes(x)),pl});
+}));
+
+/* ---- Utilidades ---- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f2=v=>v==null||isNaN(v)?'–':v.toFixed(2);
+const pc=(a,b)=>b?Math.round(a/b*100)+'%':'–';
+function agg(rs){const p=rs.filter(c=>c.pos);const pts=p.reduce((s,c)=>s+c.pts,0);return{pos:p.length,pts,ppp:p.length?pts/p.length:NaN,ok:p.length?p.filter(c=>c.pts>0).length/p.length:NaN,to:p.filter(c=>c.o===5).length}}
+function pppCol(v,avg,inv){if(isNaN(v))return 'var(--muted)';const d=inv?avg-v:v-avg;return d>=.12?'var(--good)':d<=-.12?'var(--bad)':'var(--warn)'}
+const tip=$('#tip');
+function showTip(e,h){tip.innerHTML=h;tip.hidden=false;moveTip(e)}
+function moveTip(e){const w=tip.offsetWidth,h=tip.offsetHeight;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.hidden=true}
+
+/* ---- Filtros cruzados ---- */
+const DIMS={
+  O:{type:{l:'Type',f:c=>otype(c.cat)},set:{l:'Set',f:c=>/^#|^ATO$/.test(c.cat)?c.cat:null},pl:{l:'Finisher',f:c=>c.pl},fn:{l:'Playtype',f:c=>c.fn},out:{l:'Result',f:c=>OUT[c.o]},q:{l:'Quarter',f:c=>c.q}},
+  D:{cov:{l:'Coverage',f:c=>c.cov},sit:{l:'Situation',f:c=>c.cat},fn:{l:'Opponent playtype',f:c=>c.fn},pl:{l:'Defender',f:c=>c.pl},out:{l:'Result',f:c=>OUT[c.o]},q:{l:'Quarter',f:c=>c.q}}
+};
+const F={O:{},D:{}};
+let GS=null;function gOk(c){return !GS||GS.has(c.g)}
+const hit=(c,side,dim,val)=>{const v=DIMS[side][dim].f(c);return Array.isArray(v)?v.includes(val):v===val};
+function rowsFor(side,except=[]){
+  return C.filter(c=>c.pos&&gOk(c)&&(side==='D')===c.def&&Object.entries(F[side]).every(([d,v])=>except.includes(d)||hit(c,side,d,v)));
+}
+function groupBy(rs,side,dim){const m=new Map();rs.forEach(c=>{[].concat(DIMS[side][dim].f(c)??[]).forEach(k=>{if(k==null||k==='')return;(m.get(k)||m.set(k,[]).get(k)).push(c)})});return [...m].map(([k,rows])=>({k,rows,...agg(rows)}))}
+function toggle(side,dim,val){if(val==null)return;if(F[side][dim]===val)delete F[side][dim];else F[side][dim]=val;render()}
+function setF(side,obj){Object.entries(obj).forEach(([d,v])=>{if(v==null)delete F[side][d];else F[side][d]=v});render()}
+
+/* ---- Componentes ---- */
+function rowsChart(el,side,dim,opts={}){
+  const base=agg(rowsFor(side));
+  let gs=groupBy(rowsFor(side,[dim]),side,dim).sort((a,b)=>b.pos-a.pos);
+  if(opts.order)gs.sort((a,b)=>opts.order.indexOf(a.k)-opts.order.indexOf(b.k));
+  const max=Math.max(1,...gs.map(g=>g.pos)),sel=F[side][dim];
+  const box=$(el);box.classList.toggle('has',sel!=null);
+  box.innerHTML=gs.map((g,i)=>`<button type="button" class="row${sel===g.k?' on':''}${g.pos<4?' small':''}" data-i="${i}" aria-pressed="${sel===g.k}"><span class="n" title="${esc(g.k)}">${esc(g.k)}</span><span class="t" style="--w:${g.pos/max*100}%"><i style="width:${g.pos/max*100}%"></i><s class="${g.pos/max>.7?'in':''}">${g.pos}</s></span><span class="pp" style="background:${pppCol(g.ppp,base.ppp,opts.inv)}">${f2(g.ppp)}</span></button>`).join('')||'<p class="note">No possessions with these filters.</p>';
+  box.querySelectorAll('button').forEach(b=>{const g=gs[+b.dataset.i];b.onclick=()=>toggle(side,dim,g.k);
+    b.onmouseenter=e=>showTip(e,`<small>${DIMS[side][dim].l}</small><b>${esc(g.k)}</b>${g.pos} possessions · ${g.pts} pts<br>${f2(g.ppp)} PPP · ${pc(g.ok*g.pos,g.pos)} success`);b.onmousemove=moveTip;b.onmouseleave=hideTip});
+}
+function outChart(el,lg,side){
+  const rs=rowsFor(side,['out']),cnt=OUT.map((_,i)=>rs.filter(c=>c.o===i).length),tot=cnt.reduce((a,b)=>a+b,0)||1,sel=F[side].out;
+  $(el).classList.toggle('has',sel!=null);
+  $(el).innerHTML=cnt.map((c,i)=>c?`<button type="button" data-i="${i}" class="${sel===OUT[i]?'on':''}" style="flex:${c};background:${OCOL[i]}" aria-label="${OUT[i]}: ${c}">${c/tot>.07?`<span>${c}</span>`:''}</button>`:'').join('');
+  $(lg).innerHTML=cnt.map((c,i)=>c?`<button type="button" data-i="${i}" class="${sel===OUT[i]?'on':''}"><i style="background:${OCOL[i]}"></i>${OUT[i]} ${pc(c,tot)}</button>`:'').join('');
+  [el,lg].forEach(s=>$(s).querySelectorAll('button').forEach(b=>{const i=+b.dataset.i;b.onclick=()=>toggle(side,'out',OUT[i]);
+    b.onmouseenter=e=>showTip(e,`<small>Result</small><b>${OUT[i]}</b>${cnt[i]} possessions · ${pc(cnt[i],tot)}`);b.onmousemove=moveTip;b.onmouseleave=hideTip}));
+}
+function qChart(el,side){
+  const rs=rowsFor(side,['q']),base=agg(rowsFor(side)),sel=F[side].q;
+  $(el).classList.toggle('has',sel!=null);
+  $(el).innerHTML=QS.map(q=>{const a=agg(rs.filter(c=>c.q===q));return `<button type="button" data-q="${q}" class="${sel===q?'on':''}"><span>Q${q.replace('Q','')}</span><b class="num">${a.pts}</b><small>${a.pos} pos · <span style="color:${pppCol(a.ppp,base.ppp,side==='D')};font-weight:700">${f2(a.ppp)}</span></small></button>`}).join('');
+  $(el).querySelectorAll('button').forEach(b=>b.onclick=()=>toggle(side,'q',b.dataset.q));
+}
+function kpis(el,side){
+  const a=agg(rowsFor(side)),D=side==='D';
+  $(el).innerHTML=[[a.pos,'Possessions'],[f2(a.ppp),D?'PPP allowed':'PPP'],[a.pts,D?'Points allowed':'Points'],[pc(a.ok*a.pos,a.pos),D?'% opponent success':'% success'],[pc(a.to,a.pos),D?'% forced turnovers':'% turnovers']].map(([v,l])=>`<div><b class="num">${v}</b><span>${l}</span></div>`).join('');
+}
+function badges(el,side,dim,label){
+  const rs=rowsFor(side),a=agg(rs),gs=groupBy(rs,side,dim).filter(g=>g.pos>=5),D=side==='D';
+  if(!gs.length){$(el).innerHTML='';return}
+  const most=[...gs].sort((x,y)=>y.pos-x.pos)[0],hi=[...gs].sort((x,y)=>y.ppp-x.ppp)[0],lo=[...gs].sort((x,y)=>x.ppp-y.ppp)[0];
+  const b=(i,k,v,c)=>`<span class="badge"><i>${i}</i><b>${esc(k)}</b><em style="color:${c||'var(--ink)'}">${v}</em></span>`;
+  $(el).innerHTML=b('Most used · '+label,most.k,pc(most.pos,a.pos))+b(D?'Allows most':'Best PPP',hi.k,f2(hi.ppp),D?'var(--bad)':'var(--good)')+(lo!==hi?b(D?'Allows least':'Worst PPP',lo.k,f2(lo.ppp),D?'var(--good)':'var(--bad)'):'');
+}
+
+/* ---- Sets ---- */
+let sSort='pos',sN=10;
+function setsChart(){
+  const base=agg(rowsFor('O')),sel=F.O.set;
+  let gs=groupBy(rowsFor('O',['set']),'O','set');
+  gs.sort((a,b)=>sSort==='pos'?b.pos-a.pos||b.ppp-a.ppp:sSort==='pts'?b.pts-a.pts:sSort==='ok'?(b.ok-a.ok)||b.pos-a.pos:(b.ppp-a.ppp)||b.pos-a.pos);
+  const total=gs.length;if(sN)gs=gs.slice(0,sN);
+  if(sel&&!gs.find(g=>g.k===sel)){const s=groupBy(rowsFor('O',['set']),'O','set').find(g=>g.k===sel);if(s)gs.push(s)}
+  const max=Math.max(1,...gs.map(g=>g.pos));
+  const box=$('#o-sets');box.classList.toggle('has',sel!=null);
+  box.innerHTML=gs.map((g,i)=>{const cnt=OUT.map((_,j)=>g.rows.filter(c=>c.o===j).length);
+    return `<button type="button" class="row setrow${sel===g.k?' on':''}${g.pos<3?' small':''}" data-i="${i}"><span class="rk">${i+1}</span><span class="n" title="${esc(g.k)}">${esc(g.k)}</span><span class="t" style="--w:${g.pos/max*100}%"><i style="width:${g.pos/max*100}%"></i></span><span class="ok">${g.pos}</span><span class="pp" style="background:${pppCol(g.ppp,base.ppp)}">${f2(g.ppp)}</span><span class="ostk">${cnt.map((c,j)=>c?`<i style="flex:${c};background:${OCOL[j]}"></i>`:'').join('')}</span></button>`}).join('')+(sN&&total>sN?`<p class="note">${total-sN} more sets hidden.</p>`:'');
+  box.querySelectorAll('button').forEach(b=>{const g=gs[+b.dataset.i];b.onclick=()=>toggle('O','set',g.k);
+    const cnt=OUT.map((_,j)=>g.rows.filter(c=>c.o===j).length);
+    b.onmouseenter=e=>showTip(e,`<small>Set</small><b>${esc(g.k)}</b>${g.pos} poss · ${g.pts} pts · ${f2(g.ppp)} PPP · ${pc(g.ok*g.pos,g.pos)} success<br>${cnt.map((c,j)=>c?OSH[j]+' '+c:'').filter(Boolean).join(' · ')}`);b.onmousemove=moveTip;b.onmouseleave=hideTip});
+  $('#s-n').max=Math.max(3,total);
+}
+document.querySelectorAll('#s-sort button').forEach(b=>b.onclick=()=>{sSort=b.dataset.s;document.querySelectorAll('#s-sort button').forEach(x=>x.classList.toggle('on',x===b));setsChart()});
+document.querySelectorAll('#s-top button').forEach(b=>b.onclick=()=>{sN=+b.dataset.n;document.querySelectorAll('#s-top button').forEach(x=>x.classList.toggle('on',x===b));if(sN)$('#s-n').value=sN;$('#s-nv').textContent=sN||'∞';setsChart();sankey()});
+$('#s-n').oninput=e=>{sN=+e.target.value;$('#s-nv').textContent=sN;document.querySelectorAll('#s-top button').forEach(x=>x.classList.toggle('on',+x.dataset.n===sN));setsChart();sankey()};
+
+/* ---- Sankey ---- */
+let kL='set',kR='out';
+function sankey(){
+  let rs=rowsFor('O');
+  if(kL==='set')rs=rs.filter(c=>/^#|^ATO$/.test(c.cat));
+  const lv=c=>kL==='set'?c.cat:otype(c.cat), mv=c=>c.pl[0]||'No player', rv=c=>kR==='out'?OUT[c.o]:(c.fn[0]||'No playtype');
+  if(!rs.length){$('#sankey').innerHTML='<p class="note">No possessions with these filters.</p>';return}
+  // limitar origen a Top N
+  const lc={};rs.forEach(c=>lc[lv(c)]=(lc[lv(c)]||0)+1);
+  const keep=new Set(Object.entries(lc).sort((a,b)=>b[1]-a[1]).slice(0,sN||999).map(x=>x[0]));
+  const L=c=>keep.has(lv(c))?lv(c):'Others';
+  const cols=[L,mv,rv],dims=[kL,'pl',kR];
+  const nodes=cols.map(fn=>{const m={};rs.forEach(c=>{const k=fn(c);m[k]=(m[k]||0)+1});return Object.entries(m).sort((a,b)=>(a[0]==='Others'||a[0].startsWith('No '))-(b[0]==='Others'||b[0].startsWith('No '))||b[1]-a[1]).map(([k,v])=>({k,v}))});
+  const W=980,pad=6,top=26,maxN=Math.max(...nodes.map(n=>n.length)),H=Math.max(300,maxN*30+top+10);
+  const sc=Math.min(...nodes.map(n=>(H-top-10-pad*(n.length-1))/rs.length));
+  const X=[190,500,790],NW=14;
+  nodes.forEach(col=>{let y=top;col.forEach(n=>{n.y=y;n.h=Math.max(2,n.v*sc);n.o1=0;n.o2=0;y+=n.h+pad})});
+  const idx=nodes.map(col=>Object.fromEntries(col.map((n,i)=>[n.k,i])));
+  const color=(ci,k)=>ci===2&&kR==='out'?OCOL[OUT.indexOf(k)]:ci===0?'var(--accent)':'var(--ink)';
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Possession flow">`;
+  [['Origin',X[0]],['Finisher',X[1]],[kR==='out'?'Result':'Playtype',X[2]]].forEach(([t,x])=>s+=`<text class="colh" x="${x+NW/2}" y="14" text-anchor="middle">${t.toUpperCase()}</text>`);
+  [[0,1],[1,2]].forEach(([a,b])=>{
+    const m=new Map();rs.forEach(c=>{const k=cols[a](c)+'\u0000'+cols[b](c);m.set(k,(m.get(k)||0)+1)});
+    const links=[...m].map(([k,v])=>{const [s1,t1]=k.split('\u0000');return{s:nodes[a][idx[a][s1]],t:nodes[b][idx[b][t1]],v,sk:s1,tk:t1}}).sort((p,q)=>p.s.y-q.s.y||p.t.y-q.t.y);
+    links.forEach(l=>{const h=l.v*sc,y0=l.s.y+l.s.o1,y1=l.t.y+l.t.o2;l.s.o1+=h;l.t.o2+=h;
+      const x0=X[a]+NW,x1=X[b],mx=(x0+x1)/2,fill=a===0?color(0,l.sk):color(2,l.tk);
+      s+=`<path class="lnk" d="M${x0},${y0}C${mx},${y0} ${mx},${y1} ${x1},${y1}L${x1},${y1+h}C${mx},${y1+h} ${mx},${y0+h} ${x0},${y0+h}Z" style="fill:${fill}" data-tip="${esc(l.sk)} → ${esc(l.tk)}: ${l.v} pos"></path>`});
+  });
+  nodes.forEach((col,ci)=>col.forEach(n=>{
+    const sel=F.O[dims[ci]]===n.k,click=!(n.k==='Others'||n.k.startsWith('No '));
+    const lx=ci===0?X[0]-8:X[ci]+NW+8,anchor=ci===0?'end':'start';
+    s+=`<g class="node" data-c="${ci}" data-k="${esc(n.k)}" ${click?'':'style="cursor:default"'}><rect x="${X[ci]}" y="${n.y}" width="${NW}" height="${n.h}" style="fill:${color(ci,n.k)};${sel?'stroke:var(--accent);stroke-width:3px':''}"></rect>${n.h>=9||n.v>=2?`<text x="${lx}" y="${n.y+n.h/2+4}" text-anchor="${anchor}">${esc(n.k.length>30?n.k.slice(0,29)+'…':n.k)} <tspan>${n.v}</tspan></text>`:''}</g>`;
+  }));
+  s+='</svg>';
+  $('#sankey').innerHTML=s;
+  $('#sankey').querySelectorAll('.node').forEach(g=>{const ci=+g.dataset.c,k=g.dataset.k;const n=nodes[ci].find(x=>x.k===k);
+    if(!(k==='Others'||k.startsWith('No ')))g.onclick=()=>toggle('O',dims[ci],k);
+    g.onmouseenter=e=>showTip(e,`<b>${esc(k)}</b>${n.v} possessions · ${pc(n.v,rs.length)}`);g.onmousemove=moveTip;g.onmouseleave=hideTip});
+  $('#sankey').querySelectorAll('.lnk').forEach(p=>{p.onmouseenter=e=>showTip(e,p.dataset.tip);p.onmousemove=moveTip;p.onmouseleave=hideTip});
+}
+document.querySelectorAll('#k-left button').forEach(b=>b.onclick=()=>{kL=b.dataset.v;document.querySelectorAll('#k-left button').forEach(x=>x.classList.toggle('on',x===b));sankey()});
+document.querySelectorAll('#k-right button').forEach(b=>b.onclick=()=>{kR=b.dataset.v;document.querySelectorAll('#k-right button').forEach(x=>x.classList.toggle('on',x===b));sankey()});
+
+/* ---- Heatmap finalizador x playtype ---- */
+function heat(){
+  const rs=rowsFor('O',['pl','fn']),base=agg(rowsFor('O',['pl','fn']));
+  const pls=groupBy(rs,'O','pl').sort((a,b)=>b.pos-a.pos),fns=groupBy(rs,'O','fn').sort((a,b)=>b.pos-a.pos);
+  const sp=F.O.pl,sf=F.O.fn;
+  if(!pls.length||!fns.length){$('#heat').innerHTML='<p class="note">No possessions with these filters.</p>';return}
+  const cell=(p,f)=>{const r=p.rows.filter(c=>c.fn.includes(f));return{...agg(r)}};
+  const max=Math.max(1,...pls.flatMap(p=>fns.map(f=>cell(p,f.k).pos)));
+  $('#heat').classList.toggle('has',sp!=null||sf!=null);
+  let h='<table><thead><tr><th></th>'+fns.map(f=>`<th><button type="button" data-f="${esc(f.k)}" class="${sf===f.k?'on':''}">${esc(f.k)}</button></th>`).join('')+'<th>Total</th></tr></thead><tbody>';
+  pls.forEach(p=>{h+=`<tr><th><button type="button" data-p="${esc(p.k)}" class="${sp===p.k?'on':''}">${esc(p.k)}</button></th>`+fns.map(f=>{const c=cell(p,f.k);if(!c.pos)return '<td><div class="z"></div></td>';
+    const col=pppCol(c.ppp,base.ppp),al=Math.round(35+65*c.pos/max),on=(sp===p.k&&sf===f.k)||(sp===p.k&&sf==null)||(sf===f.k&&sp==null);
+    return `<td><button type="button" class="${on?'on':''}" data-p="${esc(p.k)}" data-f="${esc(f.k)}" style="background:color-mix(in srgb, ${col} ${al}%, var(--panel));color:${al>60?'#fff':'var(--ink)'}"><b>${c.pos}</b><small>${f2(c.ppp)}</small></button></td>`}).join('')+`<td class="tot">${p.pos}</td></tr>`});
+  h+='</tbody></table>';$('#heat').innerHTML=h;
+  $('#heat').querySelectorAll('td button').forEach(b=>{const p=b.dataset.p,f=b.dataset.f,c=cell(pls.find(x=>x.k===p),f);
+    b.onclick=()=>setF('O',(F.O.pl===p&&F.O.fn===f)?{pl:null,fn:null}:{pl:p,fn:f});
+    b.onmouseenter=e=>showTip(e,`<small>${esc(f)}</small><b>${esc(p)}</b>${c.pos} pos · ${c.pts} pts · ${f2(c.ppp)} PPP`);b.onmousemove=moveTip;b.onmouseleave=hideTip});
+  $('#heat').querySelectorAll('thead button').forEach(b=>b.onclick=()=>toggle('O','fn',b.dataset.f));
+  $('#heat').querySelectorAll('tbody th button').forEach(b=>b.onclick=()=>toggle('O','pl',b.dataset.p));
+}
+
+/* ---- Chips de filtros ---- */
+function chips(){
+  const items=[];['O','D'].forEach(s=>Object.entries(F[s]).forEach(([d,v])=>items.push({s,d,v})));
+  $('#chips').innerHTML=items.length?items.map((x,i)=>`<button type="button" class="chip" data-i="${i}"><small>${x.s==='O'?'Offense':'Defense'} · ${DIMS[x.s][x.d].l}</small>${esc(x.v)} ✕</button>`).join('')+'<button type="button" class="chip clear" id="clr">Clear all</button>':'<span class="hint">Click any bar, block or cell to filter</span>';
+  $('#chips').querySelectorAll('.chip[data-i]').forEach(b=>{const x=items[+b.dataset.i];b.onclick=()=>{delete F[x.s][x.d];render()}});
+  const c=$('#clr');if(c)c.onclick=()=>{F.O={};F.D={};render()};
+}
+
+function render(){
+  hideTip();
+  const all=C.filter(c=>c.pos&&gOk(c)),ao=agg(all.filter(c=>!c.def)),ad=agg(all.filter(c=>c.def));
+  $('#hstats').innerHTML=`<div><b class="num">${f2(ao.ppp)}</b><span>Offense PPP</span></div><div><b class="num">${f2(ad.ppp)}</b><span>PPP allowed</span></div><div><b class="num">${ao.pts} / ${ad.pts}</b><span>Points</span></div><div><b class="num">${ao.pos}</b><span>Offensive possessions</span></div>`;
+  chips();
+  kpis('#o-kpi','O');badges('#o-badges','O','type','type');
+  rowsChart('#o-type','O','type');outChart('#o-out','#o-olg','O');qChart('#o-q','O');
+  setsChart();sankey();heat();
+  kpis('#d-kpi','D');badges('#d-badges','D','cov','coverage');
+  rowsChart('#d-cov','D','cov',{inv:true});rowsChart('#d-sit','D','sit',{inv:true});rowsChart('#d-fn','D','fn',{inv:true});rowsChart('#d-pl','D','pl',{inv:true});
+  outChart('#d-out','#d-olg','D');qChart('#d-q','D');
+}
+function init(){
+  const done=DATA.games.length;
+  $('#games').innerHTML=DATA.games.map(g=>`<span class="ok">vs ${esc(g.rival)} ✓</span>`).join('')+Array.from({length:Math.max(0,EXPECTED-done)},(_,i)=>`<span class="pend">Game ${done+i+1} · pending</span>`).join('');
+  $('#gsel').innerHTML+=`<button type="button" data-g="all" class="on">All (${done})</button>`+DATA.games.map((g,i)=>`<button type="button" data-g="${i}">vs ${esc(g.rival)}</button>`).join('');
+  $('#gsel').querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=b.dataset.g;if(v==='all'){GS=null}else{const s=new Set(GS||[]);const i=+v;if(s.has(i))s.delete(i);else s.add(i);GS=(s.size===0||s.size===done)?null:s}$('#gsel').querySelectorAll('button').forEach(x=>{const d=x.dataset.g;x.classList.toggle('on',d==='all'?GS===null:(GS!==null&&GS.has(+d)))});render()});
+  $('#foot').textContent=`${C.length} tagged clips · ${done} of ${EXPECTED} games`;
+  render();
+}
+init();
+</script>
+
+</body></html>
