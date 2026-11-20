@@ -278,6 +278,23 @@
   @media(max-width:960px){.hero-content{grid-template-columns:1fr}.hero-figure{transform:none}.svc-row{grid-template-columns:1fr;gap:28px}.svc-row.svc-flip .svc-text{order:0}.commitment-grid{grid-template-columns:1fr 1fr}.sp-band{grid-template-columns:1fr}.sp-band-go{grid-column:1;grid-row:auto}}
   .svc-noimg{grid-template-columns:1fr 1.15fr}
   @media(max-width:960px){.svc-noimg{grid-template-columns:1fr}}
+  #inicio{background:#000;color:white}
+  #inicio .hero-title .line1,#inicio .hero-title .line3,#inicio .hero-title .line4{color:white}
+  #inicio .hero-sub{color:rgba(255,255,255,.72)}
+  #inicio .hero-facts{color:rgba(255,255,255,.55)}
+  #inicio .btn-secondary{color:white;border-color:rgba(255,255,255,.6)}
+  #inicio .btn-secondary:hover{background:white;color:#000;border-color:white}
+  #inicio .btn-primary:hover{background:white;color:#000;border-color:white}
+  .hero-logo{display:block;width:150px;height:auto;margin:0 0 18px -14px}
+  #inicio .hero-figure{border-color:#222;box-shadow:none;transform:none}
+  .pack-block{margin-top:72px;padding-top:48px;border-top:1px solid var(--mid-gray)}
+  .pack-block-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.8rem;text-transform:uppercase;line-height:1;margin-bottom:10px}
+  .pack-block-desc{font-size:.95rem;color:var(--gray);max-width:560px;line-height:1.6;margin-bottom:28px}
+  .pack-block .pack-details-inner{margin-top:0}
+  .pack-card{border-top-width:2px}
+  .pack-feature::before{width:6px;height:6px;margin-top:8px;background:var(--orange)}
+  #paquetes .sp-band{margin-top:56px}
+  @media(max-width:960px){.hero-logo{width:110px}}
 </style>
 </head>
 <body>
@@ -308,7 +325,7 @@
 <section id="inicio">
   <div class="hero-content">
     <div class="hero-text">
-      <div class="hero-badge" data-es="Scouting y análisis de baloncesto" data-en="Basketball scouting and analysis">Basketball scouting and analysis</div>
+      <img class="hero-logo" src="logo-hoop-assistant.jpg" alt="Hoop Assistant">
       <h1 class="hero-title">
         <span class="line1" data-es="CONTROLA" data-en="CONTROL">CONTROL</span>
         <span class="line2" data-es="EL JUEGO" data-en="THE GAME">THE GAME</span>
@@ -320,7 +337,7 @@
         <a href="#contacto" class="btn-primary" data-es="Hablemos" data-en="Talk to us">Talk to us</a>
         <a href="#portfolio" class="btn-secondary" data-es="Ver ejemplos reales" data-en="See real examples">See real examples</a>
       </div>
-      <p class="hero-facts" data-es="4 clubes esta temporada · 4 países · entrega en 48h" data-en="4 clubs this season · 4 countries · delivered in 48h">4 clubs this season · 4 countries · delivered in 48h</p>
+      <p class="hero-facts" data-es="4 clubes esta temporada · 3 países · entrega en 48h" data-en="4 clubs this season · 3 countries · delivered in 48h">4 clubs this season · 3 countries · delivered in 48h</p>
     </div>
     <figure class="hero-figure">
       <img src="work-ppp.jpg" alt="Points per possession by action, from a rival scouting report">
@@ -332,7 +349,7 @@
 <section id="testimonios">
   <div class="section-header">
     <div class="section-tag" data-es="Equipos con los que trabajamos esta temporada" data-en="Teams we work with this season">Teams we work with this season</div>
-    <h2 class="section-title" data-es="LO QUE DICEN LOS <span>STAFFS</span>" data-en="WHAT THE <span>STAFFS</span> SAY">WHAT THE <span>STAFFS</span> SAY</h2>
+    <h2 class="section-title" data-es="LO QUE DICEN LOS STAFFS" data-en="WHAT THE STAFFS SAY">WHAT THE STAFFS SAY</h2>
   </div>
   <div class="clients-row">
     <div class="client-card"><img src="Alvik.png" alt="Alvik Basket"><div><div class="client-name">Alvik Basket</div><div class="client-league">SBL Dam · Sweden</div></div></div>
@@ -341,9 +358,8 @@
     <div class="client-card"><img src="Ponferrada.png" alt="Clínica Ponferrada SDP"><div><div class="client-name">Clínica Ponferrada SDP</div><div class="client-league">2ª FEB · Spain</div></div></div>
   </div>
   <div class="t-featured">
-    <div class="t-badge" data-es="Cliente actual" data-en="Current client">Current client</div>
     <span class="t-mark">&ldquo;</span>
-    <p class="t-big" data-es="Quería dar las gracias a los chicos de Hoop Assistant por ayudar a nuestro equipo femenino con informes de partido, estadística avanzada y análisis en profundidad del juego. Están aportando mucho a nuestro desarrollo." data-en="Just wanted to send a quick shout out to our guys over at Hoop Assistant for helping our women's team out with game reports, advanced stats and deep dive analysis into the game. They've been contributing a lot to our development.">Just wanted to send a quick shout out to our guys over at Hoop Assistant for helping our women's team out with game reports, advanced stats and deep dive analysis into the game. They've been contributing a lot to our development.</p>
+    <p class="t-big" data-es="Un agradecimiento enorme a los chicos de Hoop Assistant. Ayudan a nuestro equipo femenino con informes de partido, estadística avanzada y análisis a fondo de cada partido, y han contribuido mucho a nuestro desarrollo esta temporada." data-en="A big thank you to the guys at Hoop Assistant. They help our women's team with game reports, advanced stats and in depth analysis of every game, and they have contributed a lot to our development this season.">A big thank you to the guys at Hoop Assistant. They help our women's team with game reports, advanced stats and in depth analysis of every game, and they have contributed a lot to our development this season.</p>
     <div class="t-author">
       <div class="t-avatar"><img src="Daniel%20Nilo.png" alt="Daniel Nilo"></div>
       <div><div class="t-name">Daniel Nilo</div><div class="t-role" data-es="Director Deportivo · Alvik Basket, SBL Dam" data-en="Sports Director · Alvik Basket, SBL Dam">Sports Director · Alvik Basket, SBL Dam</div></div>
@@ -384,7 +400,7 @@
 <section id="service-model">
   <div class="section-header">
     <div class="section-tag" data-es="Quién hace el trabajo" data-en="Who does the work">Who does the work</div>
-    <h2 class="section-title" data-es="ANALISTAS REALES. <span>NO SOFTWARE.</span>" data-en="REAL ANALYSTS. <span>NOT SOFTWARE.</span>">REAL ANALYSTS. <span>NOT SOFTWARE.</span></h2>
+    <h2 class="section-title" data-es="ANALISTAS REALES. NO SOFTWARE." data-en="REAL ANALYSTS. NOT SOFTWARE.">REAL ANALYSTS. NOT SOFTWARE.</h2>
     <p class="section-desc" data-es="Hoop Assistant no es una app, ni una herramienta de IA, ni un producto de suscripción. Es un servicio hecho por entrenadores que ven cada partido, etiquetan cada posesión y hablan con tu staff cada semana." data-en="Hoop Assistant is not an app, not an AI tool and not a subscription product. It is a service run by coaches who watch every game, tag every possession and talk with your staff every week.">Hoop Assistant is not an app, not an AI tool and not a subscription product. It is a service run by coaches who watch every game, tag every possession and talk with your staff every week.</p>
     <div class="model-not">
       <span data-es="App" data-en="App">App</span><span data-es="Herramienta IA" data-en="AI tool">AI tool</span><span data-es="Producto" data-en="Product">Product</span><span class="yes" data-es="Servicio" data-en="Service">Service</span>
@@ -400,7 +416,7 @@
 <section id="servicios">
   <div class="section-header">
     <div class="section-tag" data-es="Lo que hacemos" data-en="What we do">What we do</div>
-    <h2 class="section-title" data-es="TRES FORMAS DE AYUDAR <span>A TU STAFF</span>" data-en="THREE WAYS WE HELP <span>YOUR STAFF</span>">THREE WAYS WE HELP <span>YOUR STAFF</span></h2>
+    <h2 class="section-title" data-es="TRES FORMAS DE AYUDAR A TU STAFF" data-en="THREE WAYS WE HELP YOUR STAFF">THREE WAYS WE HELP YOUR STAFF</h2>
   </div>
   <div class="svc-row svc-noimg">
     <div class="svc-text">
@@ -545,22 +561,18 @@
 <section id="paquetes">
   <div class="section-header">
     <div class="section-tag" data-es="Cómo trabajamos" data-en="How we work">How we work</div>
-    <h2 class="section-title" data-es="CADA PROPUESTA SE HACE <span>PARA TU EQUIPO</span>" data-en="EVERY PROPOSAL IS <span>BUILT FOR YOUR TEAM</span>">EVERY PROPOSAL IS <span>BUILT FOR YOUR TEAM</span></h2>
+    <h2 class="section-title" data-es="CADA PROPUESTA SE HACE PARA TU EQUIPO" data-en="EVERY PROPOSAL IS BUILT FOR YOUR TEAM">EVERY PROPOSAL IS BUILT FOR YOUR TEAM</h2>
     <p class="section-desc" data-es="No tenemos planes cerrados. Empezamos con una llamada, entendemos cómo trabaja tu staff y montamos una propuesta según tu liga, tu calendario y lo que necesitas." data-en="No fixed plans. We start with a call, understand how your staff works and build a proposal around your league, your calendar and what you need.">No fixed plans. We start with a call, understand how your staff works and build a proposal around your league, your calendar and what you need.</p>
   </div>
   <div class="steps-grid">
-    <div class="step"><div class="step-num" data-es="Paso 01" data-en="Step 01">Step 01</div><div class="step-title" data-es="Llamada" data-en="Call">Call</div><p class="step-text" data-es="20 minutos para entender tu sistema, tu staff y qué necesitas cada semana." data-en="20 minutes to understand your system, your staff and what you need every week.">20 minutes to understand your system, your staff and what you need every week.</p></div>
-    <div class="step"><div class="step-num" data-es="Paso 02" data-en="Step 02">Step 02</div><div class="step-title" data-es="Propuesta a medida" data-en="Tailored proposal">Tailored proposal</div><p class="step-text" data-es="Servicios, plazos y formato pensados para tu temporada. Pagas solo por lo que usas." data-en="Services, delivery times and format designed for your season. You only pay for what you use.">Services, delivery times and format designed for your season. You only pay for what you use.</p></div>
-    <div class="step"><div class="step-num" data-es="Paso 03" data-en="Step 03">Step 03</div><div class="step-title" data-es="Trabajo semanal" data-en="Weekly work">Weekly work</div><p class="step-text" data-es="Entregas en 48h y comunicación directa con tu analista toda la temporada." data-en="Delivered in 48h, with direct communication with your analyst all season long.">Delivered in 48h, with direct communication with your analyst all season long.</p></div>
+    <div class="step"><div class="step-title" data-es="Llamada" data-en="Call">Call</div><p class="step-text" data-es="20 minutos para entender tu sistema, tu staff y qué necesitas cada semana." data-en="20 minutes to understand your system, your staff and what you need every week.">20 minutes to understand your system, your staff and what you need every week.</p></div>
+    <div class="step"><div class="step-title" data-es="Propuesta a medida" data-en="Tailored proposal">Tailored proposal</div><p class="step-text" data-es="Servicios, plazos y formato pensados para tu temporada. Pagas solo por lo que usas." data-en="Services, delivery times and format designed for your season. You only pay for what you use.">Services, delivery times and format designed for your season. You only pay for what you use.</p></div>
+    <div class="step"><div class="step-title" data-es="Trabajo semanal" data-en="Weekly work">Weekly work</div><p class="step-text" data-es="Entregas en 48h y comunicación directa con tu analista toda la temporada." data-en="Delivered in 48h, with direct communication with your analyst all season long.">Delivered in 48h, with direct communication with your analyst all season long.</p></div>
   </div>
   <a href="#contacto" class="btn-primary" data-es="Reserva una llamada" data-en="Book a call">Book a call</a>
-  <a class="sp-band" href="season-pack/">
-    <span class="sp-band-tag" data-es="Para clubes de Basketligan Dam" data-en="For Basketligan Dam clubs">For Basketligan Dam clubs</span>
-    <span class="sp-band-title" data-es="Season Pack y colaboración gratuita" data-en="Season Pack and free collaboration">Season Pack and free collaboration</span>
-    <span class="sp-band-go" data-es="Ver Season Pack →" data-en="See the Season Pack →">See the Season Pack →</span>
-  </a>
-  <details class="pack-details">
-    <summary data-es="Ver paquetes de ejemplo" data-en="See example packages">See example packages</summary>
+  <div class="pack-block">
+    <h3 class="pack-block-title" data-es="Puntos de partida" data-en="Starting points">Starting points</h3>
+    <p class="pack-block-desc" data-es="Estos son los paquetes con los que solemos empezar. Ninguno es cerrado: los ajustamos a tu liga, tu calendario y tu presupuesto." data-en="These are the packages we usually start from. None of them is fixed: we adjust them to your league, your calendar and your budget.">These are the packages we usually start from. None of them is fixed: we adjust them to your league, your calendar and your budget.</p>
     <div class="pack-details-inner">
   <div class="pack-tabs">
     <button class="pack-tab-btn active" onclick="switchPack(event,'stats')" data-es="Pack Estadísticas" data-en="Statistics">Statistics</button>
@@ -572,7 +584,6 @@
   <div class="pack-panel active" id="panel-stats">
     <div class="pack-grid-3">
       <div class="pack-card">
-        <div class="pack-tier">Bronze</div>
         <div class="pack-name">Bronze</div>
         <div class="pack-sub" data-es="Four Factors y eficiencia de tiro en contexto" data-en="Four Factors and shooting efficiency in context">Four Factors and shooting efficiency in context</div>
         <div class="pack-divider"></div>
@@ -582,11 +593,8 @@
           <li class="pack-feature" data-es="Rankings del equipo en la liga" data-en="Team rankings in the league">Team rankings in the league</li>
           <li class="pack-feature" data-es="Comparativa equipo propio vs rival" data-en="Own team vs opponent comparison">Own team vs opponent comparison</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
-      <div class="pack-card featured">
-        <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
-        <div class="pack-tier" style="color:var(--orange-light)">Silver</div>
+      <div class="pack-card">
         <div class="pack-name">Silver</div>
         <div class="pack-sub" data-es="Optimización de rotaciones y evolución del equipo" data-en="Lineup optimisation and team evolution">Lineup optimisation and team evolution</div>
         <div class="pack-divider"></div>
@@ -596,10 +604,8 @@
           <li class="pack-feature" data-es="Optimización de quintetos y rotaciones" data-en="Lineup and rotation optimisation">Lineup and rotation optimisation</li>
           <li class="pack-feature" data-es="Tendencias y evolución de jugadores" data-en="Player tendencies and evolution">Player tendencies and evolution</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card">
-        <div class="pack-tier">Gold</div>
         <div class="pack-name">Gold</div>
         <div class="pack-sub" data-es="Análisis completo con playtypes y reports periódicos" data-en="Full analysis with playtypes and periodic reports">Full analysis with playtypes and periodic reports</div>
         <div class="pack-divider"></div>
@@ -609,7 +615,6 @@
           <li class="pack-feature" data-es="Reports ejecutivos a tercios, mitad y final de temporada" data-en="Executive reports at 1/3, mid and end of season">Executive reports at 1/3, mid and end of season</li>
           <li class="pack-feature" data-es="Playtypes avanzados (InStat / Synergy)" data-en="Advanced playtypes (InStat / Synergy)">Advanced playtypes (InStat / Synergy)</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
     </div>
   </div>
@@ -627,11 +632,9 @@
           <li class="pack-feature" data-es="Informe defensivo escrito y en vídeo" data-en="Written and video defensive report">Written and video defensive report</li>
         </ul>
         <div class="pack-addon" data-es="Playbook disponible como suplemento (+€35)" data-en="Playbook available as add-on (+€35)">Playbook available as add-on (+€35)</div>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
-      <div class="pack-card featured">
-        <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
-        <div class="pack-tier" style="color:var(--orange-light)" data-es="Rival · Completo" data-en="Opponent · Full">Opponent · Full</div>
+      <div class="pack-card">
+        <div class="pack-tier" data-es="Rival · Completo" data-en="Opponent · Full">Opponent · Full</div>
         <div class="pack-name">Full Scout</div>
         <div class="pack-sub" data-es="El análisis más completo del rival" data-en="The most complete opponent analysis">The most complete opponent analysis</div>
         <div class="pack-divider"></div>
@@ -641,7 +644,7 @@
         </ul>
         <!-- VIDEO TOGGLE -->
         <div style="margin-top:14px;margin-bottom:4px">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px" data-es="Formato de vídeo" data-en="Video format">Video format</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:8px" data-es="Formato de vídeo" data-en="Video format">Video format</div>
           <div class="video-toggle">
             <button class="vt-btn active" onclick="switchVideo(this,'curated')" data-es="Curado (8-10 min)" data-en="Curated (8-10 min)">Curated (8-10 min)</button>
             <button class="vt-btn" onclick="switchVideo(this,'master')" data-es="Master (25-35 min)" data-en="Master (25-35 min)">Master (25-35 min)</button>
@@ -649,8 +652,7 @@
           <div class="vt-content active" id="vt-curated" data-es="Resumen curado con los sistemas, jugadores clave y análisis defensivo más relevantes. Listo para mostrarlo directamente al equipo." data-en="Curated summary with the most relevant systems, key players and defensive analysis. Ready to show directly to the team.">Curated summary with the most relevant systems, key players and defensive analysis. Ready to show directly to the team.</div>
           <div class="vt-content" id="vt-master" data-es="Vídeo completo (25-35 min) con TODAS las acciones registradas sin filtrar. Más información, menos editorial. Ideal para cuerpos técnicos que prefieren analizar ellos mismos." data-en="Full video (25-35 min) with ALL recorded actions unfiltered. More information, less editorial. Ideal for coaching staffs who prefer to do their own analysis.">Full video (25-35 min) with ALL recorded actions unfiltered. More information, less editorial. Ideal for coaching staffs who prefer to do their own analysis.</div>
         </div>
-        <div class="pack-addon" style="color:rgba(255,255,255,.35);border-top-color:rgba(255,255,255,.1)" data-es="Playbook disponible como suplemento (+€35)" data-en="Playbook available as add-on (+€35)">Playbook available as add-on (+€35)</div>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
+        <div class="pack-addon"  data-es="Playbook disponible como suplemento (+€35)" data-en="Playbook available as add-on (+€35)">Playbook available as add-on (+€35)</div>
       </div>
       <div class="pack-card">
         <div class="pack-tier" data-es="Rival · Jugadores" data-en="Opponent · Players">Opponent · Players</div>
@@ -661,7 +663,6 @@
           <li class="pack-feature" data-es="Informe de jugadores (documento)" data-en="Players scouting report (document)">Players scouting report (document)</li>
           <li class="pack-feature" data-es="Clips ofensivos y defensivos por jugador" data-en="Offensive and defensive clips per player">Offensive and defensive clips per player</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
     </div>
   </div>
@@ -669,7 +670,6 @@
   <div class="pack-panel" id="panel-extra">
     <div class="pack-grid-3">
       <div class="pack-card">
-        <div class="pack-tier">Team Pack</div>
         <div class="pack-name">Team Pack</div>
         <div class="pack-sub" data-es="Análisis post-partido a demanda" data-en="Post-game analysis on demand">Post-game analysis on demand</div>
         <div class="pack-divider"></div>
@@ -677,11 +677,8 @@
           <li class="pack-feature" data-es="Post-game a demanda del entrenador" data-en="Post-game on coach's demand">Post-game on coach's demand</li>
           <li class="pack-feature" data-es="Formato personalizable según necesidades" data-en="Customisable format to specific needs">Customisable format to specific needs</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
-      <div class="pack-card featured">
-        <div class="pack-popular" data-es="Most popular" data-en="Most popular">Most popular</div>
-        <div class="pack-tier" style="color:var(--orange-light)">Complete</div>
+      <div class="pack-card">
         <div class="pack-name">Complete</div>
         <div class="pack-sub" data-es="Scouting total + estadística avanzada" data-en="Full scouting + advanced statistics">Full scouting + advanced statistics</div>
         <div class="pack-divider"></div>
@@ -689,7 +686,6 @@
           <li class="pack-feature" data-es="Full Scout Rival completo" data-en="Full Scout · complete opponent analysis">Full Scout · complete opponent analysis</li>
           <li class="pack-feature" data-es="Pack Estadísticas Gold" data-en="Statistics Pack Gold">Statistics Pack Gold</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card">
         <div class="pack-tier" data-es="Sesión" data-en="Session">Session</div>
@@ -700,7 +696,6 @@
           <li class="pack-feature" data-es="Interpretación de análisis y plan de partido" data-en="Analysis interpretation and game planning">Analysis interpretation and game planning</li>
           <li class="pack-feature" data-es="Adaptable en formato y duración" data-en="Adaptable in format and duration">Adaptable in format and duration</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-secondary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
     </div>
   </div>
@@ -708,9 +703,8 @@
   <div class="pack-panel" id="panel-recruitment">
     <div class="pack-grid-3">
       <div class="pack-card" style="grid-column:1"></div>
-      <div class="pack-card featured" style="grid-column:2 / span 1;display:block">
-        <div class="pack-popular" data-es="Servicio especializado" data-en="Specialist service">Specialist service</div>
-        <div class="pack-tier" style="color:var(--orange-light)" data-es="Inteligencia de mercado" data-en="Market intelligence">Market intelligence</div>
+      <div class="pack-card" style="grid-column:2 / span 1;display:block">
+        <div class="pack-tier" data-es="Inteligencia de mercado" data-en="Market intelligence">Market intelligence</div>
         <div class="pack-name">Recruitment Intelligence</div>
         <div class="pack-sub" data-es="Perfiles de jugadores adaptados a tu arquetipo, contexto y presupuesto" data-en="Player profiles matched to your archetype, league context and budget">Player profiles matched to your archetype, league context and budget</div>
         <div class="pack-divider"></div>
@@ -721,23 +715,28 @@
           <li class="pack-feature" data-es="Opción de desglose en vídeo de cada candidato" data-en="Option of video breakdown for each candidate">Option of video breakdown for each candidate</li>
           <li class="pack-feature" data-es="Tú tomas la decisión final" data-en="You make the final call">You make the final call</li>
         </ul>
-        <div class="pack-cta"><a href="#contacto" class="btn-primary" data-es="Solicitar Info" data-en="Request Info">Request Info</a></div>
       </div>
       <div class="pack-card" style="grid-column:3"></div>
     </div>
   </div>
   <div class="pack-note" data-es="Precios bajo consulta personalizada según liga, volumen y necesidades del equipo. Escríbenos y preparamos una propuesta." data-en="Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.">Prices on personalised request based on league, volume and team needs. Write to us and we'll prepare a proposal.</div>
     </div>
-  </details>
+  </div>
+
+  <a class="sp-band" href="season-pack/">
+    <span class="sp-band-tag" data-es="Para clubes de Basketligan Dam" data-en="For Basketligan Dam clubs">For Basketligan Dam clubs</span>
+    <span class="sp-band-title" data-es="Season Pack y colaboración gratuita" data-en="Season Pack and free collaboration">Season Pack and free collaboration</span>
+    <span class="sp-band-go" data-es="Ver Season Pack →" data-en="See the Season Pack →">See the Season Pack →</span>
+  </a>
 </section>
 <!-- SOBRE NOSOTROS -->
 <section id="sobre">
   <div class="about-grid">
     <div>
-      <div class="section-tag" data-es="Quiénes somos" data-en="Who we are">Who we are</div>
-      <h2 class="about-tag-line" data-es="EXPERTOS EN ANÁLISIS Y <span>SCOUTING</span>" data-en="EXPERTS IN ANALYSIS AND <span>SCOUTING</span>">EXPERTS IN ANALYSIS AND <span>SCOUTING</span></h2>
-      <p class="about-body" data-es="Hoop Assistant nace de una necesidad real: ahorrar tiempo al cuerpo técnico y mejorar la calidad del scouting. Transformamos vídeo y datos en información clara y accionable para equipos que buscan una ventaja competitiva real." data-en="Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. We transform video and data into clear, actionable information for teams seeking a real competitive edge.">Hoop Assistant was born from a real need: saving the coaching staff time and improving scouting quality. We transform video and data into clear, actionable information for teams seeking a real competitive edge.</p>
-      <p class="about-body" data-es="Trabajamos con clubes de diferentes ligas europeas y americanas, con un enfoque y una presentación propios de las grandes ligas." data-en="We work with clubs from different European and American leagues, with a top-league approach and presentation standards.">We work with clubs from different European and American leagues, with a top-league approach and presentation standards.</p>
+      <div class="section-tag" data-es="Nosotros" data-en="About us">About us</div>
+      <h2 class="about-tag-line" data-es="CON QUIÉN VAS A TRABAJAR" data-en="WHO YOU WILL WORK WITH">WHO YOU WILL WORK WITH</h2>
+      <p class="about-body" data-es="Hoop Assistant nace de algo que vimos en todos los staffs con los que trabajamos: nunca hay tiempo para preparar bien al rival. Nosotros hacemos ese trabajo a mano y lo convertimos en vídeo, informes y números que el staff puede usar esa misma semana." data-en="Hoop Assistant started from something we saw on every staff we worked with: there is never enough time to prepare the opponent properly. We do that work by hand and turn it into video, reports and numbers the staff can use that same week.">Hoop Assistant started from something we saw on every staff we worked with: there is never enough time to prepare the opponent properly. We do that work by hand and turn it into video, reports and numbers the staff can use that same week.</p>
+      <p class="about-body" data-es="Esta temporada trabajamos con clubes de Suecia, España y Alemania, desde la SBL Dam hasta la easyCredit BBL." data-en="This season we work with clubs in Sweden, Spain and Germany, from the SBL Dam to the easyCredit BBL.">This season we work with clubs in Sweden, Spain and Germany, from the SBL Dam to the easyCredit BBL.</p>
     </div>
     <div class="team-cards" style="transition-delay:.2s">
       <div class="team-card">
@@ -768,8 +767,8 @@
   <div class="contact-grid">
     <div>
       <div class="section-tag" data-es="Hablemos" data-en="Let's talk">Let's talk</div>
-      <h2 class="section-title" data-es="TRABAJA CON <span>NOSOTROS</span>" data-en="WORK WITH <span>US</span>">WORK WITH <span>US</span></h2>
-      <p class="contact-intro" data-es="¿Listo para llevar el análisis de tu equipo al siguiente nivel? Cuéntanos qué necesitas y te preparamos una propuesta personalizada." data-en="Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.">Ready to take your team's analysis to the next level? Tell us what you need and we'll prepare a personalised proposal.</p>
+      <h2 class="section-title" data-es="TRABAJA CON NOSOTROS" data-en="WORK WITH US">WORK WITH US</h2>
+      <p class="contact-intro" data-es="Cuéntanos en qué liga compites, cómo trabaja tu staff y qué te falta. Te contestamos nosotros mismos, sin bots ni formularios automáticos." data-en="Tell us your league, how your staff works and what you are missing. You will hear back from one of us, not from a bot.">Tell us your league, how your staff works and what you are missing. You will hear back from one of us, not from a bot.</p>
       <div class="contact-detail"><span>hoop.assistant.basketball@gmail.com</span></div>
       <div class="contact-detail"><span></span><span>+34 616 38 92 51</span></div>
       <div class="contact-detail"><span></span><span data-es="100% online · cualquier liga, cualquier lugar" data-en="100% online · any league, any location">100% online · any league, any location</span></div>
@@ -811,7 +810,7 @@
         <img src="https://hoopassistant.github.io/Hoop%20Assistant%20Logo.jpeg" alt="Hoop Assistant" onerror="this.style.display='none'">
         <div class="footer-wm"><span>HOOP</span> ASSISTANT</div>
       </div>
-      <p class="footer-tagline" data-es="Scouting online profesional para equipos de baloncesto. Cualquier liga, cualquier lugar." data-en="Professional online scouting for basketball teams. Any league, any location.">Professional online scouting for basketball teams. Any league, any location.</p>
+      <p class="footer-tagline" data-es="Scouting y análisis para staffs de baloncesto. Hecho por dos entrenadores." data-en="Scouting and analysis for basketball staffs. Made by two coaches.">Scouting and analysis for basketball staffs. Made by two coaches.</p>
     </div>
     <div class="footer-nav">
       <div>
