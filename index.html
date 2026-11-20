@@ -107,7 +107,7 @@
   .portfolio-tabs{display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap}
   .tab-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 28px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s}
   .tab-btn.active,.tab-btn:hover{background:var(--orange);border-color:var(--orange);color:white}
-  .portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .portfolio-item{position:relative;overflow:hidden;display:block;text-decoration:none;background:#1e1e1e;transition:transform .3s}
   .portfolio-item:hover{transform:scale(1.02)}
   .portfolio-video-item{aspect-ratio:16/9}
@@ -184,7 +184,7 @@
   footer{background:#111;padding:48px 5% 28px}
   .footer-top{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
   .footer-brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-  .footer-brand-logo img{height:36px;width:auto}
+  .footer-brand-logo img{height:120px;width:auto;margin-left:-10px;mix-blend-mode:lighten}
   .footer-wm{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;color:rgba(255,255,255,.5);letter-spacing:.05em}
   .footer-wm span{color:var(--orange)}
   .footer-tagline{font-size:.82rem;color:rgba(255,255,255,.3);line-height:1.5;max-width:220px}
@@ -278,15 +278,6 @@
   @media(max-width:960px){.hero-content{grid-template-columns:1fr}.hero-figure{transform:none}.svc-row{grid-template-columns:1fr;gap:28px}.svc-row.svc-flip .svc-text{order:0}.commitment-grid{grid-template-columns:1fr 1fr}.sp-band{grid-template-columns:1fr}.sp-band-go{grid-column:1;grid-row:auto}}
   .svc-noimg{grid-template-columns:1fr 1.15fr}
   @media(max-width:960px){.svc-noimg{grid-template-columns:1fr}}
-  #inicio{background:#000;color:white}
-  #inicio .hero-title .line1,#inicio .hero-title .line3,#inicio .hero-title .line4{color:white}
-  #inicio .hero-sub{color:rgba(255,255,255,.72)}
-  #inicio .hero-facts{color:rgba(255,255,255,.55)}
-  #inicio .btn-secondary{color:white;border-color:rgba(255,255,255,.6)}
-  #inicio .btn-secondary:hover{background:white;color:#000;border-color:white}
-  #inicio .btn-primary:hover{background:white;color:#000;border-color:white}
-  .hero-logo{display:block;width:150px;height:auto;margin:0 0 18px -14px}
-  #inicio .hero-figure{border-color:#222;box-shadow:none;transform:none}
   .pack-block{margin-top:72px;padding-top:48px;border-top:1px solid var(--mid-gray)}
   .pack-block-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.8rem;text-transform:uppercase;line-height:1;margin-bottom:10px}
   .pack-block-desc{font-size:.95rem;color:var(--gray);max-width:560px;line-height:1.6;margin-bottom:28px}
@@ -294,7 +285,14 @@
   .pack-card{border-top-width:2px}
   .pack-feature::before{width:6px;height:6px;margin-top:8px;background:var(--orange)}
   #paquetes .sp-band{margin-top:56px}
-  @media(max-width:960px){.hero-logo{width:110px}}
+  .hero-brand{display:flex;justify-content:center;align-items:center}
+  .hero-brand img{width:100%;max-width:440px;height:auto;display:block;mix-blend-mode:multiply}
+  @media(max-width:960px){.hero-brand{order:-1;justify-content:flex-start}.hero-brand img{max-width:170px;margin:-30px 0 -10px -14px}}
+  .ig-link{display:inline-flex;align-items:center;gap:8px;color:var(--orange);text-decoration:none;font-weight:600}
+  .ig-link:hover{color:white}
+  .ig-about{display:inline-flex;align-items:center;gap:10px;margin-top:18px;color:var(--black);font-weight:600;text-decoration:none;border-bottom:2px solid var(--orange);padding-bottom:4px;font-size:.95rem}
+  .ig-about svg{color:var(--orange)}
+  .ig-about:hover{color:var(--orange)}
 </style>
 </head>
 <body>
@@ -325,7 +323,7 @@
 <section id="inicio">
   <div class="hero-content">
     <div class="hero-text">
-      <img class="hero-logo" src="logo-hoop-assistant.jpg" alt="Hoop Assistant">
+      <div class="hero-badge" data-es="Scouting y análisis de baloncesto" data-en="Basketball scouting and analysis">Basketball scouting and analysis</div>
       <h1 class="hero-title">
         <span class="line1" data-es="CONTROLA" data-en="CONTROL">CONTROL</span>
         <span class="line2" data-es="EL JUEGO" data-en="THE GAME">THE GAME</span>
@@ -339,10 +337,7 @@
       </div>
       <p class="hero-facts" data-es="4 clubes esta temporada · 3 países · entrega en 48h" data-en="4 clubs this season · 3 countries · delivered in 48h">4 clubs this season · 3 countries · delivered in 48h</p>
     </div>
-    <figure class="hero-figure">
-      <img src="work-ppp.jpg" alt="Points per possession by action, from a rival scouting report">
-      <figcaption data-es="De un informe real: puntos por posesión de un rival por tipo de acción. 150 posesiones etiquetadas a mano." data-en="From a real report: a rival's points per possession by type of action. 150 possessions tagged by hand.">From a real report: a rival's points per possession by type of action. 150 possessions tagged by hand.</figcaption>
-    </figure>
+    <div class="hero-brand"><img src="logo-hoop-assistant-white.jpg" alt="Hoop Assistant logo"></div>
   </div>
 </section>
 <!-- CLIENTES & TESTIMONIOS -->
@@ -737,6 +732,7 @@
       <h2 class="about-tag-line" data-es="CON QUIÉN VAS A TRABAJAR" data-en="WHO YOU WILL WORK WITH">WHO YOU WILL WORK WITH</h2>
       <p class="about-body" data-es="Hoop Assistant nace de algo que vimos en todos los staffs con los que trabajamos: nunca hay tiempo para preparar bien al rival. Nosotros hacemos ese trabajo a mano y lo convertimos en vídeo, informes y números que el staff puede usar esa misma semana." data-en="Hoop Assistant started from something we saw on every staff we worked with: there is never enough time to prepare the opponent properly. We do that work by hand and turn it into video, reports and numbers the staff can use that same week.">Hoop Assistant started from something we saw on every staff we worked with: there is never enough time to prepare the opponent properly. We do that work by hand and turn it into video, reports and numbers the staff can use that same week.</p>
       <p class="about-body" data-es="Esta temporada trabajamos con clubes de Suecia, España y Alemania, desde la SBL Dam hasta la easyCredit BBL." data-en="This season we work with clubs in Sweden, Spain and Germany, from the SBL Dam to the easyCredit BBL.">This season we work with clubs in Sweden, Spain and Germany, from the SBL Dam to the easyCredit BBL.</p>
+      <a class="ig-about" href="https://instagram.com/hoopassistant" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-es="Sigue nuestro trabajo en Instagram: @hoopassistant" data-en="Follow our work on Instagram: @hoopassistant">Follow our work on Instagram: @hoopassistant</span></a>
     </div>
     <div class="team-cards" style="transition-delay:.2s">
       <div class="team-card">
@@ -770,8 +766,9 @@
       <h2 class="section-title" data-es="TRABAJA CON NOSOTROS" data-en="WORK WITH US">WORK WITH US</h2>
       <p class="contact-intro" data-es="Cuéntanos en qué liga compites, cómo trabaja tu staff y qué te falta. Te contestamos nosotros mismos, sin bots ni formularios automáticos." data-en="Tell us your league, how your staff works and what you are missing. You will hear back from one of us, not from a bot.">Tell us your league, how your staff works and what you are missing. You will hear back from one of us, not from a bot.</p>
       <div class="contact-detail"><span>hoop.assistant.basketball@gmail.com</span></div>
-      <div class="contact-detail"><span></span><span>+34 616 38 92 51</span></div>
-      <div class="contact-detail"><span></span><span data-es="100% online · cualquier liga, cualquier lugar" data-en="100% online · any league, any location">100% online · any league, any location</span></div>
+      <div class="contact-detail"><span>+34 616 38 92 51</span></div>
+      <div class="contact-detail"><a class="ig-link" href="https://instagram.com/hoopassistant" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>@hoopassistant</span></a></div>
+      <div class="contact-detail"><span data-es="100% online · cualquier liga, cualquier lugar" data-en="100% online · any league, any location">100% online · any league, any location</span></div>
     </div>
     <div style="transition-delay:.2s">
       <form class="contact-form" action="https://formspree.io/f/xjglezqb" method="POST" id="contactForm" onsubmit="handleSubmit(event)">
@@ -807,8 +804,7 @@
   <div class="footer-top">
     <div>
       <div class="footer-brand-logo">
-        <img src="https://hoopassistant.github.io/Hoop%20Assistant%20Logo.jpeg" alt="Hoop Assistant" onerror="this.style.display='none'">
-        <div class="footer-wm"><span>HOOP</span> ASSISTANT</div>
+        <img src="logo-hoop-assistant.jpg" alt="Hoop Assistant">
       </div>
       <p class="footer-tagline" data-es="Scouting y análisis para staffs de baloncesto. Hecho por dos entrenadores." data-en="Scouting and analysis for basketball staffs. Made by two coaches.">Scouting and analysis for basketball staffs. Made by two coaches.</p>
     </div>
@@ -835,6 +831,7 @@
         <div class="footer-nav-title">Contact</div>
         <div class="footer-contact-item">hoop.assistant.basketball@gmail.com</div>
         <div class="footer-contact-item">+34 616 38 92 51</div>
+        <div class="footer-contact-item"><a class="ig-link" href="https://instagram.com/hoopassistant" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>@hoopassistant</span></a></div>
       </div>
     </div>
   </div>
